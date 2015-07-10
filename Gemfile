@@ -2,6 +2,9 @@ source "https://rubygems.org"
 
 gem "rails", "4.2.3"
 
+gem "devise"
+gem "devise-i18n"
+gem "devise-bootstrap-views"
 gem "uglifier"
 gem "slim-rails"
 gem "sass-rails"
