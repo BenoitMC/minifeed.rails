@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    title = "Mom"
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+
+  body
+    header#header
+      = navbar id: "nav", position: :top, padding: 80 do
+        = vertical do
+          = link_to "Mom", main_app.root_path
+        = horizontal do
+          = nav class: "navbar-left" do
+            = link_to "Link 1", "#"
+            = link_to "Link 2", "#"
+          = nav class: "navbar-right" do
+            = link_to "Link 3", "#"
+            = link_to "Link 4", "#"
+
+    #flash.container
+      - flash.map do |type, message|
+        = alert_box message, context: type, dismissible: true
+
+    main#main.container
+      == yield
