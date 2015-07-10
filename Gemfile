@@ -43,7 +43,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "guard"
   gem "guard-cucumber"
-  gem "guard-rspec"
+  gem "guard-rspec", "4.5.2" # https://github.com/guard/guard-rspec/issues/334
   gem "guard-rubocop"
   gem 'timecop'
   gem "byebug"

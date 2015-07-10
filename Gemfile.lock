@@ -134,7 +134,7 @@ GEM
       cucumber (>= 1.3.0)
       guard-compat (~> 1.0)
       nenv (~> 0.1)
-    guard-rspec (4.6.0)
+    guard-rspec (4.5.2)
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
@@ -340,7 +340,7 @@ DEPENDENCIES
   font-awesome-sass
   guard
   guard-cucumber
-  guard-rspec
+  guard-rspec (= 4.5.2)
   guard-rubocop
   jquery-rails
   kaminari

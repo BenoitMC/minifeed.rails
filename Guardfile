@@ -1,4 +1,4 @@
-guard :rspec, :all_after_pass => false, :all_on_start => false, failed_mode: :keep, cmd: 'zeus rspec', notification: false do
+guard :rspec, all_after_pass: false, all_on_start: false, failed_mode: :keep, cmd: 'zeus rspec', notification: false do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
@@ -20,8 +20,7 @@ guard :rspec, :all_after_pass => false, :all_on_start => false, failed_mode: :ke
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
 end
 
-# guard 'cucumber', cli: '-t @current', bundler: true, :all_on_start => false, notification: false, all_after_pass: false  do
-guard 'cucumber', bundler: true, :all_on_start => false, notification: false, all_after_pass: false  do
+guard 'cucumber', bundler: true, all_on_start: false, notification: false, all_after_pass: false  do
   watch(%r{^features/.+\.feature$})
   watch(%r{^features/support/.+$})          { 'features' }
   watch(%r{^features/step_definitions/(.+)_steps\.rb$}) { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'features' }
