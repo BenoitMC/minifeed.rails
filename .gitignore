@@ -15,3 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Mac OS X
+.DS_Store
