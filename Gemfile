@@ -26,6 +26,12 @@ gem "execjs"
 gem "therubyracer"
 gem "exception_notification"
 
+group :development do
+  gem "spring"
+  gem "spring-commands-rspec"
+  gem "spring-commands-cucumber"
+end
+
 group :development, :test do
   gem "rails-erd"
   gem "minitest"

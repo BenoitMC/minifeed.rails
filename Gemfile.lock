@@ -283,6 +283,11 @@ GEM
       railties (>= 3.1, < 5.0)
       slim (~> 3.0)
     slop (3.6.0)
+    spring (1.3.6)
+    spring-commands-cucumber (1.0.1)
+      spring (>= 0.9.1)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     sprockets (3.2.0)
       rack (~> 1.0)
     sprockets-rails (2.3.2)
@@ -357,6 +362,9 @@ DEPENDENCIES
   shoulda-matchers (= 2.5.0)
   simple_form
   slim-rails
+  spring
+  spring-commands-cucumber
+  spring-commands-rspec
   sqlite3
   therubyracer
   thor
