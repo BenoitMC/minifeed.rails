@@ -27,9 +27,12 @@ gem "therubyracer"
 gem "exception_notification"
 
 group :development do
-  gem "spring"
   gem "spring-commands-rspec"
   gem "spring-commands-cucumber"
+end
+
+group :test do
+  gem "launchy"
 end
 
 group :development, :test do
@@ -51,7 +54,7 @@ group :development, :test do
   gem "guard-cucumber"
   gem "guard-rspec", "4.5.2" # https://github.com/guard/guard-rspec/issues/334
   gem "guard-rubocop"
-  gem 'timecop'
+  gem "timecop"
   gem "byebug"
 end
 
