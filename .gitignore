@@ -15,7 +15,10 @@
 /log/*
 !/log/.keep
 /tmp
-*.swp
 
-# Mac OS X
+# Editor/IDEs files
+*.swp
+.project
+
+# Dropbox
 .DS_Store
