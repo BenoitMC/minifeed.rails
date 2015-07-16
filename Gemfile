@@ -29,6 +29,7 @@ gem "exception_notification"
 group :development do
   gem "spring-commands-rspec"
   gem "spring-commands-cucumber"
+  gem "pry-rails"
 end
 
 group :test do
