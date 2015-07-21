@@ -20,5 +20,5 @@
 *.swp
 .project
 
-# Dropbox
+# Mac OS X
 .DS_Store
