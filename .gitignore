@@ -16,5 +16,9 @@
 !/log/.keep
 /tmp
 
+# Editor/IDEs files
+*.swp
+.project
+
 # Mac OS X
 .DS_Store
