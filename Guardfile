@@ -20,7 +20,7 @@ guard :rspec, all_after_pass: false, all_on_start: false, failed_mode: :keep, cm
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
 end
 
-guard 'cucumber', bundler: true, all_on_start: false, notification: false, all_after_pass: false  do
+guard 'cucumber', :command_prefix => 'zeus', bundler: true, all_on_start: false, notification: false, all_after_pass: false  do
   watch(%r{^features/.+\.feature$})
   watch(%r{^features/support/.+$})          { 'features' }
   watch(%r{^features/step_definitions/(.+)_steps\.rb$}) { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'features' }
