@@ -30,6 +30,7 @@ group :development do
   gem "spring-commands-rspec"
   gem "spring-commands-cucumber"
   gem "pry-rails"
+  gem "quiet_assets"
 end
 
 group :test do
