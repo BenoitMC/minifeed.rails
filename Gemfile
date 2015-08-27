@@ -25,6 +25,7 @@ gem "bootstrap-datepicker-rails"
 gem "execjs"
 gem "therubyracer"
 gem "exception_notification"
+gem "autoprefixer-rails"
 
 group :development do
   gem "spring-commands-rspec"
