@@ -21,3 +21,7 @@ Change ApplicationMailer url options in :
 - config/environments/staging.rb
 
 `config.action_mailer.default_url_options = {host: "mom.example.org"}`
+
+Change ExceptionNotification config in :
+
+- config/initializers/exception_notification.rb
