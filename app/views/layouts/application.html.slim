@@ -8,18 +8,23 @@ html
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
 
-  body
+  body class="#{params[:controller].parameterize}_#{params[:action].parameterize}"
     header#header
       = navbar id: "nav", position: :top, padding: 80 do
         = vertical do
           = link_to "Mom", main_app.root_path
-        = horizontal do
-          = nav class: "navbar-left" do
-            = link_to "Link 1", "#"
-            = link_to "Link 2", "#"
-          = nav class: "navbar-right" do
-            = link_to "Link 3", "#"
-            = link_to "Link 4", "#"
+
+        - if current_user
+          = horizontal do
+            = nav class: "navbar-left"
+              = link_to "Link 1", "#"
+              = link_to "Link 2", "#"
+
+            = nav class: "navbar-right"
+              li: a = current_user
+
+              li: a href=main_app.destroy_user_session_path data-method="delete"
+                = icon("power-off")
 
     #flash.container
       - flash.map do |type, message|
