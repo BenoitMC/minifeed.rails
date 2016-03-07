@@ -22,6 +22,10 @@ Change ApplicationMailer url options in :
 
 `config.action_mailer.default_url_options = {host: "mom.example.org"}`
 
+Change ApplicationMailer default from in :
+
+- app/mailer/application_mailer.rb
+
 Change ExceptionNotification config in :
 
 - config/initializers/exception_notification.rb
