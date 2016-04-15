@@ -96,6 +96,8 @@ GEM
       rails (>= 3, < 5)
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
+    desktop_delivery (1.0.0)
+      launchy
     devise (3.5.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -350,6 +352,7 @@ DEPENDENCIES
   coffee-rails
   cucumber-rails
   database_cleaner
+  desktop_delivery
   devise
   devise-bootstrap-views
   devise-i18n
@@ -391,4 +394,4 @@ DEPENDENCIES
   zeus
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
