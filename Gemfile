@@ -2,7 +2,6 @@ source "https://rubygems.org"
 
 gem "rails", "4.2.3"
 
-gem "desktop_delivery"
 gem "devise"
 gem "devise-i18n"
 gem "devise-bootstrap-views"
@@ -29,17 +28,15 @@ gem "autoprefixer-rails"
 gem "font-awesome-sass"
 
 group :development do
+  gem "desktop_delivery"
   gem "spring-commands-rspec"
   gem "spring-commands-cucumber"
   gem "pry-rails"
   gem "quiet_assets"
 end
 
-group :test do
-  gem "launchy"
-end
-
 group :development, :test do
+  gem "launchy"
   gem "rails-erd"
   gem "minitest"
   gem "thor"
@@ -47,6 +44,7 @@ group :development, :test do
   gem "sqlite3"
   gem "zeus"
   gem "rspec-rails"
+  gem "rspec-repeat"
   gem "shoulda-matchers", "2.5.0"
   gem "faker"
   gem "cucumber-rails", require: false
