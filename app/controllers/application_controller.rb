@@ -4,4 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :authenticate_user!
+
+  rescue_from ActionController::InvalidAuthenticityToken do
+    flash[:alert] = t("errors.invalid_authenticity_token")
+    redirect_to main_app.root_path
+  end
 end

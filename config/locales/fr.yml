@@ -1,2 +1,5 @@
 fr:
   hello: "Bonjour"
+
+  errors:
+    invalid_authenticity_token: "La session a expiré."
