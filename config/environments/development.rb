@@ -36,6 +36,7 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  config.action_mailer.delivery_method = :desktop_delivery
   config.action_mailer.default_url_options = {host: "localhost", port: 3000}
 
   # Raises error for missing translations
