@@ -42,7 +42,6 @@ group :development, :test do
   gem "thor"
   gem "pry"
   gem "sqlite3"
-  gem "zeus"
   gem "rspec-rails"
   gem "rspec-repeat"
   gem "shoulda-matchers", "2.5.0"
