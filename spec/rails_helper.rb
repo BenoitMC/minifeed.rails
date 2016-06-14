@@ -38,10 +38,17 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.include RSpec::Repeat
+  def i_am_on_a_ci_server?
+    return true if `hostname`.downcase.include?("semaphore")
+    return false
+  end
 
-  config.around do |example|
-    repeat example, 2.times
+  if i_am_on_a_ci_server?
+    config.include RSpec::Repeat
+
+    config.around do |example|
+      repeat example, 2.times
+    end
   end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
