@@ -26,44 +26,47 @@ gem "therubyracer"
 gem "exception_notification"
 gem "autoprefixer-rails"
 gem "font-awesome-sass"
+gem "puma"
 
-group :development do
-  gem "desktop_delivery"
-  gem "spring-commands-rspec"
-  gem "spring-commands-cucumber"
-  gem "pry-rails"
-  gem "quiet_assets"
-end
-
-group :development, :test do
-  gem "launchy"
-  gem "rails-erd"
+group :test do
   gem "minitest"
-  gem "thor"
-  gem "pry"
-  gem "sqlite3"
   gem "rspec-rails"
   gem "rspec-repeat"
   gem "shoulda-matchers", "2.5.0"
-  gem "faker"
   gem "cucumber-rails", require: false
   gem "capybara"
   gem "poltergeist"
-  gem "database_cleaner"
-  gem "factory_girl_rails"
+  gem "spring-commands-rspec"
+  gem "spring-commands-cucumber"
   gem "guard"
   gem "guard-cucumber"
   gem "guard-rspec", "4.5.2" # https://github.com/guard/guard-rspec/issues/334
   gem "guard-rubocop"
   gem "timecop"
-  gem "byebug"
+  gem "simplecov", require: false
+end
+
+group :development do
+  gem "desktop_delivery"
+  gem "quiet_assets"
   gem "better_errors"
 
   # Please do not use this gem, it create Rails reloader problems
   # gem "binding_of_caller"
 end
 
+group :development, :test do
+  gem "pry-rails"
+  gem "launchy"
+  gem "rails-erd"
+  gem "thor"
+  gem "sqlite3"
+  gem "faker"
+  gem "database_cleaner"
+  gem "factory_girl_rails"
+  gem "byebug"
+end
+
 group :production do
-  gem "puma"
   gem "pg"
 end
