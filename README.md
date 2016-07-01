@@ -6,10 +6,9 @@ The mother of our applications.
 
 Replace "Mom" by application name in :
 
+- README.md (this file)
 - config/application.rb
-- config/initializers/session_store.rb
 - app/views/layouts/application.html.slim (title + navbar)
-- README.md
 
 Change ApplicationMailer url options in :
 
@@ -21,7 +20,3 @@ Change ApplicationMailer url options in :
 Change ApplicationMailer default from in :
 
 - app/mailer/application_mailer.rb
-
-Change ExceptionNotification config in :
-
-- config/initializers/exception_notification.rb
