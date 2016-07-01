@@ -11,7 +11,7 @@ test: &test
   <<: *default
   database: db/test.sqlite3
 
-production:
+production: &production
   adapter: postgresql
   encoding: unicode
   database: <%= ENV["POSTGRESQL_DB"] %>
@@ -21,13 +21,7 @@ production:
   password: <%= ENV["POSTGRESQL_PASSWORD"] %>
 
 staging:
-  adapter: postgresql
-  encoding: unicode
-  database: <%= ENV["POSTGRESQL_DB"] %>
-  pool: 5
-  host: <%= ENV["POSTGRESQL_HOST"] %>
-  username: <%= ENV["POSTGRESQL_USER"] %>
-  password: <%= ENV["POSTGRESQL_PASSWORD"] %>
+  <<: *production
 
 cucumber:
   <<: *test

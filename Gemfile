@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", "4.2.6"
+gem "rails", "5.0.0"
 
 gem "devise"
 gem "devise-i18n"
@@ -48,7 +48,6 @@ end
 
 group :development do
   gem "desktop_delivery"
-  gem "quiet_assets"
   gem "better_errors"
 
   # Please do not use this gem, it create Rails reloader problems
@@ -56,6 +55,7 @@ group :development do
 end
 
 group :development, :test do
+  gem "spring"
   gem "pry-rails"
   gem "launchy"
   gem "rails-erd"
