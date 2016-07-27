@@ -7,3 +7,19 @@ if %w(production staging).include?(Rails.env)
     }
   )
 end
+
+module DelayedJobExceptionNotification
+  def invoke_job(*)
+    super
+  rescue Exception => e
+    if self.attempts == 0
+      ExceptionNotifier.notify_exception(e)
+    end
+
+    raise e
+  end
+end
+
+if defined? Delayed::Job
+  Delayed::Job.send(:prepend, DelayedJobExceptionNotification)
+end
