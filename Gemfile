@@ -31,6 +31,7 @@ gem "puma"
 group :test do
   gem "minitest"
   gem "rspec-rails"
+  gem "rspec-wait"
   gem "rails-controller-testing"
   gem "rspec-repeat"
   gem "shoulda-matchers", "2.5.0"

@@ -1,6 +1,12 @@
-DatabaseCleaner.strategy                      = :transaction
-Cucumber::Rails::Database.javascript_strategy = :transaction
+require 'database_cleaner'
 
-Around do |scenario, block|
-  DatabaseCleaner.cleaning(&block)
+Cucumber::Rails::Database.autorun_database_cleaner = false
+Cucumber::Rails::Database.javascript_strategy      = :truncation
+
+After do |scenario, block|
+  DatabaseCleaner.clean_with(:truncation, {except: %w(
+    ar_internal_metadata
+    schema_migrations
+    spatial_ref_sys
+  )})
 end
