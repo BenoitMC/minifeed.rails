@@ -12,7 +12,7 @@ end
 
 World(CucumberWaitAjaxRequests)
 
-# Auto wait ajax request between steps
+# Auto wait ajax requests between steps
 AfterStep do |scenario|
   if page.evaluate_script('typeof jQuery') != "undefined"
     wait_ajax_requests

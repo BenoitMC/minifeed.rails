@@ -46,6 +46,7 @@ group :test do
   gem "guard-rubocop"
   gem "timecop"
   gem "simplecov", require: false
+  gem "pundit-matchers"
 end
 
 group :development do
