@@ -1,24 +1,22 @@
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
   pool: 5
-  timeout: 5000
+  host: <%= ENV["POSTGRESQL_HOST"] || "localhost" %>
+  database: <%= ENV["POSTGRESQL_DB"] %>
+  username: <%= ENV["POSTGRESQL_USER"] %>
+  password: <%= ENV["POSTGRESQL_PASSWORD"] %>
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: mom_development
 
 test: &test
   <<: *default
-  database: db/test.sqlite3
+  database: mom_test
 
 production: &production
-  adapter: postgresql
-  encoding: unicode
-  database: <%= ENV["POSTGRESQL_DB"] %>
-  pool: 5
-  host: <%= ENV["POSTGRESQL_HOST"] %>
-  username: <%= ENV["POSTGRESQL_USER"] %>
-  password: <%= ENV["POSTGRESQL_PASSWORD"] %>
+  <<: *default
 
 staging:
   <<: *production

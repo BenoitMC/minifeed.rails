@@ -10,6 +10,10 @@ Replace "Mom" by application name in :
 - config/application.rb
 - app/views/layouts/application.html.slim (title + navbar)
 
+Change database names :
+
+- config/database.yml
+
 Change ApplicationMailer url options in :
 
 - config/environments/production.rb
