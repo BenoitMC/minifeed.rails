@@ -1,6 +1,6 @@
 module CucumberWaitAjaxRequests
-  def wait_ajax_requests
-    Timeout.timeout(Capybara.default_max_wait_time) do
+  def wait_ajax_requests(timeout = Capybara.default_max_wait_time)
+    Timeout.timeout(timeout) do
       sleep 0.1 until all_ajax_requests_finished?
     end
   end
@@ -12,7 +12,7 @@ end
 
 World(CucumberWaitAjaxRequests)
 
-# Auto wait ajax requests between steps
+# Auto wait ajax request between steps
 AfterStep do |scenario|
   if page.evaluate_script('typeof jQuery') != "undefined"
     wait_ajax_requests

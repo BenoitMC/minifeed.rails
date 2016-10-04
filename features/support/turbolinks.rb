@@ -1,12 +1,12 @@
 module CucumberWaitTurbolinksRequests
-  def wait_turbolinks_requests
-    Timeout.timeout(Capybara.default_max_wait_time) do
+  def wait_turbolinks_requests(timeout = Capybara.default_max_wait_time)
+    Timeout.timeout(timeout) do
       sleep 0.1 until all_turbolinks_requests_finished?
     end
   end
 
   def all_turbolinks_requests_finished?
-    have_selector("html.turbolinks-load")
+    have_no_selector("html.turbolinks-load")
   end
 end
 
