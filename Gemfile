@@ -31,7 +31,6 @@ gem "puma"
 
 group :test do
   gem "minitest"
-  gem "rspec-rails"
   gem "rspec-wait"
   gem "rails-controller-testing"
   gem "rspec-repeat"
@@ -64,11 +63,11 @@ group :development, :test do
   gem "launchy"
   gem "rails-erd"
   gem "thor"
-  gem "sqlite3"
   gem "faker"
   gem "database_cleaner"
   gem "factory_girl_rails"
   gem "byebug"
+  gem "rspec-rails" # should be in both environments for generators
 end
 
 group :production do
