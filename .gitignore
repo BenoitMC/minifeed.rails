@@ -44,3 +44,8 @@ tags
 
 # Code Coverage
 coverage
+
+
+# Environment variables
+.env
+.env.*
