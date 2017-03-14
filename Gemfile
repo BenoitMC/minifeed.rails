@@ -67,7 +67,7 @@ group :development, :test do
   gem "database_cleaner"
   gem "factory_girl_rails"
   gem "byebug"
-  gem "rspec-rails" # should be in both environments for generators
+  gem "rspec-rails" # must be in both environments for generators
 end
 
 group :production do
