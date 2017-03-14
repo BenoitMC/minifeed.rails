@@ -21,5 +21,7 @@ module Mom
     config.i18n.default_locale = :fr
 
     config.action_mailer.delivery_method = :sendmail
+
+    config.active_record.primary_key = :uuid
   end
 end
