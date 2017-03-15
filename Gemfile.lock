@@ -116,9 +116,6 @@ GEM
     diff-lcs (1.3)
     docile (1.1.5)
     erubis (2.7.0)
-    exception_notification (4.2.1)
-      actionmailer (>= 4.0, < 6)
-      activesupport (>= 4.0, < 6)
     execjs (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
@@ -389,7 +386,6 @@ DEPENDENCIES
   devise
   devise-bootstrap-views (= 0.0.9)
   devise-i18n
-  exception_notification
   execjs
   factory_girl_rails
   faker
