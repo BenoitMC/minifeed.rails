@@ -27,6 +27,7 @@ gem "therubyracer"
 gem "autoprefixer-rails"
 gem "font-awesome-sass"
 gem "puma"
+gem "bugsnag"
 
 group :test do
   gem "minitest"
