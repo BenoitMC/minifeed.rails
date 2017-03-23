@@ -52,6 +52,7 @@ end
 group :development do
   gem "desktop_delivery"
   gem "better_errors"
+  gem "meta_request"
 
   # Please do not use this gem, it create Rails reloader problems
   # gem "binding_of_caller"
