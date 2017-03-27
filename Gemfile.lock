@@ -200,6 +200,9 @@ GEM
     multi_json (1.12.1)
     multi_test (0.1.2)
     nenv (0.3.0)
+    nilify_blanks (1.2.1)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
@@ -409,6 +412,7 @@ DEPENDENCIES
   launchy
   meta_request
   minitest
+  nilify_blanks
   pg
   poltergeist
   pry-rails

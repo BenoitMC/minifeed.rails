@@ -28,6 +28,7 @@ gem "autoprefixer-rails"
 gem "font-awesome-sass"
 gem "puma"
 gem "bugsnag"
+gem "nilify_blanks"
 
 group :test do
   gem "minitest"

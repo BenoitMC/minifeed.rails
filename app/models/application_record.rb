@@ -1,6 +1,8 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
+  nilify_blanks
+
   private
 
   before_save :validate_primary_key_is_uuid
