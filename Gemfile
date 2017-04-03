@@ -29,6 +29,7 @@ gem "font-awesome-sass"
 gem "puma"
 gem "bugsnag"
 gem "nilify_blanks"
+gem "pg"
 
 group :test do
   gem "minitest"
@@ -70,8 +71,4 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "byebug"
   gem "rspec-rails" # must be in both environments for generators
-end
-
-group :production do
-  gem "pg"
 end
