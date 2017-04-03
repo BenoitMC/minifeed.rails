@@ -36,7 +36,7 @@ group :test do
   gem "rspec-wait"
   gem "rails-controller-testing"
   gem "rspec-repeat"
-  gem "shoulda-matchers", "2.5.0"
+  gem "shoulda-matchers"
   gem "cucumber-rails", require: false
   gem "capybara"
   gem "poltergeist"
