@@ -49,6 +49,7 @@ group :test do
   gem "timecop"
   gem "simplecov", require: false
   gem "pundit-matchers"
+  gem "zonebie"
 end
 
 group :development do

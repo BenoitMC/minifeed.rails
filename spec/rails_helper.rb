@@ -81,4 +81,6 @@ RSpec.configure do |config|
       with.library :rails
     end
   end
+
+  Zonebie.set_random_timezone
 end
