@@ -41,6 +41,7 @@ RSpec.configure do |config|
   end
 
   def i_am_on_a_ci_server?
+    return true if ENV["CI"].to_s.downcase == "true"
     return true if `hostname`.downcase.include?("semaphore")
     return false
   end
