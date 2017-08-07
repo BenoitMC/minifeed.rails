@@ -1,16 +1,16 @@
 doctype html
-html
+html lang=I18n.locale
   head
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1"
     title = "Mom"
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = stylesheet_link_tag    "application", "data-turbolinks-track": true, media: "all"
+    = javascript_include_tag "application", "data-turbolinks-track": true
     - if Rails.env.test?
       script = "jQuery.fx.off = true"
     = csrf_meta_tags
 
-  body class="#{params[:controller].parameterize}_#{params[:action].parameterize}"
+  body data-controller=params[:controller] data-action=params[:action]
     header#header
       = navbar id: "nav", position: :top, padding: 80 do
         = vertical do
