@@ -2,10 +2,9 @@ source "https://rubygems.org"
 
 gem "rails", "~> 5.0.6"
 
+gem "agilidee-devise"
+
 gem "carrierwave"
-gem "devise"
-gem "devise-i18n"
-gem "devise-bootstrap-views", "0.0.9" # https://github.com/hisea/devise-bootstrap-views/issues/49
 gem "uglifier"
 gem "slim-rails"
 gem "sass-rails"
