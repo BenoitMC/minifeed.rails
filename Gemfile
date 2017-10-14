@@ -3,6 +3,7 @@ source "https://rubygems.org"
 gem "rails", "~> 5.0.6"
 
 gem "agilidee-devise"
+gem "agilibox"
 
 gem "carrierwave"
 gem "uglifier"
