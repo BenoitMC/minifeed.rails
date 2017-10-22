@@ -69,7 +69,7 @@ group :development, :test do
   gem "thor"
   gem "faker"
   gem "database_cleaner"
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem "byebug"
   gem "rspec-rails" # must be in both environments for generators
 end
