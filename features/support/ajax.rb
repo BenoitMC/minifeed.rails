@@ -6,15 +6,13 @@ module CucumberWaitAjaxRequests
   end
 
   def all_ajax_requests_finished?
-    page.evaluate_script('jQuery.active').zero?
+    page.evaluate_script("jQuery.active").zero?
   end
 end
 
 World(CucumberWaitAjaxRequests)
 
 # Auto wait ajax request between steps
-AfterStep do |scenario|
-  if page.evaluate_script('typeof jQuery') != "undefined"
-    wait_ajax_requests
-  end
+AfterStep do |_scenario|
+  wait_ajax_requests if page.evaluate_script("typeof jQuery") != "undefined"
 end

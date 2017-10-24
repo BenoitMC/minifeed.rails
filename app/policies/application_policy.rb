@@ -20,12 +20,12 @@ class ApplicationPolicy
 
   def self.define_accessor
     # Dorsale::BillingMachine::InvoicePolicy -> :invoice
-    object_type = self.to_s.split("::").last.gsub("Policy", "").underscore.to_sym
+    object_type = to_s.split("::").last.gsub("Policy", "").underscore.to_sym
 
     # Avoid user/subject conflict
     object_type = :other_user if object_type == :user
 
-    self.send(:define_method, object_type) { subject }
+    send(:define_method, object_type) { subject }
   end
 
   class Scope
