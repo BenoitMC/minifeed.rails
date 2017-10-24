@@ -1,17 +1,11 @@
 class ApplicationPolicy
-  attr_reader :user, :subject
+  include Pundit
 
-  def initialize(user, subject)
-    @user    = user
-    @subject = subject
-  end
+  attr_reader :current_user, :subject
 
-  def policy(subject)
-    Pundit.policy(user, subject)
-  end
-
-  def policy_scope(subject)
-    Pundit.policy_scope(user, subject)
+  def initialize(current_user, subject)
+    @current_user = current_user
+    @subject      = subject
   end
 
   def self.inherited(klass)
@@ -20,7 +14,7 @@ class ApplicationPolicy
 
   def self.define_accessor
     # Dorsale::BillingMachine::InvoicePolicy -> :invoice
-    object_type = to_s.split("::").last.gsub("Policy", "").underscore.to_sym
+    object_type = to_s.split("::").last.chomp("Policy").underscore.to_sym
 
     # Avoid user/subject conflict
     object_type = :other_user if object_type == :user
@@ -29,11 +23,13 @@ class ApplicationPolicy
   end
 
   class Scope
-    attr_reader :user, :scope
+    include Pundit
 
-    def initialize(user, scope)
-      @user  = user
-      @scope = scope
+    attr_reader :current_user, :scope
+
+    def initialize(current_user, scope)
+      @current_user = current_user
+      @scope        = scope
     end
   end
 end
