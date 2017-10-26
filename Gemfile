@@ -3,7 +3,7 @@ source "https://rubygems.org"
 gem "rails", "~> 5.0.6"
 
 gem "agilidee-devise"
-gem "agilibox"
+gem "agilibox", ">= 1.0.9"
 
 gem "carrierwave"
 gem "uglifier"
@@ -20,6 +20,7 @@ gem "bh"
 gem "rails-i18n"
 gem "pundit"
 gem "awesome_print"
+gem "pry-rails"
 gem "kaminari-i18n"
 gem "bootstrap-datepicker-rails"
 gem "execjs"
@@ -63,7 +64,6 @@ end
 
 group :development, :test do
   gem "spring"
-  gem "pry-rails"
   gem "launchy"
   gem "rails-erd"
   gem "thor"
