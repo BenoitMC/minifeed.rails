@@ -5,11 +5,13 @@ class ApplicationRecord < ActiveRecord::Base
 
   private
 
-  before_save :validate_primary_key_is_uuid
+  after_initialize :assign_uuid, if: :new_record?
 
-  def validate_primary_key_is_uuid
+  def assign_uuid
     unless self.class.columns_hash["id"].type == :uuid
       raise "invalid id type, please change to uuid"
     end
+
+    self.id ||= Agilibox::SortableUUIDGenerator.generate
   end
 end
