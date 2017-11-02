@@ -440,6 +440,7 @@ DEPENDENCIES
   rspec-rails
   rspec-repeat
   rspec-wait
+  rubocop
   sass-rails
   shoulda-matchers
   simple_form
