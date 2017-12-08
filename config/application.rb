@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Mom
   class Application < Rails::Application
+    config.load_defaults 5.1
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -23,5 +25,8 @@ module Mom
     config.action_mailer.delivery_method = :sendmail
 
     config.active_record.primary_key = :uuid
+    config.active_record.belongs_to_required_by_default = false
+
+    config.action_view.form_with_generates_remote_forms = false
   end
 end

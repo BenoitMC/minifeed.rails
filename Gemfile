@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
-gem "rails", "~> 5.0.6"
+gem "rails", "~> 5.1.4"
 
 gem "agilidee-devise"
-gem "agilibox", ">= 1.0.9"
+gem "agilibox", ">= 1.0.11"
 
 gem "carrierwave"
 gem "uglifier"
