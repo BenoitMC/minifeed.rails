@@ -315,7 +315,7 @@ GEM
     rspec-support (3.7.0)
     rspec-wait (0.0.9)
       rspec (>= 3, < 4)
-    rubocop (0.52.0)
+    rubocop (0.52.1)
       parallel (~> 1.10)
       parser (>= 2.4.0.2, < 3.0)
       powerpack (~> 0.1)
@@ -441,7 +441,7 @@ DEPENDENCIES
   rspec-rails
   rspec-repeat
   rspec-wait
-  rubocop (~> 0.52.0)
+  rubocop (~> 0.52.1)
   sass-rails
   shoulda-matchers
   simple_form
