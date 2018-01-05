@@ -27,6 +27,10 @@ module Mom
     config.active_record.primary_key = :uuid
     config.active_record.belongs_to_required_by_default = false
 
+    config.generators do |g|
+      g.orm :active_record, primary_key_type: :uuid
+    end
+
     config.action_view.form_with_generates_remote_forms = false
   end
 end
