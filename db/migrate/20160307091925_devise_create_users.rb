@@ -1,4 +1,4 @@
-class DeviseCreateUsers < ActiveRecord::Migration[5.0]
+class DeviseCreateUsers < ActiveRecord::Migration[5.1]
   def change
     create_table(:users, id: :uuid) do |t|
       t.string :first_name
