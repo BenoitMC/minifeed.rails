@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
-gem "rails", "~> 5.1.4"
+gem "rails", "~> 5.1.5"
 
 gem "agilidee-devise"
-gem "agilibox", ">= 1.0.11"
+gem "agilibox", ">= 1.0.14"
 
 gem "carrierwave"
 gem "uglifier"
@@ -26,7 +26,7 @@ gem "bootstrap-datepicker-rails"
 gem "execjs"
 gem "therubyracer"
 gem "autoprefixer-rails"
-gem "font-awesome-sass"
+gem "font-awesome-sass", "~> 4.7.0"
 gem "puma"
 gem "bugsnag"
 gem "nilify_blanks"
@@ -72,5 +72,5 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "byebug"
   gem "rspec-rails" # must be in both environments for generators
-  gem "rubocop", "~> 0.52.1", require: false
+  gem "rubocop", "0.53.0", require: false
 end
