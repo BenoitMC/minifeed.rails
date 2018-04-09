@@ -8,6 +8,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require "pundit/rspec"
 require 'pundit/matchers'
+require "agilibox/rspec"
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -69,20 +70,4 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
-
-  config.include FactoryBot::Syntax::Methods
-  config.include Devise::Test::ControllerHelpers, type: :controller
-
-  config.after do
-    Timecop.return
-  end
-
-  Shoulda::Matchers.configure do |config|
-    config.integrate do |with|
-      with.test_framework :rspec
-      with.library :rails
-    end
-  end
-
-  Zonebie.set_random_timezone
 end
