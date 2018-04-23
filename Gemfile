@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", "~> 5.1.5"
+gem "rails", "~> 5.1.6"
 
 gem "agilidee-devise"
 gem "agilibox", ">= 1.0.14"
@@ -31,6 +31,7 @@ gem "puma"
 gem "bugsnag"
 gem "nilify_blanks"
 gem "pg"
+gem "loofah", ">= 2.2.2" # fix Github security warning
 
 group :test do
   gem "minitest"
@@ -45,7 +46,7 @@ group :test do
   gem "spring-commands-cucumber"
   gem "guard"
   gem "guard-cucumber"
-  gem "guard-rspec", "4.5.2" # https://github.com/guard/guard-rspec/issues/334
+  gem "guard-rspec"
   gem "guard-rubocop"
   gem "timecop"
   gem "simplecov", require: false
@@ -72,5 +73,5 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "byebug"
   gem "rspec-rails" # must be in both environments for generators
-  gem "rubocop", "0.53.0", require: false
+  gem "rubocop", "0.55.0", require: false
 end
