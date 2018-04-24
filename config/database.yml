@@ -3,17 +3,15 @@ default: &default
   encoding: unicode
   pool: 32
   host: <%= ENV["POSTGRESQL_HOST"] || "localhost" %>
-  database: <%= ENV["POSTGRESQL_DB"] %>
+  database: <%= ENV["POSTGRESQL_DB"] || Rails.app_env_id %>
   username: <%= ENV["POSTGRESQL_USER"] %>
   password: <%= ENV["POSTGRESQL_PASSWORD"] %>
 
 development:
   <<: *default
-  database: mom_development
 
 test: &test
   <<: *default
-  database: mom_test
 
 production: &production
   <<: *default

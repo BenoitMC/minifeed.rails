@@ -93,5 +93,5 @@ end
 Rails.application.configure do
   config.log_level = :warn
   config.action_mailer.default_url_options = {host: "mom.example.org"}
-  config.active_job.queue_name_prefix = "#{Rails.application.class.parent_name.downcase}_#{Rails.env}"
+  config.active_job.queue_name_prefix = Rails.app_env_id
 end
