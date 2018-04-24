@@ -1,7 +1,8 @@
 source "https://rubygems.org"
 
-gem "rails", "~> 5.1.6"
+gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
+gem "rails", "~> 5.1.6"
 gem "agilidee-devise"
 gem "agilibox", ">= 1.0.14"
 
