@@ -12,26 +12,8 @@ html lang=I18n.locale
     = csrf_meta_tags
 
   body data-controller=params[:controller] data-action=params[:action]
-    header#header
-      = navbar id: "nav", position: :top, padding: 80 do
-        = vertical do
-          = link_to "Mom", main_app.root_path
-
-        - if current_user
-          = horizontal do
-            = nav class: "navbar-left"
-              = link_to "Link 1", "#"
-              = link_to "Link 2", "#"
-
-            = nav class: "navbar-right"
-              li: a = current_user
-
-              li: a href=main_app.destroy_user_session_path data-method="delete"
-                = icon("power-off")
-
-    #flash.container
-      - flash.map do |type, message|
-        = alert_box message, context: type, dismissible: true
+    = render "layouts/header"
+    = render "agilibox/flash"
 
     main#main.container
       == yield

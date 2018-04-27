@@ -8,7 +8,8 @@ Replace "Mom" by application name in :
 
 - README.md (this file)
 - config/application.rb
-- app/views/layouts/application.html.slim (title + navbar)
+- app/views/layouts/application.html.slim (head/title)
+- app/views/layouts/_header.html.slim (navbar)
 - spec/lib/rails_spec.rb
 
 Change ApplicationMailer url options in :

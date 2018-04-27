@@ -1,0 +1,21 @@
+header#header: nav.navbar.navbar-expand.fixed-top.navbar-light.bg-light
+  a.navbar-brand href=main_app.root_path = "Mom"
+
+  button.navbar-toggler data-target="#nav" data-toggle="collapse"
+    .navbar-toggler-icon
+
+  - if current_user
+    #nav.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        li.nav-item: a.nav-link href="#" = "Link 1"
+        li.nav-item: a.nav-link href="#" = "Link 2"
+
+      ul.navbar-nav
+        li.nav-item: a.nav-link
+          = icon(:user)
+          = " "
+          = current_user
+
+        li.nav-item: a.nav-link href=main_app.destroy_user_session_path data-method="delete"
+          = icon("power-off")
+          = " Déconnexion"

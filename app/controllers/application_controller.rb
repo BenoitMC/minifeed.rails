@@ -20,6 +20,8 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
+  helper Agilibox::AllHelpers
+
   private
 
   def render_not_found
