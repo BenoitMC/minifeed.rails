@@ -1,8 +1,8 @@
-header#header: nav.navbar.navbar-expand.fixed-top.navbar-light.bg-light
+header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light
   a.navbar-brand href=main_app.root_path = "Mom"
 
   button.navbar-toggler data-target="#nav" data-toggle="collapse"
-    .navbar-toggler-icon
+    span.navbar-toggler-icon
 
   - if current_user
     #nav.collapse.navbar-collapse
