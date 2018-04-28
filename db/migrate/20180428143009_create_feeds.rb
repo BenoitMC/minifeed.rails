@@ -5,6 +5,7 @@ class CreateFeeds < ActiveRecord::Migration[5.1]
       t.uuid :category_id
       t.string :name
       t.string :url
+      t.datetime :last_update_at
       t.timestamps
     end
   end

@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20180428143009) do
     t.uuid "category_id"
     t.string "name"
     t.string "url"
+    t.datetime "last_update_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

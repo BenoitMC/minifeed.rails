@@ -9,6 +9,8 @@ describe Feed, type: :model do
   it { is_expected.to validate_presence_of :name }
   it { is_expected.to validate_presence_of :url }
 
+  it { is_expected.to_not validate_presence_of :last_update_at }
+
   it "should validate that feed#user is category#user" do
     user     = create(:user)
     category = create(:category)
