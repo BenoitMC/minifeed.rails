@@ -59,7 +59,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "mom_#{Rails.env}"
+  # config.active_job.queue_name_prefix = "minifeed_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
@@ -92,6 +92,6 @@ end
 
 Rails.application.configure do
   config.log_level = :warn
-  config.action_mailer.default_url_options = {host: "mom.example.org"}
+  config.action_mailer.default_url_options = {host: "minifeed.todo.example.org"}
   config.active_job.queue_name_prefix = Rails.app_env_id
 end
