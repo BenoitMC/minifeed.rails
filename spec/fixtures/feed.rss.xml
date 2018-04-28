@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>RSS Example Feed</title>
+    <link>http://rss.example.com/</link>
+    <description>RSS Example Description</description>
+    <item>
+      <title>RSS Entry Name</title>
+      <link>http://rss.example.org/1</link>
+      <pubDate>Fri, 21 Dec 2012 12:00:00 +0000</pubDate>
+      <description>RSS Entry Summary</description>
+      <guid isPermaLink="false">rss-entry-id</guid>
+    </item>
+  </channel>
+</rss>

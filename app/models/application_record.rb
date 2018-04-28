@@ -1,6 +1,8 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
+  include Agilibox::TimestampHelpers
+
   nilify_blanks before: :validation
 
   private

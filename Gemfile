@@ -6,6 +6,7 @@ gem "rails", "~> 5.1.6"
 gem "agilidee-devise", ">= 1.1.0"
 gem "agilibox", ">= 1.1.0"
 
+gem "feedjira"
 gem "carrierwave"
 gem "uglifier"
 gem "slim-rails"

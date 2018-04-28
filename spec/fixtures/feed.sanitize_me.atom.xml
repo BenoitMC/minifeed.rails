@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Atom Example Feed</title>
+  <link href="http://atom.example.org/" />
+  <updated>2012-12-21T12:00:00+00:00</updated>
+  <author>
+    <name>Atom Author</name>
+  </author>
+  <id>atom-feed-id</id>
+  <entry>
+    <title>Atom Entry Name</title>
+    <link href="http://atom.example.org/1" />
+    <id>atom-entry-id</id>
+    <updated>2012-12-21T12:00:00+00:00</updated>
+    <summary><![CDATA[
+      <p style="color:blue" onlick="alert('!')">Atom Entry Summary<p>
+      <script>alert('!')</script>
+    ]]></summary>
+  </entry>
+</feed>
