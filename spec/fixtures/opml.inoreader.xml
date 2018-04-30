@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+  <head>
+    <title>Example OPML Inoreader</title>
+  </head>
+  <body>
+    <outline text="Feed 0 Name" title="Feed 0 Name" type="rss" xmlUrl="http://site0.example.org/feed.xml" htmlUrl="http://site0.example.org/"/>
+    <outline text="Category 1 Name" title="Category 1 Name">
+      <outline text="Feed 1 Name" title="Feed 1 Name" type="rss" xmlUrl="https://site1.example.org/feed.xml" htmlUrl="https://site1.example.org/"/>
+    </outline>
+  </body>
+</opml>
