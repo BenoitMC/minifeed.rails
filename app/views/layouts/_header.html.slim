@@ -6,11 +6,32 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light
 
   - if current_user
     #nav.collapse.navbar-collapse
-      ul.navbar-nav.mr-auto
-        li.nav-item: a.nav-link href="#" = "Link 1"
-        li.nav-item: a.nav-link href="#" = "Link 2"
+      ul.navbar-nav.mr-auto.navbar-left
+        li.nav-item class=("active" if current_page_is_all_entries?)
+          a.nav-link href=main_app.entries_path
+            = icon(:list)
+            = " "
+            = t("nav.all_categories")
+            span.badge.badge-secondary.float-right = number_of_unread
 
-      ul.navbar-nav
+
+        li.nav-item class=("active" if current_page_is_starred?)
+          a.nav-link href=main_app.entries_path(starred: 1)
+            = icon(:star)
+            = " "
+            = t("nav.starred")
+            span.badge.badge-secondary.float-right = number_of_starred
+
+        - policy_scope(Category).all.each do |category|
+          li.nav-item class=("active" if current_page_is_category?(category))
+            a.nav-link href=main_app.entries_path(category_id: category)
+              = category.id == params[:category_id] ? icon(:folder_open) : icon(:folder)
+              = " "
+              = category.name
+              span.badge.badge-secondary.float-right = number_of_unread_in_category(category)
+
+
+      ul.navbar-nav.ml-auto
         li.nav-item: a.nav-link
           = icon(:user)
           = " "
@@ -18,4 +39,5 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light
 
         li.nav-item: a.nav-link href=main_app.destroy_user_session_path data-method="delete"
           = icon("power-off")
-          = " Déconnexion"
+          = " "
+          = t("nav.sign_out")

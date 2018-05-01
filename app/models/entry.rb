@@ -13,4 +13,11 @@ class Entry < ApplicationRecord
   default_scope -> {
     order(published_at: :desc)
   }
+
+  scope :unread,  -> { where(is_read: false)   }
+  scope :starred, -> { where(is_starred: true) }
+
+  scope :with_category_id, -> (category_id) {
+    joins(:feed).where(feeds: {category_id: category_id})
+  }
 end

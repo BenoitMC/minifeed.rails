@@ -1,0 +1,33 @@
+$nav-left-width: 250px
+$nav-left-background: $gray-200
+$nav-left-font-size: 13px
+$nav-left-items-padding: 15px
+
+@include media-breakpoint-up(sm)
+  #nav
+    .navbar-left
+      display: block
+      position: absolute
+      left: 0
+      top: 56px
+      height: calc(100vh - 56px)
+      width: $nav-left-width
+      background: $nav-left-background
+      z-index: 5
+      font-size: $nav-left-font-size
+      overflow: auto
+
+      li
+        border-bottom: 1px solid darken($nav-left-background, 10)
+        margin: 0
+        padding: 0
+
+        a
+          line-height: 1em
+          padding: $nav-left-items-padding
+
+      li.active
+        font-weight: bold
+
+  #main
+    margin-left: $nav-left-width

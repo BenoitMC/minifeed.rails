@@ -28,4 +28,27 @@ describe Entry, type: :model do
   it "should have a valid factory" do
     expect(create :entry).to be_valid
   end
+
+  describe "factories" do
+    it "should return #unread entries" do
+      read   = create(:entry, is_read: true)
+      unread = create(:entry, is_read: false)
+
+      expect(described_class.unread).to eq [unread]
+    end
+
+    it "should return #starred entries" do
+      not_starred = create(:entry, is_starred: false)
+      starred     = create(:entry, is_starred: true)
+
+      expect(described_class.starred).to eq [starred]
+    end
+
+    it "#with_category_id should filter by category" do
+      entry1 = create(:entry)
+      entry2 = create(:entry)
+
+      expect(described_class.with_category_id(entry1.feed.category.id)).to eq [entry1]
+    end
+  end # describe "factories"
 end
