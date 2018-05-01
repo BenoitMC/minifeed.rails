@@ -1,0 +1,8 @@
+ul.list-group#entries
+  - @entries.each do |entry|
+    li.list-group-item.entry(
+      class = ("read" if entry.is_read?)
+    )
+      .entry-name == entry.name
+
+= paginate @entries

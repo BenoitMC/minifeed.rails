@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :entry do
     user
-    feed
+    feed { build(:feed, user: user) }
     external_id { SecureRandom.uuid }
     name { Faker::Lorem.sentence }
     body { Faker::Lorem.paragraph }
