@@ -162,5 +162,17 @@ describe Feed::ImportService do
 
       service.call
     end
+
+    it "should not crash on feeds without updated field" do
+      feed    = create(:feed)
+      service = described_class.new(feed)
+
+      expect(service).to receive(:feed_entries).and_return([Feedjira::Parser::ITunesRSSItem.new])
+      allow(service).to receive(:create_or_update_entry!)
+
+      expect {
+        service.call
+      }.to_not raise_error
+    end
   end # describe "#call"
 end

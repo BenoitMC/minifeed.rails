@@ -3,7 +3,7 @@ class Feed::ImportService < Service
 
   def call
     feed_entries.each do |feed_entry|
-      updated = feed_entry.updated || feed_entry.published
+      updated = feed_entry.try(:updated) || feed_entry.published
       next if feed.last_update_at && updated && updated < feed.last_update_at
       create_or_update_entry!(feed_entry)
     end
