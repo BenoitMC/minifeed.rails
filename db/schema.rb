@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20180428150523) do
     t.string "name"
     t.text "body"
     t.string "url"
+    t.datetime "published_at"
     t.boolean "is_read", default: false, null: false
     t.boolean "is_starred", default: false, null: false
     t.datetime "created_at", null: false

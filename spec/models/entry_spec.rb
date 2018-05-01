@@ -8,6 +8,7 @@ describe Entry, type: :model do
   it { is_expected.to validate_presence_of :feed }
   it { is_expected.to validate_presence_of :external_id }
   it { is_expected.to validate_presence_of :name }
+  it { is_expected.to validate_presence_of :published_at }
   it { is_expected.to validate_inclusion_of(:is_read).in_array([true, false]) }
   it { is_expected.to validate_inclusion_of(:is_starred).in_array([true, false]) }
 

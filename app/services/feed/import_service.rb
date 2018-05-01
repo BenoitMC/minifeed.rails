@@ -32,12 +32,14 @@ class Feed::ImportService < Service
       :external_id => external_id,
     )
 
-    name = feed_entry.title.presence || "[no title]"
+    name         = feed_entry.title.presence || "[no title]"
+    published_at = feed_entry.published || Time.zone.now
 
     entry.attributes = {
-      :name        => name,
-      :body        => feed_entry.summary,
-      :url         => feed_entry.url,
+      :name         => name,
+      :body         => feed_entry.summary,
+      :url          => feed_entry.url,
+      :published_at => published_at,
     }
 
     entry.save!

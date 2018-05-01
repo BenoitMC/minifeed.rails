@@ -62,8 +62,8 @@ describe Feed::ImportService do
         :title     => "entry title",
         :url       => "entry url",
         :id        => "entry id",
-        :published => "entry published",
         :summary   => "entry summary",
+        :published => Time.utc(2012, 12, 21, 12, 0, 0),
       )
     }
 
@@ -77,11 +77,12 @@ describe Feed::ImportService do
       }.to change(Entry, :count).by(1)
 
       entry = Entry.last_created
-      expect(entry.user).to        eq feed.user
-      expect(entry.name).to        eq "entry title"
-      expect(entry.body).to        eq "entry summary"
-      expect(entry.external_id).to eq "entry id"
-      expect(entry.url).to         eq "entry url"
+      expect(entry.user).to         eq feed.user
+      expect(entry.name).to         eq "entry title"
+      expect(entry.body).to         eq "entry summary"
+      expect(entry.external_id).to  eq "entry id"
+      expect(entry.url).to          eq "entry url"
+      expect(entry.published_at).to eq Time.utc(2012, 12, 21, 12, 0, 0)
     end
 
     it "should update entry based on external_id" do
@@ -120,6 +121,14 @@ describe Feed::ImportService do
       feed_entry.id = nil
 
       expect { create_or_update_entry! }.to_not change(Entry, :count)
+    end
+
+    it "should assign default published_at to now" do
+      feed_entry.published = nil
+
+      expect { create_or_update_entry! }.to change(Entry, :count).by(1)
+
+      expect(Entry.last_created.published_at).to be_present
     end
   end # describe "#create_or_update_entry!"
 
