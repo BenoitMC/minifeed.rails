@@ -28,8 +28,10 @@ class Feed::ImportService < Service
       :external_id => feed_entry.id,
     )
 
+    name = feed_entry.title.presence || "[no title]"
+
     entry.attributes = {
-      :name        => feed_entry.title,
+      :name        => name,
       :body        => feed_entry.summary,
       :url         => feed_entry.url,
     }

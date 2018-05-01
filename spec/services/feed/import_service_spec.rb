@@ -104,6 +104,17 @@ describe Feed::ImportService do
         create_or_update_entry!
       }.to change(Entry, :count).by(1)
     end
+
+    it "should assign a default title if needed" do
+      feed_entry.title = nil
+
+      expect {
+        create_or_update_entry!
+      }.to change(Entry, :count).by(1)
+
+      entry = Entry.last_created
+      expect(entry.name).to eq "[no title]"
+    end
   end # describe "#create_or_update_entry!"
 
   describe "#call" do
