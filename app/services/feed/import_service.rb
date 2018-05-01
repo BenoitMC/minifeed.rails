@@ -22,10 +22,14 @@ class Feed::ImportService < Service
   end
 
   def create_or_update_entry!(feed_entry)
+    external_id = feed_entry.id
+
+    return if external_id.blank?
+
     entry = Entry.find_or_initialize_by(
       :user        => feed.user,
       :feed        => feed,
-      :external_id => feed_entry.id,
+      :external_id => external_id,
     )
 
     name = feed_entry.title.presence || "[no title]"

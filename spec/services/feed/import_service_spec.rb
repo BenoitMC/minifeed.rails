@@ -115,6 +115,12 @@ describe Feed::ImportService do
       entry = Entry.last_created
       expect(entry.name).to eq "[no title]"
     end
+
+    it "should ignore entries without id" do
+      feed_entry.id = nil
+
+      expect { create_or_update_entry! }.to_not change(Entry, :count)
+    end
   end # describe "#create_or_update_entry!"
 
   describe "#call" do
