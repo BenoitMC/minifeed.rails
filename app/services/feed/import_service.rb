@@ -33,7 +33,7 @@ class Feed::ImportService < Service
     )
 
     name         = feed_entry.title.presence || "[no title]"
-    published_at = feed_entry.published || Time.zone.now
+    published_at = feed_entry.published || entry.published_at || Time.zone.now
 
     entry.attributes = {
       :name         => name,

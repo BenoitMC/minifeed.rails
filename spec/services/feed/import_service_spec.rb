@@ -130,6 +130,20 @@ describe Feed::ImportService do
 
       expect(Entry.last_created.published_at).to be_present
     end
+
+    it "should not update published_at if not present" do
+      feed_entry.published = nil
+
+      Timecop.freeze Time.utc(2012, 12, 21, 12, 0, 0)
+      expect { create_or_update_entry! }.to change(Entry, :count).by(1)
+      entry = Entry.last_created
+      expect(entry.published_at).to eq Time.utc(2012, 12, 21, 12, 0, 0)
+
+      Timecop.freeze Time.utc(2012, 12, 21, 15, 0, 0)
+      expect { create_or_update_entry! }.to_not change(Entry, :count)
+      entry.reload
+      expect(entry.published_at).to eq Time.utc(2012, 12, 21, 12, 0, 0)
+    end
   end # describe "#create_or_update_entry!"
 
   describe "#call" do
