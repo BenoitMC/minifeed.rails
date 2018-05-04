@@ -13,7 +13,7 @@ html lang=I18n.locale
 
   body data-controller=params[:controller] data-action=params[:action]
     = render "layouts/header"
-    = render "agilibox/flash"
 
     main#main.container-fluid
+      = render "agilibox/flash"
       == yield

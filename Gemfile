@@ -43,6 +43,7 @@ group :test do
   gem "cucumber-rails", require: false
   gem "capybara"
   gem "poltergeist"
+  gem "selenium-webdriver"
   gem "spring-commands-rspec"
   gem "spring-commands-cucumber"
   gem "guard"
