@@ -63,6 +63,7 @@ describe Feed::ImportService do
         :url       => "entry url",
         :id        => "entry id",
         :summary   => "entry summary",
+        :content   => "entry content",
         :published => Time.utc(2012, 12, 21, 12, 0, 0),
       )
     }
@@ -72,14 +73,12 @@ describe Feed::ImportService do
     end
 
     it "should create entry" do
-      expect {
-        create_or_update_entry!
-      }.to change(Entry, :count).by(1)
+      expect { create_or_update_entry! }.to change(Entry, :count).by(1)
 
       entry = Entry.last_created
       expect(entry.user).to         eq feed.user
       expect(entry.name).to         eq "entry title"
-      expect(entry.body).to         eq "entry summary"
+      expect(entry.body).to         eq "entry content"
       expect(entry.external_id).to  eq "entry id"
       expect(entry.url).to          eq "entry url"
       expect(entry.published_at).to eq Time.utc(2012, 12, 21, 12, 0, 0)
@@ -88,33 +87,36 @@ describe Feed::ImportService do
     it "should update entry based on external_id" do
       entry = create(:entry, user: feed.user, feed: feed, external_id: "entry id")
 
-      expect {
-        create_or_update_entry!
-      }.to_not change(Entry, :count)
+      expect { create_or_update_entry! }.to_not change(Entry, :count)
 
       entry.reload
       expect(entry.name).to eq "entry title"
-      expect(entry.body).to eq "entry summary"
+      expect(entry.body).to eq "entry content"
       expect(entry.url).to  eq "entry url"
     end
 
     it "should not update other user entry with same external_id" do
       entry = create(:entry, external_id: "entry id")
 
-      expect {
-        create_or_update_entry!
-      }.to change(Entry, :count).by(1)
+      expect { create_or_update_entry! }.to change(Entry, :count).by(1)
     end
 
     it "should assign a default title if needed" do
       feed_entry.title = nil
 
-      expect {
-        create_or_update_entry!
-      }.to change(Entry, :count).by(1)
+      expect { create_or_update_entry! }.to change(Entry, :count).by(1)
 
       entry = Entry.last_created
       expect(entry.name).to eq "[no title]"
+    end
+
+    it "should use summary if content if empty" do
+      feed_entry.content = nil
+
+      expect { create_or_update_entry! }.to change(Entry, :count).by(1)
+
+      entry = Entry.last_created
+      expect(entry.body).to eq "entry summary"
     end
 
     it "should ignore entries without id" do

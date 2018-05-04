@@ -34,10 +34,11 @@ class Feed::ImportService < Service
 
     name         = feed_entry.title.presence || "[no title]"
     published_at = feed_entry.published || entry.published_at || Time.zone.now
+    body         = feed_entry.content.presence || feed_entry.summary
 
     entry.attributes = {
       :name         => name,
-      :body         => feed_entry.summary,
+      :body         => body,
       :url          => feed_entry.url,
       :published_at => published_at,
     }
