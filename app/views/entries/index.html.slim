@@ -1,13 +1,11 @@
 ul.list-group#entries
   - @entries.each do |entry|
-    li.list-group-item.entry(
-      class = ("read" if entry.is_read?)
-    )
-      a.entry-name href=entry.url target="_blank"
+    li.list-group-item class=css_class_for_entry(entry)
+      a.entry-name href=main_app.entry_path(entry) data-modal="normal"
         == entry.name
-
       = " "
-
       span.entry-feed == entry.feed
+      = " "
+      span.entry-published_at = time_ago_in_words(entry.published_at)
 
 = paginate @entries

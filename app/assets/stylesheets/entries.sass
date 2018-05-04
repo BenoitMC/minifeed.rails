@@ -1,4 +1,32 @@
-.entry-feed
-  color: $text-muted
-  font-size: $small-font-size
-  margin-left: 1em
+#entries
+  .entry.is_read *
+    opacity: 0.3
+    text-decoration: line-through
+
+  .entry-feed,
+  .entry-published_at,
+    color: $text-muted
+    font-size: $small-font-size
+
+  .entry-feed
+    margin-left: 1em
+
+  .entry-published_at
+    float: right
+
+#entry
+  h1.entry-name
+    font-size: 1.5em
+    font-weight: bold
+
+  .entry-infos-and-actions
+    span, a
+      color: $text-muted
+      text-decoration: none
+
+  .entry-body
+    img
+      max-width: 100%
+      max-height: 250px
+      width: auto
+      height: auto

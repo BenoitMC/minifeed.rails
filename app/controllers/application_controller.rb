@@ -22,6 +22,14 @@ class ApplicationController < ActionController::Base
 
   helper Agilibox::AllHelpers
 
+  layout -> {
+    if request.xhr?
+      false
+    else
+      "application"
+    end
+  }
+
   private
 
   def render_not_found

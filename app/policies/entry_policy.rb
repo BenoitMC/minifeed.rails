@@ -3,6 +3,10 @@ class EntryPolicy < ApplicationPolicy
     true
   end
 
+  def read?
+    true
+  end
+
   class Scope < Scope
     def resolve
       scope.where(user: current_user)

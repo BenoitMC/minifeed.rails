@@ -15,6 +15,12 @@ class EntriesController < ApplicationController
     end
   end
 
+  def show
+    @entry = scope.find(params[:id])
+
+    authorize @entry, :read?
+  end
+
   private
 
   def model
