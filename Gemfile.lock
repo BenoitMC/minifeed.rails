@@ -89,7 +89,6 @@ GEM
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     choice (0.2.0)
-    cliver (0.3.2)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -247,10 +246,6 @@ GEM
     parser (2.5.1.0)
       ast (~> 2.4.0)
     pg (1.0.0)
-    poltergeist (1.17.0)
-      capybara (~> 2.1)
-      cliver (~> 0.3.1)
-      websocket-driver (>= 0.2.0)
     popper_js (1.12.9)
     powerpack (0.1.1)
     pry (0.11.3)
@@ -460,7 +455,6 @@ DEPENDENCIES
   minitest
   nilify_blanks
   pg
-  poltergeist
   pry-rails
   puma
   pundit
