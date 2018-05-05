@@ -23,7 +23,7 @@ Feature: Navigation
   Scenario: Hide navigation badges if 0
     Given an existing category named "hello"
     And an existing category named "world"
-    And an existing entry in this category
+    And an existing entry
 
     When I go on the entries page
 

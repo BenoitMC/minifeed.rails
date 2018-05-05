@@ -18,3 +18,11 @@ end
 Then("I do not see {string} element") do |selector|
   expect(page).to have_no_selector(selector)
 end
+
+When("I click on {string}") do |text|
+  click_on text
+end
+
+Then("I see {string} in modal") do |text|
+  expect(find("#modal")).to have_content(text)
+end
