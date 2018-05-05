@@ -4,8 +4,7 @@ gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
 gem "rails", "~> 5.1.6"
 gem "agilidee-devise", ">= 1.1.0"
-# gem "agilibox", ">= 1.1.0"
-gem "agilibox", path: "../agilidee/agilibox"
+gem "agilibox", ">= 1.2.0"
 
 gem "feedjira"
 gem "carrierwave"
