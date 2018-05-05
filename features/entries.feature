@@ -42,3 +42,12 @@ Feature: Entries
     And I click on "i am an entry"
     Then I see "i am an entry" in modal
     Then I see "i am an entry body" in modal
+
+  Scenario: Open entry url in new tab
+    Given an existing entry
+    And this existing entry "name" is "Github entry"
+    And this existing entry "url" is "https://github.com/"
+    When I go on the entries page
+    And I click on "Github entry"
+    And I click on ".entry-external_link" element
+    Then I see "Sign up for GitHub" in a new tab

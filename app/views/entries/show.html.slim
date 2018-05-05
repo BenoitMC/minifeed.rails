@@ -35,14 +35,14 @@
     span.separator = " - "
 
     / TODO
-    a href=@entry.url target="_blank" onclick="return false"
+    a.entry-preview href=@entry.url target="_blank" onclick="return false"
       = icon(:eye, fa_style: :s)
       = " "
       = ta(:preview)
 
     span.separator = " - "
 
-    a href=@entry.url target="_blank"
+    a.entry-external_link href=@entry.url target="_blank"
       = icon(:external_link_alt, fa_style: :s)
       = ta(:open_external)
 
