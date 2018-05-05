@@ -1,7 +1,7 @@
 ul.list-group#entries
   - @entries.each do |entry|
     li.list-group-item class=css_class_for_entry(entry)
-      a.entry-name href=main_app.entry_path(entry) data-modal="normal"
+      a.entry-name href=main_app.entry_path(entry) data-modal="normal" data-entry-id=entry.id
         == entry.name
       = " "
       span.entry-feed == entry.feed

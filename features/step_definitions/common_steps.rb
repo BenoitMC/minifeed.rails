@@ -36,3 +36,7 @@ Then("I see {string} in a new tab") do |text|
   switch_to_window windows.last
   expect(page).to have_content(text)
 end
+
+When("I press key {string}") do |key|
+  find("body").send_keys(key.to_sym)
+end
