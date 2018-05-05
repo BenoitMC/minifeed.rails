@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe HomeController, type: :controller do
+describe HomeController do
   describe "#home" do
-    it "should be ok" do
+    it "should be redirect to entries" do
       sign_in create(:user)
       get :home
-      expect(response).to be_ok
+      expect(response).to redirect_to entries_path
     end
   end
 end
