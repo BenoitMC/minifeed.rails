@@ -97,3 +97,12 @@ Feature: Entries
     Then I do not see "#modal" element
     When I press key "left"
     Then I do not see "#modal" element
+
+  Scenario: Open entry body links in new page
+    Given an existing entry
+    And this existing entry "name" is "Example entry"
+    And this existing entry "body" is "<a href='http://example.org/'>entry body link</a>"
+    When I go on the entries page
+    And I click on "Example entry"
+    And I click on "entry body link"
+    Then I see "Example Domain" in a new tab

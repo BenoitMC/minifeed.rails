@@ -16,3 +16,6 @@ Mousetrap.bind "right", ->
 Mousetrap.bind "left", ->
   return unless currentEntryId
   $("a[data-entry-id=#{currentEntryId}]").parents("li").prev("li").find("a[data-entry-id]").click()
+
+$(document).on "click", ".entry-body a", ->
+  this.target = "_blank"
