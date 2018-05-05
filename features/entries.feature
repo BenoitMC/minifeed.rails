@@ -134,3 +134,12 @@ Feature: Entries
     When I click on ".entry-is_starred" element
     Then I see ".entry-is_starred .far.fa-star" element
     And I do not see ".entry-is_starred .fas.fa-star" element
+
+  Scenario: Refresh read/unread on list
+    Given an existing entry
+    And this existing entry "name" is "Example entry"
+    When I go on the entries page
+    Then I do not see ".entry.is_read" element
+    When I click on "Example entry"
+    And I click on "#modal-close" element
+    Then I see ".entry.is_read" element

@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   helper Agilibox::AllHelpers
 
   layout -> {
-    if request.xhr?
+    if request.xhr? && params[:layout].to_s != "true"
       false
     else
       "application"

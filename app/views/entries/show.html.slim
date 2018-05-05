@@ -52,3 +52,12 @@
   .entry-body
     == @entry.body
     .clearfix
+
+
+
+  javascript: reloadNavigation()
+
+  - if @entry.is_read
+    javascript: $(".#{@entry.id}").addClass("is_read")
+  - else
+    javascript: $(".#{@entry.id}").removeClass("is_read")

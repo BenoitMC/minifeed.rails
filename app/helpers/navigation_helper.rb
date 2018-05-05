@@ -1,4 +1,8 @@
 module NavigationHelper
+  def nav_categories
+    policy_scope(Category).all
+  end
+
   def current_page_is_all_entries?
     controller_name == "entries" && action_name == "index" &&
       params[:category_id].blank? && params[:starred].to_i.zero?

@@ -29,3 +29,28 @@ Feature: Navigation
 
     Then I do not see "#nav_category_hello .badge" element
     And I see "#nav_category_world .badge" element
+
+  Scenario: Navigation live reload
+    Given an existing category named "hello"
+    And an existing entry
+    And this existing entry "name" is "Example entry"
+
+    When I go on the entries page
+    Then I see "#nav_all_entries .badge" element
+    And I see "#nav_category_hello .badge" element
+    And I do not see "#nav_starred .badge" element
+
+    When I click on "Example entry"
+    Then I do not see "#nav_all_entries .badge" element
+    And I do not see "#nav_category_hello .badge" element
+    And I do not see "#nav_starred .badge" element
+
+    When I click on ".entry-is_starred" element
+    Then I do not see "#nav_all_entries .badge" element
+    And I do not see "#nav_category_hello .badge" element
+    And I see "#nav_starred .badge" element
+
+    When I click on ".entry-is_read" element
+    Then I see "#nav_all_entries .badge" element
+    And I see "#nav_category_hello .badge" element
+    And I see "#nav_starred .badge" element

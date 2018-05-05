@@ -12,8 +12,8 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light
             = icon(:list)
             = " "
             = t("nav.all_entries")
-            - if number_of_unread > 0
-              span.badge.badge-secondary.float-right = number_of_unread
+            span.badge.badge-secondary.float-right data-count=number_of_unread
+              = number_of_unread
 
 
         li.nav-item#nav_starred class=("active" if current_page_is_starred?)
@@ -21,17 +21,17 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light
             = icon(:star)
             = " "
             = t("nav.starred")
-            - if number_of_starred > 0
-              span.badge.badge-secondary.float-right = number_of_starred
+            span.badge.badge-secondary.float-right data-count=number_of_starred
+              = number_of_starred
 
-        - policy_scope(Category).all.each do |category|
+        - nav_categories.each do |category|
           li.nav-item id="nav_category_#{category.name.parameterize}" class=("active" if current_page_is_category?(category))
             a.nav-link href=main_app.entries_path(category_id: category)
               = category.id == params[:category_id] ? icon(:folder_open) : icon(:folder)
               = " "
               = category.name
-              - if number_of_unread_in_category(category) > 0
-                span.badge.badge-secondary.float-right = number_of_unread_in_category(category)
+              span.badge.badge-secondary.float-right data-count=number_of_unread_in_category(category)
+                = number_of_unread_in_category(category)
 
 
       ul.navbar-nav.ml-auto

@@ -25,3 +25,9 @@ $(document).on "change", "#entry > form", ->
 
 $(document).on "ajax:complete", "#entry > form", (event, xhr) ->
   $("#entry").replaceWith(xhr.responseText)
+
+@reloadNavigation = ->
+  $.ajax
+    url: location.href
+    data: {layout: true}
+    success: (data) -> $("#header").replaceWith $("<div>#{data}</div>").find("#header")
