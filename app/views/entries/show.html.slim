@@ -1,50 +1,50 @@
 #entry
-  h1.entry-name = @entry.name
+  .entry-header
+    h1.entry-name = @entry.name
 
-  .entry-infos-and-actions
-    span.entry-feed = @entry.feed
+    .entry-infos-and-actions
+      span.entry-feed = @entry.feed
 
-    span.separator = " - "
+      span.separator = " - "
 
-    span.entry-published_at = time_ago_in_words(@entry.published_at)
+      span.entry-published_at = time_ago_in_words(@entry.published_at)
 
-    span.separator = " - "
+      span.separator = " - "
 
-    / TODO
-    span.entry-is_read
-      - if @entry.is_read?
-       = icon(:check_square, fa_style: :r)
-      - else
-       = icon(:square, fa_style: :r)
+      / TODO
+      span.entry-is_read
+        - if @entry.is_read?
+         = icon(:check_square, fa_style: :r)
+        - else
+         = icon(:square, fa_style: :r)
 
-      = " "
-      = @entry.t(:is_read)
+        = " "
+        = @entry.t(:is_read)
 
-    span.separator = " - "
+      span.separator = " - "
 
-    / TODO
-    span.entry-is_starred
-      - if @entry.is_starred?
-       = icon(:star, fa_style: :s)
-      - else
-       = icon(:star, fa_style: :r)
+      / TODO
+      span.entry-is_starred
+        - if @entry.is_starred?
+         = icon(:star, fa_style: :s)
+        - else
+         = icon(:star, fa_style: :r)
 
-      = " "
-      = @entry.t(:is_starred)
+        = " "
+        = @entry.t(:is_starred)
 
-    span.separator = " - "
+      span.separator = " - "
 
-    / TODO
-    a.entry-preview href=@entry.url target="_blank" onclick="return false"
-      = icon(:eye, fa_style: :s)
-      = " "
-      = ta(:preview)
+      a.entry-preview_link href=@entry.url target="_blank"
+        = icon(:eye, fa_style: :s)
+        = " "
+        = ta(:preview)
 
-    span.separator = " - "
+      span.separator = " - "
 
-    a.entry-external_link href=@entry.url target="_blank"
-      = icon(:external_link_alt, fa_style: :s)
-      = ta(:open_external)
+      a.entry-external_link href=@entry.url target="_blank"
+        = icon(:external_link_alt, fa_style: :s)
+        = ta(:open_external)
 
   hr
 

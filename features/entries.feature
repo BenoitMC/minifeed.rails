@@ -45,9 +45,19 @@ Feature: Entries
 
   Scenario: Open entry url in new tab
     Given an existing entry
-    And this existing entry "name" is "Github entry"
-    And this existing entry "url" is "https://github.com/"
+    And this existing entry "name" is "Example entry"
+    And this existing entry "url" is "http://example.org/"
     When I go on the entries page
-    And I click on "Github entry"
+    And I click on "Example entry"
     And I click on ".entry-external_link" element
-    Then I see "Sign up for GitHub" in a new tab
+    Then I see "Example Domain" in a new tab
+
+  Scenario: Preview entry url in modal
+    Given an existing entry
+    And this existing entry "name" is "Example entry"
+    And this existing entry "url" is "http://example.org/"
+    When I go on the entries page
+    And I click on "Example entry"
+    And I click on ".entry-preview_link" element
+    Then I see "iframe" element
+    Then I see "#modal" element
