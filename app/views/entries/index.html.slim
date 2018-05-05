@@ -1,11 +1,28 @@
-ul.list-group#entries
+p#entry-filters: span.btn-group
+  = link_to_entries_filter "all"
+  = link_to_entries_filter "unread"
+  = link_to_entries_filter "starred"
+
+
+
+- if @entries.to_a.empty?
+  / TOOD : i18n
+  #no-entry-to-read = "Nothing to read :)"
+
+
+
+ul.list-group#entries-list
   - @entries.each do |entry|
     li.list-group-item class=css_class_for_entry(entry)
+      span.entry-is_read-indicator = icon(:circle, fa_style: :s)
+      = " "
       a.entry-name href=main_app.entry_path(entry) data-modal="normal" data-entry-id=entry.id
         == entry.name
       = " "
       span.entry-feed == entry.feed
       = " "
       span.entry-published_at = time_ago_in_words(entry.published_at)
+
+
 
 = paginate @entries

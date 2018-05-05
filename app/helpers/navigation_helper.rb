@@ -5,11 +5,12 @@ module NavigationHelper
 
   def current_page_is_all_entries?
     controller_name == "entries" && action_name == "index" &&
-      params[:category_id].blank? && params[:starred].to_i.zero?
+      params[:category_id].blank? && params[:type].to_s != "starred"
   end
 
   def current_page_is_starred?
-    controller_name == "entries" && action_name == "index" && params[:starred].to_i == 1
+    controller_name == "entries" && action_name == "index" &&
+      params[:category_id].blank? && params[:type].to_s == "starred"
   end
 
   def current_page_is_category?(category)

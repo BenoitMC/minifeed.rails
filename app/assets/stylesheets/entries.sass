@@ -1,7 +1,22 @@
-#entries
-  .entry.is_read *
-    opacity: 0.3
-    text-decoration: line-through
+#no-entry-to-read
+  font-size: 300%
+  color: $text-muted
+  text-align: center
+  margin-top: 2em
+
+#entry-filters
+  text-align: center
+
+#entries-list
+  .entry-is_read-indicator
+    color: $blue
+    font-size: 12px
+    position: relative
+    bottom: 2px
+    margin-right: 1rem
+
+  .entry.is_read .entry-is_read-indicator
+    visibility: hidden
 
   .entry-feed,
   .entry-published_at,
@@ -9,7 +24,7 @@
     font-size: $small-font-size
 
   .entry-feed
-    margin-left: 1em
+    margin-left: 1rem
 
   .entry-published_at
     float: right

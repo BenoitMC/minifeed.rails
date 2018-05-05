@@ -17,7 +17,7 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light
 
 
         li.nav-item#nav_starred class=("active" if current_page_is_starred?)
-          a.nav-link href=main_app.entries_path(starred: 1)
+          a.nav-link href=main_app.entries_path(type: "starred")
             = icon(:star)
             = " "
             = t("nav.starred")
