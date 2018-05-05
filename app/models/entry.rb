@@ -20,4 +20,8 @@ class Entry < ApplicationRecord
   scope :with_category_id, -> (category_id) {
     joins(:feed).where(feeds: {category_id: category_id})
   }
+
+  def is_unread?
+    !is_read?
+  end
 end

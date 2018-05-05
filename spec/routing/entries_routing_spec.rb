@@ -9,5 +9,9 @@ describe EntriesController, type: :routing do
     it "#show" do
       expect(get "/entries/123").to route_to("entries#show", id: "123")
     end
+
+    it "#update" do
+      expect(patch "/entries/123").to route_to("entries#update", id: "123")
+    end
   end
 end

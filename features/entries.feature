@@ -106,3 +106,31 @@ Feature: Entries
     And I click on "Example entry"
     And I click on "entry body link"
     Then I see "Example Domain" in a new tab
+
+  Scenario: Set entry as read/unread
+    Given an existing entry
+    And this existing entry "name" is "Example entry"
+    When I go on the entries page
+    And I click on "Example entry"
+    Then I see ".entry-is_read .fa-check-square" element
+    And I do not see ".entry-is_read .fa-square" element
+    When I click on ".entry-is_read" element
+    Then I see ".entry-is_read .fa-square" element
+    And I do not see ".entry-is_read .fa-check-square" element
+    When I click on ".entry-is_read" element
+    Then I see ".entry-is_read .fa-check-square" element
+    And I do not see ".entry-is_read .fa-square" element
+
+  Scenario: Set entry as starred/unstarred
+    Given an existing entry
+    And this existing entry "name" is "Example entry"
+    When I go on the entries page
+    And I click on "Example entry"
+    Then I see ".entry-is_starred .far.fa-star" element
+    And I do not see ".entry-is_starred .fas.fa-star" element
+    When I click on ".entry-is_starred" element
+    Then I see ".entry-is_starred .fas.fa-star" element
+    And I do not see ".entry-is_starred .far.fa-star" element
+    When I click on ".entry-is_starred" element
+    Then I see ".entry-is_starred .far.fa-star" element
+    And I do not see ".entry-is_starred .fas.fa-star" element

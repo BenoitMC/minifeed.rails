@@ -19,3 +19,9 @@ Mousetrap.bind "left", ->
 
 $(document).on "click", ".entry-body a", ->
   this.target = "_blank"
+
+$(document).on "change", "#entry > form", ->
+  $(this).submit()
+
+$(document).on "ajax:complete", "#entry > form", (event, xhr) ->
+  $("#entry").replaceWith(xhr.responseText)

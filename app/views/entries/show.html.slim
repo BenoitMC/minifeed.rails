@@ -1,4 +1,4 @@
-#entry
+#entry = form_for @entry, remote: true do |f|
   .entry-header
     h1.entry-name = @entry.name
 
@@ -11,8 +11,8 @@
 
       span.separator = " - "
 
-      / TODO
-      span.entry-is_read
+      label.entry-is_read
+        = f.check_box :is_read, class: "d-none"
         - if @entry.is_read?
          = icon(:check_square, fa_style: :r)
         - else
@@ -23,8 +23,8 @@
 
       span.separator = " - "
 
-      / TODO
-      span.entry-is_starred
+      label.entry-is_starred
+        = f.check_box :is_starred, class: "d-none"
         - if @entry.is_starred?
          = icon(:star, fa_style: :s)
         - else
