@@ -1,5 +1,5 @@
 $nav-left-width: 250px
-$nav-left-background: $gray-200
+$nav-left-background: $gray-100
 $nav-left-font-size: 13px
 $nav-left-items-padding: 15px
 
@@ -9,16 +9,17 @@ $nav-left-items-padding: 15px
       display: block
       position: absolute
       left: 0
-      top: 56px
-      height: calc(100vh - 56px)
+      top: 57px
+      height: calc(100vh - 57px)
       width: $nav-left-width
       background: $nav-left-background
       z-index: 5
       font-size: $nav-left-font-size
       overflow: auto
+      border-right: 1px solid $border-color
 
       li
-        border-bottom: 1px solid darken($nav-left-background, 10)
+        border-bottom: 1px solid $border-color
         margin: 0
         padding: 0
 
