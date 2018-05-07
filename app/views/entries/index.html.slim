@@ -29,7 +29,7 @@
 ul.list-group#entries-list
   - @entries.each do |entry|
     li.list-group-item class=css_class_for_entry(entry)
-      span.entry-is_read-indicator = icon(:circle, fa_style: :s)
+      span.entry-is_read-indicator
       = " "
       a.entry-name href=main_app.entry_path(entry) data-modal="normal" data-entry-id=entry.id
         == entry.name
