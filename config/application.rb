@@ -1,5 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
+require "open-uri"
 require 'rails/all'
 
 require_relative "../lib/ext/rails"

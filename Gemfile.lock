@@ -78,10 +78,6 @@ GEM
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
       xpath (~> 3.0)
-    carrierwave (1.2.2)
-      activemodel (>= 4.0.0)
-      activesupport (>= 4.0.0)
-      mime-types (>= 1.16)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     choice (0.2.0)
@@ -431,7 +427,6 @@ DEPENDENCIES
   bugsnag
   byebug
   capybara
-  carrierwave
   coffee-rails
   cucumber-rails
   database_cleaner
