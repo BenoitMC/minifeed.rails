@@ -8,6 +8,8 @@ class Feed::ImportAllService < Service
   private
 
   def feeds
-    Feed.reorder(:last_update_at)
+    Feed
+      .preload(:user, :category)
+      .reorder(:last_update_at)
   end
 end
