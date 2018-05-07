@@ -43,4 +43,12 @@ describe Entry::Filter do
       expect(list).to eq [entry]
     end
   end # describe ":category_id option"
+
+  it "#to_h should return params" do
+    filter = described_class.new(nil, category_id: "123")
+    expect(filter.to_h).to eq(
+      :category_id => "123",
+      :type        => "unread",
+    )
+  end
 end

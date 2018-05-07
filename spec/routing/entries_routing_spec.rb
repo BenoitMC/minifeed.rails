@@ -13,5 +13,9 @@ describe EntriesController, type: :routing do
     it "#update" do
       expect(patch "/entries/123").to route_to("entries#update", id: "123")
     end
+
+    it "#mark_as_read" do
+      expect(post "/entries/mark-as-read").to route_to("entries#mark_as_read")
+    end
   end
 end

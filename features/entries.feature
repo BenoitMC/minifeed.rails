@@ -143,3 +143,23 @@ Feature: Entries
     When I click on "Example entry"
     And I click on "#modal-close" element
     Then I see ".entry.is_read" element
+
+  Scenario: Mark as read global
+    Given an existing entry
+    When I go on the entries page
+    Then I see ".entry" element
+    When I click on "Mark As Read"
+    Then I do not see ".entry" element
+
+  Scenario: Mark as read in category
+    Given an existing category named "hello"
+    And an existing entry
+    And an existing category named "world"
+    And an existing entry
+    When I go on the entries page
+    And I click on the "category_hello" navigation item
+    Then I see ".entry" element
+    When I click on "Mark As Read"
+    Then I do not see ".entry" element
+    When I click on the "category_world" navigation item
+    Then I see ".entry" element

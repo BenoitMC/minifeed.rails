@@ -14,4 +14,8 @@ class Entry::Filter < Service
 
     @scope
   end
+
+  def to_h
+    [:category_id, :type].map { |option| [option, public_send(option)] }.to_h
+  end
 end

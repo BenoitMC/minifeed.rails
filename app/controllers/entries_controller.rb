@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
   before_action :set_entry
 
   def index
-    authorize Entry, :list?
+    authorize model, :list?
 
     @filter = Entry::Filter.new(scope, params)
 
@@ -25,6 +25,16 @@ class EntriesController < ApplicationController
     else
       render inline: "Error."
     end
+  end
+
+  def mark_as_read
+    authorize model, :update?
+
+    @filter = Entry::Filter.new(scope, params)
+    @entries = @filter.call
+    @entries.update_all(is_read: true) # rubocop:disable Rails/SkipsModelValidations
+
+    redirect_to action: :index, **@filter.to_h
   end
 
   private

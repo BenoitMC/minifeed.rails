@@ -8,7 +8,11 @@ html lang=I18n.locale
     = stylesheet_link_tag    "application", "data-turbolinks-track": true, media: "all"
     = javascript_include_tag "application", "data-turbolinks-track": true
     - if Rails.env.test?
-      script = "jQuery.fx.off = true"
+      coffee:
+        jQuery.fx.off = true
+        @alert = -> true
+        @confirm = -> true
+
     = csrf_meta_tags
 
   body data-controller=params[:controller] data-action=params[:action]

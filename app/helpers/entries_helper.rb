@@ -11,6 +11,6 @@ module EntriesHelper
     klass = (@filter.type == type ? "btn-primary" : "btn-outline-primary")
 
     # TODO : i18n
-    link_to t(".filters.#{type}"), url, class: "btn #{klass}"
+    link_to t(".filters.#{type}"), url, class: "btn btn-sm #{klass}"
   end
 end
