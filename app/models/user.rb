@@ -11,14 +11,7 @@ class User < ApplicationRecord
     # :omniauthable,
   )
 
-  validates :first_name, presence: true
-  validates :last_name,  presence: true
-
-  def name
-    [first_name, last_name].select(&:present?).join(" ")
-  end
-
   def to_s
-    name
+    email
   end
 end
