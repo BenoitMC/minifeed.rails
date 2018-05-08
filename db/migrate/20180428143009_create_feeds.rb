@@ -6,6 +6,7 @@ class CreateFeeds < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :url
       t.datetime :last_update_at
+      t.integer :import_errors, null: false, default: 0
       t.timestamps
 
       t.index :user_id

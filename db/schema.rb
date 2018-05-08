@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20180428150523) do
     t.string "name"
     t.string "url"
     t.datetime "last_update_at"
+    t.integer "import_errors", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_feeds_on_category_id"
