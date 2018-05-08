@@ -2,6 +2,7 @@ en:
   entries:
     index:
       nothing_to_read: "Nothing to read :)"
+      load_more_entries: "Load more entries"
       filters:
         all: "All"
         unread: "Unread"

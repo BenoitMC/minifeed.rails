@@ -39,4 +39,7 @@ ul.list-group#entries-list
 
 
 
-= paginate @entries
+- if @entries.next_page
+  #entries-load-more
+    a.btn.btn-sm.btn-outline-primary href=path_to_next_page(@entries)
+      = t(".load_more_entries")

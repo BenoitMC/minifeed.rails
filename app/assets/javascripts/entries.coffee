@@ -9,6 +9,15 @@ $(document).on "click", "a[data-entry-id]", ->
 $(document).on "modal:close", ->
   window.currentEntryId = null
 
+$(document).on "click", "#entries-load-more a", (event) ->
+  event.preventDefault()
+  $.ajax
+    url: this.href
+    success: (data) ->
+      $data = $("<div>#{data}</div>")
+      $("#entries-list").append $data.find("#entries-list").html()
+      $("#entries-load-more").replaceWith $data.find("#entries-load-more")
+
 Mousetrap.bind "right", ->
   return unless try currentEntryId
   $("a[data-entry-id=#{currentEntryId}]").parents("li").next("li").find("a[data-entry-id]").click()

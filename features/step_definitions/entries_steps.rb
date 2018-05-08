@@ -20,3 +20,12 @@ end
 Given("this existing entry is starred") do
   @entry.update!(is_starred: true)
 end
+
+Given("{int} existing entries") do |n|
+  @category = create(:category, user: @user)
+  @feed     = create(:feed, user: @user, category: @category)
+
+  n.times do
+    @entry = create(:entry, user: @user, feed: @feed)
+  end
+end

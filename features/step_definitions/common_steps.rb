@@ -15,6 +15,10 @@ Then("I see {string} element") do |selector|
   expect(page).to have_selector(selector)
 end
 
+Then("I see {int} times {string} element") do |count, selector|
+  expect(page).to have_selector(selector, count: count)
+end
+
 Then("I do not see {string} element") do |selector|
   expect(page).to have_no_selector(selector)
 end

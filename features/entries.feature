@@ -191,3 +191,13 @@ Feature: Entries
     Then I do not see ".entry" element
     When I click on the "category_world" navigation item
     Then I see ".entry" element
+
+  Scenario: Entries pagination
+    Given 250 existing entries
+    When I go on the entries page
+    Then I see 100 times ".entry" element
+    When I click on "Load more entries"
+    Then I see 200 times ".entry" element
+    When I click on "Load more entries"
+    Then I see 250 times ".entry" element
+    And I do not see "Load more entries"
