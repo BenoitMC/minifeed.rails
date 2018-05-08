@@ -207,24 +207,14 @@ describe Feed::ImportService do
 
       expect { service.call }.to_not raise_error
     end
-  end # describe "#call"
 
-  describe "errors" do
-    def self.it_should_catch_error(error)
-      it "should catch #{error} errors" do
-        expect_any_instance_of(described_class).to receive(:raw_feed) { raise error }
+    it "should catch http errors" do
+      expect_any_instance_of(described_class).to receive(:raw_feed) { raise GetHTTP::Error }
 
-        feed = create(:feed)
-        expect(feed.import_errors).to eq 0
-        expect { described_class.call(feed) }.to_not raise_error
-        expect(feed.import_errors).to eq 1
-      end
+      feed = create(:feed)
+      expect(feed.import_errors).to eq 0
+      expect { described_class.call(feed) }.to_not raise_error
+      expect(feed.import_errors).to eq 1
     end
-
-    it_should_catch_error Errno::ECONNREFUSED
-    it_should_catch_error Net::HTTPBadResponse
-    it_should_catch_error OpenSSL::SSL::SSLError
-    it_should_catch_error SocketError
-    it_should_catch_error Timeout::Error
-  end # describe "errors"
+  end # describe "#call"
 end

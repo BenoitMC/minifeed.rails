@@ -1,14 +1,4 @@
 class Feed::ImportService < Service
-  ERRORS_TO_CATCH = [
-    Errno::ECONNREFUSED,
-    Net::HTTPBadResponse,
-    OpenSSL::SSL::SSLError,
-    SocketError,
-    Timeout::Error,
-  ]
-
-  FETCH_TIMEOUT = 10
-
   initialize_with :feed
 
   def call
@@ -19,7 +9,7 @@ class Feed::ImportService < Service
     end
 
     feed.update!(last_update_at: Time.zone.now)
-  rescue *ERRORS_TO_CATCH
+  rescue GetHTTP::Error
     feed.increment!(:import_errors) # rubocop:disable Rails/SkipsModelValidations
   end
 
@@ -30,9 +20,7 @@ class Feed::ImportService < Service
   end
 
   def raw_feed
-    @raw_feed ||= Timeout.timeout(FETCH_TIMEOUT) do
-      URI.parse(feed.url).open.read
-    end
+    @raw_feed ||= GetHTTP.call(feed.url)
   end
 
   def create_or_update_entry!(feed_entry)
