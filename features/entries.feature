@@ -176,7 +176,7 @@ Feature: Entries
     Given an existing entry
     When I go on the entries page
     Then I see ".entry" element
-    When I click on "Mark As Read"
+    When I click on "Mark as read"
     Then I do not see ".entry" element
 
   Scenario: Mark as read in category
@@ -187,7 +187,7 @@ Feature: Entries
     When I go on the entries page
     And I click on the "category_hello" navigation item
     Then I see ".entry" element
-    When I click on "Mark As Read"
+    When I click on "Mark as read"
     Then I do not see ".entry" element
     When I click on the "category_world" navigation item
     Then I see ".entry" element

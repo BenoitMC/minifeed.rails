@@ -3,7 +3,7 @@ source "https://rubygems.org"
 gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
 gem "rails", "~> 5.1.6"
-gem "agilidee-devise", ">= 1.1.0"
+gem "agilidee-devise", ">= 1.1.1"
 gem "agilibox", ">= 1.2.0"
 
 gem "rufus-scheduler"

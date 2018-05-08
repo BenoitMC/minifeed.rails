@@ -44,7 +44,7 @@ GEM
       awesome_print
       pry-rails
       rails-i18n
-    agilidee-devise (1.1.0)
+    agilidee-devise (1.1.1)
       devise
     arel (8.0.0)
     ast (2.4.0)
@@ -417,7 +417,7 @@ PLATFORMS
 
 DEPENDENCIES
   agilibox (>= 1.2.0)
-  agilidee-devise (>= 1.1.0)
+  agilidee-devise (>= 1.1.1)
   autoprefixer-rails
   awesome_print
   better_errors

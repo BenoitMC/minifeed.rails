@@ -1,0 +1,8 @@
+en:
+  entries:
+    index:
+      nothing_to_read: "Nothing to read :)"
+      filters:
+        all: "All"
+        unread: "Unread"
+        starred: "Starred"

@@ -1,0 +1,3 @@
+fr:
+  errors:
+    invalid_authenticity_token: "Session has expired."

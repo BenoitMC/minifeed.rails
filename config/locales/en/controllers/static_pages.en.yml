@@ -1,0 +1,9 @@
+en:
+  static_pages:
+    keyboard_shortcuts:
+      title: "Keyboard shortcuts"
+      previous_entry: "Go to previous entry"
+      next_entry: "Go to next entry"
+      close_modal: "Close entry modal"
+      mark_entry_as_un_read: "Mark entry as read/unread"
+      mark_entry_as_un_starred: "Mark entry as starred/unstarred"

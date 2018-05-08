@@ -1,24 +1,28 @@
-/ TODO : i18n title + shortcuts
 #keyboard-shortcuts
   h1 = t(".title")
 
   ul.list-unstyled
     li
       span.key = "left"
-      = " : Go to previous entry"
+      = " : "
+      = t(".previous_entry")
 
     li
       span.key = "right"
-      = " : Go to next entry"
+      = " : "
+      = t(".next_entry")
 
     li
       span.key = "echap"
-      = " : Close entry modal"
+      = " : "
+      = t(".close_modal")
 
     li
       span.key = "r"
-      = " : Mark entry as read/unread"
+      = " : "
+      = t(".mark_entry_as_un_read")
 
     li
       span.key = "s"
-      = " : Mark entry as starred/unstarred"
+      = " : "
+      = t(".mark_entry_as_un_starred")
