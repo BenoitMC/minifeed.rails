@@ -10,6 +10,7 @@
       <pubDate>Fri, 21 Dec 2012 12:00:00 +0000</pubDate>
       <description>RSS Entry Summary</description>
       <guid isPermaLink="false">rss-entry-id</guid>
+      <dc:creator>RSS Entry Author</dc:creator>
     </item>
   </channel>
 </rss>

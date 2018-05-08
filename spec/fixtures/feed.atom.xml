@@ -13,5 +13,8 @@
     <id>atom-entry-id</id>
     <updated>2012-12-21T12:00:00+00:00</updated>
     <summary>Atom Entry Summary</summary>
+    <author>
+      <name>Atom Entry Author</name>
+    </author>
   </entry>
 </feed>

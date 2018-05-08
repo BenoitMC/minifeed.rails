@@ -39,6 +39,7 @@ class Feed::ImportService < Service
     entry.attributes = {
       :name         => name,
       :body         => body,
+      :author       => feed_entry.author,
       :url          => feed_entry.url,
       :published_at => published_at,
     }

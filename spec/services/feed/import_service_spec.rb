@@ -26,6 +26,7 @@ describe Feed::ImportService do
       expect(feed_entry.id).to        eq "atom-entry-id"
       expect(feed_entry.published).to eq Time.utc(2012, 12, 21, 12, 0, 0)
       expect(feed_entry.summary).to   eq "Atom Entry Summary"
+      expect(feed_entry.author).to    eq "Atom Entry Author"
     end
 
     it "should return RSS entries" do
@@ -41,6 +42,7 @@ describe Feed::ImportService do
       expect(feed_entry.id).to        eq "rss-entry-id"
       expect(feed_entry.published).to eq Time.utc(2012, 12, 21, 12, 0, 0)
       expect(feed_entry.summary).to   eq "RSS Entry Summary"
+      expect(feed_entry.author).to    eq "RSS Entry Author"
     end
 
     it "should sanitize entries" do
@@ -64,6 +66,7 @@ describe Feed::ImportService do
         :id        => "entry id",
         :summary   => "entry summary",
         :content   => "entry content",
+        :author    => "entry author",
         :published => Time.utc(2012, 12, 21, 12, 0, 0),
       )
     }
@@ -81,6 +84,7 @@ describe Feed::ImportService do
       expect(entry.body).to         eq "entry content"
       expect(entry.external_id).to  eq "entry id"
       expect(entry.url).to          eq "entry url"
+      expect(entry.author).to       eq "entry author"
       expect(entry.published_at).to eq Time.utc(2012, 12, 21, 12, 0, 0)
     end
 
