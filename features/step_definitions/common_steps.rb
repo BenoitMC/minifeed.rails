@@ -38,5 +38,5 @@ Then("I see {string} in a new tab") do |text|
 end
 
 When("I press key {string}") do |key|
-  find("body").send_keys(key.to_sym)
+  find("body").send_keys(key.length == 1 ? key : key.to_sym)
 end

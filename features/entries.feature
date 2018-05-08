@@ -107,7 +107,7 @@ Feature: Entries
     And I click on "entry body link"
     Then I see "Example Domain" in a new tab
 
-  Scenario: Set entry as read/unread
+  Scenario: Set entry as read/unread from icon
     Given an existing entry
     And this existing entry "name" is "Example entry"
     When I go on the entries page
@@ -121,7 +121,7 @@ Feature: Entries
     Then I see ".entry-is_read .fa-check-square" element
     And I do not see ".entry-is_read .fa-square" element
 
-  Scenario: Set entry as starred/unstarred
+  Scenario: Set entry as starred/unstarred from icon
     Given an existing entry
     And this existing entry "name" is "Example entry"
     When I go on the entries page
@@ -132,6 +132,34 @@ Feature: Entries
     Then I see ".entry-is_starred .fas.fa-star" element
     And I do not see ".entry-is_starred .far.fa-star" element
     When I click on ".entry-is_starred" element
+    Then I see ".entry-is_starred .far.fa-star" element
+    And I do not see ".entry-is_starred .fas.fa-star" element
+
+  Scenario: Set entry as read/unread from shortcuts
+    Given an existing entry
+    And this existing entry "name" is "Example entry"
+    When I go on the entries page
+    And I click on "Example entry"
+    Then I see ".entry-is_read .fa-check-square" element
+    And I do not see ".entry-is_read .fa-square" element
+    When I press key "r"
+    Then I see ".entry-is_read .fa-square" element
+    And I do not see ".entry-is_read .fa-check-square" element
+    When I press key "r"
+    Then I see ".entry-is_read .fa-check-square" element
+    And I do not see ".entry-is_read .fa-square" element
+
+  Scenario: Set entry as starred/unstarred from shortcuts
+    Given an existing entry
+    And this existing entry "name" is "Example entry"
+    When I go on the entries page
+    And I click on "Example entry"
+    Then I see ".entry-is_starred .far.fa-star" element
+    And I do not see ".entry-is_starred .fas.fa-star" element
+    When I press key "s"
+    Then I see ".entry-is_starred .fas.fa-star" element
+    And I do not see ".entry-is_starred .far.fa-star" element
+    When I press key "s"
     Then I see ".entry-is_starred .far.fa-star" element
     And I do not see ".entry-is_starred .fas.fa-star" element
 
