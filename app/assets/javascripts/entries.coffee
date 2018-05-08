@@ -46,3 +46,7 @@ $(document).on "ajax:complete", "#entry > form", (event, xhr) ->
     url: location.href
     data: {layout: true}
     success: (data) -> $("#header").replaceWith $("<div>#{data}</div>").find("#header")
+
+$(document).on "click", ".subnav-toggle", (event) ->
+  event.preventDefault()
+  $(this).parents(".subnav").toggleClass("open")

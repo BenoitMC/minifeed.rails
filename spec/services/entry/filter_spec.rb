@@ -38,16 +38,27 @@ describe Entry::Filter do
 
   describe ":category_id option" do
     it "should filter by category" do
-      entry = create(:entry)
-      list  = filter(category_id: entry.feed.category.id)
-      expect(list).to eq [entry]
+      entry1 = create(:entry)
+      entry2 = create(:entry)
+      list   = filter(category_id: entry1.feed.category.id)
+      expect(list).to eq [entry1]
+    end
+  end # describe ":category_id option"
+
+  describe ":feed_id option" do
+    it "should filter by feed" do
+      entry1 = create(:entry)
+      entry2 = create(:entry)
+      list   = filter(feed_id: entry1.feed.id)
+      expect(list).to eq [entry1]
     end
   end # describe ":category_id option"
 
   it "#to_h should return params" do
-    filter = described_class.new(nil, category_id: "123")
+    filter = described_class.new(nil, category_id: "123", feed_id: "456")
     expect(filter.to_h).to eq(
       :category_id => "123",
+      :feed_id     => "456",
       :type        => "unread",
     )
   end

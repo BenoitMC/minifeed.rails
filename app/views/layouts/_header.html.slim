@@ -15,7 +15,6 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
             span.badge.badge-secondary.float-right data-count=number_of_unread
               = number_of_unread
 
-
         li.nav-item#nav_starred class=("active" if current_page_is_starred?)
           a.nav-link href=main_app.entries_path(type: "starred")
             = icon(:star)
@@ -25,13 +24,34 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
               = number_of_starred
 
         - nav_categories.each do |category|
-          li.nav-item id="nav_category_#{category.name.parameterize}" class=("active" if current_page_is_category?(category))
+          li.nav-item.subnav(
+            id    = "nav_category_#{category.name.parameterize}"
+            class = ("active" if current_page_is_category?(category))
+            class = ("open"   if current_page_is_category?(category) && params[:feed_id].present?)
+          )
+            button.subnav-toggle
+              = icon(:caret_right)
+
             a.nav-link href=main_app.entries_path(category_id: category)
               = category.id == params[:category_id] ? icon(:folder_open) : icon(:folder)
               = " "
               = category.name
               span.badge.badge-secondary.float-right data-count=number_of_unread_in_category(category)
                 = number_of_unread_in_category(category)
+
+            ul.subnav-list
+              - category.feeds.each do |feed|
+                li.nav-item(
+                  id    = "nav_feed_#{feed.name.parameterize}"
+                  class = ("active" if current_page_is_feed?(feed))
+                )
+                  a.nav-link href=main_app.entries_path(category_id: category, feed_id: feed.id)
+                    = icon(:rss)
+                    = " "
+                    = feed
+                    span.badge.badge-secondary.float-right data-count=feed.entries.unread.count
+                      = feed.entries.unread.count
+
 
 
       ul.navbar-nav.ml-auto

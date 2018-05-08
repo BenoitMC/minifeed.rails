@@ -7,7 +7,7 @@ module EntriesHelper
   end
 
   def link_to_entries_filter(type)
-    url   = url_for(type: type, category_id: params[:category_id])
+    url   = url_for @filter.to_h.merge(type: type)
     klass = (@filter.type == type ? "btn-primary" : "btn-outline-primary")
 
     link_to t(".filters.#{type}"), url, class: "btn btn-sm #{klass}"

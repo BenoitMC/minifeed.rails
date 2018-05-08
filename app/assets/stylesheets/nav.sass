@@ -15,20 +15,74 @@ $nav-left-items-padding: 15px
       background: $nav-left-background
       z-index: 5
       font-size: $nav-left-font-size
+      line-height: $nav-left-font-size
       overflow: auto
       border-right: 1px solid $border-color
 
-      li
+      > li
         border-bottom: 1px solid $border-color
         margin: 0
         padding: 0
 
         a
-          line-height: 1em
           padding: $nav-left-items-padding
 
-      li.active
+      li.active > a
         font-weight: bold
 
   #main
     margin-left: $nav-left-width
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+#nav
+  .navbar-left
+    li a
+      padding-left: 30px
+
+    li.subnav
+      position: relative
+
+      .subnav-toggle
+        margin: 0
+        padding: 0
+        background: none
+        border: none
+        outline: none
+        color: inherit
+        width: 30px
+        height: 40px
+        flex-grow: 0
+        text-align: center
+        cursor: pointer
+        position: absolute
+        top: 0
+        left: 0
+        color: $navbar-light-color
+
+      ul.subnav-list
+        display: none
+
+        &, li
+          margin: 0
+          padding: 0
+          list-style: none
+
+        li
+          border-top: 1px solid $border-color
+
+        li.active .subnav-header > a
+          font-weight: bold
+
+        a
+          padding-top: 5px
+          padding-bottom: 5px
+
+    li.subnav.open
+      ul.subnav-list
+        display: block
+
+      .subnav-toggle .icon:before
+        content: "\f0d7" !important
