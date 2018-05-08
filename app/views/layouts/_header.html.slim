@@ -1,3 +1,5 @@
+- counters = Entry::CountersGenerator.call(current_user)
+
 header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.border-bottom
   a.navbar-brand href=main_app.root_path = "Minifeed"
 
@@ -12,16 +14,16 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
             = icon(:list)
             = " "
             = t("nav.all_entries")
-            span.badge.badge-secondary.float-right data-count=number_of_unread
-              = number_of_unread
+            span.badge.badge-secondary.float-right data-count=counters[:unread]
+              = counters[:unread]
 
         li.nav-item#nav_starred class=("active" if current_page_is_starred?)
           a.nav-link href=main_app.entries_path(type: "starred")
             = icon(:star)
             = " "
             = t("nav.starred")
-            span.badge.badge-secondary.float-right data-count=number_of_starred
-              = number_of_starred
+            span.badge.badge-secondary.float-right data-count=counters[:starred]
+              = counters[:starred]
 
         - nav_categories.each do |category|
           li.nav-item.subnav(
@@ -36,8 +38,8 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
               = category.id == params[:category_id] ? icon(:folder_open) : icon(:folder)
               = " "
               = category.name
-              span.badge.badge-secondary.float-right data-count=number_of_unread_in_category(category)
-                = number_of_unread_in_category(category)
+              span.badge.badge-secondary.float-right data-count=counters[category.id]
+                = counters[category.id]
 
             ul.subnav-list
               - category.feeds.each do |feed|
@@ -49,8 +51,8 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
                     = icon(:rss)
                     = " "
                     = feed
-                    span.badge.badge-secondary.float-right data-count=feed.entries.unread.count
-                      = feed.entries.unread.count
+                    span.badge.badge-secondary.float-right data-count=counters[feed.id]
+                      = counters[feed.id]
 
 
 

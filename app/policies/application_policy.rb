@@ -31,5 +31,9 @@ class ApplicationPolicy
       @current_user = current_user
       @scope        = scope
     end
+
+    def resolve
+      scope.where(user: current_user)
+    end
   end
 end

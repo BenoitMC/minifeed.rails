@@ -1,6 +1,6 @@
 module NavigationHelper
   def nav_categories
-    policy_scope(Category).all
+    policy_scope(Category).preload(:feeds)
   end
 
   def current_page_is_all_entries?
@@ -21,17 +21,5 @@ module NavigationHelper
 
   def current_page_is_feed?(feed)
     controller_name == "entries" && action_name == "index" && feed.id == params[:feed_id]
-  end
-
-  def number_of_unread
-    policy_scope(Entry).unread.count
-  end
-
-  def number_of_starred
-    policy_scope(Entry).starred.count
-  end
-
-  def number_of_unread_in_category(category)
-    policy_scope(Entry).with_category_id(category.id).unread.count
   end
 end

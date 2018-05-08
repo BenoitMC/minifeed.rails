@@ -10,10 +10,4 @@ class EntryPolicy < ApplicationPolicy
   def update?
     true
   end
-
-  class Scope < Scope
-    def resolve
-      scope.where(user: current_user)
-    end
-  end
 end
