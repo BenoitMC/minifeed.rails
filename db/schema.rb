@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180507164231) do
+ActiveRecord::Schema.define(version: 20180428150523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20180507164231) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "entries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -31,11 +32,17 @@ ActiveRecord::Schema.define(version: 20180507164231) do
     t.string "name"
     t.text "body"
     t.string "url"
+    t.string "author"
     t.datetime "published_at"
     t.boolean "is_read", default: false, null: false
     t.boolean "is_starred", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["external_id"], name: "index_entries_on_external_id"
+    t.index ["feed_id"], name: "index_entries_on_feed_id"
+    t.index ["is_read"], name: "index_entries_on_is_read"
+    t.index ["is_starred"], name: "index_entries_on_is_starred"
+    t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
   create_table "feeds", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -46,6 +53,8 @@ ActiveRecord::Schema.define(version: 20180507164231) do
     t.datetime "last_update_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_feeds_on_category_id"
+    t.index ["user_id"], name: "index_feeds_on_user_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

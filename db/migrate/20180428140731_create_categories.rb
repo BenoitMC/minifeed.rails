@@ -4,6 +4,8 @@ class CreateCategories < ActiveRecord::Migration[5.1]
       t.uuid :user_id
       t.string :name
       t.timestamps
+
+      t.index :user_id
     end
   end
 end
