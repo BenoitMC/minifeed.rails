@@ -428,6 +428,7 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails
+  concurrent-ruby
   cucumber-rails
   database_cleaner
   desktop_delivery
