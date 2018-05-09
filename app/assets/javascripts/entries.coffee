@@ -32,6 +32,12 @@ Mousetrap.bind "r", ->
 Mousetrap.bind "s", ->
   $("#entry input[type=checkbox][name*=starred]").map -> $(this).prop(checked: !this.checked).change()
 
+Mousetrap.bind "p", ->
+  $("#entry .entry-preview_link").click()
+
+Mousetrap.bind "o", ->
+  try $("#entry .entry-external_link").get(0).click()
+
 $(document).on "click", ".entry-body a", ->
   this.target = "_blank"
 

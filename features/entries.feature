@@ -163,6 +163,25 @@ Feature: Entries
     Then I see ".entry-is_starred .far.fa-star" element
     And I do not see ".entry-is_starred .fas.fa-star" element
 
+  Scenario: Open entry url in new tab from shortcuts
+    Given an existing entry
+    And this existing entry "name" is "Example entry"
+    And this existing entry "url" is "http://example.org/"
+    When I go on the entries page
+    And I click on "Example entry"
+    And I press key "o"
+    Then I see "Example Domain" in a new tab
+
+  Scenario: Preview entry url in modal from shortcuts
+    Given an existing entry
+    And this existing entry "name" is "Example entry"
+    And this existing entry "url" is "http://example.org/"
+    When I go on the entries page
+    And I click on "Example entry"
+    And I press key "p"
+    Then I see "iframe" element
+    Then I see "#modal" element
+
   Scenario: Refresh read/unread on list
     Given an existing entry
     And this existing entry "name" is "Example entry"
