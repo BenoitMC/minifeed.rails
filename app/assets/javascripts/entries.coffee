@@ -1,6 +1,7 @@
 $(document).on "click", ".entry-preview_link", (event) ->
   event.preventDefault()
   $iframe = $("<iframe src='#{this.href}' class='entry-iframe' />")
+  $iframe.load -> this.style.height = this.contentDocument.body.scrollHeight + "px"
   $(this).parents("#entry").find(".entry-body").replaceWith($iframe)
 
 $(document).on "click", "a[data-entry-id]", ->
@@ -45,7 +46,9 @@ $(document).on "change", "#entry > form", ->
   $(this).submit()
 
 $(document).on "ajax:complete", "#entry > form", (event, xhr) ->
-  $("#entry").replaceWith(xhr.responseText)
+  $data = $("<div>#{xhr.responseText}</div>")
+  $("#entry .entry-header").replaceWith $data.find("#entry .entry-header")
+  $data.find("script").map -> eval(this.innerHTML)
 
 @reloadNavigation = ->
   $.ajax

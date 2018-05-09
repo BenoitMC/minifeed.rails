@@ -17,6 +17,14 @@ class EntriesController < ApplicationController
     @entry.update!(is_read: true) if @entry.is_unread?
   end
 
+  def preview
+    authorize @entry, :read?
+
+    @html = Entry::GeneratePreviewService.call(@entry)
+
+    render layout: false
+  end
+
   def update
     authorize @entry, :update?
 

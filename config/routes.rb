@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :entries, only: [:index, :show, :update] do
+    get :preview, on: :member
     post :"mark-as-read", on: :collection
   end
 end

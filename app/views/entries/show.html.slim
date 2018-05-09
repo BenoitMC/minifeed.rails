@@ -35,7 +35,7 @@
 
       span.separator = " - "
 
-      a.entry-preview_link href=@entry.url target="_blank"
+      a.entry-preview_link href=main_app.preview_entry_path(@entry)
         = icon(:eye, fa_style: :s)
         = " "
         = ta(:preview)

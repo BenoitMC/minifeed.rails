@@ -10,6 +10,10 @@ describe EntriesController, type: :routing do
       expect(get "/entries/123").to route_to("entries#show", id: "123")
     end
 
+    it "#preview" do
+      expect(get "/entries/123/preview").to route_to("entries#preview", id: "123")
+    end
+
     it "#update" do
       expect(patch "/entries/123").to route_to("entries#update", id: "123")
     end
