@@ -165,14 +165,19 @@ describe Feed::ImportService do
       service.call
     end
 
-    it "should update #last_update_at field" do
+    it "should update #last_update_at field with most recent feed entry date" do
       feed = create(:feed)
       expect(feed.last_update_at).to be nil
 
-      allow_any_instance_of(described_class).to receive(:feed_entries).and_return([])
+      feed_entries = [
+        OpenStruct.new(updated: Time.utc(2012, 12, 21, 12, 0, 0)),
+        OpenStruct.new(updated: Time.utc(2012, 12, 21, 13, 0, 0)),
+        OpenStruct.new(updated: Time.utc(2012, 12, 21, 11, 0, 0)),
+      ]
+      allow_any_instance_of(described_class).to receive(:feed_entries).and_return(feed_entries)
 
       described_class.call(feed)
-      expect(feed.reload.last_update_at).to be_present
+      expect(feed.reload.last_update_at).to eq Time.utc(2012, 12, 21, 13, 0, 0)
     end
 
     it "should skip existing entries based on #last_update_at" do

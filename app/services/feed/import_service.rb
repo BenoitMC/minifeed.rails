@@ -2,13 +2,16 @@ class Feed::ImportService < Service
   initialize_with :feed
 
   def call
+    feed_entries_dates = []
+
     feed_entries.each do |feed_entry|
       updated = feed_entry.try(:updated) || feed_entry.published
-      next if feed.last_update_at && updated && updated < feed.last_update_at
+      feed_entries_dates << updated
+      next if feed.last_update_at && updated && updated <= feed.last_update_at
       create_or_update_entry!(feed_entry)
     end
 
-    feed.update!(last_update_at: Time.zone.now)
+    feed.update!(last_update_at: feed_entries_dates.compact.max)
   rescue GetHTTP::Error
     feed.increment!(:import_errors) # rubocop:disable Rails/SkipsModelValidations
   end
