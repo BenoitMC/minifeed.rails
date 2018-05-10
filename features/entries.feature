@@ -52,6 +52,16 @@ Feature: Entries
     And I click on ".entry-external_link" element
     Then I see "Example Domain" in a new tab
 
+  Scenario: Open entry url in modal
+    Given an existing entry
+    And this existing entry "name" is "Example entry"
+    And this existing entry "url" is "http://example.org/"
+    When I go on the entries page
+    And I click on "Example entry"
+    And I click on ".entry-internal_link" element
+    Then I see "iframe" element
+    Then I see "#modal" element
+
   Scenario: Preview entry url in modal
     Given an existing entry
     And this existing entry "name" is "Example entry"
@@ -171,6 +181,16 @@ Feature: Entries
     And I click on "Example entry"
     And I press key "o"
     Then I see "Example Domain" in a new tab
+
+  Scenario: Open entry url in modal from shortcuts
+    Given an existing entry
+    And this existing entry "name" is "Example entry"
+    And this existing entry "url" is "http://example.org/"
+    When I go on the entries page
+    And I click on "Example entry"
+    And I press key "m"
+    Then I see "iframe" element
+    Then I see "#modal" element
 
   Scenario: Preview entry url in modal from shortcuts
     Given an existing entry

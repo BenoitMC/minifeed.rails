@@ -42,6 +42,13 @@
 
       span.separator = " - "
 
+      a.entry-internal_link href=@entry.url target="_blank"
+        = icon(:clone, fa_style: :r)
+        = " "
+        = ta(:open_internal)
+
+      span.separator = " - "
+
       a.entry-external_link href=@entry.url target="_blank"
         = icon(:external_link_alt, fa_style: :s)
         = " "
@@ -49,9 +56,10 @@
 
   hr
 
-  .entry-body
-    == @entry.body
-    .clearfix
+  .entry-content
+    .entry-body
+      == @entry.body
+      .clearfix
 
 
 

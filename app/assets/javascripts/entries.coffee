@@ -2,7 +2,12 @@ $(document).on "click", ".entry-preview_link", (event) ->
   event.preventDefault()
   $iframe = $("<iframe src='#{this.href}' class='entry-iframe' />")
   $iframe.load -> this.style.height = this.contentDocument.body.scrollHeight + "px"
-  $(this).parents("#entry").find(".entry-body").replaceWith($iframe)
+  $(this).parents("#entry").find(".entry-content").html($iframe)
+
+$(document).on "click", ".entry-internal_link", (event) ->
+  event.preventDefault()
+  $iframe = $("<iframe src='#{this.href}' class='entry-iframe' />")
+  $(this).parents("#entry").find(".entry-content").html($iframe)
 
 $(document).on "click", "a[data-entry-id]", ->
   window.currentEntryId = this.dataset.entryId
@@ -35,6 +40,9 @@ Mousetrap.bind "s", ->
 
 Mousetrap.bind "p", ->
   $("#entry .entry-preview_link").click()
+
+Mousetrap.bind "m", ->
+  try $("#entry .entry-internal_link").get(0).click()
 
 Mousetrap.bind "o", ->
   try $("#entry .entry-external_link").get(0).click()

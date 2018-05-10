@@ -8,4 +8,5 @@ en:
       mark_entry_as_un_read: "Mark entry as read/unread"
       mark_entry_as_un_starred: "Mark entry as starred/unstarred"
       preview_entry: "Preview entry website"
-      open_entry: "Open entry website"
+      open_internal: "Open entry website in modal"
+      open_external: "Open entry website in new tab"
