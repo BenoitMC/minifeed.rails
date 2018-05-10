@@ -1,0 +1,8 @@
+en:
+  settings:
+    home:
+      home:
+        account: "Manage my account"
+        categories: "Manage categories"
+        feeds: "Manage feeds"
+        opml_import: "Import feeds from OPML file"

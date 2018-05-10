@@ -62,10 +62,10 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
           = " "
           = t("nav.keyboard_shortcuts")
 
-        li.nav-item: a.nav-link
-          = icon(:user)
+        li.nav-item: a.nav-link href=main_app.settings_root_path
+          = icon(:cog)
           = " "
-          = current_user
+          = t("nav.settings")
 
         li.nav-item: a.nav-link href=main_app.destroy_user_session_path data-method="delete"
           = icon(:power_off)

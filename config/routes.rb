@@ -12,4 +12,8 @@ Rails.application.routes.draw do
     get :preview, on: :member
     post :"mark-as-read", on: :collection
   end
+
+  namespace :settings do
+    root "home#home"
+  end
 end
