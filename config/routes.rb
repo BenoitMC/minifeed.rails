@@ -15,5 +15,6 @@ Rails.application.routes.draw do
 
   namespace :settings do
     root "home#home"
+    resources :opml_imports, path: "opml-imports", only: [:new, :create]
   end
 end

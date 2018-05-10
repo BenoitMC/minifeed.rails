@@ -1,0 +1,11 @@
+en:
+  settings:
+    opml_imports:
+      new:
+        choose_file: "Choose file"
+        submit: "Submit"
+
+      create:
+        messages:
+          no_file: "Please choose a file"
+          ok: "OPML file successfully imported."
