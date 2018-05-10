@@ -12,62 +12,17 @@ describe Feed::ImportService do
     end
   end # describe "#raw_fee"
 
-  describe "#feed_entries" do
-    it "should return Atom entries" do
-      raw_atom_feed = Rails.root.join("spec", "fixtures", "feed.atom.xml").read
-      allow_any_instance_of(described_class).to receive(:raw_feed).and_return(raw_atom_feed)
-
-      feed_entries = described_class.new(nil).send(:feed_entries)
-      expect(feed_entries.count).to eq 1
-
-      feed_entry = feed_entries.first
-      expect(feed_entry.title).to     eq "Atom Entry Name"
-      expect(feed_entry.url).to       eq "http://atom.example.org/1"
-      expect(feed_entry.id).to        eq "atom-entry-id"
-      expect(feed_entry.published).to eq Time.utc(2012, 12, 21, 12, 0, 0)
-      expect(feed_entry.summary).to   eq "Atom Entry Summary"
-      expect(feed_entry.author).to    eq "Atom Entry Author"
-    end
-
-    it "should return RSS entries" do
-      raw_rss_feed = Rails.root.join("spec", "fixtures", "feed.rss.xml").read
-      allow_any_instance_of(described_class).to receive(:raw_feed).and_return(raw_rss_feed)
-
-      feed_entries = described_class.new(nil).send(:feed_entries)
-      expect(feed_entries.count).to eq 1
-
-      feed_entry = feed_entries.first
-      expect(feed_entry.title).to     eq "RSS Entry Name"
-      expect(feed_entry.url).to       eq "http://rss.example.org/1"
-      expect(feed_entry.id).to        eq "rss-entry-id"
-      expect(feed_entry.published).to eq Time.utc(2012, 12, 21, 12, 0, 0)
-      expect(feed_entry.summary).to   eq "RSS Entry Summary"
-      expect(feed_entry.author).to    eq "RSS Entry Author"
-    end
-
-    it "should sanitize entries" do
-      raw_rss_feed = Rails.root.join("spec", "fixtures", "feed.sanitize_me.atom.xml").read
-      allow_any_instance_of(described_class).to receive(:raw_feed).and_return(raw_rss_feed)
-
-      feed_entry = described_class.new(nil).send(:feed_entries).first
-      expect(feed_entry.summary).to_not include "script"
-      expect(feed_entry.summary).to_not include "onclick"
-      expect(feed_entry.summary).to     include "style"
-    end
-  end # describe "#feed_entries"
-
   describe "#create_or_update_entry!" do
     let(:feed) { create(:feed) }
 
     let(:feed_entry) {
       OpenStruct.new(
-        :title     => "entry title",
-        :url       => "entry url",
-        :id        => "entry id",
-        :summary   => "entry summary",
-        :content   => "entry content",
-        :author    => "entry author",
-        :published => Time.utc(2012, 12, 21, 12, 0, 0),
+        :name         => "entry title",
+        :url          => "entry url",
+        :external_id  => "entry id",
+        :body         => "entry content",
+        :author       => "entry author",
+        :published_at => Time.utc(2012, 12, 21, 12, 0, 0),
       )
     }
 
@@ -105,32 +60,14 @@ describe Feed::ImportService do
       expect { create_or_update_entry! }.to change(Entry, :count).by(1)
     end
 
-    it "should assign a default title if needed" do
-      feed_entry.title = nil
-
-      expect { create_or_update_entry! }.to change(Entry, :count).by(1)
-
-      entry = Entry.last_created
-      expect(entry.name).to eq "[no title]"
-    end
-
-    it "should use summary if content if empty" do
-      feed_entry.content = nil
-
-      expect { create_or_update_entry! }.to change(Entry, :count).by(1)
-
-      entry = Entry.last_created
-      expect(entry.body).to eq "entry summary"
-    end
-
     it "should ignore entries without id" do
-      feed_entry.id = nil
+      feed_entry.external_id = nil
 
       expect { create_or_update_entry! }.to_not change(Entry, :count)
     end
 
     it "should assign default published_at to now" do
-      feed_entry.published = nil
+      feed_entry.published_at = nil
 
       expect { create_or_update_entry! }.to change(Entry, :count).by(1)
 
@@ -138,7 +75,7 @@ describe Feed::ImportService do
     end
 
     it "should not update published_at if not present" do
-      feed_entry.published = nil
+      feed_entry.published_at = nil
 
       Timecop.freeze Time.utc(2012, 12, 21, 12, 0, 0)
       expect { create_or_update_entry! }.to change(Entry, :count).by(1)
@@ -154,12 +91,13 @@ describe Feed::ImportService do
 
   describe "#call" do
     it "should call create_or_update_entry! for each entry" do
-      feed_entry1 = OpenStruct.new(title: "entry1")
-      feed_entry2 = OpenStruct.new(title: "entry2")
-      feed        = create(:feed)
+      feed_entry1  = OpenStruct.new(title: "entry1")
+      feed_entry2  = OpenStruct.new(title: "entry2")
+      feed_entries = [feed_entry1, feed_entry2]
+      feed         = create(:feed)
 
       service = described_class.new(feed)
-      expect(service).to receive(:feed_entries).and_return([feed_entry1, feed_entry2])
+      expect(service).to receive(:feed_entries).at_least(:once).and_return(feed_entries)
       expect(service).to receive(:create_or_update_entry!).with(feed_entry1)
       expect(service).to receive(:create_or_update_entry!).with(feed_entry2)
       service.call
@@ -170,11 +108,13 @@ describe Feed::ImportService do
       expect(feed.last_update_at).to be nil
 
       feed_entries = [
-        OpenStruct.new(updated: Time.utc(2012, 12, 21, 12, 0, 0)),
-        OpenStruct.new(updated: Time.utc(2012, 12, 21, 13, 0, 0)),
-        OpenStruct.new(updated: Time.utc(2012, 12, 21, 11, 0, 0)),
+        OpenStruct.new(updated_at: Time.utc(2012, 12, 21, 12, 0, 0)),
+        OpenStruct.new(updated_at: Time.utc(2012, 12, 21, 13, 0, 0)),
+        OpenStruct.new(updated_at: Time.utc(2012, 12, 21, 11, 0, 0)),
       ]
-      allow_any_instance_of(described_class).to receive(:feed_entries).and_return(feed_entries)
+
+      expect_any_instance_of(described_class).to \
+        receive(:feed_entries).at_least(:once).and_return(feed_entries)
 
       described_class.call(feed)
       expect(feed.reload.last_update_at).to eq Time.utc(2012, 12, 21, 13, 0, 0)
@@ -182,10 +122,10 @@ describe Feed::ImportService do
 
     it "should skip existing entries based on #last_update_at" do
       feed = create(:feed, last_update_at: Date.new(2012, 12, 15))
-      feed_entry = OpenStruct.new(published: Date.new(2012, 12, 10))
+      feed_entry = OpenStruct.new(updated_at: Date.new(2012, 12, 10))
       service = described_class.new(feed)
 
-      expect(service).to receive(:feed_entries).and_return([feed_entry])
+      expect(service).to receive(:feed_entries).and_return([feed_entry]).at_least(:once)
       expect(service).to_not receive(:create_or_update_entry!)
 
       service.call
@@ -194,23 +134,16 @@ describe Feed::ImportService do
     it "should not skip updated existing entries" do
       feed = create(:feed, last_update_at: Date.new(2012, 12, 15))
 
-      feed_entry = OpenStruct.new(published: Date.new(2012, 12, 10), updated: Date.new(2013, 1, 1))
+      feed_entry = OpenStruct.new(
+        :published_at => Date.new(2012, 12, 10),
+        :updated_at   => Date.new(2013, 1, 1),
+      )
       service = described_class.new(feed)
 
-      expect(service).to receive(:feed_entries).and_return([feed_entry])
+      expect(service).to receive(:feed_entries).and_return([feed_entry]).at_least(:once)
       expect(service).to receive(:create_or_update_entry!).with(feed_entry)
 
       service.call
-    end
-
-    it "should not crash on feeds without updated field" do
-      feed    = create(:feed)
-      service = described_class.new(feed)
-
-      expect(service).to receive(:feed_entries).and_return([Feedjira::Parser::ITunesRSSItem.new])
-      allow(service).to receive(:create_or_update_entry!)
-
-      expect { service.call }.to_not raise_error
     end
 
     it "should catch http errors" do
