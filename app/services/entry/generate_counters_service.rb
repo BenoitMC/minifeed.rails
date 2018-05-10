@@ -1,4 +1,4 @@
-class Entry::CountersGenerator < Service
+class Entry::GenerateCountersService < Service
   initialize_with :user
 
   def call

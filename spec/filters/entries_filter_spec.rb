@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Entry::Filter do
+describe EntriesFilter do
   def filter(options = {})
     described_class.call(Entry.all, options)
   end

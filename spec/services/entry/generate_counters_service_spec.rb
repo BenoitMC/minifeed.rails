@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Entry::CountersGenerator do
+describe Entry::GenerateCountersService do
   let!(:user) { create(:user) }
 
   let!(:category1) { create(:category, user: user) }

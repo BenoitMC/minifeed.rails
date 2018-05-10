@@ -4,7 +4,7 @@ class EntriesController < ApplicationController
   def index
     authorize model, :list?
 
-    @filter = Entry::Filter.new(scope, params)
+    @filter = EntriesFilter.new(scope, params)
 
     @entries = @filter.call
       .preload(feed: :category)
@@ -38,7 +38,7 @@ class EntriesController < ApplicationController
   def mark_as_read
     authorize model, :update?
 
-    @filter = Entry::Filter.new(scope, params)
+    @filter = EntriesFilter.new(scope, params)
     @entries = @filter.call
     @entries.update_all(is_read: true) # rubocop:disable Rails/SkipsModelValidations
 
