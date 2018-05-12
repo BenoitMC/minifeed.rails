@@ -1,0 +1,14 @@
+en:
+  settings:
+    categories:
+      create:
+        messages:
+          ok: "Category successfully created."
+
+      update:
+        messages:
+          ok: "Category successfully updated."
+
+      destroy:
+        messages:
+          ok: "Category successfully deleted."

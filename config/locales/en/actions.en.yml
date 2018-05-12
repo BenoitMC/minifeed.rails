@@ -1,5 +1,6 @@
 en:
   actions:
+    actions: "Actions"
     mark_as_read: "Mark as read"
     confirm: "Confirm?"
     preview: "Preview"
@@ -7,3 +8,8 @@ en:
     open_internal: "Open in modal"
     toggle_read: "Read"
     toggle_starred: "Starred"
+    create: "Create"
+    update: "Update"
+    save: "Save"
+    delete: "Delete"
+    cancel: "Cancel"

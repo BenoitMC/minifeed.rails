@@ -44,3 +44,7 @@ end
 When("I press key {string}") do |key|
   find("body").send_keys(key.length == 1 ? key : key.to_sym)
 end
+
+When("I fill in {string} with {string}") do |id, value|
+  fill_in id, with: value
+end

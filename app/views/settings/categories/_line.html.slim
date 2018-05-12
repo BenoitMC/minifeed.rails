@@ -1,0 +1,7 @@
+tr.category
+  td.category-name
+    = category.name
+
+  td.category-actions.actions: .d-flex
+    = update_button url_for(action: :edit, id: category)
+    = delete_button url_for(action: :destroy, id: category)

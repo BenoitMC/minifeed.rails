@@ -16,3 +16,33 @@ img
 .far,
 .fas,
   @extend .fa-fw
+
+.btn-default
+  @extend .btn-outline-primary
+
+th.actions
+  width: 5em
+  text-align: center
+
+td.actions
+  white-space: nowrap
+
+  .btn
+    width: 100%
+
+  .btn + .btn
+    margin-left: 0.5em
+
+.bottom-actions
+  text-align: center
+
+table.default
+  @extend .table
+  @extend .table-sm
+
+  th
+    border: none
+
+  td
+    vertical-align: middle
+    border-bottom: $border-width solid $border-color

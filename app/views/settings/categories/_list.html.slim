@@ -1,0 +1,18 @@
+table#categories.default
+  thead
+    tr
+      th.category-name
+        = Category.t(:name)
+
+      th.category-actions.actions
+        = ta(:actions)
+
+  tbody
+    - @categories.each do |category|
+      - if action_name == "edit" && category == @category
+        = render "form", f: f
+      - else
+        = render "line", category: category
+
+    - if @category&.new_record?
+      = render "form", f: f

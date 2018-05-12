@@ -1,0 +1,14 @@
+tr.category
+  td.category-name
+    = f.text_field :name, class: "form-control", id: "category_name"
+
+  td.category-actions.actions: .d-flex
+    button.btn.btn-success type="submit"
+      = icon(:save, fa_style: :r)
+      = " "
+      = ta(:save)
+
+    a.btn.btn-outline-primary href=url_for(action: :index)
+      = icon(:times)
+      = " "
+      = ta(:cancel)
