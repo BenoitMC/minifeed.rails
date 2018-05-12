@@ -12,3 +12,7 @@ en:
       destroy:
         messages:
           ok: "Category successfully deleted."
+
+      reorder:
+        messages:
+          ok: "Categories successfully reordered."

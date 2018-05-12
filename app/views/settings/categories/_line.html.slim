@@ -1,4 +1,11 @@
 tr.category
+  - if action_name == "reorder"
+    td.position
+      = icon(:arrows_alt, class: "handle")
+      - index = category.id.gsub(/[^0-9]/, "")
+      input type="hidden" name="category[#{index}][id]" value=category.id
+      input type="hidden" name="category[#{index}][position]" value=category.position
+
   td.category-name
     = category.name
 

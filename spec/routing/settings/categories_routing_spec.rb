@@ -29,5 +29,13 @@ describe Settings::CategoriesController, type: :routing do
     it "#destroy" do
       expect(delete "/settings/categories/0").to route_to("settings/categories#destroy", id: "0")
     end
+
+    it "#reorder via get" do
+      expect(get "/settings/categories/reorder").to route_to("settings/categories#reorder")
+    end
+
+    it "#reorder via post" do
+      expect(post "/settings/categories/reorder").to route_to("settings/categories#reorder")
+    end
   end
 end

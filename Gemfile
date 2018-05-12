@@ -4,7 +4,7 @@ gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
 gem "rails", "~> 5.1.6"
 gem "agilidee-devise", ">= 1.1.1"
-gem "agilibox", "~> 1.2.1"
+gem "agilibox", "~> 1.2.2"
 
 gem "rufus-scheduler"
 gem "feedjira"

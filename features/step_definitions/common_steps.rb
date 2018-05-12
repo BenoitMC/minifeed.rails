@@ -48,3 +48,14 @@ end
 When("I fill in {string} with {string}") do |id, value|
   fill_in id, with: value
 end
+
+Then("I see {string} before {string}") do |a, b|
+  expect(source.index(a) < source.index(b)).to be true
+end
+
+Then("I reorder elements") do
+  expect(page).to have_selector(".handle")
+
+  evaluate_script %( $("tbody").append($("tbody tr").eq(0).detach()) )
+  evaluate_script %( $(".sortable").trigger("sortupdate") )
+end

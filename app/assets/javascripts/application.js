@@ -4,5 +4,6 @@
 //= require bootstrap
 //= require mousetrap
 //= require Readability
+//= require html5sortable
 //= require agilibox/modals
 //= require_tree .

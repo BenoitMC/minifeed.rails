@@ -30,11 +30,8 @@ td.actions
   .btn
     width: 100%
 
-  .btn + .btn
-    margin-left: 0.5em
-
-.bottom-actions
-  text-align: center
+.actions.top
+  text-align: right
 
 table.default
   @extend .table
@@ -46,3 +43,16 @@ table.default
   td
     vertical-align: middle
     border-bottom: $border-width solid $border-color
+
+th.position
+  width: 1em
+
+.handle
+  cursor: move
+
+.actions
+  .btn
+    @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $btn-line-height-sm, $btn-border-radius-sm)
+
+  .btn + .btn
+    margin-left: 0.5em

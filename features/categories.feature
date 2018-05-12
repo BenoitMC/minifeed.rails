@@ -3,7 +3,7 @@ Feature: Categories
   Background:
     Given I am a signed in user
 
-  Scenario: Create a categories
+  Scenario: Create a category
     When I click on "Settings"
     And I click on "Manage categories"
     And I click on "Create"
@@ -12,7 +12,7 @@ Feature: Categories
     Then I see "Category successfully created"
     And I see "#nav_category_hello" element
 
-  Scenario: Update a categories
+  Scenario: Update a category
     Given an existing category named "hello"
     When I click on "Settings"
     And I click on "Manage categories"
@@ -23,10 +23,22 @@ Feature: Categories
     And I see "#nav_category_world" element
     And I do not see "#nav_category_hello" element
 
-  Scenario: Delete a categories
+  Scenario: Delete a category
     Given an existing category named "hello"
     When I click on "Settings"
     And I click on "Manage categories"
     And I click on "Delete"
     Then I see "Category successfully delete"
     And I do not see "#nav_category_hello" element
+
+  Scenario: Reorder categories
+    Given an existing category named "hello"
+    Given an existing category named "world"
+    When I click on "Settings"
+    And I click on "Manage categories"
+    Then I see "hello" before "world"
+    And I click on "Reorder"
+    And I reorder elements
+    And I click on "Save"
+    Then I see "Categories successfully reordered"
+    Then I see "world" before "hello"

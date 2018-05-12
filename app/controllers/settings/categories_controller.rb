@@ -15,7 +15,7 @@ class Settings::CategoriesController < ApplicationController
     new
 
     if @category.save
-      flash[:notice] = t(".messages.ok")
+      flash[:success] = t(".messages.ok")
       redirect_to back_url
     else
       render :new
@@ -36,7 +36,7 @@ class Settings::CategoriesController < ApplicationController
     authorize @category, :update?
 
     if @category.update(category_params)
-      flash[:notice] = t(".messages.ok")
+      flash[:success] = t(".messages.ok")
       redirect_to back_url
     else
       render :edit
@@ -47,7 +47,19 @@ class Settings::CategoriesController < ApplicationController
     authorize @category, :delete?
 
     @category.destroy!
-    flash[:notice] = t(".messages.ok")
+    flash[:success] = t(".messages.ok")
+
+    redirect_to back_url
+  end
+
+  def reorder
+    authorize model, :update?
+
+    return if request.get?
+
+    params_array = params.permit(category: [:id, :position])[:category].values
+    Agilibox::CollectionUpdate.new(scope, params_array).update!
+    flash[:success] = t(".messages.ok")
 
     redirect_to back_url
   end
