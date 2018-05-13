@@ -1,0 +1,25 @@
+= form_with id: "feed-search"
+  p
+    .input-group
+      input(
+        class       = "form-control"
+        type        = "url"
+        name        = "url"
+        id          = "url"
+        value       = params[:url]
+        placeholder = t(".placeholder")
+      )
+
+      .input-group-append
+        button class="btn btn-success" type="submit" = t(".submit")
+
+- if @results&.any?
+  #feed-search-results.list-group
+    - @results.each do |result|
+      a.list-group-item.list-group-item-action href=url_for(action: :new, feed: {url: result.url, name: result.name})
+        = icon(:rss)
+        = " "
+        strong = result.name
+        span.text-muted
+          = " - "
+          = result.url

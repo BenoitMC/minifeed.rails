@@ -1,0 +1,20 @@
+table#feeds.default
+  thead
+    tr
+      th.feed-name = Feed.t(:name)
+      th.feed-category = Feed.t(:category)
+      th.feed-actions.actions = t("actions.actions")
+
+  tbody
+    - @feeds.each do |feed|
+      tr.feed
+        td.feed-name
+          = feed.name
+
+        td.feed-category
+          = feed.category
+
+        td.feed-actions.actions: .d-flex
+          = update_button url_for(action: :edit, id: feed)
+          = delete_button url_for(action: :destroy, id: feed)
+

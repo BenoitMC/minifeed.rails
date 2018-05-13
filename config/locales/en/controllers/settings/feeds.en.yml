@@ -1,0 +1,18 @@
+en:
+  settings:
+    feeds:
+      search:
+        placeholder: "Enter a feed or a website URL"
+        submit: "Search"
+
+      create:
+        messages:
+          ok: "Feed successfully created."
+
+      update:
+        messages:
+          ok: "Feed successfully updated."
+
+      destroy:
+        messages:
+          ok: "Feed successfully deleted."

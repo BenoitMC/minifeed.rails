@@ -1,0 +1,5 @@
+= simple_form_for @feed, url: url, html: {id: "feed-form"} do |f|
+  = f.input :name
+  = f.input :url
+  = f.association :category
+  = form_buttons

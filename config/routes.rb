@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     resources :categories do
       match :reorder, via: [:get, :post], on: :collection
     end
+    resources :feeds do
+      match :search, via: [:get, :post], on: :collection
+    end
     resources :opml_imports, path: "opml-imports", only: [:new, :create]
   end
 end

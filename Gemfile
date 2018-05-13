@@ -8,6 +8,7 @@ gem "agilibox", "~> 1.2.2"
 
 gem "rufus-scheduler"
 gem "feedjira"
+gem "feedbag"
 gem "uglifier"
 gem "slim-rails"
 gem "sass-rails"
