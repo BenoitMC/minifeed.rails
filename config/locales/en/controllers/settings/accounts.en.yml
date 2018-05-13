@@ -1,0 +1,6 @@
+en:
+  settings:
+    accounts:
+      update:
+        messages:
+          ok: "User account successfully updated."

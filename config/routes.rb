@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   namespace :settings do
     root "home#home"
+    resource :account, only: [:edit, :update]
     resources :categories do
       match :reorder, via: [:get, :post], on: :collection
     end
