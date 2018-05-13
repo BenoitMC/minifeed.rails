@@ -36,6 +36,12 @@ class Settings::CategoriesController < ApplicationController
   end
 
   def destroy
+    if @category.feeds.any?
+      flash[:danger] = t(".messages.not_empty")
+      redirect_to back_url
+      return
+    end
+
     @category.destroy!
     flash[:success] = t(".messages.ok")
 

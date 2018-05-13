@@ -12,6 +12,7 @@ en:
       destroy:
         messages:
           ok: "Category successfully deleted."
+          not_empty: "You cannot delete a category containing feeds."
 
       reorder:
         messages:
