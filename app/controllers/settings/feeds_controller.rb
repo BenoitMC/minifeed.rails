@@ -2,13 +2,10 @@ class Settings::FeedsController < ::ApplicationController
   before_action :set_objects
 
   def index
-    authorize model, :list?
-
     @feeds = scope.all.preload(:category)
   end
 
   def search
-    authorize model, :create?
     skip_policy_scope
 
     return if request.get?
@@ -18,8 +15,6 @@ class Settings::FeedsController < ::ApplicationController
 
   def new
     @feed = scope.new(feed_params)
-
-    authorize @feed, :create?
   end
 
   def create
@@ -34,18 +29,13 @@ class Settings::FeedsController < ::ApplicationController
   end
 
   def show
-    authorize @feed, :update?
-
     redirect_to action: :edit
   end
 
   def edit
-    authorize @feed, :update?
   end
 
   def update
-    authorize @feed, :update?
-
     if @feed.update(feed_params)
       flash[:success] = t(".messages.ok")
       redirect_to back_url
@@ -55,8 +45,6 @@ class Settings::FeedsController < ::ApplicationController
   end
 
   def destroy
-    authorize @feed, :delete?
-
     @feed.destroy!
     flash[:success] = t(".messages.ok")
 

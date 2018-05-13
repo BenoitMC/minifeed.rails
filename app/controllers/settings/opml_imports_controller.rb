@@ -1,7 +1,7 @@
 class Settings::OpmlImportsController < ApplicationController
+  skip_after_action :verify_policy_scoped
+
   def new
-    authorize Feed, :create?
-    skip_policy_scope
   end
 
   def create

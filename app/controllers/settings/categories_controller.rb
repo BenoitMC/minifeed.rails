@@ -2,13 +2,10 @@ class Settings::CategoriesController < ApplicationController
   before_action :set_objects
 
   def index
-    authorize model, :list?
   end
 
   def new
     @category = scope.new(category_params)
-
-    authorize @category, :create?
   end
 
   def create
@@ -23,18 +20,13 @@ class Settings::CategoriesController < ApplicationController
   end
 
   def show
-    authorize @category, :update?
-
     redirect_to action: :edit
   end
 
   def edit
-    authorize @category, :update?
   end
 
   def update
-    authorize @category, :update?
-
     if @category.update(category_params)
       flash[:success] = t(".messages.ok")
       redirect_to back_url
@@ -44,8 +36,6 @@ class Settings::CategoriesController < ApplicationController
   end
 
   def destroy
-    authorize @category, :delete?
-
     @category.destroy!
     flash[:success] = t(".messages.ok")
 
@@ -53,8 +43,6 @@ class Settings::CategoriesController < ApplicationController
   end
 
   def reorder
-    authorize model, :update?
-
     return if request.get?
 
     params_array = params.permit(category: [:id, :position])[:category].values

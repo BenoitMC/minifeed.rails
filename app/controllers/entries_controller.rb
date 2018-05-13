@@ -2,8 +2,6 @@ class EntriesController < ApplicationController
   before_action :set_entry
 
   def index
-    authorize model, :list?
-
     @filter = EntriesFilter.new(scope, params)
 
     @entries = @filter.call
@@ -12,22 +10,16 @@ class EntriesController < ApplicationController
   end
 
   def show
-    authorize @entry, :read?
-
     @entry.update!(is_read: true) if @entry.is_unread?
   end
 
   def preview
-    authorize @entry, :read?
-
     @html = Entry::GeneratePreviewService.call(@entry)
 
     render layout: false
   end
 
   def update
-    authorize @entry, :update?
-
     if @entry.update(entry_params)
       render :show
     else
@@ -36,8 +28,6 @@ class EntriesController < ApplicationController
   end
 
   def mark_as_read
-    authorize model, :update?
-
     @filter = EntriesFilter.new(scope, params)
     @entries = @filter.call
     @entries.update_all(is_read: true) # rubocop:disable Rails/SkipsModelValidations

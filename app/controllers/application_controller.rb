@@ -5,10 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
-  after_action :verify_authorized, unless: -> {
-    params[:controller].to_s.match(/^(devise)/)
-  }
-
   after_action :verify_policy_scoped, unless: -> {
     params[:controller].to_s.match(/^(devise)/)
   }

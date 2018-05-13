@@ -3,8 +3,6 @@ class Settings::AccountsController < ApplicationController
 
   def edit
     @user = current_user
-
-    authorize @user, :update?
   end
 
   def update
