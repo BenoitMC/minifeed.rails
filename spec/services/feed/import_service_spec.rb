@@ -154,5 +154,14 @@ describe Feed::ImportService do
       expect { described_class.call(feed) }.to_not raise_error
       expect(feed.import_errors).to eq 1
     end
+
+    it "should reset errors on success" do
+      expect_any_instance_of(described_class).to \
+        receive(:feed_entries).at_least(:once).and_return([])
+
+      feed = create(:feed, import_errors: 1)
+      described_class.call(feed)
+      expect(feed.import_errors).to eq 0
+    end
   end # describe "#call"
 end

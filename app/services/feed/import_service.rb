@@ -10,7 +10,10 @@ class Feed::ImportService < Service
       create_or_update_entry!(feed_entry)
     end
 
-    feed.update!(last_update_at: feed_entries.map(&:updated_at).compact.max)
+    feed.update!(
+      :last_update_at => feed_entries.map(&:updated_at).compact.max,
+      :import_errors  => 0,
+    )
   rescue GetHTTP::Error
     feed.increment!(:import_errors) # rubocop:disable Rails/SkipsModelValidations
   end
