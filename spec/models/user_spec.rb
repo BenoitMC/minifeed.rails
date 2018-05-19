@@ -9,6 +9,11 @@ describe User do
     expect(create :user).to be_valid
   end
 
+  it "should assign auth_token" do
+    user = create(:user)
+    expect(user.auth_token).to be_present
+  end
+
   describe "#id" do
     it "should be present on build" do
       expect(User.new.id).to be_present

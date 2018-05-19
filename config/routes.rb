@@ -24,4 +24,10 @@ Rails.application.routes.draw do
     end
     resources :opml_imports, path: "opml-imports", only: [:new, :create]
   end
+
+  namespace :api do
+    namespace :v1 do
+      root "home#home"
+    end
+  end
 end

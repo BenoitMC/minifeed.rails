@@ -11,6 +11,8 @@ class User < ApplicationRecord
     # :omniauthable,
   )
 
+  has_secure_token :auth_token
+
   def to_s
     email
   end

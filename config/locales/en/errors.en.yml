@@ -1,3 +1,5 @@
-fr:
+en:
   errors:
     invalid_authenticity_token: "Session has expired."
+    forbidden: "You must log in to access this page"
+    unauthorized: "You are not authorized to access this page"
