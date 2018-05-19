@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :entries, only: [:index, :show, :update] do
     get :preview, on: :member
-    post :"mark-as-read", on: :collection
+    post :"mark-all-as-read", on: :collection
   end
 
   namespace :settings do

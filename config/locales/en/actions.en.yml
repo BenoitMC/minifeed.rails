@@ -1,7 +1,7 @@
 en:
   actions:
     actions: "Actions"
-    mark_as_read: "Mark as read"
+    mark_all_as_read: "Mark all as read"
     confirm: "Confirm?"
     preview: "Preview"
     open_external: "Open in new tab"
