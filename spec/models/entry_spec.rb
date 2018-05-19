@@ -3,6 +3,7 @@ require "rails_helper"
 describe Entry, type: :model do
   it { is_expected.to belong_to :user }
   it { is_expected.to belong_to :feed }
+  it { is_expected.to respond_to :category }
 
   it { is_expected.to validate_presence_of :user }
   it { is_expected.to validate_presence_of :feed }

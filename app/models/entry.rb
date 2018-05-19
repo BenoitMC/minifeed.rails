@@ -2,6 +2,8 @@ class Entry < ApplicationRecord
   belongs_to :user
   belongs_to :feed
 
+  delegate :category, to: :feed
+
   validates :user,         presence: true
   validates :feed,         presence: true
   validates :external_id,  presence: true
