@@ -17,7 +17,7 @@ describe ApplicationController do
 
       expect(response.status).to eq 404
       expect(response).to render_template "errors/not_found"
-      expect(response.body).to include "Erreur"
+      expect(response.body).to include "Error"
     end
   end # describe "render_not_found"
 end

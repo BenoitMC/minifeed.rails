@@ -34,4 +34,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  match "*path" => "errors#not_found", :via => :all
 end
