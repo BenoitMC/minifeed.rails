@@ -1,6 +1,6 @@
 en:
   nav:
-    all_entries: "All entries"
+    unread: "All entries"
     starred: "Starred"
     keyboard_shortcuts: "Keyboard shortcuts"
     settings: "Settings"

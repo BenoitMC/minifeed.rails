@@ -13,7 +13,7 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
           a.nav-link href=main_app.entries_path
             = icon(:list)
             = " "
-            = t("nav.all_entries")
+            = t("nav.unread")
             span.badge.badge-secondary.float-right data-count=counters[:unread]
               = counters[:unread]
 

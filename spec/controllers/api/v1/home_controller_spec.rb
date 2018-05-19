@@ -39,5 +39,12 @@ describe Api::V1::HomeController do
       get :home
       expect(controller.send :current_user).to eq nil
     end
+
+    it "should return nav" do
+      sign_in create(:user)
+      expect(GenerateNavService).to receive(:call).and_return("the nav")
+      get :home
+      expect(json_response["nav"]).to eq "the nav"
+    end
   end # describe "#home"
 end
