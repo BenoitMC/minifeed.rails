@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       match :search, via: [:get, :post], on: :collection
     end
     resources :opml_imports, path: "opml-imports", only: [:new, :create]
+    resources :opml_exports, path: "opml-exports", only: [:create]
   end
 
   namespace :api do

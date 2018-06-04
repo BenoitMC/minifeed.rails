@@ -6,3 +6,4 @@ en:
         categories: "Manage categories"
         feeds: "Manage feeds"
         opml_import: "Import feeds from OPML file"
+        opml_export: "Export feeds to OPML file"
