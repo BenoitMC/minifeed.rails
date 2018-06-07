@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   private
 
   def render_not_found
-    render "errors/not_found", status: :not_found
+    render "errors/not_found.html", status: :not_found
   end
 
   def model

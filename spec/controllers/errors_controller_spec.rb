@@ -6,8 +6,14 @@ describe ErrorsController do
   describe "#not_found" do
     it "should be not found" do
       get :not_found, params: {path: "z"}
-      # expect(response).to be_not_found
-      expect(response.code).to eq "404"
+      expect(response).to be_not_found
+      expect(response).to render_template "errors/not_found.html"
+    end
+
+    it "should not crash with unknown format" do
+      get :not_found, params: {path: "z", format: :xml}
+      expect(response).to be_not_found
+      expect(response).to render_template "errors/not_found.html"
     end
   end
 end
