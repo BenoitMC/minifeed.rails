@@ -62,13 +62,13 @@ Feature: Entries
     Then I see "iframe" element
     Then I see "#modal" element
 
-  Scenario: Preview entry url in modal
+  Scenario: Reader mode in modal
     Given an existing entry
     And this existing entry "name" is "Example entry"
     And this existing entry "url" is "http://example.org/"
     When I go on the entries page
     And I click on "Example entry"
-    And I click on ".entry-preview_link" element
+    And I click on ".entry-reader_link" element
     Then I see "iframe" element
     Then I see "#modal" element
 
@@ -192,7 +192,7 @@ Feature: Entries
     Then I see "iframe" element
     Then I see "#modal" element
 
-  Scenario: Preview entry url in modal from shortcuts
+  Scenario: Reader mode in modal from shortcuts
     Given an existing entry
     And this existing entry "name" is "Example entry"
     And this existing entry "url" is "http://example.org/"

@@ -13,8 +13,8 @@ class EntriesController < ApplicationController
     @entry.update!(is_read: true) if @entry.is_unread?
   end
 
-  def preview
-    @html = Entry::GeneratePreviewService.call(@entry)
+  def reader
+    @html = Entry::GenerateReaderContentService.call(@entry)
 
     render layout: false
   end

@@ -1,4 +1,4 @@
-$(document).on "click", ".entry-preview_link", (event) ->
+$(document).on "click", ".entry-reader_link", (event) ->
   event.preventDefault()
   $iframe = $("<iframe src='#{this.href}' class='entry-iframe' />")
   $iframe.load -> this.style.height = this.contentDocument.body.scrollHeight + "px"
@@ -39,7 +39,7 @@ Mousetrap.bind "s", ->
   $("#entry input[type=checkbox][name*=starred]").map -> $(this).prop(checked: !this.checked).change()
 
 Mousetrap.bind "p", ->
-  $("#entry .entry-preview_link").click()
+  $("#entry .entry-reader_link").click()
 
 Mousetrap.bind "m", ->
   try $("#entry .entry-internal_link").get(0).click()

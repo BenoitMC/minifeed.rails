@@ -35,10 +35,10 @@
 
       span.separator = " - "
 
-      a.entry-preview_link href=main_app.preview_entry_path(@entry)
-        = icon(:eye, fa_style: :s)
+      a.entry-reader_link href=main_app.reader_entry_path(@entry)
+        = icon(:align_left, fa_style: :s)
         = " "
-        = ta(:preview)
+        = ta(:reader_mode)
 
       span.separator = " - "
 
