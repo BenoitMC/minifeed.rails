@@ -14,6 +14,10 @@ class Feed < ApplicationRecord
 
   default_scope -> { order_by_name }
 
+  def on_error?
+    import_errors > 10
+  end
+
   private
 
   def validate_associations_consistency

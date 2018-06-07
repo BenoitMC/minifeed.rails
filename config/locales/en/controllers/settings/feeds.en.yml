@@ -5,6 +5,10 @@ en:
         placeholder: "Enter a feed or a website URL"
         submit: "Search"
 
+      form:
+        errors:
+          fetch: "The last %{count} fetches of this feed failed."
+
       create:
         messages:
           ok: "Feed successfully created."

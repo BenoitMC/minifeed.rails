@@ -9,6 +9,10 @@ table#feeds.default
     - @feeds.each do |feed|
       tr.feed
         td.feed-name
+          - if feed.on_error?
+            = icon(:exclamation_triangle)
+            = " "
+
           = feed.name
 
         td.feed-category
