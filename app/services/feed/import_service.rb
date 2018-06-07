@@ -14,7 +14,7 @@ class Feed::ImportService < Service
       :last_update_at => feed_entries.map(&:updated_at).compact.max,
       :import_errors  => 0,
     )
-  rescue GetHTTP::Error
+  rescue GetHTTP::Error, Feedjira::NoParserAvailable
     feed.increment!(:import_errors) # rubocop:disable Rails/SkipsModelValidations
   end
 

@@ -155,6 +155,16 @@ describe Feed::ImportService do
       expect(feed.import_errors).to eq 1
     end
 
+    it "should catch feedjira errors" do
+      expect_any_instance_of(described_class).to \
+        receive(:raw_feed) { raise Feedjira::NoParserAvailable }
+
+      feed = create(:feed)
+      expect(feed.import_errors).to eq 0
+      expect { described_class.call(feed) }.to_not raise_error
+      expect(feed.import_errors).to eq 1
+    end
+
     it "should reset errors on success" do
       expect_any_instance_of(described_class).to \
         receive(:feed_entries).at_least(:once).and_return([])
