@@ -34,7 +34,6 @@ gem "bugsnag"
 gem "nilify_blanks"
 gem "pg"
 gem "loofah", ">= 2.2.2" # fix Github security warning
-gem "concurrent-ruby", require: "concurrent/executor/fixed_thread_pool"
 
 group :test do
   gem "minitest"
