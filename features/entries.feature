@@ -80,12 +80,6 @@ Feature: Entries
     And an existing entry
     And this existing entry "name" is "i am the first entry"
     When I go on the entries page
-    # Ignore before modal open
-    When I press key "right"
-    Then I do not see "#modal" element
-    When I press key "left"
-    Then I do not see "#modal" element
-    # Test before/after and first/last elements
     And I click on "i am the first entry"
     Then I see "i am the first entry" in modal
     When I press key "right"
@@ -100,13 +94,24 @@ Feature: Entries
     Then I see "i am the first entry" in modal
     When I press key "left"
     Then I see "i am the first entry" in modal
-    # Ignore after modal close
-    When I click on "#modal-close" element
-    Then I do not see "#modal" element
+
+  Scenario: Right arrow shortcut on entries list open first entry
+    Given an existing entry
+    And this existing entry "name" is "i am the second entry"
+    And an existing entry
+    And this existing entry "name" is "i am the first entry"
+    When I go on the entries page
     When I press key "right"
-    Then I do not see "#modal" element
+    Then I see "i am the first entry" in modal
+
+  Scenario: Left arrow shortcut on entries list opens last entry
+    Given an existing entry
+    And this existing entry "name" is "i am the second entry"
+    And an existing entry
+    And this existing entry "name" is "i am the first entry"
+    When I go on the entries page
     When I press key "left"
-    Then I do not see "#modal" element
+    Then I see "i am the second entry" in modal
 
   Scenario: Open entry body links in new page
     Given an existing entry

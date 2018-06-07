@@ -25,12 +25,16 @@ $(document).on "click", "#entries-load-more a", (event) ->
       $("#entries-load-more").replaceWith $data.find("#entries-load-more")
 
 Mousetrap.bind "right", ->
-  return unless try currentEntryId
-  $("a[data-entry-id=#{currentEntryId}]").parents("li").next("li").find("a[data-entry-id]").click()
+  if (try currentEntryId)
+    $("a[data-entry-id=#{currentEntryId}]").parents("li").next("li").find("a[data-entry-id]").click()
+  else
+    $("#entries-list a.entry-name").eq(0).click()
 
 Mousetrap.bind "left", ->
-  return unless try currentEntryId
-  $("a[data-entry-id=#{currentEntryId}]").parents("li").prev("li").find("a[data-entry-id]").click()
+  if (try currentEntryId)
+    $("a[data-entry-id=#{currentEntryId}]").parents("li").prev("li").find("a[data-entry-id]").click()
+  else
+    $("#entries-list a.entry-name").eq(-1).click()
 
 Mousetrap.bind "r", ->
   $("#entry input[type=checkbox][name*=read]").map -> $(this).prop(checked: !this.checked).change()
