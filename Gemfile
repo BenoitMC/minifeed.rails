@@ -63,6 +63,7 @@ end
 
 group :development, :test do
   gem "spring"
+  gem "listen"
   gem "launchy"
   gem "rails-erd"
   gem "thor"
