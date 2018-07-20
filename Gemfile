@@ -46,10 +46,6 @@ group :test do
   gem "selenium-webdriver"
   gem "spring-commands-rspec"
   gem "spring-commands-cucumber"
-  gem "guard"
-  gem "guard-cucumber"
-  gem "guard-rspec"
-  gem "guard-rubocop"
   gem "timecop"
   gem "simplecov", require: false
   gem "pundit-matchers"
