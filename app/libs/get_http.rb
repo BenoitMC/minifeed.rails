@@ -24,9 +24,15 @@ class GetHTTP < Service
 
   initialize_with :url
 
+  def uri
+    uri = URI(url.to_s)
+    raise Error, "invalid URI type : #{uri.class}" unless uri.is_a?(URI::HTTP)
+    uri
+  end
+
   def call
     response = Timeout.timeout(TIMEOUT) do
-      Net::HTTP.get_response(URI(url.to_s))
+      Net::HTTP.get_response(uri)
     end
 
     if response.code.start_with?("3")
