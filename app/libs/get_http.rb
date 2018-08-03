@@ -18,6 +18,7 @@ class GetHTTP < Service
     OpenSSL::SSL::SSLError,
     SocketError,
     Timeout::Error,
+    Zlib::Error,
   ]
 
   TIMEOUT = 10
