@@ -23,6 +23,15 @@ describe Settings::FeedsController do
     end
   end # describe "#index"
 
+  describe "#new" do
+    it "form should not display other user categories" do
+      create(:category, name: "Other user category")
+      get :new
+      expect(response).to be_ok
+      expect(response.body).to_not include "Other user category"
+    end
+  end # describe "#new"
+
   describe "#edit" do
     it "should not include import error warning" do
       feed = create(:feed, user: user, import_errors: 0)
