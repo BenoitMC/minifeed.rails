@@ -3,20 +3,12 @@ class GetHTTP < Service
   end
 
   EXCEPTIONS_TO_RERAISE = [
-    Errno::ECONNABORTED,
-    Errno::ECONNREFUSED,
-    Errno::ECONNRESET,
-    Errno::ENETRESET,
     Net::HTTPBadResponse,
-    Net::HTTPError,
-    Net::HTTPFatalError,
+    Net::HTTPExceptions,
     Net::HTTPHeaderSyntaxError,
-    Net::HTTPRetriableError,
-    Net::HTTPServerException,
-    Net::OpenTimeout,
-    Net::ReadTimeout,
     OpenSSL::SSL::SSLError,
     SocketError,
+    SystemCallError,
     Timeout::Error,
     Zlib::Error,
   ]
