@@ -17,6 +17,10 @@ img
 .fas,
   @extend .fa-fw
 
+// Fix ad-blockers
+.fa-feed:before
+  content: fa-content($fa-var-rss)
+
 .btn-default
   @extend .btn-outline-primary
 

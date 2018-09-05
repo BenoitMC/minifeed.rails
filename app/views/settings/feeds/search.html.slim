@@ -17,7 +17,7 @@
   #feed-search-results.list-group
     - @results.each do |result|
       a.list-group-item.list-group-item-action href=url_for(action: :new, feed: {url: result.url, name: result.name})
-        = icon(:rss)
+        = icon(:feed)
         = " "
         strong = result.name
         span.text-muted

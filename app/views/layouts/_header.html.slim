@@ -48,7 +48,7 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
                   class = ("active" if current_page_is_feed?(feed))
                 )
                   a.nav-link href=main_app.entries_path(category_id: category, feed_id: feed.id)
-                    = icon(:rss)
+                    = icon(:feed)
                     = " "
                     = feed
                     span.badge.badge-secondary.float-right data-count=counters[feed.id]
