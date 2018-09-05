@@ -71,3 +71,6 @@ $(document).on "ajax:complete", "#entry > form", (event, xhr) ->
 $(document).on "click", ".subnav-toggle", (event) ->
   event.preventDefault()
   $(this).parents(".subnav").toggleClass("open")
+
+Mousetrap.bind "h", ->
+  $("a[href$=keyboard-shortcuts]").click()

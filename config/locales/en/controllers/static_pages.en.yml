@@ -2,6 +2,7 @@ en:
   static_pages:
     keyboard_shortcuts:
       title: "Keyboard shortcuts"
+      help: "Display this page"
       previous_entry: "Go to previous entry"
       next_entry: "Go to next entry"
       close_modal: "Close entry modal"

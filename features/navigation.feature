@@ -54,3 +54,8 @@ Feature: Navigation
     Then I see "#nav_all_entries .badge" element
     And I see "#nav_category_hello .badge" element
     And I see "#nav_starred .badge" element
+
+  Scenario: Keyboard shortcuts modal
+    When I go on the entries page
+    And I press key "h"
+    Then I see "Keyboard shortcuts" in modal
