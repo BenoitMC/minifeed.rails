@@ -2,15 +2,27 @@
   .entry-header
     h1.entry-name = @entry.name
 
-    .entry-infos-and-actions
-      span.entry-feed = @entry.feed
+    .entry-infos
+      span.entry-feed
+        = icon(:rss)
+        = " "
+        = @entry.feed
 
-      span.separator = " - "
+      - if @entry.author.present?
+        span.separator = " "
+        span.entry-author
+          = icon(:user_edit)
+          = " "
+          = @entry.author
 
-      span.entry-published_at = time_ago_in_words(@entry.published_at)
+      span.separator = " "
 
-      span.separator = " - "
+      span.entry-published_at
+        = icon(:clock, fa_style: :r)
+        = " "
+        = time_ago_in_words(@entry.published_at)
 
+    .entry-actions
       label.entry-is_read
         = f.check_box :is_read, class: "d-none"
         - if @entry.is_read?
@@ -21,7 +33,7 @@
         = " "
         = ta(:toggle_read)
 
-      span.separator = " - "
+      span.separator = " "
 
       label.entry-is_starred
         = f.check_box :is_starred, class: "d-none"
@@ -33,21 +45,21 @@
         = " "
         = ta(:toggle_starred)
 
-      span.separator = " - "
+      span.separator = " "
 
       a.entry-reader_link href=main_app.reader_entry_path(@entry)
         = icon(:align_left, fa_style: :s)
         = " "
         = ta(:reader_mode)
 
-      span.separator = " - "
+      span.separator = " "
 
       a.entry-internal_link href=@entry.url target="_blank"
         = icon(:clone, fa_style: :r)
         = " "
         = ta(:open_internal)
 
-      span.separator = " - "
+      span.separator = " "
 
       a.entry-external_link href=@entry.url target="_blank"
         = icon(:external_link_alt, fa_style: :s)
