@@ -2,47 +2,8 @@
   h1 = t(".title")
 
   ul.list-unstyled
-    li
-      span.key = "h"
-      = " : "
-      = t(".help")
-
-    li
-      span.key = "left"
-      = " : "
-      = t(".previous_entry")
-
-    li
-      span.key = "right"
-      = " : "
-      = t(".next_entry")
-
-    li
-      span.key = "esc"
-      = " : "
-      = t(".close_modal")
-
-    li
-      span.key = "r"
-      = " : "
-      = t(".mark_entry_as_un_read")
-
-    li
-      span.key = "s"
-      = " : "
-      = t(".mark_entry_as_un_starred")
-
-    li
-      span.key = "p"
-      = " : "
-      = t(".reader_mode")
-
-    li
-      span.key = "m"
-      = " : "
-      = t(".open_internal")
-
-    li
-      span.key = "o"
-      = " : "
-      = t(".open_external")
+    - @list.each do |key, id|
+      li
+        span.key = key
+        = " : "
+        = t(".#{id}")
