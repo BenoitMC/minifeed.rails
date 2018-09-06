@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   }
 
   rescue_from ActionController::InvalidAuthenticityToken do
-    flash[:alert] = t("errors.invalid_authenticity_token")
+    flash.alert = t("errors.invalid_authenticity_token")
     redirect_to main_app.root_path
   end
 

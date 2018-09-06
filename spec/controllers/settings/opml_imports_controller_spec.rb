@@ -26,8 +26,8 @@ describe Settings::OpmlImportsController do
       post :create, params: {file: uploaded_file}
 
       expect(response).to redirect_to settings_root_path
-      expect(flash[:success]).to be_present
-      expect(flash[:danger]).to be_nil
+      expect(flash.notice).to be_present
+      expect(flash.alert).to be_nil
     end
 
     it "should return error" do
@@ -36,8 +36,8 @@ describe Settings::OpmlImportsController do
       post :create
 
       expect(response).to redirect_to(action: :new)
-      expect(flash[:danger]).to be_present
-      expect(flash[:success]).to be_nil
+      expect(flash.alert).to be_present
+      expect(flash.notice).to be_nil
     end
   end # describe "#create"
 end

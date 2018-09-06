@@ -12,7 +12,7 @@ class Settings::CategoriesController < ApplicationController
     new
 
     if @category.save
-      flash[:success] = t(".messages.ok")
+      flash.notice = t(".messages.ok")
       redirect_to back_url
     else
       render :new
@@ -28,7 +28,7 @@ class Settings::CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      flash[:success] = t(".messages.ok")
+      flash.notice = t(".messages.ok")
       redirect_to back_url
     else
       render :edit
@@ -37,13 +37,13 @@ class Settings::CategoriesController < ApplicationController
 
   def destroy
     if @category.feeds.any?
-      flash[:danger] = t(".messages.not_empty")
+      flash.alert = t(".messages.not_empty")
       redirect_to back_url
       return
     end
 
     @category.destroy!
-    flash[:success] = t(".messages.ok")
+    flash.notice = t(".messages.ok")
 
     redirect_to back_url
   end
@@ -53,7 +53,7 @@ class Settings::CategoriesController < ApplicationController
 
     params_array = params.permit(category: [:id, :position])[:category].values
     Agilibox::CollectionUpdate.new(scope, params_array).update!
-    flash[:success] = t(".messages.ok")
+    flash.notice = t(".messages.ok")
 
     redirect_to back_url
   end

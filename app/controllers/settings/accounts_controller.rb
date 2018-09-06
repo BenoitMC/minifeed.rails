@@ -9,7 +9,7 @@ class Settings::AccountsController < ApplicationController
     edit
 
     if @user.update(user_params)
-      flash[:success] = t(".messages.ok")
+      flash.notice = t(".messages.ok")
       redirect_to main_app.settings_root_path
     else
       render :edit

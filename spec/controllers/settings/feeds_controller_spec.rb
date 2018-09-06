@@ -68,7 +68,7 @@ describe Settings::FeedsController do
     it "should redirect and display error if no result" do
       expect_any_instance_of(Feed::SearchService).to receive(:call).and_return([])
       post :search
-      expect(flash[:alert]).to be_present
+      expect(flash.alert).to be_present
       expect(response).to redirect_to(action: :search)
     end
 
@@ -76,7 +76,7 @@ describe Settings::FeedsController do
       expect_any_instance_of(Feed::SearchService).to \
         receive(:call).and_raise(Feed::SearchService::Error)
       post :search
-      expect(flash[:alert]).to be_present
+      expect(flash.alert).to be_present
       expect(response).to redirect_to(action: :search)
     end
   end # describe "#search"

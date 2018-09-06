@@ -13,11 +13,11 @@ class Settings::FeedsController < ::ApplicationController
     @results = Feed::SearchService.call(params[:url])
 
     if @results.empty?
-      flash[:alert] = t(".messages.no_result")
+      flash.alert = t(".messages.no_result")
       redirect_to url_for
     end
   rescue Feed::SearchService::Error
-    flash[:alert] = t(".messages.error")
+    flash.alert = t(".messages.error")
     redirect_to url_for
   end
 
@@ -29,7 +29,7 @@ class Settings::FeedsController < ::ApplicationController
     new
 
     if @feed.save
-      flash[:success] = t(".messages.ok")
+      flash.notice = t(".messages.ok")
       redirect_to back_url
     else
       render :new
@@ -45,7 +45,7 @@ class Settings::FeedsController < ::ApplicationController
 
   def update
     if @feed.update(feed_params)
-      flash[:success] = t(".messages.ok")
+      flash.notice = t(".messages.ok")
       redirect_to back_url
     else
       render :edit
@@ -54,7 +54,7 @@ class Settings::FeedsController < ::ApplicationController
 
   def destroy
     @feed.destroy!
-    flash[:success] = t(".messages.ok")
+    flash.notice = t(".messages.ok")
 
     redirect_to back_url
   end
