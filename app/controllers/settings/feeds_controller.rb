@@ -11,6 +11,14 @@ class Settings::FeedsController < ::ApplicationController
     return if request.get?
 
     @results = Feed::SearchService.call(params[:url])
+
+    if @results.empty?
+      flash[:alert] = t(".messages.no_result")
+      redirect_to url_for
+    end
+  rescue Feed::SearchService::Error
+    flash[:alert] = t(".messages.error")
+    redirect_to url_for
   end
 
   def new

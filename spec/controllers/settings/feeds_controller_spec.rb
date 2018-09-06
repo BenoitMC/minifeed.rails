@@ -47,4 +47,37 @@ describe Settings::FeedsController do
       expect(response.body).to include "The last 42 fetches of this feed failed."
     end
   end # describe "#edit"
+
+  describe "#search" do
+    it "should not search on get" do
+      expect(Feed::SearchService).to_not receive(:new)
+      get :search
+      expect(response).to be_ok
+      expect(response).to render_template(:search)
+    end
+
+    it "should display results if any" do
+      dummy_result = Feed::SearchService::Result.new("https://example.org/", "Example domain")
+      expect_any_instance_of(Feed::SearchService).to receive(:call).and_return([dummy_result])
+      post :search
+      expect(assigns :results).to eq [dummy_result]
+      expect(response).to be_ok
+      expect(response).to render_template(:search)
+    end
+
+    it "should redirect and display error if no result" do
+      expect_any_instance_of(Feed::SearchService).to receive(:call).and_return([])
+      post :search
+      expect(flash[:alert]).to be_present
+      expect(response).to redirect_to(action: :search)
+    end
+
+    it "should redirect and display error on service error" do
+      expect_any_instance_of(Feed::SearchService).to \
+        receive(:call).and_raise(Feed::SearchService::Error)
+      post :search
+      expect(flash[:alert]).to be_present
+      expect(response).to redirect_to(action: :search)
+    end
+  end # describe "#search"
 end

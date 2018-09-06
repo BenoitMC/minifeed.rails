@@ -5,6 +5,10 @@ en:
         placeholder: "Enter a feed or a website URL"
         submit: "Search"
 
+        messages:
+          no_result: "No feed found at this url."
+          error: "An error occured while trying to read this url."
+
       form:
         errors:
           fetch: "The last %{count} fetches of this feed failed."
