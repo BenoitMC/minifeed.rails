@@ -63,3 +63,8 @@ end
 When("I select {string}") do |value|
   select value
 end
+
+When("I search {string}") do |q|
+  fill_in :q, with: q
+  find(".search-submit").click
+end

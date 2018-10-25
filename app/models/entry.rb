@@ -1,4 +1,6 @@
 class Entry < ApplicationRecord
+  include Agilibox::Search
+
   belongs_to :user
   belongs_to :feed
 

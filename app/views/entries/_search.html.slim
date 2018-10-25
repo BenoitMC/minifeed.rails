@@ -1,0 +1,8 @@
+form#entries-search
+  - @filter.to_h.except(:q).each do |k, v|
+    input type="hidden" name=k value=v
+
+  .input-group
+    input.form-control.form-control-sm type="text" name="q" placeholder=ta(:search) value=params[:q]
+    .input-group-append
+      button.btn.btn-sm.bg-light.border.search-submit type="submit" = icon(:search)

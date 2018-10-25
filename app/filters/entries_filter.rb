@@ -1,11 +1,12 @@
 class EntriesFilter < Service
-  attr_reader :scope, :options, :type, :category_id, :feed_id
+  attr_reader :scope, :options, :type, :category_id, :feed_id, :q
 
   def initialize(scope, options = {})
     @scope       = scope
     @type        = options[:type].presence || "unread"
     @category_id = options[:category_id].presence
     @feed_id     = options[:feed_id].presence
+    @q           = options[:q].presence
   end
 
   def call
@@ -18,10 +19,12 @@ class EntriesFilter < Service
       @scope = @scope.with_category_id(category_id)
     end
 
+    @scope = @scope.search(q) if q.present?
+
     @scope
   end
 
   def to_h
-    [:category_id, :feed_id, :type].map { |option| [option, public_send(option)] }.to_h
+    [:category_id, :feed_id, :q, :type].map { |option| [option, public_send(option)] }.to_h
   end
 end

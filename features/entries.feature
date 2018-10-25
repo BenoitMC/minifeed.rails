@@ -34,6 +34,18 @@ Feature: Entries
     Then I see "i am a starred entry"
     And I do not see "i am an other entry"
 
+  Scenario: Entries search
+    Given an existing entry
+    And this existing entry "name" is "ruby"
+    And an existing entry
+    And this existing entry "name" is "rails"
+    When I go on the entries page
+    Then I see "ruby"
+    And I see "rails"
+    When I search "ruby"
+    Then I see "ruby"
+    And I do not see "rails"
+
   Scenario: Read entry in modal
     Given an existing entry
     And this existing entry "name" is "i am an entry"
