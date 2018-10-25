@@ -54,11 +54,23 @@ describe EntriesFilter do
     end
   end # describe ":category_id option"
 
+  describe ":q option" do
+    it "should filter by search" do
+      read.update!(name: "ruby")
+      unread.update!(name: "rails")
+
+      entries = filter(type: "all", q: "ruby")
+      expect(entries).to include read
+      expect(entries).to_not include unread
+    end
+  end # describe ":q option"
+
   it "#to_h should return params" do
-    filter = described_class.new(nil, category_id: "123", feed_id: "456")
+    filter = described_class.new(nil, category_id: "123", feed_id: "456", q: "ruby")
     expect(filter.to_h).to eq(
       :category_id => "123",
       :feed_id     => "456",
+      :q           => "ruby",
       :type        => "unread",
     )
   end
