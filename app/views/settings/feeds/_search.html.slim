@@ -1,7 +1,4 @@
 form.search-form
-  - @filter.to_h.except(:q).each do |k, v|
-    input type="hidden" name=k value=v
-
   .input-group
     input.form-control.form-control-sm type="text" name="q" placeholder=ta(:search) value=params[:q]
     .input-group-append

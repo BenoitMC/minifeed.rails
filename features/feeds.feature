@@ -35,3 +35,14 @@ Feature: Feeds
     When I click on "Delete"
     Then I see "Feed successfully deleted"
     Then I do not see "My feed"
+
+  Scenario: Search a feed
+    Given an existing feed named "ruby"
+    And an existing feed named "rails"
+    When I click on "Settings"
+    And I click on "Manage feeds"
+    Then I see "ruby"
+    And I see "rails"
+    When I search "ruby"
+    Then I see "ruby"
+    And I do not see "rails"
