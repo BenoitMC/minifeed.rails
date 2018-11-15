@@ -4,7 +4,7 @@ gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
 gem "rails", "~> 5.1.6"
 gem "agilidee-devise", ">= 1.1.1"
-gem "agilibox", "~> 1.3.6"
+gem "agilibox", "~> 1.4.3"
 
 gem "rufus-scheduler"
 gem "feedjira"
@@ -33,7 +33,7 @@ gem "puma"
 gem "bugsnag"
 gem "nilify_blanks"
 gem "pg"
-gem "loofah", ">= 2.2.2" # fix Github security warning
+gem "loofah"
 
 group :test do
   gem "minitest"
