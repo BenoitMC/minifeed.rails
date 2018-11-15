@@ -2,7 +2,9 @@ class Settings::FeedsController < ::ApplicationController
   before_action :set_objects
 
   def index
-    @feeds = scope.all.preload(:category)
+    @feeds = scope.all
+      .search(params[:q])
+      .preload(:category)
   end
 
   def search

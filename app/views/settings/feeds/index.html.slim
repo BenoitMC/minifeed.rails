@@ -1,4 +1,8 @@
-p.actions.top
-  = create_button url_for(action: :search)
+.actions.top.row.text-center
+  .col-sm.text-md-left
+    = render "search"
+
+  .col-sm.text-md-right
+    = create_button url_for(action: :search), class: "btn btn-sm btn-success"
 
 = render "list"

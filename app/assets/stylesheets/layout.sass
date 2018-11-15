@@ -36,6 +36,12 @@ td.actions
 
 .actions.top
   text-align: right
+  margin-bottom: $spacer
+
+  &.row
+    margin-bottom: 0
+    > div
+    margin-bottom: $spacer
 
 table.default
   @extend .table
@@ -61,8 +67,15 @@ th.position
   .btn + .btn
     margin-left: 0.5em
 
+  .btn-group .btn + .btn
+    margin-left: -1px
+
 form > .actions
   text-align: center
 
 .control-label.required > abbr
   text-decoration: none
+
+@include media-breakpoint-up(sm)
+  .search-form
+    max-width: 15em
