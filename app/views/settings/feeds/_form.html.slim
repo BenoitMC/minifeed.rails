@@ -5,7 +5,10 @@
       = " "
       = t(".errors.fetch", count: @feed.import_errors)
 
-  = f.input :name
-  = f.input :url
-  = f.association :category, collection: policy_scope(Category)
-  = form_buttons
+  .card.card-default
+    .card-header = t(".title")
+    .card-body
+      = f.input :name
+      = f.input :url
+      = f.association :category, collection: policy_scope(Category)
+      = form_buttons

@@ -1,4 +1,7 @@
 = simple_form_for @user, url: url_for(action: :update), html: {id: "accounts-form"} do |f|
-  = f.input :email
-  = f.input :password
-  = form_buttons
+  .card.card-default
+    .card-header = t(".title")
+    .card-body
+      = f.input :email
+      = f.input :password
+      = form_buttons

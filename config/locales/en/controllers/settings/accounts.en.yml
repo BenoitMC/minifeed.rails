@@ -1,6 +1,9 @@
 en:
   settings:
     accounts:
+      edit:
+        title: "Account informations"
+
       update:
         messages:
           ok: "User account successfully updated."

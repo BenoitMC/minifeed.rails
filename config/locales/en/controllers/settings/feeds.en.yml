@@ -10,6 +10,7 @@ en:
           error: "An error occured while trying to read this url."
 
       form:
+        title: "Feed informations"
         errors:
           fetch: "The last %{count} fetches of this feed failed."
 
