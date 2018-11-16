@@ -51,6 +51,7 @@ group :test do
   gem "simplecov", require: false
   gem "pundit-matchers"
   gem "zonebie"
+  gem "codecov", require: false
 end
 
 group :development do
