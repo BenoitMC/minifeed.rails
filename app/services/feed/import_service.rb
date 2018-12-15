@@ -14,7 +14,7 @@ class Feed::ImportService < Service
       :last_update_at => feed_entries.map(&:updated_at).compact.max,
       :import_errors  => 0,
     )
-  rescue GetHTTP::Error, Feedjira::NoParserAvailable
+  rescue Agilibox::GetHTTP::Error, Feedjira::NoParserAvailable
     feed.increment!(:import_errors) # rubocop:disable Rails/SkipsModelValidations
   end
 
@@ -26,7 +26,7 @@ class Feed::ImportService < Service
   end
 
   def raw_feed
-    @raw_feed ||= GetHTTP.call(feed.url)
+    @raw_feed ||= Agilibox::GetHTTP.call(feed.url)
   end
 
   def create_or_update_entry!(feed_entry)

@@ -1,7 +1,7 @@
 @javascript
 Feature: Feeds
   Background:
-    Given I am a signed in user
+    Given I am a signed in "user"
     And an existing category named "My Category"
 
   Scenario: Create a feed

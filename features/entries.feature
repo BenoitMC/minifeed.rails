@@ -1,7 +1,7 @@
 @javascript
 Feature: Entries
   Background:
-    Given I am a signed in user
+    Given I am a signed in "user"
 
   Scenario: Filter entries by category
     Given an existing category named "hello"
@@ -12,12 +12,12 @@ Feature: Entries
     And an existing entry
     And this existing entry "name" is "world entry"
 
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on the "category_hello" navigation item
     Then I see "hello entry"
     And I do not see "world entry"
 
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on the "category_world" navigation item
     Then I see "world entry"
     And I do not see "hello entry"
@@ -29,7 +29,7 @@ Feature: Entries
     And an existing entry
     And this existing entry "name" is "i am an other entry"
 
-    When I go on the entries page
+    When I go on the "entries" page
     When I click on the "starred" navigation item
     Then I see "i am a starred entry"
     And I do not see "i am an other entry"
@@ -39,7 +39,7 @@ Feature: Entries
     And this existing entry "name" is "ruby"
     And an existing entry
     And this existing entry "name" is "rails"
-    When I go on the entries page
+    When I go on the "entries" page
     Then I see "ruby"
     And I see "rails"
     When I search "ruby"
@@ -50,7 +50,7 @@ Feature: Entries
     Given an existing entry
     And this existing entry "name" is "i am an entry"
     And this existing entry "body" is "i am an entry body"
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on "i am an entry"
     Then I see "i am an entry" in modal
     Then I see "i am an entry body" in modal
@@ -59,7 +59,7 @@ Feature: Entries
     Given an existing entry
     And this existing entry "name" is "Example entry"
     And this existing entry "url" is "http://example.org/"
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on "Example entry"
     And I click on ".entry-external_link" element
     Then I see "Example Domain" in a new tab
@@ -68,7 +68,7 @@ Feature: Entries
     Given an existing entry
     And this existing entry "name" is "Example entry"
     And this existing entry "url" is "http://example.org/"
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on "Example entry"
     And I click on ".entry-internal_link" element
     Then I see "iframe" element
@@ -78,7 +78,7 @@ Feature: Entries
     Given an existing entry
     And this existing entry "name" is "Example entry"
     And this existing entry "url" is "http://example.org/"
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on "Example entry"
     And I click on ".entry-reader_link" element
     Then I see "iframe" element
@@ -91,7 +91,7 @@ Feature: Entries
     And this existing entry "name" is "i am the second entry"
     And an existing entry
     And this existing entry "name" is "i am the first entry"
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on "i am the first entry"
     Then I see "i am the first entry" in modal
     When I press key "right"
@@ -112,7 +112,7 @@ Feature: Entries
     And this existing entry "name" is "i am the second entry"
     And an existing entry
     And this existing entry "name" is "i am the first entry"
-    When I go on the entries page
+    When I go on the "entries" page
     When I press key "right"
     Then I see "i am the first entry" in modal
 
@@ -121,7 +121,7 @@ Feature: Entries
     And this existing entry "name" is "i am the second entry"
     And an existing entry
     And this existing entry "name" is "i am the first entry"
-    When I go on the entries page
+    When I go on the "entries" page
     When I press key "left"
     Then I see "i am the second entry" in modal
 
@@ -129,7 +129,7 @@ Feature: Entries
     Given an existing entry
     And this existing entry "name" is "Example entry"
     And this existing entry "body" is "<a href='http://example.org/'>entry body link</a>"
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on "Example entry"
     And I click on "entry body link"
     Then I see "Example Domain" in a new tab
@@ -137,7 +137,7 @@ Feature: Entries
   Scenario: Set entry as read/unread from icon
     Given an existing entry
     And this existing entry "name" is "Example entry"
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on "Example entry"
     Then I see ".entry-is_read .fa-check-square" element
     And I do not see ".entry-is_read .fa-square" element
@@ -151,7 +151,7 @@ Feature: Entries
   Scenario: Set entry as starred/unstarred from icon
     Given an existing entry
     And this existing entry "name" is "Example entry"
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on "Example entry"
     Then I see ".entry-is_starred .far.fa-star" element
     And I do not see ".entry-is_starred .fas.fa-star" element
@@ -165,7 +165,7 @@ Feature: Entries
   Scenario: Set entry as read/unread from shortcuts
     Given an existing entry
     And this existing entry "name" is "Example entry"
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on "Example entry"
     Then I see ".entry-is_read .fa-check-square" element
     And I do not see ".entry-is_read .fa-square" element
@@ -179,7 +179,7 @@ Feature: Entries
   Scenario: Set entry as starred/unstarred from shortcuts
     Given an existing entry
     And this existing entry "name" is "Example entry"
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on "Example entry"
     Then I see ".entry-is_starred .far.fa-star" element
     And I do not see ".entry-is_starred .fas.fa-star" element
@@ -194,7 +194,7 @@ Feature: Entries
     Given an existing entry
     And this existing entry "name" is "Example entry"
     And this existing entry "url" is "http://example.org/"
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on "Example entry"
     And I press key "o"
     Then I see "Example Domain" in a new tab
@@ -203,7 +203,7 @@ Feature: Entries
     Given an existing entry
     And this existing entry "name" is "Example entry"
     And this existing entry "url" is "http://example.org/"
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on "Example entry"
     And I press key "m"
     Then I see "iframe" element
@@ -213,7 +213,7 @@ Feature: Entries
     Given an existing entry
     And this existing entry "name" is "Example entry"
     And this existing entry "url" is "http://example.org/"
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on "Example entry"
     And I press key "p"
     Then I see "iframe" element
@@ -222,7 +222,7 @@ Feature: Entries
   Scenario: Refresh read/unread on list
     Given an existing entry
     And this existing entry "name" is "Example entry"
-    When I go on the entries page
+    When I go on the "entries" page
     Then I do not see ".entry.is_read" element
     When I click on "Example entry"
     And I click on "#modal-close" element
@@ -230,7 +230,7 @@ Feature: Entries
 
   Scenario: Mark all as read global
     Given an existing entry
-    When I go on the entries page
+    When I go on the "entries" page
     Then I see ".entry" element
     When I click on "Mark all as read"
     Then I do not see ".entry" element
@@ -240,7 +240,7 @@ Feature: Entries
     And an existing entry
     And an existing category named "world"
     And an existing entry
-    When I go on the entries page
+    When I go on the "entries" page
     And I click on the "category_hello" navigation item
     Then I see ".entry" element
     When I click on "Mark all as read"
@@ -250,7 +250,7 @@ Feature: Entries
 
   Scenario: Entries pagination
     Given 250 existing entries
-    When I go on the entries page
+    When I go on the "entries" page
     Then I see 100 times ".entry" element
     When I click on "Load more entries"
     Then I see 200 times ".entry" element
