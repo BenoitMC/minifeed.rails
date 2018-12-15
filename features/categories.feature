@@ -1,7 +1,7 @@
 @javascript
 Feature: Categories
   Background:
-    Given I am a signed in user
+    Given I am a signed in "user"
 
   Scenario: Create a category
     When I click on "Settings"

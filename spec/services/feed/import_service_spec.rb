@@ -147,7 +147,8 @@ describe Feed::ImportService do
     end
 
     it "should catch http errors" do
-      expect_any_instance_of(described_class).to receive(:raw_feed) { raise GetHTTP::Error }
+      expect_any_instance_of(described_class).to \
+        receive(:raw_feed) { raise Agilibox::GetHTTP::Error }
 
       feed = create(:feed)
       expect(feed.import_errors).to eq 0

@@ -1,7 +1,3 @@
-When("I go on the entries page") do
-  visit main_app.entries_path
-end
-
 Given("an existing category named {string}") do |name|
   @category = create(:category, user: @user, name: name)
 end

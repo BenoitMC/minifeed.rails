@@ -7,7 +7,7 @@ class Feed::SearchService < Service
 
   def call
     results
-  rescue GetHTTP::Error, Feedjira::NoParserAvailable
+  rescue Agilibox::GetHTTP::Error, Feedjira::NoParserAvailable
     raise Error, "unable to fetch or parse #{url}"
   end
 
@@ -15,7 +15,7 @@ class Feed::SearchService < Service
 
   def results
     Feedbag.find(url).map do |feed_url|
-      raw_feed = GetHTTP.call(feed_url)
+      raw_feed = Agilibox::GetHTTP.call(feed_url)
       feed = Feedjira::Feed.parse(raw_feed)
       Result.new(feed_url, feed.title)
     end
