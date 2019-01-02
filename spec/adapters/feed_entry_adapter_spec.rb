@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe FeedEntryAdapter do
-  let(:feed_entry) {
+  let(:remote_entry) {
     OpenStruct.new(
       :title     => "entry title",
       :url       => "entry url",
@@ -14,7 +14,7 @@ describe FeedEntryAdapter do
     )
   }
 
-  let(:adapter) { described_class.new(feed_entry) }
+  let(:adapter) { described_class.new(remote_entry) }
 
   describe "#external_id" do
     it "should return id" do
@@ -22,7 +22,7 @@ describe FeedEntryAdapter do
     end
 
     it "should use url if id is empty" do
-      feed_entry.id = nil
+      remote_entry.id = nil
       expect(adapter.external_id).to eq "entry url"
     end
   end # describe "#external_id"
@@ -33,7 +33,7 @@ describe FeedEntryAdapter do
     end
 
     it "should assign default title" do
-      feed_entry.title = nil
+      remote_entry.title = nil
       expect(adapter.name).to eq "[no title]"
     end
   end # describe "name"
@@ -44,7 +44,7 @@ describe FeedEntryAdapter do
     end
 
     it "should use summary if content is empty" do
-      feed_entry.content = nil
+      remote_entry.content = nil
       expect(adapter.body).to eq "entry summary"
     end
   end # describe "body"
@@ -61,7 +61,7 @@ describe FeedEntryAdapter do
     end
 
     it "should use published if updated is nil" do
-      feed_entry.updated = nil
+      remote_entry.updated = nil
       expect(adapter.updated_at).to eq Time.utc(2012, 12, 21, 12, 0, 0)
     end
 
@@ -86,9 +86,9 @@ describe FeedEntryAdapter do
   describe "with real feeds" do
     def parse_feed(file)
       raw_rss_feed = Rails.root.join("spec", "fixtures", file).read
-      feed_entries = Feedjira::Feed.parse(raw_rss_feed).entries
-      expect(feed_entries.length).to eq 1
-      described_class.new(feed_entries.first)
+      remote_entries = Feedjira::Feed.parse(raw_rss_feed).entries
+      expect(remote_entries.length).to eq 1
+      described_class.new(remote_entries.first)
     end
 
     it "should sanitize feed entry" do
