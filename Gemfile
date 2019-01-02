@@ -3,8 +3,8 @@ source "https://rubygems.org"
 gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
 gem "rails", "~> 5.1.6"
-gem "agilidee-devise", ">= 1.1.1"
-gem "agilibox", "~> 1.5.2"
+gem "agilidee-devise", ">= 1.1.2"
+gem "agilibox", "~> 1.5.3"
 
 gem "rufus-scheduler"
 gem "feedjira"
@@ -71,5 +71,5 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "byebug"
   gem "rspec-rails" # must be in both environments for generators
-  gem "rubocop", "0.59.2", require: false
+  gem "rubocop", "0.62.0", require: false
 end
