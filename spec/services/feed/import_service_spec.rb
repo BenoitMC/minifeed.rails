@@ -15,7 +15,7 @@ describe Feed::ImportService do
   describe "#create_or_update_entry!" do
     let(:feed) { create(:feed) }
 
-    let(:feed_entry) {
+    let(:remote_entry) {
       OpenStruct.new(
         :name         => "entry title",
         :url          => "entry url",
@@ -27,7 +27,7 @@ describe Feed::ImportService do
     }
 
     def create_or_update_entry!
-      described_class.new(feed).send(:create_or_update_entry!, feed_entry)
+      described_class.new(feed).send(:create_or_update_entry!, remote_entry)
     end
 
     it "should create entry" do
@@ -61,13 +61,13 @@ describe Feed::ImportService do
     end
 
     it "should ignore entries without id" do
-      feed_entry.external_id = nil
+      remote_entry.external_id = nil
 
       expect { create_or_update_entry! }.to_not change(Entry, :count)
     end
 
     it "should assign default published_at to now" do
-      feed_entry.published_at = nil
+      remote_entry.published_at = nil
 
       expect { create_or_update_entry! }.to change(Entry, :count).by(1)
 
@@ -75,7 +75,7 @@ describe Feed::ImportService do
     end
 
     it "should not update published_at if not present" do
-      feed_entry.published_at = nil
+      remote_entry.published_at = nil
 
       Timecop.freeze Time.utc(2012, 12, 21, 12, 0, 0)
       expect { create_or_update_entry! }.to change(Entry, :count).by(1)
@@ -89,17 +89,29 @@ describe Feed::ImportService do
     end
   end # describe "#create_or_update_entry!"
 
+  describe "#remote_entries" do
+    it "should parse raw feed and return entry adapters" do
+      service = described_class.new(nil)
+      raw_feed = Rails.root.join("spec", "fixtures", "feed.atom.xml").read
+      expect(service).to receive(:raw_feed).and_return(raw_feed)
+      entries = service.send(:remote_entries)
+      expect(entries.length).to eq 1
+      expect(entries.first).to be_a EntryAdapter
+      expect(entries.first.name).to eq "Atom Entry Name"
+    end
+  end # describe "#remote_entries"
+
   describe "#call" do
     it "should call create_or_update_entry! for each entry" do
-      feed_entry1  = OpenStruct.new(title: "entry1")
-      feed_entry2  = OpenStruct.new(title: "entry2")
-      feed_entries = [feed_entry1, feed_entry2]
-      feed         = create(:feed)
+      remote_entry1  = OpenStruct.new(title: "entry1")
+      remote_entry2  = OpenStruct.new(title: "entry2")
+      remote_entries = [remote_entry1, remote_entry2]
+      feed           = create(:feed)
 
       service = described_class.new(feed)
-      expect(service).to receive(:feed_entries).at_least(:once).and_return(feed_entries)
-      expect(service).to receive(:create_or_update_entry!).with(feed_entry1)
-      expect(service).to receive(:create_or_update_entry!).with(feed_entry2)
+      expect(service).to receive(:remote_entries).at_least(:once).and_return(remote_entries)
+      expect(service).to receive(:create_or_update_entry!).with(remote_entry1)
+      expect(service).to receive(:create_or_update_entry!).with(remote_entry2)
       service.call
     end
 
@@ -107,14 +119,14 @@ describe Feed::ImportService do
       feed = create(:feed)
       expect(feed.last_update_at).to be nil
 
-      feed_entries = [
+      remote_entries = [
         OpenStruct.new(updated_at: Time.utc(2012, 12, 21, 12, 0, 0)),
         OpenStruct.new(updated_at: Time.utc(2012, 12, 21, 13, 0, 0)),
         OpenStruct.new(updated_at: Time.utc(2012, 12, 21, 11, 0, 0)),
       ]
 
       expect_any_instance_of(described_class).to \
-        receive(:feed_entries).at_least(:once).and_return(feed_entries)
+        receive(:remote_entries).at_least(:once).and_return(remote_entries)
 
       described_class.call(feed)
       expect(feed.reload.last_update_at).to eq Time.utc(2012, 12, 21, 13, 0, 0)
@@ -122,10 +134,10 @@ describe Feed::ImportService do
 
     it "should skip existing entries based on #last_update_at" do
       feed = create(:feed, last_update_at: Date.new(2012, 12, 15))
-      feed_entry = OpenStruct.new(updated_at: Date.new(2012, 12, 10))
+      remote_entry = OpenStruct.new(updated_at: Date.new(2012, 12, 10))
       service = described_class.new(feed)
 
-      expect(service).to receive(:feed_entries).and_return([feed_entry]).at_least(:once)
+      expect(service).to receive(:remote_entries).and_return([remote_entry]).at_least(:once)
       expect(service).to_not receive(:create_or_update_entry!)
 
       service.call
@@ -134,14 +146,14 @@ describe Feed::ImportService do
     it "should not skip updated existing entries" do
       feed = create(:feed, last_update_at: Date.new(2012, 12, 15))
 
-      feed_entry = OpenStruct.new(
+      remote_entry = OpenStruct.new(
         :published_at => Date.new(2012, 12, 10),
         :updated_at   => Date.new(2013, 1, 1),
       )
       service = described_class.new(feed)
 
-      expect(service).to receive(:feed_entries).and_return([feed_entry]).at_least(:once)
-      expect(service).to receive(:create_or_update_entry!).with(feed_entry)
+      expect(service).to receive(:remote_entries).and_return([remote_entry]).at_least(:once)
+      expect(service).to receive(:create_or_update_entry!).with(remote_entry)
 
       service.call
     end
@@ -168,7 +180,7 @@ describe Feed::ImportService do
 
     it "should reset errors on success" do
       expect_any_instance_of(described_class).to \
-        receive(:feed_entries).at_least(:once).and_return([])
+        receive(:remote_entries).at_least(:once).and_return([])
 
       feed = create(:feed, import_errors: 1)
       described_class.call(feed)
