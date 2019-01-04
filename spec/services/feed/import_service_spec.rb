@@ -89,6 +89,18 @@ describe Feed::ImportService do
     end
   end # describe "#create_or_update_entry!"
 
+  describe "#remote_entries" do
+    it "should parse raw feed and return entry adapters" do
+      service = described_class.new(nil)
+      raw_feed = Rails.root.join("spec", "fixtures", "feed.atom.xml").read
+      expect(service).to receive(:raw_feed).and_return(raw_feed)
+      entries = service.send(:remote_entries)
+      expect(entries.length).to eq 1
+      expect(entries.first).to be_a FeedEntryAdapter
+      expect(entries.first.name).to eq "Atom Entry Name"
+    end
+  end # describe "#remote_entries"
+
   describe "#call" do
     it "should call create_or_update_entry! for each entry" do
       remote_entry1  = OpenStruct.new(title: "entry1")
