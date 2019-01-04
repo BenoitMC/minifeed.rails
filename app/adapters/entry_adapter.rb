@@ -1,4 +1,4 @@
-class FeedEntryAdapter < ApplicationAdapter
+class EntryAdapter < ApplicationAdapter
   attr_reader :original
 
   def initialize(original)

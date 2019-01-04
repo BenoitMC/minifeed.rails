@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe FeedEntryAdapter do
+describe EntryAdapter do
   let(:remote_entry) {
     OpenStruct.new(
       :title     => "entry title",

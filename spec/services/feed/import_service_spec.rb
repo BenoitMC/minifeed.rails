@@ -96,7 +96,7 @@ describe Feed::ImportService do
       expect(service).to receive(:raw_feed).and_return(raw_feed)
       entries = service.send(:remote_entries)
       expect(entries.length).to eq 1
-      expect(entries.first).to be_a FeedEntryAdapter
+      expect(entries.first).to be_a EntryAdapter
       expect(entries.first.name).to eq "Atom Entry Name"
     end
   end # describe "#remote_entries"

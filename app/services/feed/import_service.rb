@@ -22,7 +22,7 @@ class Feed::ImportService < Service
 
   def remote_entries
     @remote_entries ||= Feedjira::Feed.parse(raw_feed).entries
-      .map { |remote_entry| FeedEntryAdapter.new(remote_entry) }
+      .map { |remote_entry| EntryAdapter.new(remote_entry) }
   end
 
   def raw_feed
