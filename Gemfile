@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+ruby File.read(File.join(__dir__, ".ruby-version"))
+
 gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
 gem "rails", "~> 5.1.6"
