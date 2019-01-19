@@ -4,7 +4,7 @@ class Api::V1::EntriesController < Api::V1::ApplicationController
   def index
     @entries = EntriesFilter.call(scope, params)
       .preload(feed: :category)
-      .page(params[:page]).per(100)
+      .page(params[:page]).per(Minifeed.config.entries_per_page)
 
     render_json entries: @entries
   end

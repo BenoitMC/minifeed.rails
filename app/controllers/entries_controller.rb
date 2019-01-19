@@ -6,7 +6,7 @@ class EntriesController < ApplicationController
 
     @entries = @filter.call
       .preload(feed: :category)
-      .page(params[:page]).per(100)
+      .page(params[:page]).per(Minifeed.config.entries_per_page)
   end
 
   def show
