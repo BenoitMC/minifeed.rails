@@ -44,7 +44,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    agilibox (1.5.4)
+    agilibox (1.5.5)
       awesome_print
       pry-rails
       rails-i18n
@@ -417,7 +417,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  agilibox (= 1.5.4)
+  agilibox (= 1.5.5)
   agilidee-devise (>= 1.1.2)
   autoprefixer-rails
   awesome_print
