@@ -7,11 +7,8 @@ class ApplicationController < ActionController::Base
     params[:controller].to_s.match(/^(devise)/)
   }
 
-  rescue_from ActionController::InvalidAuthenticityToken do
-    flash.alert = t("errors.invalid_authenticity_token")
-    redirect_to main_app.root_path
-  end
-
+  rescue_from ActionController::InvalidAuthenticityToken, with: :render_invalid_authenticity_token
+  rescue_from ActionController::UnknownFormat, with: :render_not_acceptable
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
   helper Agilibox::AllHelpers
@@ -30,11 +27,16 @@ class ApplicationController < ActionController::Base
     render "errors/not_found.html", status: :not_found
   end
 
-  def model
-    raise NotImplementedError
+  def render_not_acceptable
+    head :not_acceptable
+  end
+
+  def render_invalid_authenticity_token
+    flash[:alert] = t("errors.invalid_authenticity_token")
+    redirect_to main_app.root_path
   end
 
   def scope
-    policy_scope(model)
+    policy_scope(model).all
   end
 end
