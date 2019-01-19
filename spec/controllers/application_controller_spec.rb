@@ -57,4 +57,27 @@ describe ApplicationController do
       expect(response.status).to eq 406
     end
   end # describe "format errors"
+
+  describe "#ensure_user_is_admin!" do
+    controller do
+      before_action :ensure_user_is_admin!
+      def index
+        skip_policy_scope
+        head :ok
+      end
+    end
+
+    it "should be ok as admin" do
+      sign_in create(:admin)
+      get :index
+      expect(response).to be_ok
+    end
+
+    it "should be redirect as user" do
+      sign_in create(:user)
+      get :index
+      expect(flash.alert).to be_present
+      expect(response).to redirect_to root_path
+    end
+  end # describe "#ensure_user_is_admin!"
 end

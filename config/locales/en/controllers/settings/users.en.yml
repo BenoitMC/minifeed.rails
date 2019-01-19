@@ -1,0 +1,17 @@
+en:
+  settings:
+    users:
+      form:
+        title: "User informations"
+
+      create:
+        messages:
+          ok: "User successfully created."
+
+      update:
+        messages:
+          ok: "User successfully updated."
+
+      destroy:
+        messages:
+          ok: "User successfully deleted."
