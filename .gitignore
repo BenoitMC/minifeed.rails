@@ -34,7 +34,8 @@
 .DS_Store
 
 # Uploads
-public/uploads/
+public/uploads*
+/storage*
 
 # LibreOffice lock files
 .~lock.*#
@@ -50,3 +51,6 @@ coverage
 .env
 .env.*
 !.env.example
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key

@@ -1,13 +1,15 @@
 source "https://rubygems.org"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read(File.join(__dir__, ".ruby-version"))
 
 gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
-gem "rails", "~> 5.1.6"
+gem "rails", "~> 5.2.2"
 gem "agilidee-devise", ">= 1.1.2"
 gem "agilibox", "1.5.4"
 
+gem "bootsnap"
 gem "rufus-scheduler"
 gem "feedjira"
 gem "feedbag"
@@ -42,7 +44,7 @@ group :test do
   gem "rspec-wait"
   gem "rails-controller-testing"
   gem "rspec-repeat"
-  gem "shoulda-matchers"
+  gem "shoulda-matchers", ">=4.0.0.rc1"
   gem "cucumber-rails", require: false
   gem "capybara"
   gem "selenium-webdriver"
