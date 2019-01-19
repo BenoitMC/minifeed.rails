@@ -7,7 +7,9 @@ Feature: Categories
     When I click on "Settings"
     And I click on "Manage categories"
     And I click on "Create"
-    And I fill in "category_name" with "Hello"
+    And I click on "Save"
+    Then I see ".field_with_errors" element
+    When I fill in "category_name" with "Hello"
     And I click on "Save"
     Then I see "Category successfully created"
     And I see "#nav_category_hello" element
@@ -17,7 +19,10 @@ Feature: Categories
     When I click on "Settings"
     And I click on "Manage categories"
     And I click on "Update"
-    And I fill in "category_name" with "world"
+    And I fill in "category_name" with " "
+    And I click on "Save"
+    Then I see ".field_with_errors" element
+    When I fill in "category_name" with "world"
     And I click on "Save"
     Then I see "Category successfully update"
     And I see "#nav_category_world" element

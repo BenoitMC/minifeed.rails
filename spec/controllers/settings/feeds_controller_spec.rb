@@ -32,6 +32,14 @@ describe Settings::FeedsController do
     end
   end # describe "#new"
 
+  describe "#show" do
+    it "should redirect to edit" do
+      feed = create(:feed, user: user)
+      get :show, params: {id: feed}
+      expect(response).to redirect_to(action: :edit)
+    end
+  end # describe "#show"
+
   describe "#edit" do
     it "should not include import error warning" do
       feed = create(:feed, user: user, import_errors: 0)

@@ -12,7 +12,7 @@
 
   tbody.sortable
     - @categories.each do |category|
-      - if action_name == "edit" && category == @category
+      - if (action_name == "edit" || action_name == "update") && category == @category
         = render "form", f: f
       - else
         = render "line", category: category

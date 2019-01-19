@@ -5,6 +5,14 @@ describe Settings::CategoriesController do
 
   before { sign_in user }
 
+  describe "#show" do
+    it "should redirect to edit" do
+      category = create(:category, user: user)
+      get :show, params: {id: category}
+      expect(response).to redirect_to(action: :edit)
+    end
+  end # describe "#show"
+
   describe "#destroy" do
     it "should destroy category" do
       category = create(:category, user: user)
