@@ -19,7 +19,7 @@ module Minifeed
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    config.time_zone = "Paris"
+    config.time_zone = ENV["TZ"].presence || "UTC"
 
     config.action_mailer.delivery_method = :sendmail
 
