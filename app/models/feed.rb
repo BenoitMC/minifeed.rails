@@ -10,7 +10,7 @@ class Feed < ApplicationRecord
 
   validate :validate_associations_consistency
 
-  scope :order_by_name, -> { order("LOWER(#{table_name}.name) ASC") }
+  scope :order_by_name, -> { order(Arel.sql "LOWER(#{table_name}.name) ASC") }
 
   default_scope -> { order_by_name }
 
