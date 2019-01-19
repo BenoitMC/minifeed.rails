@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_invalid_authenticity_token
-    flash[:alert] = t("errors.invalid_authenticity_token")
+    flash.alert = t("errors.invalid_authenticity_token")
     redirect_to main_app.root_path
   end
 
