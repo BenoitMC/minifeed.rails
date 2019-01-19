@@ -23,3 +23,9 @@
     = icon(:download)
     = " "
     = t(".opml_export")
+
+  - if current_user.is_admin?
+    a.list-group-item.list-group-item-action href=settings_users_path
+      = icon(:users)
+      = " "
+      = t(".users")

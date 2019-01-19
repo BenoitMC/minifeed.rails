@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     end
     resources :opml_imports, path: "opml-imports", only: [:new, :create]
     resources :opml_exports, path: "opml-exports", only: [:create]
+    resources :users
   end
 
   namespace :api do

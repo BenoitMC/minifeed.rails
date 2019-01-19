@@ -5,3 +5,4 @@ en:
     forbidden: "You must log in to access this page"
     unauthorized: "You are not authorized to access this page"
     not_found: "Page not found"
+    not_admin: "You must me admin to access this page."

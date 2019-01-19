@@ -39,4 +39,11 @@ class ApplicationController < ActionController::Base
   def scope
     policy_scope(model).all
   end
+
+  def ensure_user_is_admin!
+    unless current_user&.is_admin?
+      flash.alert = t("errors.not_admin")
+      redirect_to root_path
+    end
+  end
 end

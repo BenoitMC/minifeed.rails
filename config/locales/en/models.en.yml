@@ -1,4 +1,7 @@
 en:
   attributes:
-    name: "Name"
-    category: "Category"
+    name: Name
+    category: Category
+    is_admin: Is admin ?
+    categories_count: Number of categories
+    feeds_count: Number of feeds

@@ -1,0 +1,36 @@
+.card.card-default: table#users.default
+  thead
+    tr
+      th.user-email
+         = User.t(:email)
+
+      th.user-categories_count
+         = User.t(:categories_count)
+
+      th.user-feeds_count
+         = User.t(:feeds_count)
+
+      th.user-is_admin
+         = User.t(:is_admin)
+
+      th.user-actions.actions
+         = ta(:actions)
+
+  tbody
+    - @users.each do |user|
+      tr.user
+        td.user-email
+          = user.email
+
+        td.user-categories_count
+          = user.categories.count
+
+        td.user-feeds_count
+          = user.feeds.count
+
+        td.user-is_admin
+          = boolean_icon user.is_admin
+
+        td.user-actions.actions: .d-flex
+          = update_button url_for(action: :edit, id: user)
+          = delete_button url_for(action: :destroy, id: user)
