@@ -132,32 +132,6 @@ describe Feed::ImportService do
       expect(feed.reload.last_update_at).to eq Time.utc(2012, 12, 21, 13, 0, 0)
     end
 
-    it "should skip existing entries based on #last_update_at" do
-      feed = create(:feed, last_update_at: Date.new(2012, 12, 15))
-      remote_entry = OpenStruct.new(updated_at: Date.new(2012, 12, 10))
-      service = described_class.new(feed)
-
-      expect(service).to receive(:remote_entries).and_return([remote_entry]).at_least(:once)
-      expect(service).to_not receive(:create_or_update_entry!)
-
-      service.call
-    end
-
-    it "should not skip updated existing entries" do
-      feed = create(:feed, last_update_at: Date.new(2012, 12, 15))
-
-      remote_entry = OpenStruct.new(
-        :published_at => Date.new(2012, 12, 10),
-        :updated_at   => Date.new(2013, 1, 1),
-      )
-      service = described_class.new(feed)
-
-      expect(service).to receive(:remote_entries).and_return([remote_entry]).at_least(:once)
-      expect(service).to receive(:create_or_update_entry!).with(remote_entry)
-
-      service.call
-    end
-
     it "should catch http errors" do
       expect_any_instance_of(described_class).to \
         receive(:raw_feed) { raise Agilibox::GetHTTP::Error }
