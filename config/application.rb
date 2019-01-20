@@ -2,7 +2,6 @@ require_relative 'boot'
 
 require 'rails/all'
 
-require "open-uri"
 require_relative "../lib/ext/rails"
 
 # Require the gems listed in Gemfile, including any gems
