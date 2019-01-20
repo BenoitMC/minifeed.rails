@@ -3,10 +3,6 @@ class Feed::ImportService < Service
 
   def call
     remote_entries.each do |remote_entry|
-      if feed.last_update_at && remote_entry.updated_at
-        next if remote_entry.updated_at <= feed.last_update_at
-      end
-
       create_or_update_entry!(remote_entry)
     end
 
