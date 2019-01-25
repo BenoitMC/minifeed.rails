@@ -3,6 +3,8 @@ require_relative 'boot'
 require 'rails/all'
 
 require_relative "../lib/ext/rails"
+require_relative "../lib/minifeed/config.rb"
+require_relative "minifeed.rb"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -20,6 +22,12 @@ module Minifeed
 
     config.time_zone = ENV["TZ"].presence || "UTC"
 
+    config.x.hostname = ENV["RAILS_HOSTNAME"].presence || "localhost"
+
+    config.x.mailer_default_from = ENV["RAILS_MAILER_DEFAULT_FROM"].presence || "noreply@#{config.x.hostname}"
+
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.default_url_options = {host: config.x.hostname}
     config.action_mailer.delivery_method = :sendmail
 
     config.active_record.primary_key = :uuid
@@ -31,16 +39,4 @@ module Minifeed
 
     config.action_view.form_with_generates_remote_forms = false
   end
-
-  class Config
-    attr_accessor(
-      :autoimport_enabled,
-      :autoimport_interval,
-      :entries_per_page,
-    )
-  end
-
-  cattr_accessor :config
-
-  self.config = Config.new
 end

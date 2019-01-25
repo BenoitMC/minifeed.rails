@@ -95,6 +95,5 @@ end
 
 Rails.application.configure do
   config.log_level = :warn
-  config.action_mailer.default_url_options = {host: "minifeed.todo.example.org"}
   config.active_job.queue_name_prefix = Rails.app_env_id
 end
