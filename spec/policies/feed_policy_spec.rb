@@ -8,7 +8,7 @@ describe FeedPolicy do
       Pundit.policy_scope!(current_user, Feed)
     end
 
-    it "should return only my entries" do
+    it "should return only my feeds" do
       feed1 = create(:feed, user: current_user)
       feed2 = create(:feed)
 

@@ -8,7 +8,7 @@ describe CategoryPolicy do
       Pundit.policy_scope!(current_user, Category)
     end
 
-    it "should return only my entries" do
+    it "should return only my categories" do
       category1 = create(:category, user: current_user)
       category2 = create(:category)
 
