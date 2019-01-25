@@ -22,6 +22,12 @@ module Minifeed
 
     config.time_zone = ENV["TZ"].presence || "UTC"
 
+    config.x.hostname = ENV["RAILS_HOSTNAME"].presence || "localhost"
+
+    config.x.mailer_default_from = ENV["RAILS_MAILER_DEFAULT_FROM"].presence || "noreply@#{config.x.hostname}"
+
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.default_url_options = {host: config.x.hostname}
     config.action_mailer.delivery_method = :sendmail
 
     config.active_record.primary_key = :uuid
