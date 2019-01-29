@@ -1,7 +1,7 @@
 $(document).on "click", ".entry-reader_link", (event) ->
   event.preventDefault()
   $iframe = $("<iframe src='#{this.href}' class='entry-iframe' />")
-  $iframe.on "load", -> this.style.height = this.contentDocument.body.scrollHeight + "px"
+  $iframe.on "load", -> this.style.height = this.contentDocument.querySelector("html").scrollHeight + "px"
   $(this).parents("#entry").find(".entry-content").html($iframe)
 
 $(document).on "click", ".entry-internal_link", (event) ->
