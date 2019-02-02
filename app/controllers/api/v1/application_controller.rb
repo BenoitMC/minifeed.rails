@@ -8,12 +8,14 @@ class Api::V1::ApplicationController < ApplicationController
   def authenticate_user!
     return if current_user
 
-    token = request.headers["X-Auth-Token"].presence
-
-    if token && (user = User.find_by(auth_token: token))
+    if bearer_token && (user = User.find_by(auth_token: bearer_token))
       sign_in user
     else
       render_forbidden_or_unauthorized
     end
+  end
+
+  def bearer_token
+    authenticate_with_http_token { |token| return token }
   end
 end

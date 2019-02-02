@@ -15,9 +15,9 @@ describe Api::V1::HomeController do
       expect(response).to be_forbidden
     end
 
-    it "should auth by token and return current_user" do
+    it "should auth by bearer token and return current_user" do
       user = create(:user)
-      request.headers["X-Auth-Token"] = user.auth_token
+      request.headers["Authorization"] = "Bearer #{user.auth_token}"
       get :home
       expect(response).to be_ok
       expect(controller.send :current_user).to eq user
@@ -27,7 +27,7 @@ describe Api::V1::HomeController do
     it "should not auth by nil token" do
       user = create(:user)
       user.update_columns(auth_token: nil)
-      request.headers["X-Auth-Token"] = user.auth_token
+      request.headers["Authorization"] = "Bearer #{user.auth_token}"
       get :home
       expect(controller.send :current_user).to eq nil
     end
@@ -35,7 +35,7 @@ describe Api::V1::HomeController do
     it "should not auth by blank token" do
       user = create(:user)
       user.update_columns(auth_token: "")
-      request.headers["X-Auth-Token"] = user.auth_token
+      request.headers["Authorization"] = "Bearer #{user.auth_token}"
       get :home
       expect(controller.send :current_user).to eq nil
     end
