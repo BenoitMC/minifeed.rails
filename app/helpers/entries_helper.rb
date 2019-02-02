@@ -7,9 +7,16 @@ module EntriesHelper
   end
 
   def link_to_entries_filter(type)
-    url   = url_for @filter.to_h.merge(type: type)
-    klass = (@filter.type == type ? "btn-primary" : "btn-outline-primary")
+    url = url_for @filter.to_h.merge(type: type)
 
-    link_to t(".filters.#{type}"), url, class: "btn btn-sm #{klass}"
+    class_names = %w(btn btn-sm btn-outline-primary filter)
+    class_names << type
+    class_names << "active" if @filter.type == type
+
+    link_to t(".filters.#{type}"), url, class: class_names
+  end
+
+  def entries_path_for(options)
+    main_app.entries_path(@filter.to_h.merge(options))
   end
 end

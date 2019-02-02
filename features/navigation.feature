@@ -26,6 +26,18 @@ Feature: Navigation
     When I click on "world"
     Then active navigation item is "category_hello+feed_world"
 
+  Scenario: Remember active navigation type
+    Given an existing category named "ruby"
+    Given an existing category named "rails"
+    When I go on the "entries" page
+    And I click on the "category_ruby" navigation item
+    Then active navigation item is "category_ruby"
+    When I click on ".filter.starred" element
+    Then I see ".filter.starred.active" element
+    When I click on the "category_rails" navigation item
+    Then active navigation item is "category_rails"
+    And I see ".filter.starred.active" element
+
   Scenario: Hide navigation badges if 0
     Given an existing category named "hello"
     And an existing category named "world"
