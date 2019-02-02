@@ -2,7 +2,7 @@ module Minifeed
   class Config
     attr_accessor(
       :autoimport_enabled,
-      :autoimport_interval,
+      :refresh_feeds_after,
       :entries_per_page,
     )
   end

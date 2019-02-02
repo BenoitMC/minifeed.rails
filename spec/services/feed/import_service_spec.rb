@@ -115,41 +115,37 @@ describe Feed::ImportService do
       service.call
     end
 
-    it "should update #last_update_at field with most recent feed entry date" do
-      feed = create(:feed)
-      expect(feed.last_update_at).to be nil
+    it "should update #last_update_at field with current time" do
+      feed = create(:feed, last_update_at: nil)
+      expect_any_instance_of(described_class).to receive(:remote_entries).and_return([])
 
-      remote_entries = [
-        OpenStruct.new(updated_at: Time.utc(2012, 12, 21, 12, 0, 0)),
-        OpenStruct.new(updated_at: Time.utc(2012, 12, 21, 13, 0, 0)),
-        OpenStruct.new(updated_at: Time.utc(2012, 12, 21, 11, 0, 0)),
-      ]
-
-      expect_any_instance_of(described_class).to \
-        receive(:remote_entries).at_least(:once).and_return(remote_entries)
+      time = Time.zone.now.round
+      Timecop.freeze time
 
       described_class.call(feed)
-      expect(feed.reload.last_update_at).to eq Time.utc(2012, 12, 21, 13, 0, 0)
+      expect(feed.reload.last_update_at).to eq time
     end
 
     it "should catch http errors" do
       expect_any_instance_of(described_class).to \
         receive(:raw_feed) { raise Agilibox::GetHTTP::Error }
 
-      feed = create(:feed)
+      feed = create(:feed, last_update_at: nil)
       expect(feed.import_errors).to eq 0
       expect { described_class.call(feed) }.to_not raise_error
       expect(feed.import_errors).to eq 1
+      expect(feed.last_update_at).to be_present
     end
 
     it "should catch feedjira errors" do
       expect_any_instance_of(described_class).to \
         receive(:raw_feed) { raise Feedjira::NoParserAvailable }
 
-      feed = create(:feed)
+      feed = create(:feed, last_update_at: nil)
       expect(feed.import_errors).to eq 0
       expect { described_class.call(feed) }.to_not raise_error
       expect(feed.import_errors).to eq 1
+      expect(feed.last_update_at).to be_present
     end
 
     it "should reset errors on success" do
