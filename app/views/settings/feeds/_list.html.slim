@@ -3,6 +3,7 @@
     tr
       th.feed-name = Feed.t(:name)
       th.feed-category = Feed.t(:category)
+      th.feed-last_update_at = Feed.t(:last_update_at)
       th.feed-actions.actions = t("actions.actions")
 
   tbody
@@ -17,6 +18,9 @@
 
         td.feed-category
           = feed.category
+
+        td.feed-last_update_at
+          = time_ago_in_words(feed.last_update_at) if feed.last_update_at
 
         td.feed-actions.actions: .d-flex
           = update_button url_for(action: :edit, id: feed)

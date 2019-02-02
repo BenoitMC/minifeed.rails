@@ -5,9 +5,7 @@ def scheduler.on_error(_job, error)
 end
 
 if Minifeed.config.autoimport_enabled
-  rufus_interval = Minifeed.config.autoimport_interval.to_i.to_s + "s"
-
-  scheduler.every rufus_interval, first_in: "30s", overlap: false do
-    Feed::ImportAllService.call
+  scheduler.every "15s", first_in: "30s", overlap: false do
+    Feed::ImportOutdatedService.call
   end
 end

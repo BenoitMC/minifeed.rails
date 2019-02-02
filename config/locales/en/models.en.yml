@@ -5,3 +5,4 @@ en:
     is_admin: Is admin ?
     categories_count: Number of categories
     feeds_count: Number of feeds
+    last_update_at: "Last update"

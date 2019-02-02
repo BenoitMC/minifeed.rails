@@ -6,12 +6,12 @@ class Feed::ImportService < Service
       create_or_update_entry!(remote_entry)
     end
 
-    feed.update!(
-      :last_update_at => remote_entries.map(&:updated_at).compact.max,
-      :import_errors  => 0,
-    )
+    feed.import_errors = 0
   rescue Agilibox::GetHTTP::Error, Feedjira::NoParserAvailable
-    feed.increment!(:import_errors) # rubocop:disable Rails/SkipsModelValidations
+    feed.import_errors += 1
+  ensure
+    feed.last_update_at = Time.zone.now
+    feed.save!
   end
 
   private
