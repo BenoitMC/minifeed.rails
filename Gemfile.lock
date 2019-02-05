@@ -156,7 +156,7 @@ GEM
       i18n (>= 0.7)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
-    faraday_middleware (0.13.0)
+    faraday_middleware (0.13.1)
       faraday (>= 0.7.4, < 1.0)
     feedbag (0.10)
       nokogiri (~> 1.8, >= 1.8.2)
@@ -166,6 +166,8 @@ GEM
       faraday_middleware (>= 0.9)
       loofah (>= 2.0)
       sax-machine (>= 1.0)
+    feedjira-youtube (0.1.0)
+      feedjira
     ffi (1.9.25)
     font-awesome-sass (5.6.1)
       sassc (>= 1.11)
@@ -434,6 +436,7 @@ DEPENDENCIES
   faker
   feedbag
   feedjira
+  feedjira-youtube
   font-awesome-sass
   jquery-rails
   kaminari
