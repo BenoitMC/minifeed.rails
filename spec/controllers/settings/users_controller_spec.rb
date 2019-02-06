@@ -1,9 +1,9 @@
 require "rails_helper"
 
 describe Settings::UsersController do
-  before do
-    sign_in create(:admin)
-  end
+  let(:current_user) { create(:admin) }
+
+  before { sign_in current_user }
 
   it { is_expected.to use_before_action(:ensure_user_is_admin!) }
 
@@ -35,6 +35,16 @@ describe Settings::UsersController do
       patch :update, params: {id: user, user: {password: " "}}
       expect(response).to redirect_to(action: :index)
       expect(user.reload.valid_password?("password")).to be true
+    end
+
+    it "should bypass sign_in if user is me" do
+      expect_any_instance_of(described_class).to receive(:bypass_sign_in).with(current_user)
+      patch :update, params: {id: current_user, user: {password: "new_password"}}
+    end
+
+    it "should not bypass sign_in if user is not me" do
+      expect_any_instance_of(described_class).to_not receive(:bypass_sign_in)
+      patch :update, params: {id: user, user: {password: "new_password"}}
     end
   end # describe "#update"
 
