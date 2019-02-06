@@ -30,12 +30,8 @@ describe Settings::FeedsController, type: :routing do
       expect(delete "/settings/feeds/0").to route_to("settings/feeds#destroy", id: "0")
     end
 
-    it "#search via get" do
+    it "#search" do
       expect(get "/settings/feeds/search").to route_to("settings/feeds#search")
-    end
-
-    it "#search via post" do
-      expect(post "/settings/feeds/search").to route_to("settings/feeds#search")
     end
   end
 end

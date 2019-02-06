@@ -57,33 +57,34 @@ describe Settings::FeedsController do
   end # describe "#edit"
 
   describe "#search" do
-    it "should not search on get" do
+    let(:url) { "https://example.org" }
+
+    it "should not search if url is blank" do
       expect(Feed::SearchService).to_not receive(:new)
-      get :search
+      get :search, params: {url: ""}
       expect(response).to be_ok
       expect(response).to render_template(:search)
     end
 
     it "should display results if any" do
       dummy_result = Feed::SearchService::Result.new("https://example.org/", "Example domain")
-      expect_any_instance_of(Feed::SearchService).to receive(:call).and_return([dummy_result])
-      post :search
+      expect(Feed::SearchService).to receive(:call).with(url).and_return([dummy_result])
+      get :search, params: {url: url}
       expect(assigns :results).to eq [dummy_result]
       expect(response).to be_ok
       expect(response).to render_template(:search)
     end
 
     it "should redirect and display error if no result" do
-      expect_any_instance_of(Feed::SearchService).to receive(:call).and_return([])
-      post :search
+      expect(Feed::SearchService).to receive(:call).with(url).and_return([])
+      get :search, params: {url: url}
       expect(flash.alert).to be_present
       expect(response).to redirect_to(action: :search)
     end
 
     it "should redirect and display error on service error" do
-      expect_any_instance_of(Feed::SearchService).to \
-        receive(:call).and_raise(Feed::SearchService::Error)
-      post :search
+      expect(Feed::SearchService).to receive(:call).with(url).and_raise(Feed::SearchService::Error)
+      get :search, params: {url: url}
       expect(flash.alert).to be_present
       expect(response).to redirect_to(action: :search)
     end

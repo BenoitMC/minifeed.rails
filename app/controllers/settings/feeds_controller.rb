@@ -10,7 +10,7 @@ class Settings::FeedsController < ::ApplicationController
   def search
     skip_policy_scope
 
-    return if request.get?
+    return if params[:url].blank?
 
     @results = Feed::SearchService.call(params[:url])
 
