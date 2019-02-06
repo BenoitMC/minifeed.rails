@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       match :reorder, via: [:get, :post], on: :collection
     end
     resources :feeds do
-      match :search, via: [:get, :post], on: :collection
+      get :search, on: :collection
     end
     resources :opml_imports, path: "opml-imports", only: [:new, :create]
     resources :opml_exports, path: "opml-exports", only: [:create]
