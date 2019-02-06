@@ -26,6 +26,8 @@ Feature: Users
     And I click on "Save"
     Then I see ".has-error" element
     When I fill in "user_email" with "new@example.org"
+    When I fill in "user_password" with "new_password"
     And I click on "Save"
     Then I see ".alert-success" element
-    Then I see "new@example.org"
+    And I am signed in
+    And I see "new@example.org"

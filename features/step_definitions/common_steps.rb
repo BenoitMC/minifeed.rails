@@ -14,3 +14,7 @@ Then("I reorder elements") do
   evaluate_script %( $("tbody").append($("tbody tr").eq(0).detach()) )
   evaluate_script %( $(".sortable").trigger("sortupdate") )
 end
+
+Then("I am signed in") do
+  expect(page).to have_selector "a[href*=sign_out]"
+end

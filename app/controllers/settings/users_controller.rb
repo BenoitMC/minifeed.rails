@@ -33,6 +33,7 @@ class Settings::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      bypass_sign_in(@user) if @user == current_user
       flash.notice = t(".messages.ok")
       redirect_to back_url
     else

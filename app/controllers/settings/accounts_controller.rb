@@ -9,6 +9,7 @@ class Settings::AccountsController < ApplicationController
     edit
 
     if @user.update(user_params)
+      bypass_sign_in(@user)
       flash.notice = t(".messages.ok")
       redirect_to main_app.settings_root_path
     else
