@@ -30,7 +30,7 @@ class EntriesController < ApplicationController
   def mark_all_as_read
     @filter = EntriesFilter.new(scope, params)
     @entries = @filter.call
-    @entries.update_all(is_read: true) # rubocop:disable Rails/SkipsModelValidations
+    @entries.unread.update_all(is_read: true) # rubocop:disable Rails/SkipsModelValidations
 
     redirect_to action: :index, **@filter.to_h
   end

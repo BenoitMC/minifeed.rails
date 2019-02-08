@@ -19,7 +19,7 @@ class Api::V1::EntriesController < Api::V1::ApplicationController
 
   def mark_all_as_read
     @entries = EntriesFilter.call(scope, params)
-    @entries.update_all(is_read: true) # rubocop:disable Rails/SkipsModelValidations
+    @entries.unread.update_all(is_read: true) # rubocop:disable Rails/SkipsModelValidations
 
     render_json entries: @entries
   end
