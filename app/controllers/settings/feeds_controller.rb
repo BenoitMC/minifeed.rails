@@ -46,7 +46,10 @@ class Settings::FeedsController < ::ApplicationController
   end
 
   def update
-    if @feed.update(feed_params)
+    @feed.attributes = feed_params
+    @feed.last_update_at = nil
+
+    if @feed.save
       flash.notice = t(".messages.ok")
       redirect_to back_url
     else

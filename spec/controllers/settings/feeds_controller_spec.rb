@@ -56,6 +56,14 @@ describe Settings::FeedsController do
     end
   end # describe "#edit"
 
+  describe "#update" do
+    it "should reset #last_update_at" do
+      feed = create(:feed, user: user, last_update_at: 1.minute.ago)
+      patch :update, params: {id: feed}
+      expect(feed.reload.last_update_at).to eq nil
+    end
+  end # describe "#update"
+
   describe "#search" do
     let(:url) { "https://example.org" }
 
