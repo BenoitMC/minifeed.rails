@@ -47,7 +47,7 @@ class Settings::FeedsController < ::ApplicationController
 
   def update
     @feed.attributes = feed_params
-    @feed.last_update_at = nil
+    @feed.last_import_at = nil
 
     if @feed.save
       flash.notice = t(".messages.ok")

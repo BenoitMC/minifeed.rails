@@ -10,7 +10,7 @@ class Feed::ImportService < Service
   rescue Agilibox::GetHTTP::Error, Feedjira::NoParserAvailable
     feed.import_errors += 1
   ensure
-    feed.last_update_at = Time.zone.now
+    feed.last_import_at = Time.zone.now
     feed.save!
   end
 
