@@ -57,10 +57,10 @@ describe Settings::FeedsController do
   end # describe "#edit"
 
   describe "#update" do
-    it "should reset #last_update_at" do
-      feed = create(:feed, user: user, last_update_at: 1.minute.ago)
+    it "should reset #last_import_at" do
+      feed = create(:feed, user: user, last_import_at: 1.minute.ago)
       patch :update, params: {id: feed}
-      expect(feed.reload.last_update_at).to eq nil
+      expect(feed.reload.last_import_at).to eq nil
     end
   end # describe "#update"
 
