@@ -1,0 +1,25 @@
+language: ruby
+
+cache:
+  directories:
+   - /home/travis/.rvm/
+
+env:
+  RAILS_ENV: test
+
+services:
+  - postgresql
+
+addons:
+  postgresql: "9.4"
+  chrome: stable
+
+install:
+  - gem install bundler
+  - bundle install -j 5
+  - bundle exec rake db:create db:schema:load
+
+script:
+  - bundle exec rspec
+  - bundle exec cucumber
+  - bundle exec rubocop
