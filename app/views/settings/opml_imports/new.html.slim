@@ -1,8 +1,11 @@
 = form_with url: url_for(action: :create), id: "opml-import", multipart: true
-  .input-group
-    .custom-file
-      input.custom-file-input type="file" name="file" id="file"
-      label.custom-file-label for="file" = t(".choose_file")
+  .card.card-default
+    .card-header = t(".title")
+    .card-body
+      .input-group
+        .custom-file
+          input.custom-file-input type="file" name="file" id="file"
+          label.custom-file-label for="file" = t(".choose_file")
 
-    .input-group-append
-      button class="btn btn-success" type="submit" = t(".submit")
+        .input-group-append
+          button class="btn btn-success" type="submit" = t(".submit")

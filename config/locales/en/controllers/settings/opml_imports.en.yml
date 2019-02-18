@@ -2,6 +2,7 @@ en:
   settings:
     opml_imports:
       new:
+        title: "Import feeds from OPML file"
         choose_file: "Choose file"
         submit: "Submit"
 
