@@ -1,4 +1,4 @@
-= simple_form_for @feed, url: url, html: {id: "feed-form"} do |f|
+.block-center = simple_form_for @feed, url: url, html: {id: "feed-form"} do |f|
   - if @feed.on_error?
     .alert.alert-warning
       = icon(:exclamation_triangle)

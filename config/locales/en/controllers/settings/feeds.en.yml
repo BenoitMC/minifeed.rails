@@ -2,6 +2,7 @@ en:
   settings:
     feeds:
       search:
+        title: "Add a new feed"
         placeholder: "Enter a feed or a website URL"
         submit: "Search"
 

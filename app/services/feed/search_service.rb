@@ -14,10 +14,24 @@ class Feed::SearchService < Service
   private
 
   def results
+    (feedbag_results + [provided_url_result]).compact.uniq
+  end
+
+  def feedbag_results
     Feedbag.find(url).map do |feed_url|
-      raw_feed = Agilibox::GetHTTP.call(feed_url)
-      feed = Feedjira::Feed.parse(raw_feed)
-      Result.new(feed_url, feed.title)
+      url_to_result(feed_url)
     end
+  end
+
+  def provided_url_result
+    url_to_result(url)
+  rescue Feedjira::NoParserAvailable
+    nil
+  end
+
+  def url_to_result(url)
+    raw_feed = Agilibox::GetHTTP.call(url)
+    feed = Feedjira::Feed.parse(raw_feed)
+    Result.new(url, feed.title)
   end
 end

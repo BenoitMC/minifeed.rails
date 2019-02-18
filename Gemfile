@@ -45,7 +45,7 @@ group :test do
   gem "rspec-wait"
   gem "rails-controller-testing"
   gem "rspec-repeat"
-  gem "shoulda-matchers", ">=4.0.0.rc1"
+  gem "shoulda-matchers"
   gem "cucumber-rails", require: false
   gem "capybara"
   gem "selenium-webdriver"
