@@ -6,3 +6,12 @@ en:
     categories_count: Number of categories
     feeds_count: Number of feeds
     last_import_at: "Last import"
+    blacklist: "Blacklist"
+    whitelist: "Whitelist"
+    url: "URL"
+
+  simple_form:
+    placeholders:
+      feed:
+        blacklist: "Optional. One item per line. \nAll entries having title matching blacklist will not be imported. \nDon't worry about upper/lower case or accents, it doesn't matter."
+        whitelist: "Optional. One item per line. \nOnly entries having title matching whitelist will be imported. \nDon't worry about upper/lower case or accents, it doesn't matter."

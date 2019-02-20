@@ -83,6 +83,8 @@ class Settings::FeedsController < ::ApplicationController
       :name,
       :url,
       :category_id,
+      :blacklist,
+      :whitelist,
     ]
   end
 

@@ -11,4 +11,10 @@
       = f.input :name
       = f.input :url
       = f.association :category, collection: policy_scope(Category)
+
+      details
+        summary = t(".advanced_options")
+        = f.input :blacklist, input_html: {rows: 3}
+        = f.input :whitelist, input_html: {rows: 3}
+
       = form_buttons

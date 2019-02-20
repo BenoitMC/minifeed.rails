@@ -27,6 +27,8 @@ class Feed::ImportService < Service
 
   def create_or_update_entry!(remote_entry)
     return if remote_entry.external_id.blank?
+    return if excluded_by_blacklist?(remote_entry)
+    return if excluded_by_whitelist?(remote_entry)
 
     local_entry = Entry.find_or_initialize_by(
       :user        => feed.user,
@@ -43,5 +45,17 @@ class Feed::ImportService < Service
     }
 
     local_entry.save!
+  end
+
+  def excluded_by_blacklist?(remote_entry)
+    return false if feed.normalized_blacklist.empty?
+    normalized_name = remote_entry.name.parameterize
+    feed.normalized_blacklist.any? { |e| normalized_name.include?(e) }
+  end
+
+  def excluded_by_whitelist?(remote_entry)
+    return false if feed.normalized_whitelist.empty?
+    normalized_name = remote_entry.name.parameterize
+    feed.normalized_whitelist.none? { |e| normalized_name.include?(e) }
   end
 end

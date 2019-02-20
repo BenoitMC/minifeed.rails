@@ -27,4 +27,18 @@ describe Feed, type: :model do
   it "should have a valid factory" do
     expect(create :feed).to be_valid
   end
+
+  describe "#normalize_list" do
+    def self.it_should_transform(from, to)
+      it "should transform '#{from}' to '#{to}'" do
+        feed = described_class.new(whitelist: from)
+        expect(feed.normalized_whitelist).to eq to
+      end
+    end
+
+    it_should_transform "\nRuby on\n\nRails\n\n", ["ruby-on", "rails"]
+    it_should_transform nil, []
+    it_should_transform "", []
+    it_should_transform "café", ["cafe"]
+  end # describe "#normalize_list"
 end

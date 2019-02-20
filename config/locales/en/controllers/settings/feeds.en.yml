@@ -12,6 +12,7 @@ en:
 
       form:
         title: "Feed informations"
+        advanced_options: "Advanced options"
         errors:
           fetch: "The last %{count} fetches of this feed failed."
 
