@@ -1,3 +1,7 @@
+p.actions.top
+  = create_button url_for(action: :new)
+  = bs_button url_for(action: :reorder), action: :reorder, icon: :random
+
 .card.card-default: table#categories.default
   thead
     tr
@@ -19,3 +23,9 @@
 
     - if @category&.new_record?
       = render "form", f: f
+
+- if action_name != "index"
+  coffee:
+    $(".actions.top .btn").addClass("disabled")
+    $("#categories tr.category:not(.form) .btn").addClass("disabled")
+    $("#category_name").focus()

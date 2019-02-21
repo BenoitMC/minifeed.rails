@@ -10,6 +10,5 @@ tr.category.sortable-item
     = category.name
 
   td.category-actions.actions: .d-flex
-    - if action_name == "index"
-      = update_button url_for(action: :edit, id: category)
-      = delete_button url_for(action: :destroy, id: category)
+    = update_button url_for(action: :edit, id: category)
+    = delete_button url_for(action: :destroy, id: category)
