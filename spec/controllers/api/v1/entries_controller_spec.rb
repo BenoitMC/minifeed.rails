@@ -22,6 +22,20 @@ describe Api::V1::EntriesController do
       expect(json_response["entries"].length).to eq 1
       expect(json_response["entries"][0]["id"]).to eq entry1.id
     end
+
+    it "should set is_last_page to true" do
+      expect(Minifeed.config).to receive(:entries_per_page).and_return(999)
+      get :index
+      expect(response).to be_ok
+      expect(json_response["is_last_page"]).to eq true
+    end
+
+    it "should set is_last_page to false" do
+      expect(Minifeed.config).to receive(:entries_per_page).and_return(1)
+      get :index
+      expect(response).to be_ok
+      expect(json_response["is_last_page"]).to eq false
+    end
   end # describe "#index"
 
   describe "#update" do
