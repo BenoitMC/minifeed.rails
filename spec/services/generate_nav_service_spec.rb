@@ -19,7 +19,7 @@ describe GenerateNavService do
   it "should generate nav" do
     expect(nav).to eq(
       :unread => {
-        :name    => "All entries",
+        :name    => "All",
         :counter => 3,
       },
 
