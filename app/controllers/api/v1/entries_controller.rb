@@ -18,12 +18,11 @@ class Api::V1::EntriesController < Api::V1::ApplicationController
   end
 
   def mark_all_as_read
-    @entries = EntriesFilter.call(scope, params)
-    @entries.unread.update_all(is_read: true) # rubocop:disable Rails/SkipsModelValidations
+    EntriesFilter.call(scope, params)
+      .unread
+      .update_all(is_read: true) # rubocop:disable Rails/SkipsModelValidations
 
-    @entries = @entries.page(params[:page]).per(Minifeed.config.entries_per_page)
-
-    render_json entries: @entries
+    index
   end
 
   private
