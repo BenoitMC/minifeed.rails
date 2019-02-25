@@ -1,0 +1,6 @@
+en:
+  api:
+    v1:
+      user_sessions:
+        create:
+          invalid_email_or_password: "Invalid email and/or password."

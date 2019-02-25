@@ -12,7 +12,7 @@ class Api::V1::UserSessionsController < Api::V1::ApplicationController
       sign_in @user
       render_json
     else
-      render_json_error "Invalid email and/or password."
+      render_json_error t(".invalid_email_or_password")
     end
   end
 end
