@@ -3,9 +3,12 @@ class Api::V1::UserSessionsController < Api::V1::ApplicationController
   skip_after_action  :verify_policy_scoped
 
   def create
-    @user = User.find_by(email: params[:email])
+    email    = params[:email].to_s.strip
+    password = params[:password].to_s.strip
 
-    if @user&.valid_password?(params[:password])
+    @user = User.find_by(email: email)
+
+    if @user&.valid_password?(password)
       sign_in @user
       render_json
     else

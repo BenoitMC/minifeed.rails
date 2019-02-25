@@ -12,6 +12,11 @@ describe Api::V1::UserSessionsController do
       expect(json_response["current_user"]["auth_token"]).to eq user.auth_token
     end
 
+    it "should strip email and password" do
+      post :create, params: {email: " user@example.org ", password: " password "}
+      expect(response).to be_ok
+    end
+
     it "should fail on invalid email" do
       post :create, params: {email: "invalid@example.org", password: "invalid"}
       expect(response.code).to eq "422"
