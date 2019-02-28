@@ -10,7 +10,7 @@ class EntryAdapter < ApplicationAdapter
   end
 
   def name
-    original.title.presence || "[no title]"
+    original.title.to_s.strip.presence || "[no title]"
   end
 
   def updated_at

@@ -32,6 +32,11 @@ describe EntryAdapter do
       expect(adapter.name).to eq "entry title"
     end
 
+    it "should strip original name" do
+      remote_entry.title = " hello "
+      expect(adapter.name).to eq "hello"
+    end
+
     it "should assign default title" do
       remote_entry.title = nil
       expect(adapter.name).to eq "[no title]"
