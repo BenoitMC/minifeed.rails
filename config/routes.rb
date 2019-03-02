@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :entries, only: [:index, :show, :update] do
     get :reader, on: :member
+    get :iframe, on: :member
     post :"mark-all-as-read", on: :collection
   end
 

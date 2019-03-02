@@ -54,7 +54,7 @@
 
       span.separator = " "
 
-      a.entry-internal_link href=@entry.url target="_blank"
+      a.entry-internal_link href=url_for(action: :iframe) target="_blank"
         = icon(:clone, fa_style: :r)
         = " "
         = ta(:open_internal)

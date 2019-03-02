@@ -2,28 +2,54 @@ require "rails_helper"
 
 describe EntriesController do
   let(:user) { create(:user) }
-
   before { sign_in user }
+
+  let!(:entry) {
+    create(:entry, user: user, is_read: false)
+  }
 
   describe "#show" do
     it "should should set entry as read" do
-      entry = create(:entry, user: user, is_read: false)
       get :show, params: {id: entry}
       expect(response).to be_ok
       expect(entry.reload.is_read?).to be true
     end
   end # describe "#show"
 
+  describe "iframe" do
+    it "should redirect to url if frames are allowed" do
+      expect(CheckFramePermissionService).to receive(:call).with(entry.url).and_return(true)
+      get :iframe, params: {id: entry}
+      expect(response).to redirect_to entry.url
+    end
+
+    it "should render errors message if frames are not allowed" do
+      expect(CheckFramePermissionService).to receive(:call).with(entry.url).and_return(false)
+      get :iframe, params: {id: entry}
+      expect(response).to be_ok
+      expect(assigns :html).to include "does not allow"
+      expect(response).to render_template(:reader, layout: false)
+    end
+
+    it "should render errors message on http error" do
+      expect(CheckFramePermissionService).to \
+        receive(:call) .and_raise(CheckFramePermissionService::Error)
+
+      get :iframe, params: {id: entry}
+      expect(response).to be_ok
+      expect(assigns :html).to include "seems to be unavailable"
+      expect(response).to render_template(:reader, layout: false)
+    end
+  end # describe "iframe"
+
   describe "#update" do
     it "should should render show" do
-      entry = create(:entry, user: user)
       patch :update, params: {id: entry}
       expect(response).to be_ok
       expect(response).to render_template(:show)
     end
 
     it "should render error" do
-      entry = create(:entry, user: user)
       patch :update, params: {id: entry, entry: {is_starred: nil}}
       expect(response).to be_ok
       expect(response.body).to include "Error"
@@ -32,13 +58,12 @@ describe EntriesController do
 
   describe "#mark_all_as_read" do
     it "should mark all entries as read" do
-      entry = create(:entry, user: user, is_read: false)
       post :mark_all_as_read
       expect(entry.reload.is_read?).to be true
     end
 
     it "should update only filtered entries" do
-      entry1 = create(:entry, user: user, is_read: false)
+      entry1 = entry
       entry2 = create(:entry, user: user, is_read: false)
       post :mark_all_as_read, params: {category_id: entry1.feed.category.id}
       expect(entry1.reload.is_read?).to be true

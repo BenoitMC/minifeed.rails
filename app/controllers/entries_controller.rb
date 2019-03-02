@@ -19,6 +19,18 @@ class EntriesController < ApplicationController
     render layout: false
   end
 
+  def iframe
+    if CheckFramePermissionService.call(@entry.url)
+      redirect_to @entry.url
+    else
+      @html = t(".not_allowed")
+      render :reader, layout: false
+    end
+  rescue CheckFramePermissionService::Error
+    @html = t(".http_error")
+    render :reader, layout: false
+  end
+
   def update
     if @entry.update(entry_params)
       render :show

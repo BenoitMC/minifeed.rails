@@ -14,6 +14,10 @@ describe EntriesController, type: :routing do
       expect(get "/entries/123/reader").to route_to("entries#reader", id: "123")
     end
 
+    it "#iframe" do
+      expect(get "/entries/123/iframe").to route_to("entries#iframe", id: "123")
+    end
+
     it "#update" do
       expect(patch "/entries/123").to route_to("entries#update", id: "123")
     end

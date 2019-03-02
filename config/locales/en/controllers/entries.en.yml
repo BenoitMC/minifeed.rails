@@ -7,3 +7,7 @@ en:
         all: "All"
         unread: "Unread"
         starred: "Starred"
+
+    iframe:
+      not_allowed: "Error : this website does not allow to be displayed in frames."
+      http_error: "Error : this website seems to be unavailable at the moment."
