@@ -52,6 +52,11 @@ describe EntryAdapter do
       remote_entry.content = nil
       expect(adapter.body).to eq "entry summary"
     end
+
+    it "should sanitize ids and class names" do
+      remote_entry.content = %(<span class="hello world" id="yo">hello</span>)
+      expect(adapter.body).to eq %(<span class="x-hello x-world" id="x-yo">hello</span>)
+    end
   end # describe "body"
 
   describe "#published_at" do

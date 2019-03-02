@@ -1,4 +1,19 @@
 class EntryAdapter < ApplicationAdapter
+  CLASSES_AND_IDS_SCRUBBER = Loofah::Scrubber.new do |node|
+    if node.attributes["class"].present?
+      node.attributes["class"].value = node.attributes["class"].value.to_s
+        .split(" ")
+        .map { |e| "x-#{e}" }
+        .join(" ")
+    end
+
+    if node.attributes["id"].present?
+      node.attributes["id"].value = "x-" + node.attributes["id"].value.to_s
+    end
+  end
+
+  private_constant :CLASSES_AND_IDS_SCRUBBER
+
   attr_reader :original
 
   def initialize(original)
@@ -22,8 +37,14 @@ class EntryAdapter < ApplicationAdapter
   end
 
   def body
-    original.content.presence || original.summary.presence
+    Loofah.fragment(raw_body).scrub!(CLASSES_AND_IDS_SCRUBBER).to_s
   end
 
   def_delegators :original, :author, :url
+
+  private
+
+  def raw_body
+    original.content.presence || original.summary.presence
+  end
 end
