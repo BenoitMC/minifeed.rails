@@ -37,6 +37,11 @@ describe EntryAdapter do
       expect(adapter.name).to eq "hello"
     end
 
+    it "should remove html entities and tags" do
+      remote_entry.title = "<span>hello &amp; world</span>"
+      expect(adapter.name).to eq "hello & world"
+    end
+
     it "should assign default title" do
       remote_entry.title = nil
       expect(adapter.name).to eq "[no title]"

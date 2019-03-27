@@ -25,7 +25,8 @@ class EntryAdapter < ApplicationAdapter
   end
 
   def name
-    original.title.to_s.strip.presence || "[no title]"
+    name = original.title.to_s.strip.presence || "[no title]"
+    Nokogiri::HTML(name).text
   end
 
   def updated_at
