@@ -5,7 +5,7 @@ ruby File.read(File.join(__dir__, ".ruby-version"))
 
 gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
-gem "rails", "~> 5.2.2"
+gem "rails", "~> 5.2.3"
 gem "agilidee-devise", ">= 1.1.2"
 gem "agilibox", "1.5.8"
 
