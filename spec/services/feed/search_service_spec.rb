@@ -15,7 +15,7 @@ describe Feed::SearchService do
       end
     end
 
-    it_should_reraise(Agilibox::GetHTTP::Error)
+    it_should_reraise(HTTP::Error)
     it_should_reraise(Feedjira::NoParserAvailable)
   end # describe "on exception"
 

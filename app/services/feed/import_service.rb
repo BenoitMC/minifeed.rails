@@ -7,7 +7,7 @@ class Feed::ImportService < Service
     end
 
     feed.import_errors = 0
-  rescue Agilibox::GetHTTP::Error, Feedjira::NoParserAvailable
+  rescue HTTP::Error, Feedjira::NoParserAvailable
     feed.import_errors += 1
   ensure
     feed.last_import_at = Time.zone.now
@@ -22,7 +22,7 @@ class Feed::ImportService < Service
   end
 
   def raw_feed
-    @raw_feed ||= Agilibox::GetHTTP.call(feed.url)
+    @raw_feed ||= HttpClient.get(feed.url).to_s
   end
 
   def create_or_update_entry!(remote_entry)

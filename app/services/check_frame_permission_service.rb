@@ -11,8 +11,8 @@ class CheckFramePermissionService < Service
   private
 
   def fetch_header
-    Agilibox::GetHTTP.new(url).response["x-frame-options"]
-  rescue Agilibox::GetHTTP::Error => e
+    HttpClient.get(url).headers[:x_frame_options]
+  rescue HTTP::Error => e
     raise Error, e.message
   end
 end
