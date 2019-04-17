@@ -17,8 +17,6 @@ module HttpClient
     HTTP
       .follow
       .timeout(10)
-      .headers(user_agent: "Firefox")
-      .headers(accept_language: "fr")
       .use(instrumentation: {instrumenter: ResponseNotOkInstrumenter.new})
   end
 
