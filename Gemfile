@@ -46,8 +46,7 @@ group :test do
   gem "shoulda-matchers"
   gem "cucumber-rails", require: false
   gem "capybara"
-  gem "selenium-webdriver"
-  gem "chromedriver-helper"
+  gem "cuprite"
   gem "spring-commands-rspec"
   gem "spring-commands-cucumber"
   gem "timecop"
