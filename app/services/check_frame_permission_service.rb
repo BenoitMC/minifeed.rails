@@ -12,7 +12,7 @@ class CheckFramePermissionService < Service
 
   def fetch_header
     HttpClient.get(url).headers[:x_frame_options]
-  rescue HTTP::Error => e
+  rescue HttpClient::Error => e
     raise Error, e.message
   end
 end

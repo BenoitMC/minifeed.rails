@@ -1,5 +1,17 @@
 module HttpClient
-  ResponseNotOkError = Class.new(HTTP::Error)
+  Error = Module.new
+
+  [
+    HTTP::Error,
+    IOError,
+    OpenSSL::SSL::SSLError,
+    SocketError,
+    SystemCallError,
+    Timeout::Error,
+    Zlib::Error,
+  ].each { |exception| exception.send(:include, Error) }
+
+  ResponseNotOkError = Class.new(HTTP::ResponseError)
 
   class ResponseNotOkInstrumenter < HTTP::Features::Instrumentation::NullInstrumenter
     def finish(name, payload)

@@ -7,7 +7,7 @@ class Entry::GenerateReaderContentService < Service
     html = Loofah.fragment(html).scrub!(:prune).to_s
     html = html.encode("UTF-8")
     html.strip
-  rescue HTTP::Error
+  rescue HttpClient::Error
     "Error"
   end
 end

@@ -7,7 +7,7 @@ class Feed::SearchService < Service
 
   def call
     results
-  rescue HTTP::Error, Feedjira::NoParserAvailable
+  rescue HttpClient::Error, Feedjira::NoParserAvailable
     raise Error, "unable to fetch or parse #{url}"
   end
 
