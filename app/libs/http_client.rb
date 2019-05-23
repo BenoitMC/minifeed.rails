@@ -29,6 +29,8 @@ module HttpClient
     HTTP
       .follow
       .timeout(10)
+      .headers(user_agent: "Minifeed RSS Reader")
+      .headers(accept: "*/*")
       .use(instrumentation: {instrumenter: ResponseNotOkInstrumenter.new})
   end
 
