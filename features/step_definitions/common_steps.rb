@@ -11,8 +11,8 @@ end
 Then("I reorder elements") do
   expect(page).to have_selector(".handle")
 
-  evaluate_script %( $("tbody").append($("tbody tr").eq(0).detach()) )
-  evaluate_script %( $(".sortable").trigger("sortupdate") )
+  execute_script %( $("tbody").append($("tbody tr").eq(0).detach()) )
+  execute_script %( $(".sortable").trigger("sortupdate") )
 end
 
 Then("I am signed in") do

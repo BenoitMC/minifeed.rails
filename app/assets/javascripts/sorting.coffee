@@ -1,9 +1,12 @@
 $(document).on "turbolinks:load", ->
-  sortable ".sortable",
-    forcePlaceholderSize: true
-    handle: ".handle"
-    items: ".sortable-item"
+  $(".sortable").map ->
+    container = this
 
-  $(".sortable").on "sortupdate", ->
-    i = 0
-    $(this).find("input[name*=position]").map -> this.value = (i = i + 1)
+    new Sortable container,
+      handle: ".handle"
+      animation: 150
+      onSort: -> $(container).trigger("sortupdate")
+
+$(document).on "sortupdate", ".sortable", ->
+  i = 0
+  $(this).find("input[name*=position]").map -> this.value = (i = i + 1)
