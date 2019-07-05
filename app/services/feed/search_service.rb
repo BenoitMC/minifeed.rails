@@ -30,7 +30,7 @@ class Feed::SearchService < Service
   end
 
   def url_to_result(url)
-    raw_feed = HttpClient.get(url).to_s
+    raw_feed = HttpClient.request(:get, url).to_s
     feed = Feedjira::Feed.parse(raw_feed)
     Result.new(url, feed.title)
   end

@@ -34,11 +34,7 @@ module HttpClient
       .use(instrumentation: {instrumenter: ResponseNotOkInstrumenter.new})
   end
 
-  def self.method_missing(*args) # rubocop:disable Style/MethodMissingSuper
-    http.send(*args)
-  end
-
-  def self.respond_to_missing?(*args)
-    http.send(:respond_to?, *args) || http.send(:respond_to_missing?, *args)
+  def self.request(*args)
+    http.request(*args)
   end
 end

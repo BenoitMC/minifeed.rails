@@ -22,7 +22,7 @@ class Feed::ImportService < Service
   end
 
   def raw_feed
-    @raw_feed ||= HttpClient.get(feed.url).to_s
+    @raw_feed ||= HttpClient.request(:get, feed.url).to_s
   end
 
   def create_or_update_entry!(remote_entry)
