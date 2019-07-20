@@ -7,7 +7,7 @@ gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
 gem "rails", "~> 5.2.3"
 gem "agilidee-devise", ">= 1.1.2"
-gem "agilibox", "1.5.10"
+gem "agilibox", "1.5.12"
 
 gem "bootsnap"
 gem "rufus-scheduler"
@@ -28,7 +28,6 @@ gem "pundit"
 gem "awesome_print"
 gem "pry-rails"
 gem "execjs"
-gem "mini_racer"
 gem "autoprefixer-rails"
 gem "font-awesome-sass"
 gem "puma"
@@ -72,6 +71,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "byebug"
   gem "rspec-rails" # must be in both environments for generators
-  gem "rubocop", "0.69.0", require: false
-  gem "rubocop-performance", "1.3.0", require: false
+  gem "rubocop", "0.73.0", require: false
+  gem "rubocop-performance", "1.4.0", require: false
+  gem "rubocop-rails", "2.2.1", require: false
 end
