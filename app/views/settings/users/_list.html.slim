@@ -4,13 +4,13 @@
       th.user-email
          = User.t(:email)
 
-      th.user-categories_count
+      th.user-categories_count.hidden-sm
          = User.t(:categories_count)
 
-      th.user-feeds_count
+      th.user-feeds_count.hidden-sm
          = User.t(:feeds_count)
 
-      th.user-is_admin
+      th.user-is_admin.hidden-sm
          = User.t(:is_admin)
 
       th.user-actions.actions
@@ -22,13 +22,13 @@
         td.user-email
           = user.email
 
-        td.user-categories_count
+        td.user-categories_count.hidden-sm
           = user.categories.count
 
-        td.user-feeds_count
+        td.user-feeds_count.hidden-sm
           = user.feeds.count
 
-        td.user-is_admin
+        td.user-is_admin.hidden-sm
           = boolean_icon user.is_admin
 
         td.user-actions.actions: .d-flex

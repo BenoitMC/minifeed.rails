@@ -1,10 +1,17 @@
 .card.card-default: table#feeds.default
   thead
     tr
-      th.feed-name = Feed.t(:name)
-      th.feed-category = Feed.t(:category)
-      th.feed-last_import_at = Feed.t(:last_import_at)
-      th.feed-actions.actions = t("actions.actions")
+      th.feed-name
+        = Feed.t(:name)
+
+      th.feed-category.hidden-sm
+        = Feed.t(:category)
+
+      th.feed-last_import_at.hidden-sm
+        = Feed.t(:last_import_at)
+
+      th.feed-actions.actions
+        = t("actions.actions")
 
   tbody
     - @feeds.each do |feed|
@@ -16,10 +23,10 @@
 
           = feed.name
 
-        td.feed-category
+        td.feed-category.hidden-sm
           = feed.category
 
-        td.feed-last_import_at
+        td.feed-last_import_at.hidden-sm
           = time_ago_in_words(feed.last_import_at) if feed.last_import_at
 
         td.feed-actions.actions: .d-flex
