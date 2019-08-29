@@ -9,7 +9,7 @@ gem "rails", "~> 5.2.3"
 gem "agilidee-devise", ">= 1.1.2"
 gem "agilibox", "1.5.12"
 
-gem "bootsnap"
+gem "bootsnap", require: false
 gem "rufus-scheduler"
 gem "feedjira"
 gem "feedjira-youtube"
