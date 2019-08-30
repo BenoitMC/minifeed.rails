@@ -6,17 +6,17 @@ module EntriesHelper
     classes.sort.join(" ")
   end
 
-  def link_to_entries_filter(type)
-    url = url_for @filter.to_h.merge(type: type)
+  def link_to_entries_filter(filter, type)
+    url = url_for filter.to_h.merge(type: type)
 
     class_names = %w(btn btn-sm btn-outline-primary filter)
     class_names << type
-    class_names << "active" if @filter.type == type
+    class_names << "active" if filter.type == type
 
     link_to t(".filters.#{type}"), url, class: class_names
   end
 
-  def entries_path_for(options)
-    main_app.entries_path(@filter.to_h.merge(options))
+  def entries_path_for(filter, options)
+    main_app.entries_path(filter.to_h.merge(options))
   end
 end

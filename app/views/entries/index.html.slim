@@ -4,9 +4,9 @@
 
   .col-sm.text-md-center
     span.btn-group
-      = link_to_entries_filter "all"
-      = link_to_entries_filter "unread"
-      = link_to_entries_filter "starred"
+      = link_to_entries_filter(@filter, "all")
+      = link_to_entries_filter(@filter, "unread")
+      = link_to_entries_filter(@filter, "starred")
 
   .col-sm.text-md-right
     a.btn.btn-sm.btn-outline-primary(

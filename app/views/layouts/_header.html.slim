@@ -34,7 +34,7 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
             button.subnav-toggle
               = icon(:caret_right)
 
-            a.nav-link href=entries_path_for(category_id: category, feed_id: nil)
+            a.nav-link href=entries_path_for(@filter, category_id: category, feed_id: nil)
               = category.id == params[:category_id] ? icon(:folder_open) : icon(:folder)
               = " "
               = category.name
@@ -47,7 +47,7 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
                   id    = "nav_feed_#{feed.name.parameterize}"
                   class = ("active" if current_page_is_feed?(feed))
                 )
-                  a.nav-link href=entries_path_for(category_id: category, feed_id: feed.id)
+                  a.nav-link href=entries_path_for(@filter, category_id: category, feed_id: feed.id)
                     = icon(:feed)
                     = " "
                     = feed
