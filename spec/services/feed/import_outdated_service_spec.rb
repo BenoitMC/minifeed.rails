@@ -16,10 +16,17 @@ describe Feed::ImportOutdatedService do
     expect(service.feeds).to_not include recent
   end
 
-  it "should call ImportService on each feed" do
+  it "should call ImportService on each feed and ignore exception" do
     expect(Feed::ImportService).to receive(:call).with(feed1)
     expect(Feed::ImportService).to receive(:call).with(feed2)
-    expect(Feed::ImportService).to receive(:call).with(feed3)
+    expect(Feed::ImportService).to receive(:call).with(feed3) { raise "err" }
+
+    expect { described_class.call }.to_not raise_error
+  end
+
+  it "should not enqueue feeds if queue is not empty" do
+    expect_any_instance_of(ThreadPool).to receive(:empty?).and_return(false)
+    expect_any_instance_of(described_class).to_not receive(:post)
 
     described_class.call
   end

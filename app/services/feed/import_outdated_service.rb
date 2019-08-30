@@ -1,8 +1,15 @@
 class Feed::ImportOutdatedService < Service
+  POOL = ThreadPool.new(Minifeed.config.autoimport_pool_size)
+  private_constant :POOL
+
   def call
+    return if POOL.any?
+
     feeds.each do |feed|
-      Feed::ImportService.call(feed)
+      post(feed)
     end
+
+    POOL.wait
   end
 
   def feeds
@@ -13,6 +20,12 @@ class Feed::ImportOutdatedService < Service
   end
 
   private
+
+  def post(feed)
+    POOL.post do
+      Feed::ImportService.call(feed)
+    end
+  end
 
   def max_datetime
     Minifeed.config.refresh_feeds_after.ago
