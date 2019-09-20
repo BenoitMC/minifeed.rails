@@ -317,8 +317,6 @@ GEM
       rspec-expectations (~> 3.8.0)
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
-    rspec-repeat (1.0.2)
-      rspec (~> 3.0)
     rspec-support (3.8.2)
     rspec-wait (0.0.9)
       rspec (>= 3, < 4)
@@ -449,7 +447,6 @@ DEPENDENCIES
   rails-erd
   rails-i18n
   rspec-rails
-  rspec-repeat
   rspec-wait
   rubocop (= 0.73.0)
   rubocop-performance (= 1.4.0)

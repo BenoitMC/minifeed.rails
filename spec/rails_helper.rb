@@ -51,20 +51,6 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  def i_am_on_a_ci_server?
-    return true if ENV["CI"].to_s.downcase == "true"
-    return true if `hostname`.downcase.include?("semaphore")
-    return false
-  end
-
-  if i_am_on_a_ci_server?
-    config.include RSpec::Repeat
-
-    config.around do |example|
-      repeat example, 2.times
-    end
-  end
-
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.

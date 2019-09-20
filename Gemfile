@@ -41,7 +41,6 @@ group :test do
   gem "minitest"
   gem "rspec-wait"
   gem "rails-controller-testing"
-  gem "rspec-repeat"
   gem "shoulda-matchers"
   gem "cucumber-rails", require: false
   gem "capybara"
