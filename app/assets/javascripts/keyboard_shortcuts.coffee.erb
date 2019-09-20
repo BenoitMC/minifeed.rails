@@ -1,0 +1,44 @@
+@Minifeed ||= {}
+
+@Minifeed.keyboard_shortcut_actions =
+  help: ->
+    $("a[href$=keyboard-shortcuts]").click()
+
+  close_modal: ->
+    modal.close()
+
+  previous_entry: ->
+    if Minifeed.current_entry_id
+      $("a[data-entry-id=#{Minifeed.current_entry_id}]").parents("li").prev("li").find("a[data-entry-id]").click()
+    else
+      $("#entries-list a.entry-name").eq(-1).click()
+
+  next_entry: ->
+    if Minifeed.current_entry_id
+      $("a[data-entry-id=#{Minifeed.current_entry_id}]").parents("li").next("li").find("a[data-entry-id]").click()
+    else
+      $("#entries-list a.entry-name").eq(0).click()
+
+  mark_entry_as_un_read: ->
+    $("#entry input[type=checkbox][name*=read]").map -> $(this).prop(checked: !this.checked).change()
+
+  mark_entry_as_un_starred: ->
+    $("#entry input[type=checkbox][name*=starred]").map -> $(this).prop(checked: !this.checked).change()
+
+  open_reader_mode: ->
+    $("#entry .entry-reader_link").click()
+
+  open_internal: ->
+    try $("#entry .entry-internal_link").get(0).click()
+
+  open_external: ->
+    try $("#entry .entry-external_link").get(0).click()
+
+@Minifeed.define_keyboard_shortcuts = ->
+  <% KEYBOARD_SHORTCUTS.each do |id, keys| %>
+    <% keys.each do |key| %>
+      <%= "Mousetrap.bind('#{key}', Minifeed.keyboard_shortcut_actions.#{id})" %>
+    <% end %>
+  <% end %>
+
+@Minifeed.define_keyboard_shortcuts()

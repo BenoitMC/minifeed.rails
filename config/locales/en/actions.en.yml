@@ -3,7 +3,7 @@ en:
     actions: "Actions"
     mark_all_as_read: "Mark all as read"
     confirm: "Confirm?"
-    reader_mode: "Reader mode"
+    open_reader_mode: "Reader mode"
     open_external: "Open in new tab"
     open_internal: "Open in modal"
     toggle_read: "Read"

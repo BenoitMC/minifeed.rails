@@ -2,8 +2,9 @@
   h1 = t(".title")
 
   ul.list-unstyled
-    - @list.each do |key, id|
+    - KEYBOARD_SHORTCUTS.each do |id, keys|
       li
-        span.key = key
+        - keys.each do |key|
+          span.key = key
         = " : "
         = t(".#{id}")

@@ -8,6 +8,6 @@ en:
       close_modal: "Close modal"
       mark_entry_as_un_read: "Mark entry as read/unread"
       mark_entry_as_un_starred: "Mark entry as starred/unstarred"
-      reader_mode: "Open entry website in reader mode"
+      open_reader_mode: "Open entry website in reader mode"
       open_internal: "Open entry website in modal"
       open_external: "Open entry website in new tab"

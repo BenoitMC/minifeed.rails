@@ -84,47 +84,6 @@ Feature: Entries
     Then I see "iframe" element
     Then I see "#modal" element
 
-  Scenario: Left/Right arrow navigation
-    Given an existing entry
-    And this existing entry "name" is "i am the third entry"
-    And an existing entry
-    And this existing entry "name" is "i am the second entry"
-    And an existing entry
-    And this existing entry "name" is "i am the first entry"
-    When I go on the "entries" page
-    And I click on "i am the first entry"
-    Then I see "i am the first entry" in modal
-    When I press key "right"
-    Then I see "i am the second entry" in modal
-    When I press key "right"
-    Then I see "i am the third entry" in modal
-    When I press key "right"
-    Then I see "i am the third entry" in modal
-    When I press key "left"
-    Then I see "i am the second entry" in modal
-    When I press key "left"
-    Then I see "i am the first entry" in modal
-    When I press key "left"
-    Then I see "i am the first entry" in modal
-
-  Scenario: Right arrow shortcut on entries list open first entry
-    Given an existing entry
-    And this existing entry "name" is "i am the second entry"
-    And an existing entry
-    And this existing entry "name" is "i am the first entry"
-    When I go on the "entries" page
-    When I press key "right"
-    Then I see "i am the first entry" in modal
-
-  Scenario: Left arrow shortcut on entries list opens last entry
-    Given an existing entry
-    And this existing entry "name" is "i am the second entry"
-    And an existing entry
-    And this existing entry "name" is "i am the first entry"
-    When I go on the "entries" page
-    When I press key "left"
-    Then I see "i am the second entry" in modal
-
   Scenario: Open entry body links in new page
     Given an existing entry
     And this existing entry "name" is "Example entry"
@@ -134,7 +93,7 @@ Feature: Entries
     And I click on "entry body link"
     Then I see "Example Domain" in a new tab
 
-  Scenario: Set entry as read/unread from icon
+  Scenario: Set entry as read/unread
     Given an existing entry
     And this existing entry "name" is "Example entry"
     When I go on the "entries" page
@@ -148,7 +107,7 @@ Feature: Entries
     Then I see ".entry-is_read .fa-check-square" element
     And I do not see ".entry-is_read .fa-square" element
 
-  Scenario: Set entry as starred/unstarred from icon
+  Scenario: Set entry as starred/unstarred
     Given an existing entry
     And this existing entry "name" is "Example entry"
     When I go on the "entries" page
@@ -161,63 +120,6 @@ Feature: Entries
     When I click on ".entry-is_starred" element
     Then I see ".entry-is_starred .far.fa-star" element
     And I do not see ".entry-is_starred .fas.fa-star" element
-
-  Scenario: Set entry as read/unread from shortcuts
-    Given an existing entry
-    And this existing entry "name" is "Example entry"
-    When I go on the "entries" page
-    And I click on "Example entry"
-    Then I see ".entry-is_read .fa-check-square" element
-    And I do not see ".entry-is_read .fa-square" element
-    When I press key "r"
-    Then I see ".entry-is_read .fa-square" element
-    And I do not see ".entry-is_read .fa-check-square" element
-    When I press key "r"
-    Then I see ".entry-is_read .fa-check-square" element
-    And I do not see ".entry-is_read .fa-square" element
-
-  Scenario: Set entry as starred/unstarred from shortcuts
-    Given an existing entry
-    And this existing entry "name" is "Example entry"
-    When I go on the "entries" page
-    And I click on "Example entry"
-    Then I see ".entry-is_starred .far.fa-star" element
-    And I do not see ".entry-is_starred .fas.fa-star" element
-    When I press key "s"
-    Then I see ".entry-is_starred .fas.fa-star" element
-    And I do not see ".entry-is_starred .far.fa-star" element
-    When I press key "s"
-    Then I see ".entry-is_starred .far.fa-star" element
-    And I do not see ".entry-is_starred .fas.fa-star" element
-
-  Scenario: Open entry url in new tab from shortcuts
-    Given an existing entry
-    And this existing entry "name" is "Example entry"
-    And this existing entry "url" is "http://example.org/"
-    When I go on the "entries" page
-    And I click on "Example entry"
-    And I press key "o"
-    Then I see "Example Domain" in a new tab
-
-  Scenario: Open entry url in modal from shortcuts
-    Given an existing entry
-    And this existing entry "name" is "Example entry"
-    And this existing entry "url" is "http://example.org/"
-    When I go on the "entries" page
-    And I click on "Example entry"
-    And I press key "m"
-    Then I see "iframe" element
-    Then I see "#modal" element
-
-  Scenario: Reader mode in modal from shortcuts
-    Given an existing entry
-    And this existing entry "name" is "Example entry"
-    And this existing entry "url" is "http://example.org/"
-    When I go on the "entries" page
-    And I click on "Example entry"
-    And I press key "p"
-    Then I see "iframe" element
-    Then I see "#modal" element
 
   Scenario: Refresh read/unread on list
     Given an existing entry

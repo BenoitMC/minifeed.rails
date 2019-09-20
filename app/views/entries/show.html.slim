@@ -50,7 +50,7 @@
       a.entry-reader_link href=main_app.reader_entry_path(@entry)
         = icon(:align_left, fa_style: :s)
         = " "
-        = ta(:reader_mode)
+        = ta(:open_reader_mode)
 
       span.separator = " "
 
@@ -75,7 +75,7 @@
 
 
 
-  javascript: reloadNavigation()
+  javascript: Minifeed.reload_navigation()
 
   - if @entry.is_read
     javascript: $(".#{@entry.id}").addClass("is_read")
