@@ -49,7 +49,6 @@ group :test do
   gem "spring-commands-cucumber"
   gem "timecop"
   gem "simplecov", require: false
-  gem "pundit-matchers"
   gem "zonebie"
   gem "codecov", require: false
 end
