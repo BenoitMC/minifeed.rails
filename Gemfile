@@ -7,7 +7,7 @@ gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
 gem "rails", "~> 5.2.3"
 gem "agilidee-devise", ">= 1.1.2"
-gem "agilibox", "1.5.12"
+gem "agilibox", "1.7.2"
 
 gem "bootsnap", require: false
 gem "rufus-scheduler"
