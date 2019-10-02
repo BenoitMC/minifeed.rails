@@ -7,7 +7,7 @@ gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
 gem "rails", "~> 5.2.3"
 gem "agilidee-devise", ">= 1.1.2"
-gem "agilibox", "1.7.3"
+gem "agilibox", "1.7.4"
 
 gem "bootsnap", require: false
 gem "rufus-scheduler"
@@ -44,6 +44,7 @@ group :test do
   gem "shoulda-matchers"
   gem "cucumber-rails", require: false
   gem "capybara"
+  gem "ferrum", "0.4"
   gem "cuprite"
   gem "spring-commands-rspec"
   gem "spring-commands-cucumber"
