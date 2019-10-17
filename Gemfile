@@ -32,7 +32,6 @@ gem "bugsnag"
 gem "pg"
 gem "loofah"
 gem "http"
-gem "sprockets", "< 4"
 
 group :test do
   gem "minitest"
