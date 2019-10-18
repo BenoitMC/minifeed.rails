@@ -18,8 +18,8 @@ describe Entry::CreateFromUrlService do
       expect(entry.user).to eq user
       expect(entry.feed).to eq nil
       expect(entry.external_id).to eq url
-      expect(entry.name).to eq "OG Example Domain"
-      expect(entry.body).to eq "OG Example Domain Description !"
+      expect(entry.name).to eq "Example Domain"
+      expect(entry.body).to eq "Example Domain Description !"
       expect(entry.url).to eq url
       expect(entry.author).to eq "Alice"
       expect(entry.published_at).to eq Time.current
@@ -28,14 +28,12 @@ describe Entry::CreateFromUrlService do
     end
 
     it "should find data in alternative tags" do
-      allow(instance).to receive(:og_title).and_return(nil)
-      allow(instance).to receive(:og_description).and_return(nil)
+      allow(instance).to receive(:meta_description).and_return(nil)
       allow(instance).to receive(:meta_author).and_return(nil)
 
       expect { instance.call }.to change(Entry, :count).by(1)
       entry = Entry.last_created
-      expect(entry.name).to eq "Example Domain"
-      expect(entry.body).to eq "Example Domain Description !"
+      expect(entry.body).to eq "OG Example Domain Description !"
       expect(entry.author).to eq "OG Site Name"
     end
 

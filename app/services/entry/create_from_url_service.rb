@@ -25,23 +25,15 @@ class Entry::CreateFromUrlService < ApplicationService
   private
 
   def entry_name
-    og_title || head_title
+    html.css("title").text.presence
   end
 
   def entry_body
-    og_description || meta_description
+    meta_description || og_description
   end
 
   def entry_author
     meta_author || og_site_name
-  end
-
-  def head_title
-    html.css("title").text.presence
-  end
-
-  def og_title
-    get_og_tag(:title)
   end
 
   def og_description
