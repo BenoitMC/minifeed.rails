@@ -1,4 +1,4 @@
-class Feed::ImportService < Service
+class Feed::ImportService < ApplicationService
   initialize_with :feed
 
   def call

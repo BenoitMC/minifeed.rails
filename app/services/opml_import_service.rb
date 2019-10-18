@@ -1,4 +1,4 @@
-class OpmlImportService < Service
+class OpmlImportService < ApplicationService
   initialize_with :user, :raw_xml
 
   def call

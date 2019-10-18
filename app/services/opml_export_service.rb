@@ -1,4 +1,4 @@
-class OpmlExportService < Service
+class OpmlExportService < ApplicationService
   initialize_with :user
 
   def call

@@ -1,4 +1,4 @@
-class EntriesFilter < Service
+class EntriesFilter < ApplicationService
   attr_reader :scope, :options, :type, :category_id, :feed_id, :q
 
   def initialize(scope, options = {})
