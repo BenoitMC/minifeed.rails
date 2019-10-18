@@ -20,6 +20,6 @@ class EntrySerializer < ApplicationSerializer
     time_ago_in_words(published_at)
   end
 
-  delegate :name, to: :feed,     prefix: true
-  delegate :name, to: :category, prefix: true
+  delegate :name, to: :feed,     prefix: true, allow_nil: true
+  delegate :name, to: :category, prefix: true, allow_nil: true
 end

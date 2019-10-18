@@ -25,4 +25,10 @@ describe EntrySerializer do
     expect(json["feed_name"]).to eq "My feed"
     expect(json["published_at_human"]).to eq "less than a minute"
   end
+
+  it "should work with entries having no feed" do
+    entry.update!(feed: nil)
+    expect(json["category_name"]).to eq nil
+    expect(json["feed_name"]).to eq nil
+  end
 end

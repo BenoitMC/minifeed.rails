@@ -6,7 +6,6 @@ describe Entry, type: :model do
   it { is_expected.to respond_to :category }
 
   it { is_expected.to validate_presence_of :user }
-  it { is_expected.to validate_presence_of :feed }
   it { is_expected.to validate_presence_of :external_id }
   it { is_expected.to validate_presence_of :name }
   it { is_expected.to validate_presence_of :published_at }
@@ -19,6 +18,7 @@ describe Entry, type: :model do
   it { is_expected.to allow_value(false).for(:is_starred) }
   it { is_expected.to_not allow_value(nil).for(:is_starred) }
 
+  it { is_expected.to_not validate_presence_of :feed }
   it { is_expected.to_not validate_presence_of :body }
   it { is_expected.to_not validate_presence_of :url }
 

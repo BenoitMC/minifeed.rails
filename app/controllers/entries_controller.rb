@@ -9,6 +9,23 @@ class EntriesController < ApplicationController
       .page(params[:page]).per(Minifeed.config.entries_per_page)
   end
 
+  def new
+    skip_policy_scope
+  end
+
+  def create
+    new
+
+    begin
+      Entry::CreateFromUrlService.call(params[:url], user: current_user)
+      flash.notice = t(".messages.ok")
+    rescue HttpClient::Error
+      flash.alert = t(".messages.error")
+    end
+
+    redirect_to action: :index, type: :starred
+  end
+
   def show
     @entry.update!(is_read: true) if @entry.is_unread?
   end

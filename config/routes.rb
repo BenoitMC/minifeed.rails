@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :entries, only: [:index, :show, :update] do
+  resources :entries, only: [:index, :new, :create, :show, :update] do
     get :reader, on: :member
     get :iframe, on: :member
     post :"mark-all-as-read", on: :collection
