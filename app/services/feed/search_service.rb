@@ -1,4 +1,4 @@
-class Feed::SearchService < Service
+class Feed::SearchService < ApplicationService
   Result = Struct.new(:url, :name)
 
   Error = Class.new(StandardError)

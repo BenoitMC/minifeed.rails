@@ -6,6 +6,14 @@ describe EntriesController, type: :routing do
       expect(get "/entries").to route_to("entries#index")
     end
 
+    it "#new" do
+      expect(get "/entries/new").to route_to("entries#new")
+    end
+
+    it "#create" do
+      expect(post "/entries").to route_to("entries#create")
+    end
+
     it "#show" do
       expect(get "/entries/123").to route_to("entries#show", id: "123")
     end

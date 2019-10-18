@@ -1,4 +1,4 @@
-class Entry::GenerateReaderContentService < Service
+class Entry::GenerateReaderContentService < ApplicationService
   initialize_with :entry
 
   def call

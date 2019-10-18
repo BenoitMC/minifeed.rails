@@ -1,4 +1,4 @@
-class GenerateNavService < Service
+class GenerateNavService < ApplicationService
   initialize_with :user
 
   def call

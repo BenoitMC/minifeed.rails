@@ -1,4 +1,4 @@
-class CheckFramePermissionService < Service
+class CheckFramePermissionService < ApplicationService
   Error = Class.new(StandardError)
 
   initialize_with :url

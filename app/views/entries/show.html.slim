@@ -3,24 +3,25 @@
     h1.entry-name = @entry.name
 
     .entry-infos
-      span.entry-feed
-        = icon(:feed)
-        = " "
-        = @entry.feed
+      - if @entry.feed.present?
+        span.entry-feed
+          = icon(:feed)
+          = " "
+          = @entry.feed
+        span.separator = " "
 
       - if @entry.author.present?
-        span.separator = " "
         span.entry-author
           = icon(:user_edit)
           = " "
           = @entry.author
-
-      span.separator = " "
+        span.separator = " "
 
       span.entry-published_at
         = icon(:clock, fa_style: :r)
         = " "
         = time_ago_in_words(@entry.published_at)
+      span.separator = " "
 
     .entry-actions
       label.entry-is_read

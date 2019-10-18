@@ -3,10 +3,22 @@ en:
     index:
       nothing_to_read: "Nothing to read :)"
       load_more_entries: "Load more entries"
+
+    header:
       filters:
         all: "All"
         unread: "Unread"
         starred: "Starred"
+
+    new:
+      title: "Add a bookmark from an URL"
+      placeholder: "Enter a web page URL"
+      submit: "Save"
+
+    create:
+      messages:
+        ok: "Bookmark successfully created."
+        error: "An error occured while trying to read this URL."
 
     iframe:
       not_allowed: "Error : this website does not allow to be displayed in frames."

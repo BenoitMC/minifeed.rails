@@ -1,0 +1,17 @@
+.block-center = form_tag url_for(action: :create), method: :post
+  .card.card-default
+    .card-header = t(".title")
+    .card-body
+      p
+        .input-group
+          input(
+            class       = "form-control"
+            type        = "url"
+            name        = "url"
+            id          = "url"
+            value       = params[:url]
+            placeholder = t(".placeholder")
+          )
+
+          .input-group-append
+            button class="btn btn-success" type="submit" = t(".submit")

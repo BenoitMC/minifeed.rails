@@ -7,8 +7,8 @@ en:
         submit: "Search"
 
         messages:
-          no_result: "No feed found at this url."
-          error: "An error occured while trying to read this url."
+          no_result: "No feed found at this URL."
+          error: "An error occured while trying to read this URL."
 
       form:
         title: "Feed informations"

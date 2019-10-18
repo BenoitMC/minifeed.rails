@@ -1,23 +1,4 @@
-#entries-actions.row.actions.top.text-center
-  .col-sm.text-md-left
-    = render "search"
-
-  .col-sm.text-md-center
-    span.btn-group
-      = link_to_entries_filter(@filter, "all")
-      = link_to_entries_filter(@filter, "unread")
-      = link_to_entries_filter(@filter, "starred")
-
-  .col-sm.text-md-right
-    a.btn.btn-sm.btn-outline-primary(
-      href         = url_for(action: :mark_all_as_read, **@filter.to_h)
-      data-method  = "post"
-      data-confirm = ta(:confirm)
-      data-remote  = true
-    )
-      = icon(:check)
-      = " "
-      = ta(:mark_all_as_read)
+= render "header"
 
 
 
@@ -33,8 +14,9 @@ ul.list-group#entries-list
       = " "
       a.entry-name href=main_app.entry_path(entry) data-modal="normal" data-entry-id=entry.id
         = entry.name
-      = " "
-      span.entry-feed == entry.feed
+      - if entry.feed.present?
+        = " "
+        span.entry-feed == entry.feed
       = " "
       span.entry-published_at = time_ago_in_words(entry.published_at)
 

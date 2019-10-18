@@ -8,6 +8,33 @@ describe EntriesController do
     create(:entry, user: user, is_read: false)
   }
 
+  describe "#new" do
+    render_views
+
+    it "should be ok" do
+      get :new
+      expect(response).to be_ok
+    end
+  end # describe "#new"
+
+  describe "#create" do
+    let(:url) { "https://example.org/" }
+
+    it "should create entry" do
+      expect(Entry::CreateFromUrlService).to receive(:call).and_return(true)
+      get :create, params: {url: url}
+      expect(response).to be_redirect
+      expect(flash.notice).to be_present
+    end
+
+    it "should handle http errors" do
+      expect(Entry::CreateFromUrlService).to receive(:call).and_raise(HTTP::Error)
+      get :create, params: {url: url}
+      expect(response).to be_redirect
+      expect(flash.alert).to be_present
+    end
+  end # describe "#create"
+
   describe "#show" do
     it "should should set entry as read" do
       get :show, params: {id: entry}

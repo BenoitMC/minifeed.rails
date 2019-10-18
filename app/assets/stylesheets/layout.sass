@@ -66,7 +66,9 @@ th.position
   .btn
     @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $btn-line-height-sm, $btn-border-radius-sm)
 
-  .btn + .btn
+  .btn + .btn,
+  .btn + .dropdown,
+  .dropdown + .btn,
     margin-left: 0.5em
 
   .btn-group .btn + .btn

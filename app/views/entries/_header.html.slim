@@ -1,0 +1,29 @@
+.row.actions.top.text-center
+  .col-sm.text-md-left
+    = render "search"
+
+  .col-sm.text-md-center
+    span.btn-group
+      = link_to_entries_filter(@filter, "all")
+      = link_to_entries_filter(@filter, "unread")
+      = link_to_entries_filter(@filter, "starred")
+
+  .col-sm.text-md-right
+    span.dropdown
+      button.btn.btn-sm.btn-outline-primary.dropdown-toggle type="button" data-toggle="dropdown"
+        = icon(:plus)
+        = " "
+        = ta(:add)
+      span.dropdown-menu
+        a.dropdown-item href=new_entry_path = ta(:add_entry)
+        a.dropdown-item href=search_settings_feeds_path = ta(:add_feed)
+
+    a.btn.btn-sm.btn-outline-primary(
+      href         = url_for(action: :mark_all_as_read, **@filter.to_h)
+      data-method  = "post"
+      data-confirm = ta(:confirm)
+      data-remote  = true
+    )
+      = icon(:check)
+      = " "
+      = ta(:mark_all_as_read)

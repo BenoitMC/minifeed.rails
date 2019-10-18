@@ -16,3 +16,6 @@ en:
     reorder: "Reorder"
     search: "Search"
     close: "Close"
+    add: "Add"
+    add_entry: "Add a bookmark"
+    add_feed: "Subscribe to a new feed"

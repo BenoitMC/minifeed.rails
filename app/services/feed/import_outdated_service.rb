@@ -1,4 +1,4 @@
-class Feed::ImportOutdatedService < Service
+class Feed::ImportOutdatedService < ApplicationService
   POOL = ThreadPool.new(Minifeed.config.autoimport_pool_size)
   private_constant :POOL
 

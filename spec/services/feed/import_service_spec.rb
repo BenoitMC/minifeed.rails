@@ -35,6 +35,7 @@ describe Feed::ImportService do
 
       entry = Entry.last_created
       expect(entry.user).to         eq feed.user
+      expect(entry.feed).to         eq feed
       expect(entry.name).to         eq "entry name"
       expect(entry.body).to         eq "entry content"
       expect(entry.external_id).to  eq "entry id"
