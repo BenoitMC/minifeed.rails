@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Entry::CreateFromUrlService do
-  let(:url) { "https://example.org/" }
+  let(:url) { "https://example.org/some/page?some=param" }
   let(:raw_html) { Rails.root.join("spec", "fixtures", "site.html").read }
   let(:user) { create(:user) }
   let(:instance) { described_class.new(url, user: user) }
@@ -40,6 +40,14 @@ describe Entry::CreateFromUrlService do
     it "should not duplicate entry" do
       expect { instance.call }.to change(Entry, :count).by(1)
       expect { instance.call }.to_not change(Entry, :count)
+    end
+
+    it "should not crash if url is not html" do
+      raw_html = Rails.root.join("spec", "fixtures", "binary.bin").read
+      allow(HttpClient).to receive(:request).with(:get, url).and_return(raw_html)
+      expect { instance.call }.to change(Entry, :count).by(1)
+      entry = Entry.last_created
+      expect(entry.name).to eq "https://example.org/some/page"
     end
   end # describe "in fake life"
 end

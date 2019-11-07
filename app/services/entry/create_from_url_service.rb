@@ -25,6 +25,14 @@ class Entry::CreateFromUrlService < ApplicationService
   private
 
   def entry_name
+    html_title || sanitized_url
+  end
+
+  def sanitized_url
+    url.split("?").first
+  end
+
+  def html_title
     sanitize html.css("title").text
   end
 
