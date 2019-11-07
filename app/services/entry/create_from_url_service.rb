@@ -7,6 +7,8 @@ class Entry::CreateFromUrlService < ApplicationService
   end
 
   def call
+    return false if invalid_url?
+
     entry = Entry.find_or_initialize_by(user: user, feed: nil, external_id: url)
 
     entry.attributes = {
@@ -23,6 +25,14 @@ class Entry::CreateFromUrlService < ApplicationService
   end
 
   private
+
+  def invalid_url?
+    !valid_url?
+  end
+
+  def valid_url?
+    URI.parse(url).is_a?(URI::HTTP)
+  end
 
   def entry_name
     html_title || sanitized_url
@@ -70,6 +80,8 @@ class Entry::CreateFromUrlService < ApplicationService
 
   def raw_html
     @raw_html ||= HttpClient.request(:get, url).to_s
+  rescue HttpClient::Error
+    ""
   end
 
   def html

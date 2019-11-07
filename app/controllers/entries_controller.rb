@@ -16,10 +16,9 @@ class EntriesController < ApplicationController
   def create
     new
 
-    begin
-      Entry::CreateFromUrlService.call(params[:url], user: current_user)
+    if Entry::CreateFromUrlService.call(params[:url], user: current_user)
       flash.notice = t(".messages.ok")
-    rescue HttpClient::Error
+    else
       flash.alert = t(".messages.error")
     end
 

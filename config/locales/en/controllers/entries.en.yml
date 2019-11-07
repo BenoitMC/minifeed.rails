@@ -18,7 +18,7 @@ en:
     create:
       messages:
         ok: "Bookmark successfully created."
-        error: "An error occured while trying to read this URL."
+        error: "This URL is invalid."
 
     iframe:
       not_allowed: "Error : this website does not allow to be displayed in frames."

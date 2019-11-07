@@ -5,6 +5,7 @@ describe Entry::CreateFromUrlService do
   let(:raw_html) { fixture_content("site.html") }
   let(:user) { create(:user) }
   let(:instance) { described_class.new(url, user: user) }
+  let(:invalid_url) { "ftp://invalid" }
 
   describe "in fake life" do
     before do
@@ -13,7 +14,10 @@ describe Entry::CreateFromUrlService do
     end
 
     it "should create entry from site html" do
-      expect { instance.call }.to change(Entry, :count).by(1)
+      expect {
+        expect(instance.call).to eq true
+      }.to change(Entry, :count).by(1)
+
       entry = Entry.last_created
       expect(entry.user).to eq user
       expect(entry.feed).to eq nil
@@ -42,9 +46,23 @@ describe Entry::CreateFromUrlService do
       expect { instance.call }.to_not change(Entry, :count)
     end
 
+    it "should not create entry on invalid url" do
+      expect {
+        result = described_class.call(invalid_url, user: user)
+        expect(result).to eq false
+      }.to_not change(Entry, :count)
+    end
+
     it "should not crash if url is not html" do
       raw_html = fixture_content("binary.bin")
       allow(HttpClient).to receive(:request).with(:get, url).and_return(raw_html)
+      expect { instance.call }.to change(Entry, :count).by(1)
+      entry = Entry.last_created
+      expect(entry.name).to eq "https://example.org/some/page"
+    end
+
+    it "should not crash on http errors" do
+      allow(HttpClient).to receive(:request).with(:get, url).and_raise(HTTP::Error)
       expect { instance.call }.to change(Entry, :count).by(1)
       entry = Entry.last_created
       expect(entry.name).to eq "https://example.org/some/page"

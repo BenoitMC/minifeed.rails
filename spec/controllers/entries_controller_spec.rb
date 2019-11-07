@@ -27,8 +27,8 @@ describe EntriesController do
       expect(flash.notice).to be_present
     end
 
-    it "should handle http errors" do
-      expect(Entry::CreateFromUrlService).to receive(:call).and_raise(HTTP::Error)
+    it "should handle invalid urls" do
+      expect(Entry::CreateFromUrlService).to receive(:call).and_return(false)
       get :create, params: {url: url}
       expect(response).to be_redirect
       expect(flash.alert).to be_present
