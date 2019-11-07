@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       root "home#home"
       resources :user_sessions, only: [:create]
-      resources :entries, only: [:index, :update] do
+      resources :entries, only: [:index, :create, :update] do
         post :"mark-all-as-read", on: :collection
       end
     end

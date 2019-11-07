@@ -3,15 +3,23 @@ require "rails_helper"
 describe Api::V1::EntriesController, type: :routing do
   describe "routing" do
     it "#index" do
-      expect(get "/entries").to route_to("entries#index")
+      expect(get "/api/v1/entries").to \
+        route_to("api/v1/entries#index")
+    end
+
+    it "#create" do
+      expect(post "/api/v1/entries").to \
+        route_to("api/v1/entries#create")
     end
 
     it "#update" do
-      expect(patch "/entries/123").to route_to("entries#update", id: "123")
+      expect(patch "/api/v1/entries/123").to \
+        route_to("api/v1/entries#update", id: "123")
     end
 
     it "#mark_all_as_read" do
-      expect(post "/entries/mark-all-as-read").to route_to("entries#mark_all_as_read")
+      expect(post "/api/v1/entries/mark-all-as-read").to \
+        route_to("api/v1/entries#mark_all_as_read")
     end
   end
 end

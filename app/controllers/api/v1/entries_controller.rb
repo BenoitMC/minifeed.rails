@@ -9,6 +9,14 @@ class Api::V1::EntriesController < Api::V1::ApplicationController
     render_json entries: @entries, is_last_page: @entries.last_page?
   end
 
+  def create
+    skip_policy_scope
+
+    Entry::CreateFromUrlService.call(params[:url], user: current_user)
+
+    render_json
+  end
+
   def update
     if @entry.update(entry_params)
       render_json entry: @entry

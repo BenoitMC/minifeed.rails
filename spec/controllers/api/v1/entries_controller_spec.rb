@@ -38,6 +38,15 @@ describe Api::V1::EntriesController do
     end
   end # describe "#index"
 
+  describe "#create" do
+    it "should create entry" do
+      url = "https://example.org/"
+      expect(Entry::CreateFromUrlService).to receive(:call).and_return(true)
+      get :create, params: {url: url}
+      expect(response).to be_ok
+    end
+  end # describe "#create"
+
   describe "#update" do
     it "should should return entry" do
       entry = create(:entry, user: user)
