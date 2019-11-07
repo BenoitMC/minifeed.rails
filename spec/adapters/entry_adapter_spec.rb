@@ -100,7 +100,7 @@ describe EntryAdapter do
 
   describe "with real feeds" do
     def parse_feed(file)
-      raw_rss_feed = Rails.root.join("spec", "fixtures", file).read
+      raw_rss_feed = fixture_content(file)
       remote_entries = Feedjira.parse(raw_rss_feed).entries
       expect(remote_entries.length).to eq 1
       described_class.new(remote_entries.first)

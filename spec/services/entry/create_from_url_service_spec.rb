@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Entry::CreateFromUrlService do
   let(:url) { "https://example.org/some/page?some=param" }
-  let(:raw_html) { Rails.root.join("spec", "fixtures", "site.html").read }
+  let(:raw_html) { fixture_content("site.html") }
   let(:user) { create(:user) }
   let(:instance) { described_class.new(url, user: user) }
 
@@ -43,7 +43,7 @@ describe Entry::CreateFromUrlService do
     end
 
     it "should not crash if url is not html" do
-      raw_html = Rails.root.join("spec", "fixtures", "binary.bin").read
+      raw_html = fixture_content("binary.bin")
       allow(HttpClient).to receive(:request).with(:get, url).and_return(raw_html)
       expect { instance.call }.to change(Entry, :count).by(1)
       entry = Entry.last_created

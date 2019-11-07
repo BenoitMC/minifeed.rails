@@ -16,7 +16,7 @@ describe Settings::OpmlImportsController do
 
   describe "#create" do
     let(:uploaded_file) {
-      path = Rails.root.join("spec", "fixtures", "opml.inoreader.xml").to_s
+      path = fixture_file_path("opml.inoreader.xml")
       Rack::Test::UploadedFile.new(path, "text/xml")
     }
 

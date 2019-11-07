@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Entry::GenerateReaderContentService do
   it "should keep body only and remove unsafe tags" do
-    raw_html = Rails.root.join("spec", "fixtures", "site.html").read
+    raw_html = fixture_content("site.html")
     expect(HttpClient).to receive(:request).and_return(raw_html)
 
     html = described_class.call(Entry.new)
