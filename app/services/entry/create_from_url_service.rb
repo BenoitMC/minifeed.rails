@@ -25,7 +25,7 @@ class Entry::CreateFromUrlService < ApplicationService
   private
 
   def entry_name
-    html.css("title").text.presence
+    sanitize html.css("title").text
   end
 
   def entry_body
@@ -53,11 +53,11 @@ class Entry::CreateFromUrlService < ApplicationService
   end
 
   def get_meta_tag(name)
-    html.css("meta[name=#{name}]").attr("content").presence
+    sanitize html.css("meta[name=#{name}]").attr("content")
   end
 
   def get_og_tag(name)
-    html.css("meta[property='og:#{name}']").attr("content").presence
+    sanitize html.css("meta[property='og:#{name}']").attr("content")
   end
 
   def raw_html
@@ -66,5 +66,9 @@ class Entry::CreateFromUrlService < ApplicationService
 
   def html
     @html ||= Nokogiri::HTML(raw_html)
+  end
+
+  def sanitize(text)
+    text.to_s.strip.presence
   end
 end
