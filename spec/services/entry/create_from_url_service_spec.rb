@@ -53,6 +53,13 @@ describe Entry::CreateFromUrlService do
       }.to_not change(Entry, :count)
     end
 
+    it "should not create entry on nil url" do
+      expect {
+        result = described_class.call(nil, user: user)
+        expect(result).to eq false
+      }.to_not change(Entry, :count)
+    end
+
     it "should not crash if url is not html" do
       raw_html = fixture_content("binary.bin")
       allow(HttpClient).to receive(:request).with(:get, url).and_return(raw_html)

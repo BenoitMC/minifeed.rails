@@ -31,7 +31,7 @@ class Entry::CreateFromUrlService < ApplicationService
   end
 
   def valid_url?
-    URI.parse(url).is_a?(URI::HTTP)
+    URI.parse(url.to_s).is_a?(URI::HTTP)
   end
 
   def entry_name
