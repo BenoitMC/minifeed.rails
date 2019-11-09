@@ -12,9 +12,11 @@ class Api::V1::EntriesController < Api::V1::ApplicationController
   def create
     skip_policy_scope
 
-    Entry::CreateFromUrlService.call(params[:url], user: current_user)
-
-    render_json
+    if Entry::CreateFromUrlService.call(params[:url], user: current_user)
+      render_json
+    else
+      render_json_error t(".messages.error")
+    end
   end
 
   def update

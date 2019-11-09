@@ -1,0 +1,7 @@
+en:
+  api:
+    v1:
+      entries:
+        create:
+          messages:
+            error: "This URL is invalid."

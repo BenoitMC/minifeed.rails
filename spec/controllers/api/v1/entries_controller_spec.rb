@@ -41,9 +41,14 @@ describe Api::V1::EntriesController do
   describe "#create" do
     it "should create entry" do
       url = "https://example.org/"
-      expect(Entry::CreateFromUrlService).to receive(:call).and_return(true)
-      get :create, params: {url: url}
+      expect(Entry::CreateFromUrlService).to receive(:call).with(url, user: user).and_return(true)
+      post :create, params: {url: url}
       expect(response).to be_ok
+    end
+
+    it "should handle error" do
+      post :create
+      expect(response).to be_unprocessable
     end
   end # describe "#create"
 
