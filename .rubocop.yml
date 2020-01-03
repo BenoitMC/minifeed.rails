@@ -1,1 +1,1 @@
-inherit_from: http://rubocop.agilidee.com/0.73.0.yml
+inherit_from: http://rubocop.agilidee.com/0.78.0.yml
