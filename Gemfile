@@ -7,7 +7,7 @@ gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
 gem "rails", "~> 5.2.4"
 gem "agilidee-devise", ">= 1.1.2"
-gem "agilibox", "~> 1.9.3"
+gem "agilibox", "~> 1.9.4"
 
 gem "bootsnap", require: false
 gem "rufus-scheduler"
@@ -32,6 +32,7 @@ gem "bugsnag"
 gem "pg"
 gem "loofah"
 gem "http"
+gem "sprockets", "< 4"
 
 group :test do
   gem "minitest"
