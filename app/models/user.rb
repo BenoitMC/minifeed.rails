@@ -16,7 +16,5 @@ class User < ApplicationRecord
 
   has_secure_token :auth_token
 
-  def to_s
-    email
-  end
+  validates :name, presence: true
 end

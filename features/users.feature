@@ -10,6 +10,7 @@ Feature: Users
     And I click on "Create"
     And I click on "Save"
     Then I see ".has-error" element
+    And I fill in "user_name" with "Alice"
     And I fill in "user_email" with "alice@example.org"
     And I fill in "user_password" with "password"
     And I select "Yes" from "Is admin"

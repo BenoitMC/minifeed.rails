@@ -1,7 +1,10 @@
 .card.card-default: table#users.default
   thead
     tr
-      th.user-email
+      th.user-name
+         = User.t(:name)
+
+      th.user-email.hidden-sm
          = User.t(:email)
 
       th.user-categories_count.hidden-sm
@@ -19,7 +22,10 @@
   tbody
     - @users.each do |user|
       tr.user
-        td.user-email
+        td.user-name
+          = user.name
+
+        td.user-email.hidden-sm
           = user.email
 
         td.user-categories_count.hidden-sm

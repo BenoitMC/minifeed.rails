@@ -5,7 +5,7 @@ class OpmlExportService < ApplicationService
     builder = Nokogiri::XML::Builder.new(encoding: "UTF-8") do |xml|
       xml.opml(version: "1.0") do
         xml.head do
-          xml.title "Minifeed OPML of #{user}"
+          xml.title "Minifeed OPML of #{user.email}"
         end
         xml.body do
           categories.each do |category|

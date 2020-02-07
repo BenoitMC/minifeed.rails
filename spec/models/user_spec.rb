@@ -4,6 +4,8 @@ describe User do
   it { is_expected.to have_many(:categories).dependent(:destroy) }
   it { is_expected.to have_many(:feeds).dependent(:destroy) }
 
+  it { is_expected.to validate_presence_of(:name) }
+
   it "should not be registerable" do
     expect(User.devise_modules).to_not include :registerable
   end

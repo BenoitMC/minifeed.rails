@@ -1,5 +1,5 @@
 if User.all.empty?
-  user = User.create!(email: "demo@example.org", password: "password", is_admin: true)
+  user = User.create!(name: "Demo", email: "demo@example.org", password: "password", is_admin: true)
 
   category1 = Category.create!(user: user, name: "Development")
   Feed.create!(user: user, category: category1, name: "Ruby", url: "https://www.ruby-lang.org/en/feeds/news.rss")

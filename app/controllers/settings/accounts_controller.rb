@@ -21,6 +21,7 @@ class Settings::AccountsController < ApplicationController
 
   def permitted_params
     [
+      :name,
       :email,
       :password,
     ]
