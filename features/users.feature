@@ -4,7 +4,8 @@ Feature: Users
     Given I am a signed in "admin"
 
   Scenario: Create user
-    When I click on "Settings"
+    When I click on "#user-nav" element
+    And I click on "Settings"
     And I click on "Manage users"
     Then I see 1 times ".user" element
     And I click on "Create"
@@ -19,7 +20,8 @@ Feature: Users
     And I see 2 times ".user" element
 
   Scenario: Update user
-    When I click on "Settings"
+    When I click on "#user-nav" element
+    And I click on "Settings"
     And I click on "Manage users"
     Then I do not see "new@example.org"
     And I click on "Update"

@@ -16,5 +16,5 @@ Then("I reorder elements") do
 end
 
 Then("I am signed in") do
-  expect(page).to have_selector "a[href*=sign_out]"
+  expect(page).to have_selector "#user-nav"
 end

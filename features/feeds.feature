@@ -5,7 +5,8 @@ Feature: Feeds
     And an existing category named "My Category"
 
   Scenario: Create a feed
-    When I click on "Settings"
+    When I click on "#user-nav" element
+    And I click on "Settings"
     And I click on "Manage feeds"
     And I click on "Create"
     And I fill in "url" with "https://www.ruby-lang.org/en/"
@@ -20,7 +21,8 @@ Feature: Feeds
 
   Scenario: Update a feed
     Given an existing feed named "My feed"
-    When I click on "Settings"
+    When I click on "#user-nav" element
+    And I click on "Settings"
     And I click on "Manage feeds"
     Then I see "My feed"
     When I click on "Update"
@@ -34,7 +36,8 @@ Feature: Feeds
 
   Scenario: Delete a feed
     Given an existing feed named "My feed"
-    When I click on "Settings"
+    When I click on "#user-nav" element
+    And I click on "Settings"
     And I click on "Manage feeds"
     Then I see "My feed"
     When I click on "Delete"
@@ -44,7 +47,8 @@ Feature: Feeds
   Scenario: Search a feed
     Given an existing feed named "ruby"
     And an existing feed named "rails"
-    When I click on "Settings"
+    When I click on "#user-nav" element
+    And I click on "Settings"
     And I click on "Manage feeds"
     Then I see "ruby"
     And I see "rails"

@@ -62,12 +62,21 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
           = " "
           = t("nav.keyboard_shortcuts")
 
-        li.nav-item: a.nav-link href=main_app.settings_root_path
-          = icon(:cog)
-          = " "
-          = t("nav.settings")
+        li.nav-item.dropdown#user-nav
+          a.nav-link href="#" data-toggle="dropdown"
+            = icon(:user)
+            = " "
+            = current_user
+            = " "
+            = icon(:caret_down)
 
-        li.nav-item: a.nav-link href=main_app.destroy_user_session_path data-method="delete"
-          = icon(:power_off)
-          = " "
-          = t("nav.sign_out")
+          .dropdown-menu.dropdown-menu-right
+            a.dropdown-item href=main_app.settings_root_path
+              = icon(:cog)
+              = " "
+              = t("nav.settings")
+
+            a.dropdown-item href=main_app.destroy_user_session_path data-method="delete" data-confirm=ta(:confirm)
+              = icon(:power_off)
+              = " "
+              = t("nav.sign_out")

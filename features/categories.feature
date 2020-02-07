@@ -4,7 +4,8 @@ Feature: Categories
     Given I am a signed in "user"
 
   Scenario: Create a category
-    When I click on "Settings"
+    When I click on "#user-nav" element
+    And I click on "Settings"
     And I click on "Manage categories"
     And I click on "Create"
     And I click on "Save"
@@ -16,7 +17,8 @@ Feature: Categories
 
   Scenario: Update a category
     Given an existing category named "hello"
-    When I click on "Settings"
+    When I click on "#user-nav" element
+    And I click on "Settings"
     And I click on "Manage categories"
     And I click on "Update"
     And I fill in "category_name" with " "
@@ -30,7 +32,8 @@ Feature: Categories
 
   Scenario: Delete a category
     Given an existing category named "hello"
-    When I click on "Settings"
+    When I click on "#user-nav" element
+    And I click on "Settings"
     And I click on "Manage categories"
     And I click on "Delete"
     Then I see "Category successfully delete"
@@ -39,7 +42,8 @@ Feature: Categories
   Scenario: Reorder categories
     Given an existing category named "hello"
     Given an existing category named "world"
-    When I click on "Settings"
+    When I click on "#user-nav" element
+    And I click on "Settings"
     And I click on "Manage categories"
     Then I see "hello" before "world"
     And I click on "Reorder"
