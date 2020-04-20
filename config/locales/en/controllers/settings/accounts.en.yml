@@ -2,7 +2,7 @@ en:
   settings:
     accounts:
       edit:
-        title: "Account informations"
+        title: "Account information"
 
       update:
         messages:

@@ -93,7 +93,7 @@ You can change some options using environment variables (copy `.env.example` to 
 
 
 
-## Requirements / Technical informations
+## Requirements / Technical information
 
 Minifeed have a very few dependencies :
 

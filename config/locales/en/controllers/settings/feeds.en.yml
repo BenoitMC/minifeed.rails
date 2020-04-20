@@ -11,7 +11,7 @@ en:
           error: "An error occured while trying to read this URL."
 
       form:
-        title: "Feed informations"
+        title: "Feed information"
         advanced_options: "Advanced options"
         errors:
           fetch: "The last %{count} fetches of this feed failed."

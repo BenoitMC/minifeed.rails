@@ -2,7 +2,7 @@ en:
   settings:
     users:
       form:
-        title: "User informations"
+        title: "User information"
 
       create:
         messages:
