@@ -60,7 +60,7 @@ describe EntriesController do
 
     it "should render errors message on http error" do
       expect(CheckFramePermissionService).to \
-        receive(:call) .and_raise(CheckFramePermissionService::Error)
+        receive(:call).and_raise(CheckFramePermissionService::Error)
 
       get :iframe, params: {id: entry}
       expect(response).to be_ok
