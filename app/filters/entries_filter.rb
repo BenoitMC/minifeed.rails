@@ -25,6 +25,6 @@ class EntriesFilter < ApplicationService
   end
 
   def to_h
-    [:category_id, :feed_id, :q, :type].map { |option| [option, public_send(option)] }.to_h
+    [:category_id, :feed_id, :q, :type].index_with { |option| public_send(option) }
   end
 end

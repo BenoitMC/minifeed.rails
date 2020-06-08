@@ -144,11 +144,13 @@ Feature: Entries
     And an existing entry
     When I go on the "entries" page
     And I click on the "category_hello" navigation item
-    Then I see ".entry" element
+    Then I see "#nav_category_hello.active" element
+    And I see ".entry" element
     When I click on "Mark all as read"
     Then I do not see ".entry" element
     When I click on the "category_world" navigation item
-    Then I see ".entry" element
+    Then I see "#nav_category_world.active" element
+    And I see ".entry" element
 
   Scenario: Entries pagination
     Given 250 existing entries
