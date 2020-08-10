@@ -42,6 +42,7 @@ group :test do
   gem "cucumber-rails", require: false
   gem "capybara"
   gem "cuprite"
+  gem "ferrum", "0.8"
   gem "spring-commands-rspec"
   gem "spring-commands-cucumber"
   gem "timecop"
