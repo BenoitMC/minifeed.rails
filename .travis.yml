@@ -15,6 +15,7 @@ addons:
   chrome: stable
 
 install:
+  - nvm install --lts
   - gem install bundler
   - bundle install -j 5
   - bundle exec rake db:create db:schema:load

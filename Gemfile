@@ -27,7 +27,7 @@ gem "pundit"
 gem "execjs"
 gem "autoprefixer-rails"
 gem "font-awesome-sass"
-gem "puma"
+gem "puma", "< 5"
 gem "bugsnag"
 gem "pg"
 gem "loofah"
@@ -67,7 +67,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "byebug"
   gem "rspec-rails" # must be in both environments for generators
-  gem "rubocop", "0.83.0", require: false
-  gem "rubocop-performance", "1.5.2", require: false
-  gem "rubocop-rails", "2.5.2", require: false
+  gem "rubocop", "0.91.0", require: false
+  gem "rubocop-performance", "1.8.0", require: false
+  gem "rubocop-rails", "2.8.1", require: false
 end

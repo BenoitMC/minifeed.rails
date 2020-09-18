@@ -17,6 +17,7 @@ class EntryAdapter < ApplicationAdapter
   attr_reader :original
 
   def initialize(original)
+    super()
     @original = original.tap(&:sanitize!)
   end
 

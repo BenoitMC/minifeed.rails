@@ -2,6 +2,8 @@ class Entry::CreateFromUrlService < ApplicationService
   attr_reader :url, :user
 
   def initialize(url, user:)
+    super()
+
     @url = url
     @user = user
   end

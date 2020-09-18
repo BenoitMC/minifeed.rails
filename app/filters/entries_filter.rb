@@ -2,6 +2,8 @@ class EntriesFilter < ApplicationService
   attr_reader :scope, :options, :type, :category_id, :feed_id, :q
 
   def initialize(scope, options = {})
+    super()
+
     @scope       = scope
     @type        = options[:type].presence || "unread"
     @category_id = options[:category_id].presence
