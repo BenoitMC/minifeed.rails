@@ -145,9 +145,9 @@ GEM
       cucumber-core (~> 8.0, >= 8.0.1)
       cucumber-cucumber-expressions (~> 10.3, >= 10.3.0)
       cucumber-messages (~> 13.0, >= 13.0.1)
-    cuprite (0.10)
+    cuprite (0.11)
       capybara (>= 2.1, < 4)
-      ferrum (~> 0.8.0)
+      ferrum (~> 0.9.0)
     database_cleaner (1.8.5)
     desktop_delivery (1.0.0)
       launchy
@@ -184,8 +184,8 @@ GEM
       sax-machine (>= 1.0)
     feedjira-youtube (0.3.0)
       feedjira
-    ferrum (0.8)
-      addressable (~> 2.6)
+    ferrum (0.9)
+      addressable (~> 2.5)
       cliver (~> 0.3)
       concurrent-ruby (~> 1.1)
       websocket-driver (>= 0.6, < 0.8)
@@ -471,7 +471,7 @@ DEPENDENCIES
   feedbag
   feedjira
   feedjira-youtube
-  ferrum (= 0.8)
+  ferrum
   font-awesome-sass
   http
   jquery-rails
@@ -508,7 +508,7 @@ DEPENDENCIES
   zonebie
 
 RUBY VERSION
-   ruby 2.6.6p146
+   ruby 2.7.2p137
 
 BUNDLED WITH
    2.1.4
