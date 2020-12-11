@@ -58,7 +58,7 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    agilibox (1.9.9)
+    agilibox (1.9.14)
       awesome_print
       nilify_blanks
       pry-rails
@@ -66,8 +66,11 @@ GEM
       tapenade
     agilidee-devise (1.1.2)
       devise
+    apparition (0.6.0)
+      capybara (~> 3.13, < 4)
+      websocket-driver (>= 0.6.5)
     ast (2.4.1)
-    autoprefixer-rails (10.0.3.0)
+    autoprefixer-rails (10.1.0.0)
       execjs
     awesome_print (1.8.0)
     bcrypt (3.1.16)
@@ -94,7 +97,6 @@ GEM
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
     choice (0.2.0)
-    cliver (0.3.2)
     codecov (0.2.12)
       json
       simplecov
@@ -145,9 +147,6 @@ GEM
       cucumber-core (~> 8.0, >= 8.0.1)
       cucumber-cucumber-expressions (~> 10.3, >= 10.3.0)
       cucumber-messages (~> 13.0, >= 13.0.1)
-    cuprite (0.11)
-      capybara (>= 2.1, < 4)
-      ferrum (~> 0.9.0)
     database_cleaner (1.8.5)
     desktop_delivery (1.0.0)
       launchy
@@ -184,11 +183,6 @@ GEM
       sax-machine (>= 1.0)
     feedjira-youtube (0.3.0)
       feedjira
-    ferrum (0.9)
-      addressable (~> 2.5)
-      cliver (~> 0.3)
-      concurrent-ruby (~> 1.1)
-      websocket-driver (>= 0.6, < 0.8)
     ffi (1.13.1)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
@@ -449,8 +443,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  agilibox (~> 1.9.9)
+  agilibox (< 2)
   agilidee-devise (>= 1.1.2)
+  apparition
   autoprefixer-rails
   better_errors
   bootsnap
@@ -461,7 +456,6 @@ DEPENDENCIES
   codecov
   coffee-rails
   cucumber-rails
-  cuprite
   database_cleaner
   desktop_delivery
   dotenv-rails
@@ -471,7 +465,6 @@ DEPENDENCIES
   feedbag
   feedjira
   feedjira-youtube
-  ferrum
   font-awesome-sass
   http
   jquery-rails

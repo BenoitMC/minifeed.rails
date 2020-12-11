@@ -2,7 +2,7 @@ class Api::V1::EntriesController < Api::V1::ApplicationController
   before_action :set_entry
 
   def index
-    @entries = EntriesFilter.call(scope, params)
+    @entries = EntriesFilter.call(scope, params.permit!)
       .preload(feed: :category)
       .page(params[:page]).per(Minifeed.config.entries_per_page)
 
@@ -28,7 +28,7 @@ class Api::V1::EntriesController < Api::V1::ApplicationController
   end
 
   def mark_all_as_read
-    EntriesFilter.call(scope, params)
+    EntriesFilter.call(scope, params.permit!)
       .unread
       .update_all(is_read: true) # rubocop:disable Rails/SkipsModelValidations
 

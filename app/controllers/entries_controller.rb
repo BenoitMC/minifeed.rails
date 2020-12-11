@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
   before_action :set_entry
 
   def index
-    @filter = EntriesFilter.new(scope, params)
+    @filter = EntriesFilter.new(scope, params.permit!)
 
     @entries = @filter.call
       .preload(feed: :category)
@@ -56,7 +56,7 @@ class EntriesController < ApplicationController
   end
 
   def mark_all_as_read
-    @filter = EntriesFilter.new(scope, params)
+    @filter = EntriesFilter.new(scope, params.permit!)
     @entries = @filter.call
     @entries.unread.update_all(is_read: true) # rubocop:disable Rails/SkipsModelValidations
 
