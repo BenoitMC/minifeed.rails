@@ -16,6 +16,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:9.4
 
     steps:
     - uses: actions/checkout@v2
