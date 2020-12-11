@@ -3,7 +3,7 @@ class Feed::SearchService < ApplicationService
 
   Error = Class.new(StandardError)
 
-  initialize_with :url
+  attr_reader_initialize :url
 
   def call
     results

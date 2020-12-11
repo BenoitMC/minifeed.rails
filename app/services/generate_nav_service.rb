@@ -1,5 +1,5 @@
 class GenerateNavService < ApplicationService
-  initialize_with :user
+  attr_reader_initialize :user
 
   def call
     nav = {}

@@ -33,6 +33,7 @@ gem "pg"
 gem "loofah"
 gem "http"
 gem "sprockets", "< 4"
+gem "attr_extras", require: "attr_extras/explicit"
 
 group :test do
   gem "minitest"

@@ -14,11 +14,8 @@ class EntryAdapter < ApplicationAdapter
 
   private_constant :CLASSES_AND_IDS_SCRUBBER
 
-  attr_reader :original
-
   def initialize(original)
-    super()
-    @original = original.tap(&:sanitize!)
+    super original.tap(&:sanitize!)
   end
 
   def external_id

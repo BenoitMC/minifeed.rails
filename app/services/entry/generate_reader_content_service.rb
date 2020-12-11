@@ -1,5 +1,5 @@
 class Entry::GenerateReaderContentService < ApplicationService
-  initialize_with :entry
+  attr_reader_initialize :entry
 
   def call
     html = HttpClient.request(:get, entry.url).to_s

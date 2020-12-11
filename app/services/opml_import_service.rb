@@ -1,5 +1,5 @@
 class OpmlImportService < ApplicationService
-  initialize_with :user, :raw_xml
+  attr_reader_initialize :user, :raw_xml
 
   def call
     xml.css("body > outline").each do |outline|

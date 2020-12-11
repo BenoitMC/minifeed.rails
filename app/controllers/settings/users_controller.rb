@@ -10,7 +10,7 @@ class Settings::UsersController < ApplicationController
 
   def new
     @user = scope.new(user_params)
-    @user.password ||= Agilibox::TokenGenerator.call(size: 8)
+    @user.password ||= SecureRandom.alphanumeric(8)
   end
 
   def create

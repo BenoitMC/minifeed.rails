@@ -1,5 +1,5 @@
 class OpmlExportService < ApplicationService
-  initialize_with :user
+  attr_reader_initialize :user
 
   def call
     builder = Nokogiri::XML::Builder.new(encoding: "UTF-8") do |xml|

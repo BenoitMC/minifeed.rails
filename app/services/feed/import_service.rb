@@ -1,5 +1,5 @@
 class Feed::ImportService < ApplicationService
-  initialize_with :feed
+  attr_reader_initialize :feed
 
   def call
     remote_entries.each do |remote_entry|

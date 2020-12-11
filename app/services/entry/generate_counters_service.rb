@@ -1,5 +1,5 @@
 class Entry::GenerateCountersService < ApplicationService
-  initialize_with :user
+  attr_reader_initialize :user
 
   def call
     counters = Hash.new(0)
