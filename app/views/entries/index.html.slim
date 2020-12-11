@@ -16,7 +16,7 @@ ul.list-group#entries-list
         = entry.name
       - if entry.feed.present?
         = " "
-        span.entry-feed == entry.feed
+        a.entry-feed href=entries_path_for(@filter, category_id: entry.feed.category_id, feed_id: entry.feed_id) = entry.feed
       = " "
       span.entry-published_at = time_ago_in_words(entry.published_at)
 
