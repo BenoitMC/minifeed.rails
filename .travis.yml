@@ -21,6 +21,6 @@ install:
   - bundle exec rake db:create db:schema:load
 
 script:
+  - bundle exec rubocop
   - bundle exec rspec
   - bundle exec cucumber
-  - bundle exec rubocop
