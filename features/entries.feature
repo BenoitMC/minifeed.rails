@@ -58,16 +58,16 @@ Feature: Entries
   Scenario: Open entry url in new tab
     Given an existing entry
     And this existing entry "name" is "Example entry"
-    And this existing entry "url" is "http://example.org/"
+    And this existing entry "url" is "/tests.html"
     When I go on the "entries" page
     And I click on "Example entry"
     And I click on ".entry-external_link" element
-    Then I see "Example Domain" in a new tab
+    Then I see "Hello World" in a new tab
 
   Scenario: Open entry url in modal
     Given an existing entry
     And this existing entry "name" is "Example entry"
-    And this existing entry "url" is "http://example.org/"
+    And this existing entry "url" is "/tests.html"
     When I go on the "entries" page
     And I click on "Example entry"
     And I click on ".entry-internal_link" element
@@ -77,7 +77,7 @@ Feature: Entries
   Scenario: Reader mode in modal
     Given an existing entry
     And this existing entry "name" is "Example entry"
-    And this existing entry "url" is "http://example.org/"
+    And this existing entry "url" is "/tests.html"
     When I go on the "entries" page
     And I click on "Example entry"
     And I click on ".entry-reader_link" element
@@ -87,11 +87,11 @@ Feature: Entries
   Scenario: Open entry body links in new page
     Given an existing entry
     And this existing entry "name" is "Example entry"
-    And this existing entry "body" is "<a href='http://example.org/'>entry body link</a>"
+    And this existing entry "body" is "<a href='/tests.html'>entry body link</a>"
     When I go on the "entries" page
     And I click on "Example entry"
     And I click on "entry body link"
-    Then I see "Example Domain" in a new tab
+    Then I see "Hello World" in a new tab
 
   Scenario: Set entry as read/unread
     Given an existing entry

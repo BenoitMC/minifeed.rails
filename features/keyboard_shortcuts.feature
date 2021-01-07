@@ -82,16 +82,16 @@ Feature: Keyboard shortcuts
   Scenario: Open entry url in new tab
     Given an existing entry
     And this existing entry "name" is "Example entry"
-    And this existing entry "url" is "http://example.org/"
+    And this existing entry "url" is "/tests.html"
     When I go on the "entries" page
     And I click on "Example entry"
     And I press key "o"
-    Then I see "Example Domain" in a new tab
+    Then I see "Hello World" in a new tab
 
   Scenario: Open entry url in modal
     Given an existing entry
     And this existing entry "name" is "Example entry"
-    And this existing entry "url" is "http://example.org/"
+    And this existing entry "url" is "/tests.html"
     When I go on the "entries" page
     And I click on "Example entry"
     And I press key "m"
@@ -101,7 +101,7 @@ Feature: Keyboard shortcuts
   Scenario: Reader mode in modal
     Given an existing entry
     And this existing entry "name" is "Example entry"
-    And this existing entry "url" is "http://example.org/"
+    And this existing entry "url" is "/tests.html"
     When I go on the "entries" page
     And I click on "Example entry"
     And I press key "p"

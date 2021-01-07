@@ -1,6 +1,5 @@
 Then("I see {string} in a new tab") do |text|
-  sleep 1
-  expect(windows.count).to be > 1
+  wait_for { windows.count }.to be > 1
   switch_to_window windows.last
   expect(page).to have_content(text)
 end
