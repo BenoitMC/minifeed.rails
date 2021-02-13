@@ -2,7 +2,7 @@ class EntryAdapter < ApplicationAdapter
   CLASSES_AND_IDS_SCRUBBER = Loofah::Scrubber.new do |node|
     if node.attributes["class"].present?
       node.attributes["class"].value = node.attributes["class"].value.to_s
-        .split(" ")
+        .split
         .map { |e| "x-#{e}" }
         .join(" ")
     end

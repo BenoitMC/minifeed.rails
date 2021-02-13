@@ -11,5 +11,5 @@ end
 require "cucumber/rails"
 require "agilibox/cucumber_config"
 Agilibox::CucumberConfig.require_all_helpers!
-Agilibox::CucumberConfig.require_apparition!
+Agilibox::CucumberConfig.require_cuprite!
 Agilibox::CucumberConfig.require_common_steps!
