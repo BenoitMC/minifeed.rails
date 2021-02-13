@@ -34,6 +34,7 @@ gem "loofah"
 gem "http"
 gem "sprockets", "< 4"
 gem "attr_extras", require: "attr_extras/explicit"
+gem "goldiloader"
 
 group :test do
   gem "minitest"

@@ -16,7 +16,6 @@ class Feed::ImportOutdatedService < ApplicationService
     Feed
       .where("last_import_at IS NULL OR last_import_at <= ?", max_datetime)
       .reorder(Arel.sql "last_import_at IS NOT NULL ASC, last_import_at ASC")
-      .preload(:user, :category)
   end
 
   private

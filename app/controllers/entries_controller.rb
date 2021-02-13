@@ -5,7 +5,6 @@ class EntriesController < ApplicationController
     @filter = EntriesFilter.new(scope, params.permit!)
 
     @entries = @filter.call
-      .preload(feed: :category)
       .page(params[:page]).per(Minifeed.config.entries_per_page)
   end
 

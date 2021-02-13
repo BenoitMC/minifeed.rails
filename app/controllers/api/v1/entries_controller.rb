@@ -3,7 +3,6 @@ class Api::V1::EntriesController < Api::V1::ApplicationController
 
   def index
     @entries = EntriesFilter.call(scope, params.permit!)
-      .preload(feed: :category)
       .page(params[:page]).per(Minifeed.config.entries_per_page)
 
     render_json entries: @entries, is_last_page: @entries.last_page?
