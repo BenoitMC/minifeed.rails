@@ -7,7 +7,7 @@ Rails.application.config.after_initialize do
 end
 
 if Rails.env.test? || Rails.env.development?
-  Rails.application.config.action_view.raise_on_missing_translations = true
+  Rails.application.config.i18n.raise_on_missing_translations = true
   I18n.exception_handler = -> (exception, *) { raise exception }
   Agilibox::ModelI18n.raise_on_missing_translations = true
 end

@@ -5,7 +5,7 @@ ruby File.read(File.join(__dir__, ".ruby-version"))
 
 gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
-gem "rails", "~> 6.0.3"
+gem "rails", "~> 6.1.0"
 gem "agilidee-devise", ">= 1.1.2"
 gem "agilibox", "< 2"
 
@@ -41,7 +41,7 @@ group :test do
   gem "rails-controller-testing"
   gem "shoulda-matchers"
   gem "cucumber-rails", require: false
-  gem "capybara"
+  gem "capybara", "3.34.0"
   gem "apparition"
   gem "spring-commands-rspec"
   gem "spring-commands-cucumber"

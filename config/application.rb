@@ -1,6 +1,6 @@
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails/all"
 
 require_relative "../lib/ext/rails"
 require_relative "../lib/minifeed/config.rb"
@@ -13,12 +13,7 @@ Bundler.require(*Rails.groups)
 module Minifeed
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
-
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
+    config.load_defaults 6.1
 
     config.autoloader = :classic
 
