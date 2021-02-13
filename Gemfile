@@ -42,7 +42,7 @@ group :test do
   gem "rails-controller-testing"
   gem "shoulda-matchers"
   gem "cucumber-rails", require: false
-  gem "capybara", "3.34.0"
+  gem "capybara"
   gem "cuprite"
   gem "spring-commands-rspec"
   gem "spring-commands-cucumber"
