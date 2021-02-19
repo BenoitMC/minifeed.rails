@@ -32,7 +32,7 @@ gem "bugsnag"
 gem "pg"
 gem "loofah"
 gem "http"
-gem "sprockets", "< 4"
+gem "sprockets"
 gem "attr_extras", require: "attr_extras/explicit"
 gem "goldiloader"
 
