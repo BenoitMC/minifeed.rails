@@ -4,7 +4,6 @@
 
   close: ->
     $("#modal").modal("hide")
-    $("#modal .modal-body").html("")
 
   openUrl: (url) ->
     $("#modal .modal-body").load(url)
@@ -13,3 +12,6 @@
 $(document).on "click", ".modal-link", (e) ->
   e.preventDefault()
   modal.openUrl(this.href)
+
+$(document).on "hidden.bs.modal", ".modal", ->
+  $(this).find(".modal-body").html("")
