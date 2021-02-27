@@ -38,9 +38,10 @@ $(document).on "click", ".entry-body a", ->
   this.target = "_blank"
 
 $(document).on "change", "#entry > form", ->
-  $(this).submit()
+  Rails.fire(this, "submit")
 
-$(document).on "ajax:complete", "#entry > form", (event, xhr) ->
+$(document).on "ajax:complete", "#entry > form", (event) ->
+  xhr = event.detail[0]
   $data = $("<div>#{xhr.responseText}</div>")
   $("#entry .entry-header").replaceWith $data.find("#entry .entry-header")
   $data.find("script").map -> eval(this.innerHTML)

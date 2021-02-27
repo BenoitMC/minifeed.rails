@@ -1,4 +1,4 @@
-#entry = form_for @entry, remote: true do |f|
+#entry = form_with model: @entry, local: false do |f|
   .entry-header
     h1.entry-name = @entry.name
 
