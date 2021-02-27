@@ -23,3 +23,8 @@ html lang=I18n.locale
     main#main.container-fluid
       = render "layouts/flash"
       == yield
+
+    #modal.modal
+      .modal-dialog style="max-width:980px"
+        .modal-content.border-0.rounded-0
+          .modal-body.p-4

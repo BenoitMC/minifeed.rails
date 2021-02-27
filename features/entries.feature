@@ -127,7 +127,7 @@ Feature: Entries
     When I go on the "entries" page
     Then I do not see ".entry.is_read" element
     When I click on "Example entry"
-    And I click on "#modal-close" element
+    And I press key "q"
     Then I see ".entry.is_read" element
 
   Scenario: Mark all as read global

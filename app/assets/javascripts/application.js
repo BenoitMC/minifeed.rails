@@ -5,5 +5,4 @@
 //= require mousetrap
 //= require Readability
 //= require Sortable
-//= require agilibox/modals
 //= require_tree .
