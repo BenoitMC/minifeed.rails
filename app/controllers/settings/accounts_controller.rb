@@ -13,7 +13,7 @@ class Settings::AccountsController < ApplicationController
       flash.notice = t(".messages.ok")
       redirect_to main_app.settings_root_path
     else
-      render :edit
+      render_error :edit
     end
   end
 

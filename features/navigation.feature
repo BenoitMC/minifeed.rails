@@ -7,7 +7,6 @@ Feature: Navigation
     Given an existing category named "hello"
     And an existing category named "world"
     When I go on the "entries" page
-    When I click on the "all_entries" navigation item
     Then active navigation item is "all_entries"
     When I click on the "starred" navigation item
     Then active navigation item is "starred"

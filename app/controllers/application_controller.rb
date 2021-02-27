@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
     head :not_acceptable
   end
 
+  def render_error(template)
+    render template, status: :unprocessable_entity
+  end
+
   def render_invalid_authenticity_token
     flash.alert = t("errors.invalid_authenticity_token")
     redirect_to main_app.root_path

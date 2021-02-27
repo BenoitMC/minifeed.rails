@@ -15,7 +15,7 @@ class Settings::CategoriesController < ApplicationController
       flash.notice = t(".messages.ok")
       redirect_to back_url
     else
-      render :new
+      render_error :new
     end
   end
 
@@ -31,7 +31,7 @@ class Settings::CategoriesController < ApplicationController
       flash.notice = t(".messages.ok")
       redirect_to back_url
     else
-      render :edit
+      render_error :edit
     end
   end
 
