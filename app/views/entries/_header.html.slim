@@ -1,5 +1,5 @@
 .row.actions.top.text-center
-  .col-sm.text-md-left
+  .col-sm.text-md-start
     = render "search"
 
   .col-sm.text-md-center
@@ -8,9 +8,9 @@
       = link_to_entries_filter(@filter, "unread")
       = link_to_entries_filter(@filter, "starred")
 
-  .col-sm.text-md-right
+  .col-sm.text-md-end
     span.dropdown
-      button.btn.btn-sm.btn-outline-primary.dropdown-toggle type="button" data-toggle="dropdown"
+      button.btn.btn-sm.btn-outline-primary.dropdown-toggle type="button" data-bs-toggle="dropdown"
         = icon(:plus)
         = " "
         = ta(:add)

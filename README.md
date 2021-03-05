@@ -108,7 +108,7 @@ So it has :
 - No file storage
 - No extra process for running jobs
 - No blockchain
-- No 3 weeks old JS framework (just a few lines of good old jQuery)
+- No 3 weeks old JS framework
 
 By default (it can be changed in `config/minifeed.rb`) feeds are imported in background of the server process
 using [rufus-scheduler](https://github.com/jmettraux/rufus-scheduler)

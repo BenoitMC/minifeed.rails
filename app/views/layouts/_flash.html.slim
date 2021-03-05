@@ -1,9 +1,18 @@
-#flash
-  - flash.map do |type, message|
-    - type = "success" if type == "notice"
-    - type = "danger"  if type == "alert"
+- if flash.any?
+  #flash
+    - flash.map do |type, message|
+      - type = "success" if type == "notice"
+      - type = "danger"  if type == "alert"
 
-    .alert class="alert-#{type}"
-      = message
-      button.close data-dismiss="alert" aria-label=ta(:close) title=ta(:close)
-        = "×"
+      .toast.bg-white class="toast-#{type} text-#{type} border-#{type}"
+        .toast-body
+          button.btn-close.float-end data-bs-dismiss="toast" aria-label=ta(:close) title=ta(:close)
+          = icon(:check) if type == "success"
+          = icon(:exclamation_triangle) if type == "danger"
+          = " "
+          = message
+
+  javascript:
+    findAll("#flash .toast").forEach(el =>
+      (new bootstrap.Toast(el)).show()
+    )

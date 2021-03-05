@@ -10,14 +10,16 @@ html lang=I18n.locale
     = javascript_include_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "turbo", type: "module"
     - if Rails.env.test?
-      coffee:
-        jQuery.fx.off = true
-        @alert = -> true
-        @confirm = -> true
+      javascript:
+        alert = confirm = () => true
 
     = csrf_meta_tags
 
-  body data-controller=params[:controller] data-action=params[:action]
+  body(
+    data-controller = params[:controller]
+    data-action = params[:action]
+    data-turbo = ("false" if params[:controller].start_with?("devise"))
+  )
     = render "layouts/header"
 
     main#main.container-fluid
@@ -28,3 +30,4 @@ html lang=I18n.locale
       .modal-dialog style="max-width:980px"
         .modal-content.border-0.rounded-0
           .modal-body.p-4
+          button.btn-close type="button" data-bs-dismiss="modal" style="position:absolute; top:10px; right:10px"

@@ -122,4 +122,5 @@ end
 Rails.application.configure do
   config.log_level = :warn
   config.active_job.queue_name_prefix = Rails.app_env_id
+  config.assets.js_compressor = Uglifier.new(harmony: true)
 end

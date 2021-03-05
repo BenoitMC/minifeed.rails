@@ -16,7 +16,7 @@ Feature: Users
     And I fill in "user_password" with "password"
     And I select "Yes" from "Is admin"
     And I click on "Save"
-    Then I see ".alert-success" element
+    Then I see ".toast-success" element
     And I see 2 times ".user" element
 
   Scenario: Update user
@@ -31,6 +31,6 @@ Feature: Users
     When I fill in "user_email" with "new@example.org"
     When I fill in "user_password" with "new_password"
     And I click on "Save"
-    Then I see ".alert-success" element
+    Then I see ".toast-success" element
     And I am signed in
     And I see "new@example.org"

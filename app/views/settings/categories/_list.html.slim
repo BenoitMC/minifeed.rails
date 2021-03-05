@@ -25,7 +25,7 @@ p.actions.top
       = render "form", f: f
 
 - if action_name != "index"
-  coffee:
-    $(".actions.top .btn").addClass("disabled")
-    $("#categories tr.category:not(.form) .btn").addClass("disabled")
-    $("#category_name").focus()
+  javascript:
+    findAll(".actions.top .btn, #categories tr.category:not(.form) .btn")
+      .forEach(e => e.classList.add("disabled"))
+    find("#category_name")?.focus()

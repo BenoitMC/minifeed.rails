@@ -153,11 +153,11 @@ Feature: Entries
     And I see ".entry" element
 
   Scenario: Entries pagination
-    Given 250 existing entries
+    Given 25 existing entries
     When I go on the "entries" page
-    Then I see 100 times ".entry" element
+    Then I see 10 times ".entry" element
     When I click on "Load more entries"
-    Then I see 200 times ".entry" element
+    Then I see 20 times ".entry" element
     When I click on "Load more entries"
-    Then I see 250 times ".entry" element
+    Then I see 25 times ".entry" element
     And I do not see "Load more entries"

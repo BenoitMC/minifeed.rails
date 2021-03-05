@@ -14,5 +14,5 @@ html
     #entry: .entry-body == @html
 
     javascript:
-      article = new Readability(document.cloneNode(true)).parse()
-      if (article) { $("#entry .entry-body").html(article.content) }
+      let article = new Readability(document.cloneNode(true)).parse()
+      if (article) { find("#entry .entry-body").innerHTML = article.content }

@@ -14,8 +14,14 @@ end
 Then("I reorder elements") do
   expect(page).to have_selector(".handle")
 
-  execute_script %( $("tbody").append($("tbody tr").eq(0).detach()) )
-  execute_script %( $(".sortable").trigger("sortupdate") )
+  # Temp disabled, not supported by Cuprite
+  # all(".handle").last.drag_to all(".handle").first
+
+  execute_script %(
+    let el = find("tbody tr:last-child")
+    el.parentNode.insertBefore(el, find("tbody tr:first-child"))
+    find(".sortable").triggerEvent("sortupdate")
+  )
 end
 
 Then("I am signed in") do

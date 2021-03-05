@@ -1,8 +1,8 @@
 .actions.top.row.text-center
-  .col-sm.text-md-left
+  .col-sm.text-md-start
     = render "search"
 
-  .col-sm.text-md-right
+  .col-sm.text-md-end
     = create_button url_for(action: :search), class: "btn btn-sm btn-success"
 
 = render "list"

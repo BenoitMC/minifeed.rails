@@ -1,17 +1,24 @@
 @modal =
+  bs: ->
+    el = find("#modal")
+    bootstrap.Modal.getInstance(el) || new bootstrap.Modal(el)
+
   show: ->
-    $("#modal").modal("show")
+    modal.bs().show()
 
   close: ->
-    $("#modal").modal("hide")
+    modal.bs().hide()
 
   openUrl: (url) ->
-    $("#modal .modal-body").load(url)
     modal.show()
+    fetchText(url)
+      .then (text) ->
+        find("#modal .modal-body").innerHTML = text
+        executeScriptsFrom(parseDocument(text))
 
-$(document).on "click", ".modal-link", (e) ->
+onEvent "click", ".modal-link", (e) ->
   e.preventDefault()
   modal.openUrl(this.href)
 
-$(document).on "hidden.bs.modal", ".modal", ->
-  $(this).find(".modal-body").html("")
+onEvent "hidden.bs.modal", ".modal", ->
+  this.find(".modal-body").innerHTML = ""

@@ -9,5 +9,5 @@ Feature: Users
     And I click on "Manage my account"
     And I fill in "user_password" with "password"
     And I click on "Save"
-    Then I see ".alert-success" element
+    Then I see ".toast-success" element
     And I am signed in

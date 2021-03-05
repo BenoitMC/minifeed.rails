@@ -5,6 +5,9 @@
   margin-top: 2em
 
 #entries-list
+  a
+    text-decoration: none
+
   .entry-is_read-indicator
     display: inline-block
     height: 12px
@@ -40,7 +43,7 @@
     text-overflow: ellipsis
     flex-shrink: 1
 
-  @include media-breakpoint-down(xs)
+  @include media-breakpoint-down(sm)
     .entry-feed
       display: none
 

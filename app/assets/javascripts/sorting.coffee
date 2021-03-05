@@ -1,12 +1,10 @@
-$(document).on "turbo:load", ->
-  $(".sortable").map ->
-    container = this
-
+onEvent "turbo:load", ->
+  findAll(".sortable").forEach (container) ->
     new Sortable container,
       handle: ".handle"
       animation: 150
-      onSort: -> $(container).trigger("sortupdate")
+      onSort: -> container.triggerEvent("sortupdate")
 
-$(document).on "sortupdate", ".sortable", ->
+onEvent "sortupdate", ".sortable", ->
   i = 0
-  $(this).find("input[name*=position]").map -> this.value = (i = i + 1)
+  this.findAll("input[name*=position]").forEach (input) -> input.value = (i = i + 1)

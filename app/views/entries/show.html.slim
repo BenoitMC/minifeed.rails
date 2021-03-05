@@ -74,11 +74,6 @@
       == @entry.body
       .clearfix
 
-
-
-  javascript: Minifeed.reload_navigation()
-
-  - if @entry.is_read
-    javascript: $(".#{@entry.id}").addClass("is_read")
-  - else
-    javascript: $(".#{@entry.id}").removeClass("is_read")
+  javascript:
+    Minifeed.actions.reload_navigation()
+    find(".entry[data-id='#{@entry.id}']").classList.toggle("is_read", #{@entry.is_read?})

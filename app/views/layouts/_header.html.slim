@@ -1,20 +1,20 @@
 - counters = Entry::GenerateCountersService.call(current_user)
 
-header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.border-bottom
+header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.border-bottom: .container-fluid
   a.navbar-brand href=main_app.root_path = "Minifeed"
 
-  button.navbar-toggler data-target="#nav" data-toggle="collapse"
+  button.navbar-toggler data-bs-target="#nav" data-bs-toggle="collapse"
     span.navbar-toggler-icon
 
   - if current_user
     #nav.collapse.navbar-collapse
-      ul.navbar-nav.mr-auto.navbar-left
+      ul.navbar-nav.me-auto.navbar-left
         li.nav-item#nav_all_entries class=("active" if current_page_is_all_entries?)
           a.nav-link href=main_app.entries_path
             = icon(:list)
             = " "
             = t("nav.unread")
-            span.badge.badge-secondary.float-right data-count=counters[:unread]
+            span.badge.bg-secondary.float-end data-count=counters[:unread]
               = counters[:unread]
 
         li.nav-item#nav_starred class=("active" if current_page_is_starred?)
@@ -22,7 +22,7 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
             = icon(:star)
             = " "
             = t("nav.starred")
-            span.badge.badge-secondary.float-right data-count=counters[:starred]
+            span.badge.bg-secondary.float-end data-count=counters[:starred]
               = counters[:starred]
 
         - nav_categories.each do |category|
@@ -38,7 +38,7 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
               = category.id == params[:category_id] ? icon(:folder_open) : icon(:folder)
               = " "
               = category.name
-              span.badge.badge-secondary.float-right data-count=counters[category.id]
+              span.badge.bg-secondary.float-end data-count=counters[category.id]
                 = counters[category.id]
 
             ul.subnav-list
@@ -51,32 +51,32 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
                     = icon(:feed)
                     = " "
                     = feed
-                    span.badge.badge-secondary.float-right data-count=counters[feed.id]
+                    span.badge.bg-secondary.float-end data-count=counters[feed.id]
                       = counters[feed.id]
 
 
 
-      ul.navbar-nav.ml-auto
+      ul.navbar-nav.ms-auto
         li.nav-item: a.nav-link.modal-link href=main_app.keyboard_shortcuts_static_pages_path
           = icon(:keyboard)
           = " "
           = t("nav.keyboard_shortcuts")
 
         li.nav-item.dropdown#user-nav
-          a.nav-link href="#" data-toggle="dropdown"
+          a.nav-link href="#" data-bs-toggle="dropdown"
             = icon(:user)
             = " "
             = current_user
             = " "
             = icon(:caret_down)
 
-          .dropdown-menu.dropdown-menu-right
+          .dropdown-menu.dropdown-menu-end
             a.dropdown-item href=main_app.settings_root_path
               = icon(:cog)
               = " "
               = t("nav.settings")
 
-            a.dropdown-item href=main_app.destroy_user_session_path data-method="delete" data-confirm=ta(:confirm)
+            a.dropdown-item href=main_app.destroy_user_session_path data-method="delete" data-confirm=ta(:confirm) data-turbo="false"
               = icon(:power_off)
               = " "
               = t("nav.sign_out")

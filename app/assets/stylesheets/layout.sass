@@ -2,8 +2,14 @@ body
   padding-top: 70px
   padding-bottom: 15px
 
-.container-fluid
+#main
   width: auto
+
+#flash
+  position: fixed
+  bottom: 20px
+  right: 20px
+  z-index: 9999
 
 .modal-backdrop.show
   opacity: 0.75
@@ -52,7 +58,7 @@ table.default
 
   th
     padding: 0.5rem 0.75rem
-    border: none
+    border-bottom: $border-color solid 2px !important
 
   td
     padding: 0.3rem 0.75rem
@@ -67,7 +73,7 @@ th.position
 
 .actions
   .btn
-    @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $btn-line-height-sm, $btn-border-radius-sm)
+    @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $btn-border-radius-sm)
 
   .btn + .btn,
   .btn + .dropdown,
@@ -76,6 +82,9 @@ th.position
 
   .btn-group .btn + .btn
     margin-left: -1px
+
+.form-group
+  @extend .mb-3
 
 .form-actions
   text-align: center
@@ -102,6 +111,6 @@ textarea::placeholder
 .sortable-ghost
   opacity: 0.33
 
-@include media-breakpoint-down(sm)
+@include media-breakpoint-down(md)
   .hidden-sm
     display: none
