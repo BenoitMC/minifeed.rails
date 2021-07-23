@@ -50,7 +50,7 @@ class EntriesController < ApplicationController
     if @entry.update(entry_params)
       render :show
     else
-      render inline: "Error."
+      render plain: "Error."
     end
   end
 

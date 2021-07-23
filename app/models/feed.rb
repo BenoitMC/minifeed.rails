@@ -35,6 +35,6 @@ class Feed < ApplicationRecord
   end
 
   def normalize_list(list)
-    list.to_s.split("\n").map { |e| e.parameterize.strip.presence }.compact
+    list.to_s.split("\n").filter_map { |e| e.parameterize.strip.presence }
   end
 end
