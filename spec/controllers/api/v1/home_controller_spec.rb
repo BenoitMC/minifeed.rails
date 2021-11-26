@@ -12,7 +12,7 @@ describe Api::V1::HomeController do
 
     it "should be forbidden" do
       get :home
-      expect(response).to be_forbidden
+      expect(response).to be_unauthorized
     end
 
     it "should auth by bearer token and return current_user" do

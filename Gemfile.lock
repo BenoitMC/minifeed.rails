@@ -62,7 +62,7 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    agilibox (1.10.5)
+    agilibox (1.11.0)
       addressable
       awesome_print
       nilify_blanks
@@ -72,7 +72,7 @@ GEM
     agilidee-devise (1.1.2)
       devise
     ast (2.4.2)
-    attr_extras (6.2.4)
+    attr_extras (6.2.5)
     autoprefixer-rails (10.3.3.0)
       execjs (~> 2)
     awesome_print (1.9.2)
@@ -81,9 +81,9 @@ GEM
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
-    bootsnap (1.9.1)
+    bootsnap (1.9.3)
       msgpack (~> 1.0)
-    bootstrap (5.1.0)
+    bootstrap (5.1.3)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.9.3, < 3)
       sassc-rails (>= 2.0.0)
@@ -91,8 +91,9 @@ GEM
       concurrent-ruby (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
-    capybara (3.35.3)
+    capybara (3.36.0)
       addressable
+      matrix
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
       rack (>= 1.6.0)
@@ -129,7 +130,7 @@ GEM
       cucumber-gherkin (~> 22.0, >= 22.0.0)
       cucumber-messages (~> 17.1, >= 17.1.1)
       cucumber-tag-expressions (~> 4.0, >= 4.0.2)
-    cucumber-create-meta (6.0.2)
+    cucumber-create-meta (6.0.4)
       cucumber-messages (~> 17.1, >= 17.1.1)
       sys-uname (~> 1.2, >= 1.2.2)
     cucumber-cucumber-expressions (14.0.0)
@@ -177,7 +178,7 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     erubi (1.10.0)
-    et-orbi (1.2.5)
+    et-orbi (1.2.6)
       tzinfo
     execjs (2.8.1)
     factory_bot (6.2.0)
@@ -209,9 +210,9 @@ GEM
     fugit (1.5.2)
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.4)
-    globalid (0.5.2)
+    globalid (1.0.0)
       activesupport (>= 5.0)
-    goldiloader (4.1.1)
+    goldiloader (4.1.2)
       activerecord (>= 5.2, < 7.1)
       activesupport (>= 5.2, < 7.1)
     http (5.0.4)
@@ -222,7 +223,7 @@ GEM
     http-cookie (1.0.4)
       domain_name (~> 0.5)
     http-form_data (2.3.0)
-    i18n (1.8.10)
+    i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
@@ -250,10 +251,11 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
+    matrix (0.4.2)
     method_source (1.0.0)
-    mime-types (3.3.1)
+    mime-types (3.4.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2021.0901)
+    mime-types-data (3.2021.1115)
     mini_mime (1.1.2)
     mini_portile2 (2.6.1)
     minitest (5.14.4)
@@ -269,7 +271,7 @@ GEM
     open_uri_redirections (0.2.1)
     orm_adapter (0.5.0)
     parallel (1.21.0)
-    parser (3.0.2.0)
+    parser (3.0.3.0)
       ast (~> 2.4.1)
     pg (1.2.3)
     popper_js (2.9.3)
@@ -351,7 +353,7 @@ GEM
       rspec-expectations (~> 3.10)
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
-    rspec-support (3.10.2)
+    rspec-support (3.10.3)
     rspec-wait (0.0.9)
       rspec (>= 3, < 4)
     rubocop (1.18.4)
@@ -363,8 +365,10 @@ GEM
       rubocop-ast (>= 1.8.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.12.0)
+    rubocop-ast (1.13.0)
       parser (>= 3.0.1.1)
+    rubocop-daemon (0.3.2)
+      rubocop
     rubocop-performance (1.11.4)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
@@ -402,7 +406,7 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (>= 3.0, < 5.0)
-    spring (3.0.0)
+    spring (3.1.1)
     spring-commands-cucumber (1.0.1)
       spring (>= 0.9.1)
     spring-commands-rspec (1.0.4)
@@ -410,9 +414,9 @@ GEM
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.2.2)
-      actionpack (>= 4.0)
-      activesupport (>= 4.0)
+    sprockets-rails (3.4.1)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sys-uname (1.2.2)
       ffi (~> 1.1)
@@ -421,7 +425,7 @@ GEM
     thor (1.1.0)
     tilt (2.0.10)
     timecop (0.9.4)
-    turbo-rails (7.1.1)
+    turbo-rails (0.9.0)
       rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
@@ -439,7 +443,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.5.0)
+    zeitwerk (2.5.1)
     zonebie (0.6.1)
 
 PLATFORMS
@@ -485,6 +489,7 @@ DEPENDENCIES
   rspec-rails
   rspec-wait
   rubocop (= 1.18.4)
+  rubocop-daemon
   rubocop-performance (= 1.11.4)
   rubocop-rails (= 2.11.3)
   rufus-scheduler
@@ -504,7 +509,7 @@ DEPENDENCIES
   zonebie
 
 RUBY VERSION
-   ruby 2.7.4p191
+   ruby 2.7.5p203
 
 BUNDLED WITH
    2.1.4
