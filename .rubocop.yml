@@ -1,4 +1,7 @@
-inherit_from: http://rubocop.benoitmc.com/1.18.4.yml
+inherit_from: http://rubocop.benoitmc.com/1.23.0.yml
 
 Naming/InclusiveLanguage:
+  Enabled: false
+
+Style/OpenStructUse:
   Enabled: false
