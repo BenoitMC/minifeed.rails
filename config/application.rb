@@ -15,8 +15,6 @@ module Minifeed
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
-    config.autoloader = :classic
-
     config.time_zone = ENV["TZ"].presence || "UTC"
 
     config.x.hostname = ENV["RAILS_HOSTNAME"].presence || "localhost"

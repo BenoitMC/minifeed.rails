@@ -30,6 +30,5 @@
           = time_ago_in_words(feed.last_import_at) if feed.last_import_at
 
         td.feed-actions.actions: .d-flex
-          = update_button url_for(action: :edit, id: feed)
+          = edit_button url_for(action: :edit, id: feed)
           = delete_button url_for(action: :destroy, id: feed)
-

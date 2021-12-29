@@ -1,11 +1,11 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
-  include Agilibox::ActiveRecordUUIDConcern
-  include Agilibox::ModelI18n
-  include Agilibox::ModelToS
-  include Agilibox::Search
-  include Agilibox::TimestampHelpers
+  include BMC::ActiveRecordUUIDConcern
+  include BMC::ModelI18n
+  include BMC::ModelToS
+  include BMC::Search
+  include BMC::TimestampHelpers
 
   nilify_blanks before: :validation
 end

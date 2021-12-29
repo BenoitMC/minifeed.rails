@@ -1,0 +1,10 @@
+.actions.form-actions.border-top.pt-4.mt-4
+  button.btn.btn-sm.btn-success.form-submit type="submit"
+    = icon(:save)
+    = " "
+    = ta(:save)
+
+  a.btn.btn-primary.btn-sm.form-cancel href=url_for(:back)
+    = icon(:times)
+    = " "
+    = ta(:cancel)

@@ -8,7 +8,7 @@ Feature: Feeds
     When I click on "#user-nav" element
     And I click on "Settings"
     And I click on "Manage feeds"
-    And I click on "Create"
+    And I click on "New"
     And I fill in "url" with "https://www.ruby-lang.org/en/"
     And I click on "Search"
     And I click on "Ruby News"
@@ -25,7 +25,7 @@ Feature: Feeds
     And I click on "Settings"
     And I click on "Manage feeds"
     Then I see "My feed"
-    When I click on "Update"
+    When I click on "Edit"
     And I fill in "feed_name" with ""
     And I click on "Save"
     Then I see ".has-error" element

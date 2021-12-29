@@ -38,5 +38,5 @@
           = boolean_icon user.is_admin
 
         td.user-actions.actions: .d-flex
-          = update_button url_for(action: :edit, id: user)
+          = edit_button url_for(action: :edit, id: user)
           = delete_button url_for(action: :destroy, id: user)

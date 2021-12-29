@@ -7,7 +7,7 @@ Feature: Categories
     When I click on "#user-nav" element
     And I click on "Settings"
     And I click on "Manage categories"
-    And I click on "Create"
+    And I click on "New"
     And I click on "Save"
     Then I see ".field_with_errors" element
     When I fill in "category_name" with "Hello"
@@ -20,7 +20,7 @@ Feature: Categories
     When I click on "#user-nav" element
     And I click on "Settings"
     And I click on "Manage categories"
-    And I click on "Update"
+    And I click on "Edit"
     And I fill in "category_name" with " "
     And I click on "Save"
     Then I see ".field_with_errors" element

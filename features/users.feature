@@ -8,7 +8,7 @@ Feature: Users
     And I click on "Settings"
     And I click on "Manage users"
     Then I see 1 times ".user" element
-    And I click on "Create"
+    And I click on "New"
     And I click on "Save"
     Then I see ".has-error" element
     And I fill in "user_name" with "Alice"
@@ -24,7 +24,7 @@ Feature: Users
     And I click on "Settings"
     And I click on "Manage users"
     Then I do not see "new@example.org"
-    And I click on "Update"
+    And I click on "Edit"
     And I fill in "user_email" with ""
     And I click on "Save"
     Then I see ".has-error" element

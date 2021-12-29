@@ -1,5 +1,5 @@
 class Api::V1::ApplicationController < ApplicationController
-  include Agilibox::ApiControllerConcern
+  include BMC::ApiControllerConcern
 
   skip_before_action :verify_authenticity_token
 

@@ -52,7 +52,7 @@ class Settings::CategoriesController < ApplicationController
     return if request.get?
 
     params_array = params.permit(category: [:id, :position])[:category].values
-    Agilibox::CollectionUpdate.new(scope, params_array).update!
+    BMC::CollectionUpdate.new(scope, params_array).update!
     flash.notice = t(".messages.ok")
 
     redirect_to back_url
