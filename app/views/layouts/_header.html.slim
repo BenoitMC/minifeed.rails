@@ -76,7 +76,7 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
               = " "
               = t("nav.settings")
 
-            a.dropdown-item href=main_app.destroy_user_session_path data-method="delete" data-confirm=ta(:confirm) data-turbo="false"
+            = button_to main_app.destroy_user_session_path, method: :delete, class: "dropdown-item", "data-turbo": "false"
               = icon(:power_off)
               = " "
               = t("nav.sign_out")

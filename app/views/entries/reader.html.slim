@@ -5,8 +5,9 @@ html
     meta name="viewport" content="width=device-width, initial-scale=1"
     meta name="turbo-cache-control" content="no-cache"
     title = @entry.name
-    = stylesheet_link_tag    "application", "data-turbo-track": "reload", media: "all", host: request.base_url
-    = javascript_include_tag "application", "data-turbo-track": "reload", host: request.base_url
+    = javascript_include_tag "Readability"
+    = stylesheet_link_tag "application", media: "all", host: request.base_url
+    = javascript_include_tag "application", host: request.base_url
     = csrf_meta_tags
     base href=@entry.url target="_blank"
 

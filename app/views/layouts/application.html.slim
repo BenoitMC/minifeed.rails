@@ -6,9 +6,16 @@ html lang=I18n.locale
     meta name="turbo-cache-control" content="no-cache"
     link rel="icon" type="image/png" href="/icon.png"
     title = "Minifeed"
-    = stylesheet_link_tag    "application", "data-turbo-track": "reload", media: "all"
+    = javascript_include_tag "turbo", type: "module", "data-turbo-track": "reload"
+    = javascript_include_tag "rails-ujs", "data-turbo-track": "reload"
+    = javascript_include_tag "popper", "data-turbo-track": "reload"
+    = javascript_include_tag "bootstrap", "data-turbo-track": "reload"
+    = javascript_include_tag "mousetrap", "data-turbo-track": "reload"
+    = javascript_include_tag "Readability", "data-turbo-track": "reload"
+    = javascript_include_tag "Sortable", "data-turbo-track": "reload"
+    = javascript_include_tag "swiped-events", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload"
-    = javascript_include_tag "turbo", type: "module"
+    = stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload"
     - if Rails.env.test?
       javascript:
         alert = confirm = () => true

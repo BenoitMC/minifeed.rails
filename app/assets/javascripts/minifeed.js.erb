@@ -1,0 +1,126 @@
+window.Minifeed = {}
+
+Minifeed.actions = {
+  help() {
+    find("a[href$=keyboard-shortcuts]").click()
+  },
+
+  close_modal() {
+    modal.close()
+  },
+
+  previous_entry() {
+    let current_entry_id = find("#entry form")?.action?.split("/")?.pop()
+
+    if (current_entry_id) {
+      let previous_entry = find(`a[data-entry-id='${current_entry_id}']`).closest("li").previousSibling
+      if (previous_entry) {
+        previous_entry.find("a[data-entry-id]").click()
+      }
+    } else {
+      find("#entries-list li:last-child a.entry-name")?.click()
+    }
+  },
+
+  next_entry() {
+    let current_entry_id = find("#entry form")?.action?.split("/")?.pop()
+
+    if (current_entry_id) {
+      let next_entry = find(`a[data-entry-id='${current_entry_id}']`).closest("li").nextSibling
+      if (next_entry) {
+        next_entry.find("a[data-entry-id]").click()
+      }
+    } else {
+      find("#entries-list li:first-child a.entry-name")?.click()
+    }
+  },
+
+  mark_entry_as_un_read() {
+    find("#entry input[type=checkbox][name*=read]")?.click()
+  },
+
+  mark_entry_as_un_starred() {
+    find("#entry input[type=checkbox][name*=starred]")?.click()
+  },
+
+  open_reader_mode() {
+    find("#entry .entry-reader_link")?.click()
+  },
+
+  open_internal() {
+    find("#entry .entry-internal_link")?.click()
+  },
+
+  open_external() {
+    find("#entry .entry-external_link")?.click()
+  },
+
+  reload_navigation() {
+    let url = location.href + (location.href.includes("?") ? "&" : "?") + "layout=true"
+    fetchText(url).then(text => {
+      find("#header").replaceWith(parseDocument(text).find("#header"))
+    })
+  },
+}
+
+if (typeof(Mousetrap) === "function") {
+  Minifeed.define_keyboard_shortcuts = () => {
+    <% KEYBOARD_SHORTCUTS.each do |id, keys| %>
+      <% keys.each do |key| %>
+        <%= "Mousetrap.bind('#{key}', Minifeed.actions.#{id})" %>
+      <% end %>
+    <% end %>
+  }
+
+  Minifeed.define_keyboard_shortcuts()
+}
+
+onEvent("click", ".entry-reader_link", (ev, el) => {
+  ev.preventDefault()
+  let iframe = parseFragment(`<iframe src='${el.href}' class='entry-iframe' />`)
+  iframe.onload = () => el.style.height = iframe.contentDocument.querySelector("html").scrollHeight + "px"
+  let content = el.closest("#entry").find(".entry-content")
+  content.innerHTML = ""
+  content.append(iframe)
+})
+
+onEvent("click", ".entry-internal_link", (ev, el) => {
+  ev.preventDefault()
+  let iframe = parseFragment(`<iframe src='${el.href}' class='entry-iframe' />`)
+  el.closest("#entry").find(".entry-content").innerHTML = iframe.outerHTML
+})
+
+onEvent("click", "#entries-load-more a", (ev, el) => {
+  ev.preventDefault()
+
+  fetchText(el.href).then(text => {
+    let html = parseDocument(text)
+    html.findAll("#entries-list li").forEach(li => find("#entries-list").append(li))
+    let loadButton = html.find("#entries-load-more")
+    find("#entries-load-more").replaceWith(loadButton || "")
+  })
+})
+
+onEvent("click", ".entry-body a", (ev, el) => {
+  el.target = "_blank"
+})
+
+onEvent("change", "#entry > form", (ev, el) => {
+  Rails.fire(el, "submit")
+})
+
+onEvent("ajax:complete", "#entry > form", (ev, el) => {
+  let xhr = ev.detail[0]
+  let html = parseDocument(xhr.responseText)
+  find("#entry .entry-header").replaceWith(html.find("#entry .entry-header"))
+  executeScriptsFrom(html)
+})
+
+onEvent("click", ".subnav-toggle", (ev, el) => {
+  ev.preventDefault()
+  el.closest(".subnav").classList.toggle("open")
+})
+
+onEvent("swiped-left", "#modal", Minifeed.actions.next_entry)
+
+onEvent("swiped-right", "#modal", Minifeed.actions.previous_entry)
