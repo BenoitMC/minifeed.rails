@@ -1,6 +1,6 @@
 unless ENV["NOCOVERAGE"]
   require "simplecov"
-  SimpleCov.start
+  # SimpleCov.start
 end
 
 if ENV["CODECOV_TOKEN"]

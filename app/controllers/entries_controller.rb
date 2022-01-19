@@ -36,7 +36,7 @@ class EntriesController < ApplicationController
 
   def iframe
     if CheckFramePermissionService.call(@entry.url)
-      redirect_to @entry.url
+      redirect_to @entry.url, allow_other_host: true
     else
       @html = t(".not_allowed")
       render :reader, layout: false
