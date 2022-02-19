@@ -1,6 +1,6 @@
 class ApplicationPolicy
   class Scope
-    include Pundit
+    include Pundit::Authorization
 
     attr_reader :current_user, :scope
 

@@ -33,7 +33,7 @@ gem "http"
 gem "sprockets"
 gem "attr_extras", require: "attr_extras/explicit"
 gem "goldiloader"
-gem "rails-i18n", github: "svenfuchs/rails-i18n"
+gem "rails-i18n"
 
 group :test do
   gem "minitest"
