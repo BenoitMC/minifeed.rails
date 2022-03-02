@@ -3,9 +3,9 @@ require "rails_helper"
 describe EntrySerializer do
   let(:user) { create(:user) }
 
-  let(:category) { create(:category, user: user, name: "My category") }
-  let(:feed) { create(:feed, user: user, category: category, name: "My feed") }
-  let(:entry) { create(:entry, user: user, feed: feed) }
+  let(:category) { create(:category, user:, name: "My category") }
+  let(:feed) { create(:feed, user:, category:, name: "My feed") }
+  let(:entry) { create(:entry, user:, feed:) }
 
   let(:json) { described_class.call(entry) }
 

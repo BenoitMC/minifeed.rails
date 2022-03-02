@@ -45,7 +45,7 @@ describe Feed::ImportService do
     end
 
     it "should update entry based on external_id" do
-      entry = create(:entry, user: feed.user, feed: feed, external_id: "entry id")
+      entry = create(:entry, user: feed.user, feed:, external_id: "entry id")
 
       expect { create_or_update_entry! }.to_not change(Entry, :count)
 

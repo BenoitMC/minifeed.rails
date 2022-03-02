@@ -4,6 +4,6 @@ class Api::V1::HomeController < Api::V1::ApplicationController
 
     nav = GenerateNavService.call(current_user)
 
-    render_json nav: nav
+    render_json nav:
   end
 end

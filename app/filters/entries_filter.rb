@@ -16,7 +16,7 @@ class EntriesFilter < ApplicationService
     @scope = @scope.where(is_starred: true) if type == "starred"
 
     if feed_id
-      @scope = @scope.where(feed_id: feed_id)
+      @scope = @scope.where(feed_id:)
     elsif category_id
       @scope = @scope.with_category_id(category_id)
     end

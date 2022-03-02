@@ -6,8 +6,8 @@ describe Api::V1::EntriesController do
   before { sign_in user }
 
   describe "#index" do
-    let!(:entry1) { create(:entry, user: user, is_read: false) }
-    let!(:entry2) { create(:entry, user: user, is_read: false) }
+    let!(:entry1) { create(:entry, user:, is_read: false) }
+    let!(:entry2) { create(:entry, user:, is_read: false) }
 
     it "should should return entries" do
       get :index
@@ -41,8 +41,8 @@ describe Api::V1::EntriesController do
   describe "#create" do
     it "should create entry" do
       url = "https://example.org/"
-      expect(Entry::CreateFromUrlService).to receive(:call).with(url, user: user).and_return(true)
-      post :create, params: {url: url}
+      expect(Entry::CreateFromUrlService).to receive(:call).with(url, user:).and_return(true)
+      post :create, params: {url:}
       expect(response).to be_ok
     end
 
@@ -54,7 +54,7 @@ describe Api::V1::EntriesController do
 
   describe "#update" do
     it "should should return entry" do
-      entry = create(:entry, user: user)
+      entry = create(:entry, user:)
       patch :update, params: {id: entry}
       expect(response).to be_ok
       expect(json_response).to have_key "entry"
@@ -62,7 +62,7 @@ describe Api::V1::EntriesController do
     end
 
     it "should return error" do
-      entry = create(:entry, user: user)
+      entry = create(:entry, user:)
       patch :update, params: {id: entry, entry: {is_starred: nil}}
       expect(response.code).to eq "422"
       expect(json_response).to have_key "error"
@@ -72,22 +72,22 @@ describe Api::V1::EntriesController do
 
   describe "#mark_all_as_read" do
     it "should mark all entries as read" do
-      entry = create(:entry, user: user, is_read: false)
+      entry = create(:entry, user:, is_read: false)
       post :mark_all_as_read
       expect(entry.reload.is_read?).to be true
     end
 
     it "should update only filtered entries" do
-      entry1 = create(:entry, user: user, is_read: false)
-      entry2 = create(:entry, user: user, is_read: false)
+      entry1 = create(:entry, user:, is_read: false)
+      entry2 = create(:entry, user:, is_read: false)
       post :mark_all_as_read, params: {category_id: entry1.feed.category.id}
       expect(entry1.reload.is_read?).to be true
       expect(entry2.reload.is_read?).to be false
     end
 
     it "should return filtered entries" do
-      entry1 = create(:entry, user: user, is_read: false)
-      entry2 = create(:entry, user: user, is_read: false)
+      entry1 = create(:entry, user:, is_read: false)
+      entry2 = create(:entry, user:, is_read: false)
       post :mark_all_as_read, params: {category_id: entry1.feed.category.id, type: "all"}
       expect(json_response["entries"].length).to eq 1
       expect(json_response["entries"][0]["id"]).to eq entry1.id

@@ -1,9 +1,9 @@
 Given("an existing category named {string}") do |name|
-  @category = create(:category, user: @user, name: name)
+  @category = create(:category, user: @user, name:)
 end
 
 Given("an existing feed named {string}") do |name|
-  @feed = create(:feed, user: @user, category: @category, name: name)
+  @feed = create(:feed, user: @user, category: @category, name:)
 end
 
 Given("an existing entry") do

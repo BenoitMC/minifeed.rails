@@ -63,7 +63,7 @@ Then("I do not see {string} element") do |selector|
 end
 
 Then("I see {int} times {string} element") do |count, selector|
-  expect(page).to have_selector(selector, count: count)
+  expect(page).to have_selector(selector, count:)
 end
 
 Then("I see {string} in modal") do |text|
@@ -95,7 +95,7 @@ When("I select {string}") do |value|
 end
 
 When("I select {string} from {string}") do |value, from|
-  select value, from: from
+  select value, from:
 end
 
 When(/^I select2 "([^"]*)" from "([^"]*)"$/) do |value, selector|

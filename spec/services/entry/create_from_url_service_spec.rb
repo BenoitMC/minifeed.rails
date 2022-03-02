@@ -4,7 +4,7 @@ describe Entry::CreateFromUrlService do
   let(:url) { "https://example.org/some/page?some=param" }
   let(:raw_html) { fixture_content("site.html") }
   let(:user) { create(:user) }
-  let(:instance) { described_class.new(url, user: user) }
+  let(:instance) { described_class.new(url, user:) }
   let(:invalid_url) { "ftp://invalid" }
 
   describe "in fake life" do
@@ -48,14 +48,14 @@ describe Entry::CreateFromUrlService do
 
     it "should not create entry on invalid url" do
       expect {
-        result = described_class.call(invalid_url, user: user)
+        result = described_class.call(invalid_url, user:)
         expect(result).to eq false
       }.to_not change(Entry, :count)
     end
 
     it "should not create entry on nil url" do
       expect {
-        result = described_class.call(nil, user: user)
+        result = described_class.call(nil, user:)
         expect(result).to eq false
       }.to_not change(Entry, :count)
     end

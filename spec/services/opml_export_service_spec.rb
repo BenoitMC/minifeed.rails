@@ -3,7 +3,7 @@ require "rails_helper"
 describe OpmlExportService do
   let(:user) { create(:user, email: "user@example.org") }
 
-  let!(:category) { create(:category, user: user, name: "Category Name") }
+  let!(:category) { create(:category, user:, name: "Category Name") }
 
   let!(:feed) {
     create(:feed,

@@ -6,7 +6,7 @@ class Api::V1::UserSessionsController < Api::V1::ApplicationController
     email    = params[:email].to_s.strip
     password = params[:password].to_s.strip
 
-    @user = User.find_by(email: email)
+    @user = User.find_by(email:)
 
     if @user&.valid_password?(password)
       sign_in @user

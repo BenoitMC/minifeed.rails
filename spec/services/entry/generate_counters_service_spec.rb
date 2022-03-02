@@ -3,15 +3,15 @@ require "rails_helper"
 describe Entry::GenerateCountersService do
   let!(:user) { create(:user) }
 
-  let!(:category1) { create(:category, user: user) }
-  let!(:category2) { create(:category, user: user) }
+  let!(:category1) { create(:category, user:) }
+  let!(:category2) { create(:category, user:) }
 
-  let!(:feed1) { create(:feed, user: user, category: category1) }
-  let!(:feed2) { create(:feed, user: user, category: category2) }
+  let!(:feed1) { create(:feed, user:, category: category1) }
+  let!(:feed2) { create(:feed, user:, category: category2) }
 
-  let!(:entry11) { create(:entry, user: user, feed: feed1) }
-  let!(:entry12) { create(:entry, user: user, feed: feed1) }
-  let!(:entry21) { create(:entry, user: user, feed: feed2, is_starred: true) }
+  let!(:entry11) { create(:entry, user:, feed: feed1) }
+  let!(:entry12) { create(:entry, user:, feed: feed1) }
+  let!(:entry21) { create(:entry, user:, feed: feed2, is_starred: true) }
 
   let(:counters) { described_class.call(user) }
 

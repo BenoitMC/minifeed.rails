@@ -11,7 +11,7 @@ class Entry::CreateFromUrlService < ApplicationService
   def call
     return false if invalid_url?
 
-    entry = Entry.find_or_initialize_by(user: user, feed: nil, external_id: url)
+    entry = Entry.find_or_initialize_by(user:, feed: nil, external_id: url)
 
     entry.attributes = {
       :name         => entry_name,

@@ -7,7 +7,7 @@ module EntriesHelper
   end
 
   def link_to_entries_filter(filter, type)
-    url = url_for filter.to_h.merge(type: type)
+    url = url_for filter.to_h.merge(type:)
 
     class_names = %w(btn btn-sm btn-outline-primary filter)
     class_names << type

@@ -24,8 +24,8 @@ describe OpmlImportService do
     end
 
     it "should reuse existing categories" do
-      create(:category, user: user, name: no_category_label)
-      create(:category, user: user, name: "Category 1 Name")
+      create(:category, user:, name: no_category_label)
+      create(:category, user:, name: "Category 1 Name")
 
       expect { import! }.to_not change(Category, :count)
     end
@@ -56,8 +56,8 @@ describe OpmlImportService do
     end
 
     it "should not duplicate and not update existing feeds" do
-      feed1 = create(:feed, user: user, url: "http://site0.example.org/feed.xml", name: "F1")
-      feed2 = create(:feed, user: user, url: "https://site1.example.org/feed.xml", name: "F2")
+      feed1 = create(:feed, user:, url: "http://site0.example.org/feed.xml", name: "F1")
+      feed2 = create(:feed, user:, url: "https://site1.example.org/feed.xml", name: "F2")
 
       expect { import! }.to_not change(Feed, :count)
       expect(feed1.reload.name).to eq "F1"

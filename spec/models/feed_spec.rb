@@ -16,11 +16,11 @@ describe Feed, type: :model do
     user     = create(:user)
     category = create(:category)
 
-    feed = build(:feed, user: user, category: category)
+    feed = build(:feed, user:, category:)
     expect(feed).to_not be_valid
     expect(feed.errors).to have_key(:category)
 
-    feed = build(:feed, user: category.user, category: category)
+    feed = build(:feed, user: category.user, category:)
     expect(feed).to be_valid
   end
 

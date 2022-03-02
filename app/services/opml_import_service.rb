@@ -16,13 +16,13 @@ class OpmlImportService < ApplicationService
   private
 
   def no_category
-    @no_category ||= Category.find_or_create_by!(user: user, name: "[no category]")
+    @no_category ||= Category.find_or_create_by!(user:, name: "[no category]")
   end
 
   def import_feed_outline!(feed_outline, category)
     url  = feed_outline["xmlUrl"].presence
     name = feed_outline["title"].presence || feed_outline["text"].presence
-    feed = Feed.find_by(user: user, url: url)
+    feed = Feed.find_by(user:, url:)
 
     return if url.blank? || name.blank? || feed.present?
 
@@ -38,7 +38,7 @@ class OpmlImportService < ApplicationService
     name = category_outline["title"].presence || category_outline["text"].presence
 
     if name.present?
-      category = Category.find_or_create_by!(user: user, name: name)
+      category = Category.find_or_create_by!(user:, name:)
     else
       category = no_category
     end

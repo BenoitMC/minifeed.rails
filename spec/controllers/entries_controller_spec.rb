@@ -5,7 +5,7 @@ describe EntriesController do
   before { sign_in user }
 
   let!(:entry) {
-    create(:entry, user: user, is_read: false)
+    create(:entry, user:, is_read: false)
   }
 
   describe "#new" do
@@ -22,14 +22,14 @@ describe EntriesController do
 
     it "should create entry" do
       expect(Entry::CreateFromUrlService).to receive(:call).and_return(true)
-      get :create, params: {url: url}
+      get :create, params: {url:}
       expect(response).to be_redirect
       expect(flash.notice).to be_present
     end
 
     it "should handle invalid urls" do
       expect(Entry::CreateFromUrlService).to receive(:call).and_return(false)
-      get :create, params: {url: url}
+      get :create, params: {url:}
       expect(response).to be_redirect
       expect(flash.alert).to be_present
     end
@@ -91,7 +91,7 @@ describe EntriesController do
 
     it "should update only filtered entries" do
       entry1 = entry
-      entry2 = create(:entry, user: user, is_read: false)
+      entry2 = create(:entry, user:, is_read: false)
       post :mark_all_as_read, params: {category_id: entry1.feed.category.id}
       expect(entry1.reload.is_read?).to be true
       expect(entry2.reload.is_read?).to be false

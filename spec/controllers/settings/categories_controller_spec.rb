@@ -7,7 +7,7 @@ describe Settings::CategoriesController do
 
   describe "#show" do
     it "should redirect to edit" do
-      category = create(:category, user: user)
+      category = create(:category, user:)
       get :show, params: {id: category}
       expect(response).to redirect_to(action: :edit)
     end
@@ -15,14 +15,14 @@ describe Settings::CategoriesController do
 
   describe "#destroy" do
     it "should destroy category" do
-      category = create(:category, user: user)
+      category = create(:category, user:)
       get :destroy, params: {id: category}
       expect { category.reload }.to raise_error(ActiveRecord::RecordNotFound)
       expect(response).to redirect_to(action: :index)
     end
 
     it "should NOT destroy category with feeds" do
-      category = create(:feed, user: user).category
+      category = create(:feed, user:).category
       get :destroy, params: {id: category}
       expect { category.reload }.to_not raise_error
       expect(response).to redirect_to(action: :index)
