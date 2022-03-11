@@ -4,11 +4,11 @@ tr.category.form
 
   td.category-actions.actions: .d-flex
     button.btn.btn-success type="submit"
-      = icon(:save, fa_style: :r)
+      = fa_r(:save)
       = " "
       = ta(:save)
 
     a.btn.btn-outline-primary href=url_for(action: :index)
-      = icon(:times)
+      = fa_s(:times)
       = " "
       = ta(:cancel)

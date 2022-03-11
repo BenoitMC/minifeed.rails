@@ -11,7 +11,7 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
       ul.navbar-nav.me-auto.navbar-left
         li.nav-item#nav_all_entries class=("active" if current_page_is_all_entries?)
           a.nav-link href=main_app.entries_path
-            = icon(:list)
+            = fa_s(:list)
             = " "
             = t("nav.unread")
             span.badge.bg-secondary.float-end data-count=counters[:unread]
@@ -19,7 +19,7 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
 
         li.nav-item#nav_starred class=("active" if current_page_is_starred?)
           a.nav-link href=main_app.entries_path(type: "starred")
-            = icon(:star)
+            = fa_s(:star)
             = " "
             = t("nav.starred")
             span.badge.bg-secondary.float-end data-count=counters[:starred]
@@ -32,10 +32,10 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
             class = ("open"   if current_page_is_category?(category) && params[:feed_id].present?)
           )
             button.subnav-toggle
-              = icon(:caret_right)
+              = fa_s(:caret_right)
 
             a.nav-link href=entries_path_for(@filter, category_id: category, feed_id: nil)
-              = category.id == params[:category_id] ? icon(:folder_open) : icon(:folder)
+              = category.id == params[:category_id] ? fa_s(:folder_open) : fa_s(:folder)
               = " "
               = category.name
               span.badge.bg-secondary.float-end data-count=counters[category.id]
@@ -48,7 +48,7 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
                   class = ("active" if current_page_is_feed?(feed))
                 )
                   a.nav-link href=entries_path_for(@filter, category_id: category, feed_id: feed.id)
-                    = icon(:feed)
+                    = fa_s(:feed)
                     = " "
                     = feed
                     span.badge.bg-secondary.float-end data-count=counters[feed.id]
@@ -58,25 +58,25 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
 
       ul.navbar-nav.ms-auto
         li.nav-item: a.nav-link.modal-link href=main_app.keyboard_shortcuts_static_pages_path
-          = icon(:keyboard)
+          = fa_s(:keyboard)
           = " "
           = t("nav.keyboard_shortcuts")
 
         li.nav-item.dropdown#user-nav
           a.nav-link href="#" data-bs-toggle="dropdown"
-            = icon(:user)
+            = fa_s(:user)
             = " "
             = current_user
             = " "
-            = icon(:caret_down)
+            = fa_s(:caret_down)
 
           .dropdown-menu.dropdown-menu-end
             a.dropdown-item href=main_app.settings_root_path
-              = icon(:cog)
+              = fa_s(:cog)
               = " "
               = t("nav.settings")
 
             = button_to main_app.destroy_user_session_path, method: :delete, class: "dropdown-item", "data-turbo": "false"
-              = icon(:power_off)
+              = fa_s(:power_off)
               = " "
               = t("nav.sign_out")

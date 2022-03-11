@@ -5,20 +5,20 @@
     .entry-infos
       - if @entry.feed.present?
         span.entry-feed
-          = icon(:feed)
+          = fa_s(:feed)
           = " "
           = @entry.feed
         span.separator = " "
 
       - if @entry.author.present?
         span.entry-author
-          = icon(:user_edit)
+          = fa_s(:user_edit)
           = " "
           = @entry.author
         span.separator = " "
 
       span.entry-published_at
-        = icon(:clock, fa_style: :r)
+        = fa_r(:clock)
         = " "
         = time_ago_in_words(@entry.published_at)
       span.separator = " "
@@ -27,9 +27,9 @@
       label.entry-is_read
         = f.check_box :is_read, class: "d-none"
         - if @entry.is_read?
-         = icon(:check_square, fa_style: :r)
+         = fa_r(:check_square)
         - else
-         = icon(:square, fa_style: :r)
+         = fa_r(:square)
 
         = " "
         = ta(:toggle_read)
@@ -39,9 +39,9 @@
       label.entry-is_starred
         = f.check_box :is_starred, class: "d-none"
         - if @entry.is_starred?
-         = icon(:star, fa_style: :s)
+         = fa_s(:star)
         - else
-         = icon(:star, fa_style: :r)
+         = fa_r(:star)
 
         = " "
         = ta(:toggle_starred)
@@ -49,21 +49,21 @@
       span.separator = " "
 
       a.entry-reader_link href=main_app.reader_entry_path(@entry)
-        = icon(:align_left, fa_style: :s)
+        = fa_s(:align_left)
         = " "
         = ta(:open_reader_mode)
 
       span.separator = " "
 
       a.entry-internal_link href=url_for(action: :iframe) target="_blank"
-        = icon(:clone, fa_style: :r)
+        = fa_r(:clone)
         = " "
         = ta(:open_internal)
 
       span.separator = " "
 
       a.entry-external_link href=@entry.url target="_blank"
-        = icon(:external_link_alt, fa_style: :s)
+        = fa_s(:external_link_alt)
         = " "
         = ta(:open_external)
 

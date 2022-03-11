@@ -7,8 +7,8 @@
       .toast.bg-white class="toast-#{type} text-#{type} border-#{type}"
         .toast-body
           button.btn-close.float-end data-bs-dismiss="toast" aria-label=ta(:close) title=ta(:close)
-          = icon(:check) if type == "success"
-          = icon(:exclamation_triangle) if type == "danger"
+          = fa_s(:check) if type == "success"
+          = fa_s(:exclamation_triangle) if type == "danger"
           = " "
           = message
 

@@ -11,7 +11,7 @@
   .col-sm.text-md-end
     span.dropdown
       button.btn.btn-sm.btn-outline-primary.dropdown-toggle type="button" data-bs-toggle="dropdown"
-        = icon(:plus)
+        = fa_s(:plus)
         = " "
         = ta(:add)
       span.dropdown-menu
@@ -23,6 +23,6 @@
       data-method  = "post"
       data-confirm = ta(:confirm)
     )
-      = icon(:check)
+      = fa_s(:check)
       = " "
       = ta(:mark_all_as_read)
