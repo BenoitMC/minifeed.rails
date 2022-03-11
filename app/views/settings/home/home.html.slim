@@ -19,7 +19,7 @@
     = " "
     = t(".opml_import")
 
-  a.list-group-item.list-group-item-action href=settings_opml_exports_path data-method="post" data-turbo="false"
+  = button_to settings_opml_exports_path, method: :post, data: {turbo: false}, class: "list-group-item list-group-item-action border-top-0 border-bottom-0"
     = fa_s(:download)
     = " "
     = t(".opml_export")
