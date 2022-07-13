@@ -40,7 +40,7 @@ group :test do
   gem "rspec-wait"
   gem "rails-controller-testing"
   gem "shoulda-matchers"
-  gem "cucumber-rails", require: false, github: "cucumber/cucumber-rails"
+  gem "cucumber-rails", require: false
   gem "capybara"
   gem "cuprite"
   gem "spring-commands-rspec"
