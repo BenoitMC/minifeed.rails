@@ -124,3 +124,7 @@ onEvent("click", ".subnav-toggle", (ev, el) => {
 onEvent("swiped-left", "#modal", Minifeed.actions.next_entry)
 
 onEvent("swiped-right", "#modal", Minifeed.actions.previous_entry)
+
+onEvent("turbo:load turbo:render", () => {
+  find("#url")?.focus()
+})
