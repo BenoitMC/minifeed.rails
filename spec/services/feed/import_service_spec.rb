@@ -154,7 +154,7 @@ describe Feed::ImportService do
 
   describe "#call" do
     it "should call create_or_update_entry! for each entry" do
-      remote_entries = %w(remote_entry1 remote_entry2)
+      remote_entries = %w[remote_entry1 remote_entry2]
 
       service = described_class.new(feed)
       expect(service).to receive(:remote_entries).at_least(:once).and_return(remote_entries)

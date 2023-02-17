@@ -9,7 +9,7 @@ module EntriesHelper
   def link_to_entries_filter(filter, type)
     url = url_for filter.to_h.merge(type:)
 
-    class_names = %w(btn btn-sm btn-outline-primary filter)
+    class_names = %w[btn btn-sm btn-outline-primary filter]
     class_names << type
     class_names << "active" if filter.type == type
 

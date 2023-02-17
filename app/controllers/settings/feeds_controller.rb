@@ -1,4 +1,4 @@
-class Settings::FeedsController < ::ApplicationController
+class Settings::FeedsController < ApplicationController
   before_action :set_objects
 
   def index

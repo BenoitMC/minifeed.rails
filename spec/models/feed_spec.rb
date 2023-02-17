@@ -36,7 +36,7 @@ describe Feed, type: :model do
       end
     end
 
-    it_should_transform "\nRuby on\n\nRails\n\n", %w(ruby-on rails)
+    it_should_transform "\nRuby on\n\nRails\n\n", %w[ruby-on rails]
     it_should_transform nil, []
     it_should_transform "", []
     it_should_transform "café", ["cafe"]
