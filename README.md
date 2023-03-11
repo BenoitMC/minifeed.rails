@@ -49,13 +49,32 @@ Click on the "Deploy" button and follow the instructions.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/benoitmc/minifeed.rails/tree/master)
 
-Your Minifeed login is `demo@example.org` and your password is `password`.
+Your login is `demo@example.org` and your password is `password`.
+You can change your email/password and manage your feeds from the "Settings" menu.
 
 Wait a minute for the demo feeds to load.
 
+Warning : if you use free Heroku dynos, feeds are only imported when server is running.
+
+
+
+## Docker install
+
+```sh
+git clone https://github.com/BenoitMC/minifeed.rails.git
+cd minifeed.rails
+docker-compose up
+```
+
+The first boot can take a few minutes to download all the dependencies.
+
+Minifeed is listening on port `3000`.
+Your login is `demo@example.org` and your password is `password`.
 You can change your email/password and manage your feeds from the "Settings" menu.
 
-Warning : if you use free Heroku dynos, feeds are only imported when server is running.
+To update an existing instance, simply run `git pull` and `docker-compose up`.
+
+Database is stored in the `pgdata` directory, don't forget to backup it.
 
 
 
@@ -67,11 +86,11 @@ You can install Minifeed like any other Rails app :
 git clone https://github.com/BenoitMC/minifeed.rails.git
 cd minifeed.rails
 bundle install
-bundle exec rake db:create db:migrate db:seed
+bundle exec rake db:prepare
 bundle exec rails server
 ```
 
-Your Minifeed login is `demo@example.org` and your password is `password`.
+Your login is `demo@example.org` and your password is `password`.
 You can change your email/password and manage your feeds from the "Settings" menu.
 
 And to update an existing instance :
@@ -101,8 +120,7 @@ Minifeed have a very few dependencies :
 - Ruby
 - Postgresql
 
-Minifeed is designed to be easy to install and maintain, simplicity is preferred over performances.
-So it has :
+Minifeed is designed to be easy to install and maintain, simplicity is preferred over performances, so it has :
 
 - No extra dependencies like Redis or ElasticSearch
 - No file storage
@@ -110,8 +128,6 @@ So it has :
 - No blockchain
 - No 3 weeks old JS framework
 
-By default (it can be changed in `config/minifeed.rb`) feeds are imported in background of the server process
-using [rufus-scheduler](https://github.com/jmettraux/rufus-scheduler)
-and only in production environment.
+By default (it can be changed in `config/minifeed.rb`) feeds are imported in background of the server process using [rufus-scheduler](https://github.com/jmettraux/rufus-scheduler) and only in production environment.
 To avoid duplicates, it's recommanded to use only one server instance (but you can have many threads using puma server).
 You can also change config to import feeds in only one instance and not in others.

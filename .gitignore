@@ -8,7 +8,7 @@
 /.bundle
 
 # Ignore deployment gems
-/vendor/bundle
+/vendor/bundle*
 
 # Ignore compiled assets
 /public/assets
@@ -54,3 +54,6 @@ coverage
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# PostgreSQL files
+/pgdata

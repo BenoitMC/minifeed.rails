@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  db:
+    image: "postgres:15"
+    restart: unless-stopped
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes: ["./pgdata:/var/lib/postgresql/data"]
+
+  web:
+    depends_on: ["db"]
+    image: "ruby:3.2.1"
+    restart: unless-stopped
+    environment:
+      RAILS_ENV: production
+      RAILS_SERVE_STATIC_FILES: true
+      POSTGRESQL_HOST: db
+      POSTGRESQL_USER: postgres
+      SECRET_KEY_BASE: 0 # change me
+    ports:
+      - "3000:3000"
+    volumes: ["./:/app"]
+    command: /app/docker/start.sh
