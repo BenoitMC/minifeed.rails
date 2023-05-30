@@ -4,13 +4,24 @@ describe Feed::ImportService do
   let!(:feed) { create(:feed) }
 
   describe "#raw_feed" do
-    it "should retrieve raw_feed in real life" do
-      feed     = Feed.new(url: "https://www.ruby-lang.org/en/feeds/news.rss")
-      service  = described_class.new(feed)
-      raw_feed = service.send(:raw_feed)
+    let(:url) { "https://www.ruby-lang.org/en/feeds/news.rss" }
+    let(:feed) { Feed.new(url:) }
+    let(:raw_feed) { described_class.new(feed).send(:raw_feed) }
 
-      expect(raw_feed).to be_kind_of String
-      expect(raw_feed).to include "Ruby News"
+    it "should retrieve feed from url" do
+      expect(HttpClient).to receive(:request).with(:get, url, headers: {})
+        .and_return("remote content")
+
+      expect(raw_feed).to eq "remote content"
+    end
+
+    it "should use custom user agent" do
+      feed.user_agent = "curl"
+
+      expect(HttpClient).to receive(:request).with(:get, url, headers: {user_agent: "curl"})
+        .and_return("remote content")
+
+      expect(raw_feed).to eq "remote content"
     end
   end # describe "#raw_fee"
 

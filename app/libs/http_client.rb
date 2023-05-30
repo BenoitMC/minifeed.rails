@@ -11,6 +11,8 @@ module HttpClient
     Zlib::Error,
   ].each { |exception| exception.send(:include, Error) }
 
+  DEFAULT_USER_AGENT = "Minifeed RSS Reader"
+
   ResponseNotOkError = Class.new(HTTP::ResponseError)
 
   class ResponseNotOkInstrumenter < HTTP::Features::Instrumentation::NullInstrumenter
@@ -29,7 +31,7 @@ module HttpClient
     HTTP
       .follow
       .timeout(10)
-      .headers(user_agent: "Minifeed RSS Reader")
+      .headers(user_agent: DEFAULT_USER_AGENT)
       .headers(accept: "*/*")
       .use(instrumentation: {instrumenter: ResponseNotOkInstrumenter.new})
   end

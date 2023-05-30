@@ -83,6 +83,7 @@ class Settings::FeedsController < ApplicationController
       :category_id,
       :blacklist,
       :whitelist,
+      :user_agent,
     ]
   end
 

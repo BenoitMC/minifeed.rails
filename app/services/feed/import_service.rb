@@ -7,7 +7,8 @@ class Feed::ImportService < ApplicationService
     end
 
     feed.import_errors = 0
-  rescue HttpClient::Error, Feedjira::NoParserAvailable
+  rescue HttpClient::Error, Feedjira::NoParserAvailable => e
+    Rails.logger.warn ([e.message] + e.backtrace).join("\n")
     feed.import_errors += 1
   ensure
     feed.last_import_at = Time.zone.now
@@ -21,8 +22,16 @@ class Feed::ImportService < ApplicationService
       .map { |remote_entry| EntryAdapter.new(remote_entry) }
   end
 
+  def request_headers
+    if feed.user_agent.present?
+      {user_agent: feed.user_agent}
+    else
+      {}
+    end
+  end
+
   def raw_feed
-    @raw_feed ||= HttpClient.request(:get, feed.url).to_s
+    @raw_feed ||= HttpClient.request(:get, feed.url, headers: request_headers).to_s
   end
 
   def create_or_update_entry!(remote_entry)
