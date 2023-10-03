@@ -45,7 +45,6 @@ group :test do
   gem "cuprite"
   gem "spring-commands-rspec"
   gem "spring-commands-cucumber"
-  gem "timecop"
   gem "simplecov", require: false
   gem "zonebie"
   gem "codecov", require: false

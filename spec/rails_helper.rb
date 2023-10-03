@@ -68,7 +68,7 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
-  config.after(:each) { Timecop.return }
+  config.include ActiveSupport::Testing::TimeHelpers
 
   def json_response
     @json_response ||= JSON.parse(response.body).with_indifferent_access

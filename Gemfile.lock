@@ -435,7 +435,6 @@ GEM
       execjs (>= 0.3.0, < 3)
     thor (1.2.2)
     tilt (2.3.0)
-    timecop (0.9.8)
     timeout (0.4.0)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
@@ -515,7 +514,6 @@ DEPENDENCIES
   sprockets
   terser
   thor
-  timecop
   turbo-rails
   zonebie
 

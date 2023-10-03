@@ -10,7 +10,7 @@ describe Entry::CreateFromUrlService do
   describe "in fake life" do
     before do
       allow(HttpClient).to receive(:request).with(:get, url).and_return(raw_html)
-      Timecop.freeze Time.current.round
+      travel_to Time.current.round
     end
 
     it "should create entry from site html" do
