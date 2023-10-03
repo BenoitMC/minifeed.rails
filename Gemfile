@@ -43,8 +43,6 @@ group :test do
   gem "cucumber-rails", require: false
   gem "capybara"
   gem "cuprite"
-  gem "spring-commands-rspec"
-  gem "spring-commands-cucumber"
   gem "simplecov", require: false
   gem "zonebie"
   gem "codecov", require: false
@@ -56,7 +54,6 @@ group :development do
 end
 
 group :development, :test do
-  gem "spring"
   gem "listen"
   gem "launchy"
   gem "thor"
