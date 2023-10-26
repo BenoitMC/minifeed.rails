@@ -33,6 +33,7 @@ Screenshots of iOS app are available in the [iOS repository](https://github.com/
 - Multi-user
 - Keyboard shortcuts
 - Simple UI based on Bootstrap
+- Light/Dark modes
 - A native [iOS app](https://github.com/BenoitMC/minifeed.ios)
 
 

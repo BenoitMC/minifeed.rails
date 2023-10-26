@@ -1,7 +1,8 @@
 $nav-left-width: 250px
-$nav-left-background: $gray-100
+$nav-left-border-color: var(--bs-border-color)
 $nav-left-font-size: 13px
 $nav-left-items-padding: 15px
+
 
 @include media-breakpoint-up(lg)
   #nav
@@ -12,15 +13,14 @@ $nav-left-items-padding: 15px
       top: 57px
       height: calc(100vh - 57px)
       width: $nav-left-width
-      background: $nav-left-background
       z-index: 5
       font-size: $nav-left-font-size
       line-height: $nav-left-font-size
       overflow: auto
-      border-right: 1px solid $border-color
+      border-right: 1px solid $nav-left-border-color
 
       > li
-        border-bottom: 1px solid $border-color
+        border-bottom: 1px solid $nav-left-border-color
         margin: 0
         padding: 0
 
@@ -66,7 +66,7 @@ $nav-left-items-padding: 15px
         position: absolute
         top: 0
         left: 0
-        color: $navbar-light-color
+        color: var(--body-color)
 
       ul.subnav-list
         display: none
@@ -77,7 +77,7 @@ $nav-left-items-padding: 15px
           list-style: none
 
         li
-          border-top: 1px solid $border-color
+          border-top: 1px solid $nav-left-border-color
 
         li.active .subnav-header > a
           font-weight: bold

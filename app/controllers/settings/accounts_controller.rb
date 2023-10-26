@@ -24,6 +24,7 @@ class Settings::AccountsController < ApplicationController
       :name,
       :email,
       :password,
+      :theme,
     ]
   end
 

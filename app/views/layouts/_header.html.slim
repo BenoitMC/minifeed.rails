@@ -1,6 +1,6 @@
 - counters = Entry::GenerateCountersService.call(current_user)
 
-header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.border-bottom: .container-fluid
+header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-body-tertiary.border-bottom: .container-fluid
   a.navbar-brand href=main_app.root_path = "Minifeed"
 
   button.navbar-toggler data-bs-target="#nav" data-bs-toggle="collapse"
@@ -8,7 +8,7 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light.borde
 
   - if current_user
     #nav.collapse.navbar-collapse
-      ul.navbar-nav.me-auto.navbar-left
+      ul.navbar-nav.me-auto.navbar-left.bg-body-tertiary
         li.nav-item#nav_all_entries class=("active" if current_page_is_all_entries?)
           a.nav-link href=main_app.entries_path
             = fa_s(:list)

@@ -11,9 +11,10 @@ html
     = csrf_meta_tags
     base href=@entry.url target="_blank"
 
-  body#entry-reader
+  body#entry-reader data-theme=current_user&.theme
     #entry: .entry-body == @html
 
     javascript:
+      Minifeed.actions.set_theme()
       let article = new Readability(document.cloneNode(true)).parse()
       if (article) { find("#entry .entry-body").innerHTML = article.content }

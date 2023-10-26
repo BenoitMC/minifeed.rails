@@ -5,4 +5,5 @@
       = f.input :name
       = f.input :email
       = f.input :password
+      = f.input :theme, collection: i18n_select(User, :theme), include_blank: User.t("theme.auto")
       = render "shared/form_buttons"

@@ -61,6 +61,14 @@ Minifeed.actions = {
       find("#header").replaceWith(parseDocument(text).find("#header"))
     })
   },
+
+  set_theme() {
+    if(document.body.dataset.theme) {
+      document.body.dataset.bsTheme = document.body.dataset.theme
+    } else {
+      document.body.dataset.bsTheme = (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+    }
+  },
 }
 
 if (typeof(Mousetrap) === "function") {
@@ -78,7 +86,8 @@ if (typeof(Mousetrap) === "function") {
 onEvent("click", ".entry-reader_link", (ev, el) => {
   ev.preventDefault()
   let iframe = parseFragment(`<iframe src='${el.href}' class='entry-iframe' />`)
-  iframe.onload = () => el.style.height = iframe.contentDocument.querySelector("html").scrollHeight + "px"
+  iframe.style.height = "0px"
+  iframe.onload = () => iframe.style.height = iframe.contentDocument.querySelector("html").scrollHeight + "px"
   let content = el.closest("#entry").find(".entry-content")
   content.innerHTML = ""
   content.append(iframe)
@@ -128,3 +137,6 @@ onEvent("swiped-right", "#modal", Minifeed.actions.previous_entry)
 onEvent("turbo:load turbo:render", () => {
   find("#url")?.focus()
 })
+
+onEvent("turbo:load turbo:render", Minifeed.actions.set_theme)
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", Minifeed.actions.set_theme)

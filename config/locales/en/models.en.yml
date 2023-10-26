@@ -11,6 +11,13 @@ en:
     url: "URL"
     user_agent: "User agent"
 
+  activerecord:
+    attributes:
+      user/theme:
+        auto: Auto
+        light: Light
+        dark: Dark
+
   simple_form:
     placeholders:
       feed:

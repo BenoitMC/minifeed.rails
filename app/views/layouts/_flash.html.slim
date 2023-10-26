@@ -4,9 +4,9 @@
       - type = "success" if type == "notice"
       - type = "danger"  if type == "alert"
 
-      .toast.bg-white class="toast-#{type} text-#{type} border-#{type}"
+      .toast.bg-tertiary class="toast-#{type} text-#{type} border-#{type}"
         .toast-body
-          button.btn-close.float-end data-bs-dismiss="toast" aria-label=ta(:close) title=ta(:close)
+          button.btn-close.float-end.text-tertiary data-bs-dismiss="toast" aria-label=ta(:close) title=ta(:close)
           = fa_s(:check) if type == "success"
           = fa_s(:exclamation_triangle) if type == "danger"
           = " "

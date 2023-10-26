@@ -8,4 +8,8 @@ class ApplicationRecord < ActiveRecord::Base
   include BMC::TimestampHelpers
 
   nilify_blanks before: :validation
+
+  def self.string_enum(column, values, **)
+    enum column => values.map(&:to_s).index_by(&:itself), **
+  end
 end

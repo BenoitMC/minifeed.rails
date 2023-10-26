@@ -11,6 +11,8 @@ class User < ApplicationRecord
     # :omniauthable,
   )
 
+  string_enum :theme, %w[light dark]
+
   has_many :categories, dependent: :destroy
   has_many :feeds,      dependent: :destroy
 
