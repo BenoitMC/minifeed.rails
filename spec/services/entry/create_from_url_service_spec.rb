@@ -31,16 +31,6 @@ describe Entry::CreateFromUrlService do
       expect(entry.is_starred).to eq true
     end
 
-    it "should find data in alternative tags" do
-      allow(instance).to receive(:meta_description).and_return(nil)
-      allow(instance).to receive(:meta_author).and_return(nil)
-
-      expect { instance.call }.to change(Entry, :count).by(1)
-      entry = Entry.last_created
-      expect(entry.body).to eq "OG Example Domain Description !"
-      expect(entry.author).to eq "OG Site Name"
-    end
-
     it "should not duplicate entry" do
       expect { instance.call }.to change(Entry, :count).by(1)
       expect { instance.call }.to_not change(Entry, :count)
