@@ -1,5 +1,5 @@
 class Api::V1::ApplicationController < ApplicationController
-  include BMC::ApiControllerConcern
+  include ApiControllerConcern
 
   skip_before_action :verify_authenticity_token
 

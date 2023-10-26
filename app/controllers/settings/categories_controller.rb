@@ -51,8 +51,12 @@ class Settings::CategoriesController < ApplicationController
   def reorder
     return if request.get?
 
-    params_array = params.permit(category: [:id, :position])[:category].values
-    BMC::CollectionUpdate.new(scope, params_array).update!
+    ApplicationRecord.transaction do
+      params.permit(category: [:id, :position])[:category].each_value do |category|
+        scope.find(category[:id]).update!(category)
+      end
+    end
+
     flash.notice = t(".messages.ok")
 
     redirect_to back_url

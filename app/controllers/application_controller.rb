@@ -11,8 +11,6 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::UnknownFormat, with: :render_not_acceptable
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
-  helper BMC::AllHelpers
-
   layout -> {
     if request.xhr? && params[:layout].to_s != "true"
       false

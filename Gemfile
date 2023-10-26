@@ -7,7 +7,6 @@ gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
 gem "rails", "~> 7.0.0"
 gem "agilidee-devise", ">= 1.1.2"
-gem "bmc"
 
 gem "bootsnap", require: false
 gem "rufus-scheduler"
@@ -34,13 +33,17 @@ gem "http"
 gem "sprockets"
 gem "attr_extras", require: "attr_extras/explicit"
 gem "goldiloader"
+gem "nilify_blanks"
 gem "rails-i18n"
+gem "awesome_print"
+gem "pry-rails"
 
 group :test do
   gem "minitest"
   gem "rspec-wait"
   gem "rails-controller-testing"
   gem "shoulda-matchers"
+  gem "temping"
   gem "cucumber-rails", require: false
   gem "capybara"
   gem "cuprite"
