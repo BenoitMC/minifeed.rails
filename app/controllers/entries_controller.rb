@@ -47,10 +47,8 @@ class EntriesController < ApplicationController
   end
 
   def update
-    if @entry.update(entry_params)
-      render :show
-    else
-      render plain: "Error."
+    unless @entry.update(entry_params)
+      render :update_error
     end
   end
 

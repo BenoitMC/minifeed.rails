@@ -76,7 +76,7 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-body-tertia
               = " "
               = t("nav.settings")
 
-            = button_to main_app.destroy_user_session_path, method: :delete, class: "dropdown-item", "data-turbo": "false"
+            = button_to main_app.destroy_user_session_path, method: :delete, class: "dropdown-item"
               = fa_s(:power_off)
               = " "
               = t("nav.sign_out")

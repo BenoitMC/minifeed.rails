@@ -114,15 +114,8 @@ onEvent("click", ".entry-body a", (ev, el) => {
   el.target = "_blank"
 })
 
-onEvent("change", "#entry > form", (ev, el) => {
-  Rails.fire(el, "submit")
-})
-
-onEvent("ajax:complete", "#entry > form", (ev, el) => {
-  let xhr = ev.detail[0]
-  let html = parseDocument(xhr.responseText)
-  find("#entry .entry-header").replaceWith(html.find("#entry .entry-header"))
-  executeScriptsFrom(html)
+onEvent("change", "#entry-header form", (ev, el) => {
+  el.requestSubmit()
 })
 
 onEvent("click", ".subnav-toggle", (ev, el) => {

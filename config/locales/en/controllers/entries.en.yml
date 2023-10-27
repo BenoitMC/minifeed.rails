@@ -4,7 +4,7 @@ en:
       nothing_to_read: "Nothing to read :)"
       load_more_entries: "Load more entries"
 
-    header:
+    index_header:
       filters:
         all: "All"
         unread: "Unread"

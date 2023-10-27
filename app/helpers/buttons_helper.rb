@@ -13,7 +13,6 @@ module ButtonsHelper
     btn_size: DEFAULT_SIZE,
     btn_style: DEFAULT_STYLE,
     add_class: [],
-    helper: :link_to,
     **options
   )
     text = ta(action) if text.nil? && action
@@ -21,7 +20,7 @@ module ButtonsHelper
     content = fa_s(icon).concat(" ").concat(tag.span(text, class: "text"))
 
     if method != :get
-      options[:method] = method
+      options[:"data-turbo-method"] = method
       confirm = true if confirm.nil?
     end
 
@@ -39,10 +38,10 @@ module ButtonsHelper
 
     unless confirm.nil?
       confirm = ta(:confirm) if confirm == true
-      options.deep_merge!(data: {confirm:})
+      options.deep_merge!("data-turbo-confirm": confirm)
     end
 
-    public_send(helper, content, url, options.sort.to_h)
+    link_to(content, url, options.sort.to_h)
   end
 
   def new_button(url = url_for(action: :new), **options)

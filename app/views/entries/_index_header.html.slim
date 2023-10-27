@@ -19,9 +19,9 @@
         a.dropdown-item href=search_settings_feeds_path = ta(:add_feed)
 
     a.btn.btn-sm.btn-outline-primary(
-      href         = url_for(action: :mark_all_as_read, **@filter.to_h)
-      data-method  = "post"
-      data-confirm = ta(:confirm)
+      href = url_for(action: :mark_all_as_read, **@filter.to_h)
+      data-turbo-method = "post"
+      data-turbo-confirm = ta(:confirm)
     )
       = fa_s(:check)
       = " "

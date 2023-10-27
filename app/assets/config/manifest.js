@@ -2,7 +2,6 @@
 //= link application.js
 //= link application.css
 
-//= link rails-ujs
 //= link popper
 //= link bootstrap
 //= link mousetrap

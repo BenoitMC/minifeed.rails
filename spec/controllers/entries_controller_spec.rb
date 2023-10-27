@@ -70,16 +70,16 @@ describe EntriesController do
   end # describe "iframe"
 
   describe "#update" do
-    it "should should render show" do
+    it "should should render update" do
       patch :update, params: {id: entry}
       expect(response).to be_ok
-      expect(response).to render_template(:show)
+      expect(response).to render_template(:update)
     end
 
     it "should render error" do
       patch :update, params: {id: entry, entry: {is_starred: nil}}
       expect(response).to be_ok
-      expect(response.body).to include "Error"
+      expect(response).to render_template(:update_error)
     end
   end # describe "#update"
 
