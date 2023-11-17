@@ -4,5 +4,4 @@ SimpleCov.start "rails" do
     path = Pathname.new(path)
     add_group path.basename.to_s.capitalize, path.to_path
   end
-  add_filter "semaphore-cache"
 end
