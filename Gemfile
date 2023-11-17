@@ -5,7 +5,7 @@ ruby File.read(File.join(__dir__, ".ruby-version"))
 
 gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
 
-gem "rails", "~> 7.0.0"
+gem "rails", "~> 7.1.0"
 gem "agilidee-devise", ">= 1.1.2"
 
 gem "bootsnap", require: false
@@ -25,7 +25,7 @@ gem "pundit"
 gem "execjs"
 gem "autoprefixer-rails"
 gem "font-awesome-sass"
-gem "puma", "~> 5.0"
+gem "puma"
 gem "bugsnag"
 gem "pg"
 gem "loofah"
