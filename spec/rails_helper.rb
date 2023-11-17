@@ -3,11 +3,6 @@ unless ENV["NOCOVERAGE"]
   # SimpleCov.start
 end
 
-if ENV["CODECOV_TOKEN"]
-  require "codecov"
-  SimpleCov.formatter = SimpleCov::Formatter::Codecov
-end
-
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)

@@ -49,7 +49,6 @@ group :test do
   gem "cuprite"
   gem "simplecov", require: false
   gem "zonebie"
-  gem "codecov", require: false
 end
 
 group :development do
