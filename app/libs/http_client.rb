@@ -36,7 +36,7 @@ module HttpClient
       .use(instrumentation: {instrumenter: ResponseNotOkInstrumenter.new})
   end
 
-  def self.request(*args)
-    http.request(*args)
+  def self.request(...)
+    http.request(...)
   end
 end
