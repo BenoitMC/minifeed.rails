@@ -27,7 +27,6 @@ html lang=I18n.locale
   body(
     data-controller = params[:controller]
     data-action = params[:action]
-    data-turbo = ("false" if params[:controller].start_with?("devise"))
     data-theme = current_user&.theme
   )
     = render "layouts/header"
