@@ -21,7 +21,8 @@ class Entry < ApplicationRecord
   scope :starred, -> { where(is_starred: true) }
 
   scope :with_category_id, -> (category_id) {
-    joins(:feed).where(feeds: {category_id:})
+    feed_ids = Feed.where(category_id:).select(:id).reorder(nil)
+    where(feed_id: feed_ids)
   }
 
   before_save :set_search_columns

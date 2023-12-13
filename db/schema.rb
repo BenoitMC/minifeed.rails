@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_12_162749) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_13_113558) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_trgm"
@@ -43,13 +43,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_162749) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "name_for_search"
     t.text "keywords_for_search"
-    t.index ["external_id"], name: "index_entries_on_external_id"
-    t.index ["feed_id"], name: "index_entries_on_feed_id"
-    t.index ["is_read"], name: "index_entries_on_is_read"
-    t.index ["is_starred"], name: "index_entries_on_is_starred"
+    t.index ["user_id", "external_id"], name: "index_entries_on_user_id_and_external_id"
+    t.index ["user_id", "feed_id", "is_read", "published_at"], name: "idx_on_user_id_feed_id_is_read_published_at_936cb244b9"
+    t.index ["user_id", "feed_id", "published_at"], name: "index_entries_on_user_id_and_feed_id_and_published_at"
+    t.index ["user_id", "is_read", "published_at"], name: "index_entries_on_user_id_and_is_read_and_published_at"
+    t.index ["user_id", "is_starred", "published_at"], name: "index_entries_on_user_id_and_is_starred_and_published_at"
     t.index ["user_id", "keywords_for_search"], name: "index_entries_on_keywords_for_search", opclass: { keywords_for_search: :gin_trgm_ops }, using: :gin
     t.index ["user_id", "name_for_search"], name: "index_entries_on_name_for_search", opclass: { name_for_search: :gin_trgm_ops }, using: :gin
-    t.index ["user_id"], name: "index_entries_on_user_id"
+    t.index ["user_id", "published_at"], name: "index_entries_on_user_id_and_published_at"
   end
 
   create_table "feeds", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
