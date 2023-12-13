@@ -58,4 +58,20 @@ describe Entry, type: :model do
       expect(described_class.with_category_id(entry1.feed.category.id)).to eq [entry1]
     end
   end # describe "factories"
+
+  describe "search columns" do
+    it "should normalize name" do
+      subject.name = "<strong>bonjour aéroport bonjour</strong>"
+      subject.send :set_search_columns
+      expect(subject.name_for_search).to eq " aeroport bonjour "
+    end
+
+    it "should generate keywords_for_search" do
+      subject.name = "title"
+      subject.body = "body"
+      subject.author = "author"
+      subject.send :set_search_columns
+      expect(subject.keywords_for_search).to eq " author body title "
+    end
+  end # describe "search columns"
 end

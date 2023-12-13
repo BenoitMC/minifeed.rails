@@ -10,8 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_26_064847) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_12_162749) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "btree_gin"
+  enable_extension "pg_trgm"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "unaccent"
@@ -39,10 +41,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_26_064847) do
     t.boolean "is_starred", default: false, null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.string "name_for_search"
+    t.text "keywords_for_search"
     t.index ["external_id"], name: "index_entries_on_external_id"
     t.index ["feed_id"], name: "index_entries_on_feed_id"
     t.index ["is_read"], name: "index_entries_on_is_read"
     t.index ["is_starred"], name: "index_entries_on_is_starred"
+    t.index ["user_id", "keywords_for_search"], name: "index_entries_on_keywords_for_search", opclass: { keywords_for_search: :gin_trgm_ops }, using: :gin
+    t.index ["user_id", "name_for_search"], name: "index_entries_on_name_for_search", opclass: { name_for_search: :gin_trgm_ops }, using: :gin
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 

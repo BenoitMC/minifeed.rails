@@ -23,3 +23,8 @@ en:
     iframe:
       not_allowed: "Error : this website does not allow to be displayed in frames."
       http_error: "Error : this website seems to be unavailable at the moment."
+
+    search:
+      source:
+        in_name: "In name"
+        everywhere: "Everywhere"

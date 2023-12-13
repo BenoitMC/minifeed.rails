@@ -4,4 +4,14 @@ form.search-form method="get"
 
   .input-group
     input.form-control.form-control-sm type="text" name="q" placeholder=ta(:search) value=params[:q]
+    button.btn.dropdown-toggle.dropdown-toggle-split.border type="button" data-bs-toggle="dropdown"
+    .dropdown-menu.p-3
+      label.d-block
+        input type="radio" name="q_src" value="name" checked=(params[:q_src] == "name" || params[:q_src].blank?)
+        = " "
+        = t(".source.in_name")
+      label.d-block
+        input type="radio" name="q_src" value="keywords" checked=(params[:q_src] == "keywords")
+        = " "
+        = t(".source.everywhere")
     button.btn.btn-sm.bg-tertiary.border.search-submit type="submit" = fa_s(:search)

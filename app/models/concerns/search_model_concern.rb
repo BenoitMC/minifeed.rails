@@ -8,15 +8,15 @@ module SearchModelConcern
         .map { |column| "#{table_name}.#{column.name}" }
     end
 
-    def search(q, *columns)
+    def search(q, columns = default_search_columns, unaccent: true)
       words = q.to_s.parameterize.split("-")
-      columns = default_search_columns if columns.empty?
 
       return all if words.empty?
 
       sql_query = words.map.with_index { |_word, index|
         columns.map { |field|
-          "(UNACCENT(CAST(#{field} AS TEXT)) ILIKE :w#{index})"
+          field = "UNACCENT(#{field})" if unaccent
+          "(#{field} ILIKE :w#{index})"
         }.join(" OR ")
       }.map { |e| "(#{e})" }.join(" AND ")
 

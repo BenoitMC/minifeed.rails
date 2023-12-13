@@ -1,5 +1,5 @@
 class EntriesFilter < ApplicationService
-  attr_reader :scope, :options, :type, :category_id, :feed_id, :q
+  attr_reader :scope, :options, :type, :category_id, :feed_id, :q, :q_src
 
   def initialize(scope, options = {})
     super()
@@ -9,6 +9,7 @@ class EntriesFilter < ApplicationService
     @category_id = options[:category_id].presence
     @feed_id     = options[:feed_id].presence
     @q           = options[:q].presence
+    @q_src       = options[:q_src].presence
   end
 
   def call
@@ -21,12 +22,12 @@ class EntriesFilter < ApplicationService
       @scope = @scope.with_category_id(category_id)
     end
 
-    @scope = @scope.search(q) if q.present?
+    @scope = @scope.search(q, q_src) if q.present?
 
     @scope
   end
 
   def to_h
-    [:category_id, :feed_id, :q, :type].index_with { |option| public_send(option) }
+    [:category_id, :feed_id, :q, :q_src, :type].index_with { |option| public_send(option) }
   end
 end
