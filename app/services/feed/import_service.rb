@@ -58,13 +58,20 @@ class Feed::ImportService < ApplicationService
 
   def excluded_by_blacklist?(remote_entry)
     return false if feed.normalized_blacklist.empty?
-    normalized_name = remote_entry.name.parameterize
-    feed.normalized_blacklist.any? { |e| normalized_name.include?(e) }
+    normalized_entry = normalize_entry_for_exclusions(remote_entry)
+    feed.normalized_blacklist.any? { |e| normalized_entry.include?(e) }
   end
 
   def excluded_by_whitelist?(remote_entry)
     return false if feed.normalized_whitelist.empty?
-    normalized_name = remote_entry.name.parameterize
-    feed.normalized_whitelist.none? { |e| normalized_name.include?(e) }
+    normalized_entry = normalize_entry_for_exclusions(remote_entry)
+    feed.normalized_whitelist.none? { |e| normalized_entry.include?(e) }
+  end
+
+  def normalize_entry_for_exclusions(remote_entry)
+    [
+      remote_entry.name,
+      remote_entry.author,
+    ].compact_blank.join("-").parameterize
   end
 end
