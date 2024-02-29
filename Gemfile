@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read(File.join(__dir__, ".ruby-version"))
 
-gem "dotenv-rails", require: "dotenv/rails-now" # Keep it first
+gem "dotenv", require: "dotenv/load" # Keep it first
 
 gem "rails", "~> 7.1.0"
 gem "agilidee-devise", ">= 1.1.2"
