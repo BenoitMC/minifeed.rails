@@ -20,7 +20,7 @@ module SearchModelConcern
         }.join(" OR ")
       }.map { |e| "(#{e})" }.join(" AND ")
 
-      sql_params = words.map.with_index { |word, index| ["w#{index}".to_sym, "%#{word}%"] }.to_h
+      sql_params = words.map.with_index { |word, index| [:"w#{index}", "%#{word}%"] }.to_h
 
       where(sql_query, sql_params)
     end

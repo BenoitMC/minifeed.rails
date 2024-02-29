@@ -110,10 +110,10 @@ describe ApiControllerConcern, type: :controller do
   end
 
   it "should render error with object" do
-    expect(controller).to receive(:json_error_string_for_model) \
+    expect(controller).to receive(:json_error_string_for_model)
       .with(instance_of(model)).at_least(:once).and_return("aaa")
 
-    expect(controller).to receive(:json_errors_hash_for_model) \
+    expect(controller).to receive(:json_errors_hash_for_model)
       .with(instance_of(model)).at_least(:once).and_return("bbb")
 
     action {

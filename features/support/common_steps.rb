@@ -35,12 +35,12 @@ end
 # Routes
 
 When("I go on the {string} page") do |route_name|
-  path = main_app.public_send("#{route_name}_path")
+  path = main_app.public_send(:"#{route_name}_path")
   visit path
 end
 
 Then("I am on the {string} page") do |route_name|
-  path = main_app.public_send("#{route_name}_path")
+  path = main_app.public_send(:"#{route_name}_path")
   wait_for { current_path }.to eq path
 end
 
@@ -130,7 +130,7 @@ end
 # Factories
 
 Given("an existing {string}") do |factory|
-  instance_variable_set "@#{factory}", create(factory)
+  instance_variable_set :"@#{factory}", create(factory)
 end
 
 Given("I am a signed in {string}") do |factory|

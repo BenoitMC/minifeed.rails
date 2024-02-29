@@ -15,7 +15,7 @@ class EntryAdapter < ApplicationAdapter
   private_constant :CLASSES_AND_IDS_SCRUBBER
 
   def initialize(original)
-    super original.tap(&:sanitize!)
+    super(original.tap(&:sanitize!))
   end
 
   def external_id
