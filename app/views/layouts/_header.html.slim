@@ -57,7 +57,7 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-body-tertia
 
 
       ul.navbar-nav.ms-auto
-        li.nav-item: a.nav-link.modal-link href=main_app.keyboard_shortcuts_static_pages_path
+        li.nav-item: a.nav-link.modal-link href=main_app.keyboard_shortcuts_static_pages_path data-turbo-prefetch="false"
           = fa_s(:keyboard)
           = " "
           = t("nav.keyboard_shortcuts")

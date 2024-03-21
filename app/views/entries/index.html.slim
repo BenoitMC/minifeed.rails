@@ -12,7 +12,7 @@ ul.list-group#entries-list
     li.list-group-item class=css_class_for_entry(entry) data-id=entry.id
       span.entry-is_read-indicator
       = " "
-      a.entry-name.modal-link href=main_app.entry_path(entry) data-entry-id=entry.id
+      a.entry-name.modal-link href=main_app.entry_path(entry) data-turbo-prefetch="false" data-entry-id=entry.id
         = entry.name
       - if entry.feed.present?
         = " "
