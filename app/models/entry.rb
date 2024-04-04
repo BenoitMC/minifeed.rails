@@ -32,7 +32,7 @@ class Entry < ApplicationRecord
   end
 
   def self.search(q, column)
-    return none unless column.to_s.in?(%w[name keywords])
+    column = "keywords" unless column.to_s.in?(%w[name keywords])
 
     super(q, ["#{table_name}.#{column}_for_search"], unaccent: false)
   end
