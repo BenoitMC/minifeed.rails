@@ -10,7 +10,7 @@ describe HttpClient do
 
     it "should raise error on invalid responses" do
       expect {
-        HttpClient.request(:get, "https://example.org/not-found")
+        HttpClient.request(:get, "https://example.org/favicon.ico")
       }.to raise_error(HttpClient::ResponseNotOkError, "Invalid response: 404 Not Found")
     end
 
