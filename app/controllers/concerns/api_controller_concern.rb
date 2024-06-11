@@ -24,7 +24,7 @@ module ApiControllerConcern
       json = any_object
     end
 
-    options[:status] ||= :unprocessable_entity
+    options[:status] ||= :unprocessable_content
 
     render_json(json, options)
   end

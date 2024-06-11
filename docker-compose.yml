@@ -10,7 +10,7 @@ services:
 
   web:
     depends_on: ["db"]
-    image: "ruby:3.3.1"
+    image: "ruby:3.3.2"
     restart: unless-stopped
     environment:
       RAILS_ENV: production

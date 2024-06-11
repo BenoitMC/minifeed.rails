@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_error(template)
-    render template, status: :unprocessable_entity
+    render template, status: :unprocessable_content
   end
 
   def render_invalid_authenticity_token
