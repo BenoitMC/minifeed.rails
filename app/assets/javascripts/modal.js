@@ -22,8 +22,10 @@ class modal {
 }
 
 onEvent("click", ".modal-link", (ev, el) => {
+  if (ev.ctrlKey || ev.metaKey) { return } // new tab
+
   ev.preventDefault()
-  modal.openUrl(el.href)
+  modal.openUrl(el.dataset.url || el.href)
 })
 
 onEvent("hidden.bs.modal", ".modal", (ev, el) => {
