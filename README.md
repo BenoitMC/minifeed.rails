@@ -59,12 +59,12 @@ Warning : if you use free Heroku dynos, feeds are only imported when server is r
 
 
 
-## Docker install
+## Docker install (recommended)
 
 ```sh
 git clone https://github.com/BenoitMC/minifeed.rails.git
 cd minifeed.rails
-docker-compose up
+docker compose up
 ```
 
 The first boot can take a few minutes to download all the dependencies.
