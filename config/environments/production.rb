@@ -101,7 +101,7 @@ Rails.application.configure do
 
   config.active_job.queue_name_prefix = Rails.app_env_id
 
-  config.assets.css_compressor = :sass
+  config.assets.css_compressor = nil
   config.assets.js_compressor = :terser
 
   config.assume_ssl = false

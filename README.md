@@ -86,6 +86,7 @@ You can install Minifeed like any other Rails app :
 ```sh
 git clone https://github.com/BenoitMC/minifeed.rails.git
 cd minifeed.rails
+yarn install
 bundle install
 bundle exec rake db:prepare
 bundle exec rails server
@@ -100,6 +101,7 @@ And to update an existing instance :
 ```sh
 cd minifeed.rails
 git pull origin master
+yarn install
 bundle install
 bundle exec rake db:migrate
 bundle exec rails server
@@ -120,6 +122,7 @@ Minifeed have a very few dependencies :
 - Linux or macOS
 - Ruby
 - Postgresql
+- Yarn
 
 Minifeed is designed to be easy to install and maintain, simplicity is preferred over performances, so it has :
 

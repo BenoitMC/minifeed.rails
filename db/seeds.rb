@@ -8,5 +8,5 @@ if User.all.empty?
 
   category2 = Category.create!(user:, name: "Comics")
   Feed.create!(user:, category: category2, name: "CommitStrip", url: "https://www.commitstrip.com/en/feed/")
-  Feed.create!(user:, category: category2, name: "MonkeyUser", url: "https://www.monkeyuser.com/feed.xml")
+  Feed.create!(user:, category: category2, name: "MonkeyUser", url: "https://www.monkeyuser.com/index.xml")
 end

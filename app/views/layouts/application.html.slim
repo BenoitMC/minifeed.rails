@@ -9,13 +9,13 @@ html lang=I18n.locale
     link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"
     link rel="manifest" href="/site.webmanifest"
     title = "Minifeed"
-    = javascript_include_tag "turbo", type: "module", "data-turbo-track": "reload"
-    = javascript_include_tag "popper", "data-turbo-track": "reload"
-    = javascript_include_tag "bootstrap", "data-turbo-track": "reload"
-    = javascript_include_tag "mousetrap", "data-turbo-track": "reload"
-    = javascript_include_tag "Readability", "data-turbo-track": "reload"
-    = javascript_include_tag "Sortable", "data-turbo-track": "reload"
-    = javascript_include_tag "swiped-events", "data-turbo-track": "reload"
+    = javascript_include_tag "turbo.min", type: "module", "data-turbo-track": "reload"
+    = javascript_include_tag "@popperjs/core/dist/umd/popper.min", "data-turbo-track": true
+    = javascript_include_tag "bootstrap/dist/js/bootstrap.min", "data-turbo-track": true
+    = stylesheet_link_tag "@fortawesome/fontawesome-free/css/all.min", "data-turbo-track": true, media: "all"
+    = javascript_include_tag "mousetrap/mousetrap.min", "data-turbo-track": true
+    = javascript_include_tag "swiped-events/dist/swiped-events.min", "data-turbo-track": true
+    = javascript_include_tag "sortablejs/Sortable.min", "data-turbo-track": true
     = javascript_include_tag "application", "data-turbo-track": "reload"
     = stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload"
     - if Rails.env.test?
