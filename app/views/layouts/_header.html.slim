@@ -1,6 +1,8 @@
 - counters = Entry::GenerateCountersService.call(current_user)
 
 header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-body-tertiary.border-bottom: .container-fluid
+  = image_tag "icon.svg", height: 24, class: "mx-2"
+
   a.navbar-brand href=main_app.root_path = "Minifeed"
 
   button.navbar-toggler data-bs-target="#nav" data-bs-toggle="collapse"
