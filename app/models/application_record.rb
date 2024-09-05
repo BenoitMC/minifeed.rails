@@ -8,7 +8,7 @@ class ApplicationRecord < ActiveRecord::Base
   before_save :assign_default_uuid
 
   def self.string_enum(column, values, **)
-    enum column => values.map(&:to_s).index_by(&:itself), **
+    enum column, values.map(&:to_s).index_by(&:itself), **
   end
 
   def self.last_created

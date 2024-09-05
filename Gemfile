@@ -5,7 +5,7 @@ ruby File.read(File.join(__dir__, ".ruby-version"))
 
 gem "dotenv", require: "dotenv/load" # Keep it first
 
-gem "rails", "~> 7.1.0"
+gem "rails", "~> 7.2.0"
 gem "agilidee-devise", ">= 1.1.2"
 
 gem "bootsnap", require: false
@@ -34,6 +34,7 @@ gem "nilify_blanks"
 gem "rails-i18n"
 gem "awesome_print"
 gem "pry-rails"
+gem "ostruct"
 
 group :test do
   gem "minitest"
