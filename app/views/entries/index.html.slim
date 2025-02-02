@@ -18,7 +18,8 @@ ul.list-group#entries-list
         = " "
         a.entry-feed href=entries_path_for(@filter, category_id: entry.feed.category_id, feed_id: entry.feed_id) = entry.feed
       = " "
-      span.entry-published_at = time_ago_in_words(entry.published_at)
+      span.entry-published_at title=l(entry.published_at, format: :long)
+        = time_ago_in_words(entry.published_at)
 
 
 

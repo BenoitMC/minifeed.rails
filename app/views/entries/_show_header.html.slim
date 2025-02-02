@@ -17,7 +17,7 @@
           = @entry.author
         span.separator = " "
 
-      span.entry-published_at
+      span.entry-published_at title=l(@entry.published_at, format: :long)
         = fa_r(:clock)
         = " "
         = time_ago_in_words(@entry.published_at)
