@@ -16,7 +16,7 @@ describe Entry::GenerateReaderContentService do
   end
 
   it "should convert text to utf8" do
-    iso88591_html = "<p>\xE9</p>".force_encoding("ISO-8859-1")
+    iso88591_html = (+"<p>\xE9</p>").force_encoding("ISO-8859-1")
     expect(HttpClient).to receive(:request).and_return(iso88591_html)
     html = described_class.call(Entry.new)
     expect(html).to eq %(<p>\xC3\xA9</p>)
