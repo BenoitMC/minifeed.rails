@@ -134,6 +134,6 @@ Given("an existing {string}") do |factory|
 end
 
 Given("I am a signed in {string}") do |factory|
-  @user = create(factory) # rubocop:disable Rails/SaveBang
+  @user = create(factory)
   sign_in @user
 end

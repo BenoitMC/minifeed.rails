@@ -1,4 +1,4 @@
-inherit_from: http://rubocop.benoitmc.com/1.67.0.yml
+inherit_from: http://rubocop.benoitmc.com/1.72.2.yml
 
 Naming/InclusiveLanguage:
   Enabled: false
