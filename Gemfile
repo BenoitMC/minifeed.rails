@@ -5,7 +5,8 @@ ruby File.read(File.join(__dir__, ".ruby-version"))
 
 gem "dotenv", require: "dotenv/load" # Keep it first
 
-gem "rails", "~> 7.2.0"
+gem "rails", "~> 8.0.0"
+gem "devise", github: "heartcombo/devise"
 gem "agilidee-devise", ">= 1.1.2"
 
 gem "bootsnap", require: false
