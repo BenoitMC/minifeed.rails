@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_13_113558) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_10_144627) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
+  enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
   enable_extension "pgcrypto"
-  enable_extension "plpgsql"
   enable_extension "unaccent"
   enable_extension "uuid-ossp"
 
-  create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "categories", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id"
     t.string "name"
     t.integer "position"
@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_13_113558) do
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
-  create_table "entries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "entries", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id"
     t.uuid "feed_id"
     t.string "external_id"
@@ -53,7 +53,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_13_113558) do
     t.index ["user_id", "published_at"], name: "index_entries_on_user_id_and_published_at"
   end
 
-  create_table "feeds", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "feeds", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id"
     t.uuid "category_id"
     t.string "name"
@@ -69,17 +69,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_13_113558) do
     t.index ["user_id"], name: "index_feeds_on_user_id"
   end
 
-  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: nil
-    t.datetime "remember_created_at", precision: nil
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at", precision: nil
-    t.datetime "last_sign_in_at", precision: nil
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
+    t.string "password_digest", default: "", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.string "auth_token"
@@ -88,7 +80,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_13_113558) do
     t.string "theme"
     t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
 end

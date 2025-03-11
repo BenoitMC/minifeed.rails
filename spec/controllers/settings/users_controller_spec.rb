@@ -28,22 +28,22 @@ describe Settings::UsersController do
     it "should update password if not blank" do
       patch :update, params: {id: user, user: {password: "new_password"}}
       expect(response).to redirect_to(action: :index)
-      expect(user.reload.valid_password?("new_password")).to be true
+      expect(user.reload.authenticate("new_password")).to be user
     end
 
     it "should not update password if is blank" do
       patch :update, params: {id: user, user: {password: " "}}
       expect(response).to redirect_to(action: :index)
-      expect(user.reload.valid_password?("password")).to be true
+      expect(user.reload.authenticate("password")).to be user
     end
 
-    it "should bypass sign_in if user is me" do
-      expect_any_instance_of(described_class).to receive(:bypass_sign_in).with(current_user)
+    it "should sign_in if user is me" do
+      expect_any_instance_of(described_class).to receive(:sign_in).with(current_user)
       patch :update, params: {id: current_user, user: {password: "new_password"}}
     end
 
-    it "should not bypass sign_in if user is not me" do
-      expect_any_instance_of(described_class).to_not receive(:bypass_sign_in)
+    it "should not sign_in if user is not me" do
+      expect_any_instance_of(described_class).to_not receive(:sign_in)
       patch :update, params: {id: user, user: {password: "new_password"}}
     end
   end # describe "#update"

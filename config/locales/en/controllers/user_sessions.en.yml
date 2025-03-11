@@ -1,0 +1,12 @@
+en:
+  user_sessions:
+    new:
+      title: "Sign in"
+      submit: "Sign in"
+
+    create:
+      success: "You have successfully signed in"
+      error: "Invalid email or password"
+
+    destroy:
+      success: "You have successfully signed out"

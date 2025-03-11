@@ -1,14 +1,17 @@
 require "rails_helper"
 
 describe User do
-  it { is_expected.to have_many(:categories).dependent(:destroy) }
-  it { is_expected.to have_many(:feeds).dependent(:destroy) }
+  describe "associations" do
+    it { is_expected.to have_many(:categories).dependent(:destroy) }
+    it { is_expected.to have_many(:feeds).dependent(:destroy) }
+  end # describe "associations"
 
-  it { is_expected.to validate_presence_of(:name) }
-
-  it "should not be registerable" do
-    expect(User.devise_modules).to_not include :registerable
-  end
+  describe "validations" do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:password) }
+    it { is_expected.to validate_length_of(:password).is_at_least(8) }
+  end # describe "validations"
 
   describe "factories" do
     it "should have a valid user factory" do
@@ -24,8 +27,24 @@ describe User do
     end
   end # describe "factories"
 
-  it "should assign auth_token" do
-    user = create(:user)
-    expect(user.auth_token).to be_present
-  end
+  describe "#auth_token" do
+    it "should assign auth_token on create" do
+      user = create(:user)
+      expect(user.auth_token).to be_present
+    end
+
+    it "should reset auth token if password changed" do
+      user = create(:user)
+      old_token = user.auth_token
+      user.update!(password: "new password")
+      expect(user.auth_token).to_not eq old_token
+    end
+
+    it "should not reset auth token if password didn't changed" do
+      user = create(:user)
+      old_token = user.auth_token
+      user.update!(name: "new name")
+      expect(user.auth_token).to eq old_token
+    end
+  end # describe "#auth_token"
 end

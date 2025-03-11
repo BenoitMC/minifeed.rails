@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
   root "home#home"
+  resource :user_session, only: %i[new create destroy]
 
   resources :static_pages, path: "static-pages", only: [] do
     collection do

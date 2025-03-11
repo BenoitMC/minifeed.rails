@@ -3,7 +3,7 @@
 header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-body-tertiary.border-bottom: .container-fluid
   = image_tag "icon.svg", height: 24, class: "mx-2"
 
-  a.navbar-brand href=main_app.root_path = "Minifeed"
+  a.navbar-brand.me-auto href=main_app.root_path = "Minifeed"
 
   button.navbar-toggler data-bs-target="#nav" data-bs-toggle="collapse"
     span.navbar-toggler-icon
@@ -78,7 +78,7 @@ header#header: nav.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-body-tertia
               = " "
               = t("nav.settings")
 
-            = button_to main_app.destroy_user_session_path, method: :delete, class: "dropdown-item"
+            = button_to main_app.user_session_path, method: :delete, class: "dropdown-item"
               = fa_s(:power_off)
               = " "
               = t("nav.sign_out")

@@ -1,11 +1,10 @@
 class ApplicationController < ActionController::Base
+  include AuthControllerConcern
   include Pundit::Authorization
 
   before_action :authenticate_user!
 
-  after_action :verify_policy_scoped, unless: -> {
-    params[:controller].to_s.match(/^(devise)/)
-  }
+  after_action :verify_policy_scoped
 
   rescue_from ActionController::InvalidAuthenticityToken, with: :render_invalid_authenticity_token
   rescue_from ActionController::UnknownFormat, with: :render_not_acceptable
@@ -40,12 +39,5 @@ class ApplicationController < ActionController::Base
 
   def scope
     policy_scope(model).all
-  end
-
-  def ensure_user_is_admin!
-    unless current_user&.is_admin?
-      flash.alert = t("errors.not_admin")
-      redirect_to root_path
-    end
   end
 end

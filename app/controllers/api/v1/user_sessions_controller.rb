@@ -8,7 +8,7 @@ class Api::V1::UserSessionsController < Api::V1::ApplicationController
 
     @user = User.find_by(email:)
 
-    if @user&.valid_password?(password)
+    if @user&.authenticate(password)
       sign_in @user
       render_json
     else

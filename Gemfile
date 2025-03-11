@@ -6,8 +6,6 @@ ruby File.read(File.join(__dir__, ".ruby-version"))
 gem "dotenv", require: "dotenv/load" # Keep it first
 
 gem "rails", "~> 8.0.0"
-gem "devise", github: "heartcombo/devise"
-gem "agilidee-devise", ">= 1.1.2"
 
 gem "bootsnap", require: false
 gem "rufus-scheduler"
@@ -36,6 +34,7 @@ gem "rails-i18n"
 gem "awesome_print"
 gem "pry-rails"
 gem "ostruct"
+gem "bcrypt"
 
 group :test do
   gem "minitest"

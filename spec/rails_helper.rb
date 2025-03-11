@@ -63,8 +63,15 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.include FactoryBot::Syntax::Methods
-  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include ActiveSupport::Testing::TimeHelpers
+
+  def user_session_storage
+    cookies.encrypted
+  end
+
+  def sign_in(user)
+    user_session_storage[:user_auth] = user.auth_token
+  end
 
   def json_response
     @json_response ||= JSON.parse(response.body).with_indifferent_access

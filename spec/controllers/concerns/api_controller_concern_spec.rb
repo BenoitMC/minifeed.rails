@@ -5,6 +5,7 @@ describe ApiControllerConcern, type: :controller do
 
   controller(ActionController::Base) do
     include ApiControllerConcern
+    include AuthControllerConcern
 
     def index
     end

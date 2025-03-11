@@ -1,0 +1,8 @@
+.block-center = simple_form_for "", url: url_for(action: :create) do |f|
+  .card.card-default
+    .card-header = t(".title")
+    .card-body
+      = f.input :email, input_html: {value: params[:email]}
+      = f.input :password
+      = f.input :remember_me, as: :boolean, input_html: {class: "me-1"}
+      = f.submit t(".submit"), class: "btn btn-primary btn-block"

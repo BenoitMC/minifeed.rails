@@ -18,13 +18,13 @@ describe Settings::AccountsController do
       expect(response).to redirect_to settings_root_path
       user.reload
       expect(user.email).to eq "new@example.org"
-      expect(user.valid_password?("new_password")).to be true
+      expect(user.authenticate("new_password")).to eq user
     end
 
     it "should ignore password if blank" do
       patch :update, params: {user: {email: "new@example.org", password: ""}}
       expect(response).to redirect_to settings_root_path
-      expect(user.reload.valid_password?("password")).to be true
+      expect(user.reload.authenticate("password")).to eq user
     end
 
     it "should render edit on invalid attribtues" do
