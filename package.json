@@ -12,6 +12,6 @@
     "swiped-events": "^1.2.0"
   },
   "scripts": {
-    "build:css": "sass ./app/assets/stylesheets/application.sass:./app/assets/builds/application.css --style compressed --no-source-map --load-path=node_modules"
+    "build:css": "sass ./app/assets/stylesheets/application.sass:./app/assets/builds/application.css --quiet-deps --style compressed --no-source-map --load-path=node_modules"
   }
 }
