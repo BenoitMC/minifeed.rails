@@ -2,7 +2,7 @@ en:
   attributes:
     name: Name
     category: Category
-    is_admin: Is admin ?
+    is_admin: Is admin?
     categories_count: Number of categories
     feeds_count: Number of feeds
     last_import_at: "Last import"
@@ -24,6 +24,6 @@ en:
   simple_form:
     placeholders:
       feed:
-        blacklist: "Optional. One item per line. \nAll entries having title matching blacklist will not be imported. \nDon't worry about upper/lower case or accents, it doesn't matter."
-        whitelist: "Optional. One item per line. \nOnly entries having title matching whitelist will be imported. \nDon't worry about upper/lower case or accents, it doesn't matter."
-        user_agent: "Optional. Use custom user agent to retrieve this feed"
+        blacklist: "Optional. One item per line. \nAll entries having titles matching the blacklist will not be imported. \nDon't worry about upper/lower case or accents, it doesn't matter."
+        whitelist: "Optional. One item per line. \nOnly entries having titles matching the whitelist will be imported. \nDon't worry about upper/lower case or accents, it doesn't matter."
+        user_agent: "Optional. Use a custom user agent to retrieve this feed"

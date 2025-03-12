@@ -11,7 +11,7 @@ en:
         starred: "Starred"
 
     new:
-      title: "Add a bookmark from an URL"
+      title: "Add a bookmark from a URL"
       placeholder: "Enter a web page URL"
       submit: "Save"
 
@@ -21,8 +21,8 @@ en:
         error: "This URL is invalid."
 
     iframe:
-      not_allowed: "Error : this website does not allow to be displayed in frames."
-      http_error: "Error : this website seems to be unavailable at the moment."
+      not_allowed: "Error: this website does not allow to be displayed in frames."
+      http_error: "Error: this website seems to be unavailable at the moment."
 
     search:
       source:
