@@ -18,6 +18,3 @@ production: &production
 
 staging:
   <<: *production
-
-cucumber:
-  <<: *test

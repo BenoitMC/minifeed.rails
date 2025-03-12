@@ -37,12 +37,10 @@ gem "ostruct"
 gem "bcrypt"
 
 group :test do
-  gem "minitest"
   gem "rspec-wait"
   gem "rails-controller-testing"
   gem "shoulda-matchers"
   gem "temping"
-  gem "cucumber-rails", require: false
   gem "capybara"
   gem "cuprite"
   gem "simplecov", require: false
@@ -55,13 +53,8 @@ group :development do
 end
 
 group :development, :test do
-  gem "listen"
-  gem "launchy"
-  gem "thor"
   gem "faker"
-  gem "database_cleaner"
   gem "factory_bot_rails"
-  gem "byebug"
   gem "rspec-rails" # must be in both environments for generators
   gem "rubocop", "1.72.2", require: false
   gem "rubocop-performance", "1.24.0", require: false

@@ -2,10 +2,54 @@ require "rails_helper"
 
 describe Settings::UsersController do
   let(:current_user) { create(:admin) }
-
   before { sign_in current_user }
 
   it { is_expected.to use_before_action(:ensure_user_is_admin!) }
+
+  render_views
+
+  describe "#index" do
+    it "should be ok" do
+      get :index
+      expect(response).to be_ok
+      expect(assigns :users).to eq [current_user]
+    end
+  end # describe "#index"
+
+  describe "#new" do
+    it "should assign random password to user" do
+      get :new
+      expect(assigns(:user).password.length).to eq 8
+    end
+  end # describe "#new"
+
+  describe "#create" do
+    it "be ok" do
+      valid_params = {
+        :name     => "Alice",
+        :email    => "alice@example.org",
+        :password => "my_password",
+      }
+
+      expect {
+        post :create, params: {user: valid_params}
+      }.to change(User, :count).by(1)
+
+      expect(response).to redirect_to(action: :index)
+    end
+
+    it "should assign password if blank" do
+      post :create, params: {user: {password: ""}}
+      expect(response).to be_unprocessable
+      expect(assigns(:user).password.length).to eq 8
+    end
+
+    it "should not override password if present" do
+      post :create, params: {user: {password: "hello"}}
+      expect(response).to be_unprocessable
+      expect(assigns(:user).password).to eq "hello"
+    end
+  end # describe "#create"
 
   describe "#show" do
     it "should redirect to #edit" do
@@ -15,15 +59,28 @@ describe Settings::UsersController do
     end
   end # describe "#show"
 
-  describe "#new" do
-    it "should assign random password to user" do
-      get :new
-      expect(assigns(:user).password.length).to eq 8
+  describe "#edit" do
+    it "should be ok" do
+      user = create(:user)
+      get :edit, params: {id: user}
+      expect(response).to be_ok
     end
-  end # describe "#new"
+  end # describe "#edit"
 
   describe "#update" do
     let!(:user) { create(:user) }
+
+    it "should update user" do
+      patch :update, params: {id: user, user: {name: "Bob"}}
+      expect(response).to redirect_to(action: :index)
+      expect(user.reload.name).to eq "Bob"
+    end
+
+    it "should render errors" do
+      patch :update, params: {id: user, user: {name: ""}}
+      expect(response).to be_unprocessable
+      expect(response).to render_template(:edit)
+    end
 
     it "should update password if not blank" do
       patch :update, params: {id: user, user: {password: "new_password"}}

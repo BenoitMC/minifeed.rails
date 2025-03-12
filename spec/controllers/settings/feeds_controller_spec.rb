@@ -2,8 +2,9 @@ require "rails_helper"
 
 describe Settings::FeedsController do
   let(:user) { create(:user) }
-
   before { sign_in user }
+
+  model = Feed
 
   render_views
 
@@ -32,6 +33,32 @@ describe Settings::FeedsController do
     end
   end # describe "#new"
 
+  describe "#create" do
+    render_views
+
+    it "should be ok" do
+      valid_params = {
+        :name => "test",
+        :category_id => create(:category, user:).id,
+        :url => "https://example.org",
+      }
+
+      expect {
+        post :create, params: {feed: valid_params}
+      }.to change(model, :count).by(1)
+
+      expect(response).to be_redirect
+    end
+
+    it "should render errors" do
+      expect {
+        post :create
+      }.to_not change(model, :count)
+
+      expect(response).to render_template(:new)
+    end
+  end # describe "#create"
+
   describe "#show" do
     it "should redirect to edit" do
       feed = create(:feed, user:)
@@ -57,12 +84,36 @@ describe Settings::FeedsController do
   end # describe "#edit"
 
   describe "#update" do
-    it "should reset #last_import_at" do
-      feed = create(:feed, user:, last_import_at: 1.minute.ago)
-      patch :update, params: {id: feed}
-      expect(feed.reload.last_import_at).to eq nil
+    let(:feed) { create(:feed, user:, last_import_at: 1.minute.ago) }
+
+    it "should update and reset #last_import_at" do
+      valid_params = {name: "New name"}
+      patch :update, params: {id: feed, feed: valid_params}
+      expect(response).to be_redirect
+      feed.reload
+      expect(feed.last_import_at).to eq nil
+      expect(feed.name).to eq "New name"
+    end
+
+    it "hsould return errors" do
+      invalid_params = {name: ""}
+      patch :update, params: {id: feed, feed: invalid_params}
+      expect(response).to be_unprocessable
+      expect(response).to render_template :edit
     end
   end # describe "#update"
+
+  describe "#destroy" do
+    it "should delete" do
+      feed = create(:feed, user:)
+
+      expect {
+        delete :destroy, params: {id: feed}
+      }.to change(model, :count).by(-1)
+
+      expect(response).to be_redirect
+    end
+  end # describe "#destroy"
 
   describe "#search" do
     let(:url) { "https://example.org" }
