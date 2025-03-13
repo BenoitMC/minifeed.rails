@@ -96,4 +96,6 @@ Rails.application.configure do
 
   config.assume_ssl = false
   config.force_ssl = false
+
+  config.active_job.queue_adapter = :solid_queue
 end

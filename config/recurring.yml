@@ -1,0 +1,4 @@
+import_feeds:
+  class: Feed::ImportOutdatedJob
+  schedule: every 1 minute
+  priority: -1

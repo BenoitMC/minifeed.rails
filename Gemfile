@@ -8,7 +8,7 @@ gem "dotenv", require: "dotenv/load" # Keep it first
 gem "rails", "~> 8.0.0"
 
 gem "bootsnap", require: false
-gem "rufus-scheduler"
+gem "solid_queue"
 gem "feedjira"
 gem "feedjira-youtube"
 gem "feedbag"

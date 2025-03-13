@@ -132,6 +132,4 @@ Minifeed is designed to be easy to install and maintain, simplicity is preferred
 - No blockchain
 - No 3-week-old JS framework
 
-By default (it can be changed in `config/minifeed.rb`) feeds are imported in the background of the server process using [rufus-scheduler](https://github.com/jmettraux/rufus-scheduler) and only in the production environment.
-To avoid duplicates, it's recommended to use only one server instance (but you can have many threads using the Puma server).
-You can also change the config to import feeds in only one instance and not in others.
+By default, feeds are imported in the background of the server process using [solid-queue](https://github.com/rails/solid_queue).

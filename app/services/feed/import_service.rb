@@ -8,7 +8,6 @@ class Feed::ImportService < ApplicationService
 
     feed.import_errors = 0
   rescue HttpClient::Error, Feedjira::NoParserAvailable => e
-    Rails.logger.warn ([e.message] + e.backtrace).join("\n")
     feed.import_errors += 1
   ensure
     feed.last_import_at = Time.zone.now
