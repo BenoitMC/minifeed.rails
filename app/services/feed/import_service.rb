@@ -7,7 +7,7 @@ class Feed::ImportService < ApplicationService
     end
 
     feed.import_errors = 0
-  rescue HttpClient::Error, Feedjira::NoParserAvailable => e
+  rescue HttpClient::Error, Feedjira::NoParserAvailable
     feed.import_errors += 1
   ensure
     feed.last_import_at = Time.zone.now
