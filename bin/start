@@ -1,0 +1,4 @@
+#!/bin/bash -e
+
+/app/bin/rails db:prepare
+/app/bin/rails server

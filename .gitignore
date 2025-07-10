@@ -36,4 +36,4 @@ tags
 /config/master.key
 
 # PostgreSQL files
-/pgdata
+/pg*data

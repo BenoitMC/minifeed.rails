@@ -1,21 +1,18 @@
 services:
   db:
-    image: "postgres:15"
+    image: "postgres:17"
     restart: unless-stopped
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
-    volumes: ["./pgdata:/var/lib/postgresql/data"]
+    volumes: ["./pg17_data:/var/lib/postgresql/data"]
 
   web:
     depends_on: ["db"]
-    image: "ruby:3.4.4"
+    image: "benoitmc/minifeed"
     restart: unless-stopped
     environment:
-      RAILS_ENV: production
       POSTGRESQL_HOST: db
       POSTGRESQL_USER: postgres
       SECRET_KEY_BASE: 0 # change me
     ports:
       - "3000:3000"
-    volumes: ["./:/app"]
-    command: /app/docker/start.sh

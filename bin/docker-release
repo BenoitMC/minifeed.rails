@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+version=$(date -u +%Y%m%d%H%M%S)
+docker build -t benoitmc/minifeed:$version -t benoitmc/minifeed:latest .
+docker push benoitmc/minifeed:$version
+docker push benoitmc/minifeed:latest

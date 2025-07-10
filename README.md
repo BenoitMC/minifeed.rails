@@ -61,21 +61,11 @@ Warning: if you use free Heroku dynos, feeds are only imported when the server i
 
 ## Docker install (recommended)
 
-```sh
-git clone https://github.com/BenoitMC/minifeed.rails.git
-cd minifeed.rails
-docker compose up
-```
-
-The first boot can take a few minutes to download all the dependencies.
+Copy the [docker-compose.yml](docker-compose.yml) file and run `docker compose up`.
 
 Minifeed is listening on port `3000`.
 Your login is `demo@example.org` and your password is `password`.
 You can change your email/password and manage your feeds from the "Settings" menu.
-
-To update an existing instance, simply run `git pull` and `docker-compose up`.
-
-The database is stored in the `pgdata` directory, don't forget to back it up.
 
 
 
