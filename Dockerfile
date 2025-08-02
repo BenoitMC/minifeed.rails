@@ -1,4 +1,4 @@
-FROM ruby:3.4.4-bookworm AS base
+FROM ruby:3.4.5-bookworm AS base
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends libjemalloc2 postgresql-client \
