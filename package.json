@@ -2,14 +2,14 @@
   "name": "app",
   "private": "true",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.6.0",
-    "@mozilla/readability": "^0.5.0",
-    "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.3",
-    "mousetrap": "^1.6.5",
-    "sass": "^1.77.8",
-    "sortablejs": "^1.15.2",
-    "swiped-events": "^1.2.0"
+    "@fortawesome/fontawesome-free": "^6.x",
+    "@mozilla/readability": "0.x",
+    "@popperjs/core": "2.x",
+    "bootstrap": "5.x",
+    "mousetrap": "1.x",
+    "sass": "1.x",
+    "sortablejs": "1.x",
+    "swiped-events": "1.x"
   },
   "scripts": {
     "build:css": "sass ./app/assets/stylesheets/application.sass:./app/assets/builds/application.css --quiet-deps --style compressed --no-source-map --load-path=node_modules"
