@@ -56,7 +56,7 @@ group :development, :test do
   gem "faker"
   gem "factory_bot_rails"
   gem "rspec-rails" # must be in both environments for generators
-  gem "rubocop", "1.72.2", require: false
-  gem "rubocop-performance", "1.24.0", require: false
-  gem "rubocop-rails", "2.30.1", require: false
+  gem "rubocop", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
 end

@@ -38,22 +38,22 @@ describe Settings::FeedsController do
 
     it "should be ok" do
       valid_params = {
-        :name => "test",
-        :category_id => create(:category, user:).id,
-        :url => "https://example.org",
+        name: "test",
+        category_id: create(:category, user:).id,
+        url: "https://example.org",
       }
 
-      expect {
-        post :create, params: {feed: valid_params}
-      }.to change(model, :count).by(1)
+      expect do
+        post :create, params: { feed: valid_params }
+      end.to change(model, :count).by(1)
 
       expect(response).to be_redirect
     end
 
     it "should render errors" do
-      expect {
+      expect do
         post :create
-      }.to_not change(model, :count)
+      end.to_not change(model, :count)
 
       expect(response).to render_template(:new)
     end
@@ -62,7 +62,7 @@ describe Settings::FeedsController do
   describe "#show" do
     it "should redirect to edit" do
       feed = create(:feed, user:)
-      get :show, params: {id: feed}
+      get :show, params: { id: feed }
       expect(response).to redirect_to(action: :edit)
     end
   end # describe "#show"
@@ -70,14 +70,14 @@ describe Settings::FeedsController do
   describe "#edit" do
     it "should not include import error warning" do
       feed = create(:feed, user:, import_errors: 0)
-      get :edit, params: {id: feed}
+      get :edit, params: { id: feed }
       expect(response).to be_ok
       expect(response.body).to_not include "failed"
     end
 
     it "should include import error warning" do
       feed = create(:feed, user:, import_errors: 42)
-      get :edit, params: {id: feed}
+      get :edit, params: { id: feed }
       expect(response).to be_ok
       expect(response.body).to include "The last 42 fetches of this feed failed."
     end
@@ -87,8 +87,8 @@ describe Settings::FeedsController do
     let(:feed) { create(:feed, user:, last_import_at: 1.minute.ago) }
 
     it "should update and reset #last_import_at" do
-      valid_params = {name: "New name"}
-      patch :update, params: {id: feed, feed: valid_params}
+      valid_params = { name: "New name" }
+      patch :update, params: { id: feed, feed: valid_params }
       expect(response).to be_redirect
       feed.reload
       expect(feed.last_import_at).to eq nil
@@ -96,8 +96,8 @@ describe Settings::FeedsController do
     end
 
     it "hsould return errors" do
-      invalid_params = {name: ""}
-      patch :update, params: {id: feed, feed: invalid_params}
+      invalid_params = { name: "" }
+      patch :update, params: { id: feed, feed: invalid_params }
       expect(response).to be_unprocessable
       expect(response).to render_template :edit
     end
@@ -107,9 +107,9 @@ describe Settings::FeedsController do
     it "should delete" do
       feed = create(:feed, user:)
 
-      expect {
-        delete :destroy, params: {id: feed}
-      }.to change(model, :count).by(-1)
+      expect do
+        delete :destroy, params: { id: feed }
+      end.to change(model, :count).by(-1)
 
       expect(response).to be_redirect
     end
@@ -120,7 +120,7 @@ describe Settings::FeedsController do
 
     it "should not search if url is blank" do
       expect(Feed::SearchService).to_not receive(:new)
-      get :search, params: {url: ""}
+      get :search, params: { url: "" }
       expect(response).to be_ok
       expect(response).to render_template(:search)
     end
@@ -128,22 +128,22 @@ describe Settings::FeedsController do
     it "should display results if any" do
       dummy_result = Feed::SearchService::Result.new("https://example.org/", "Example domain")
       expect(Feed::SearchService).to receive(:call).with(url).and_return([dummy_result])
-      get :search, params: {url:}
-      expect(assigns :results).to eq [dummy_result]
+      get :search, params: { url: }
+      expect(assigns(:results)).to eq [dummy_result]
       expect(response).to be_ok
       expect(response).to render_template(:search)
     end
 
     it "should redirect and display error if no result" do
       expect(Feed::SearchService).to receive(:call).with(url).and_return([])
-      get :search, params: {url:}
+      get :search, params: { url: }
       expect(flash.alert).to be_present
       expect(response).to redirect_to(action: :search)
     end
 
     it "should redirect and display error on service error" do
       expect(Feed::SearchService).to receive(:call).with(url).and_raise(Feed::SearchService::Error)
-      get :search, params: {url:}
+      get :search, params: { url: }
       expect(flash.alert).to be_present
       expect(response).to redirect_to(action: :search)
     end

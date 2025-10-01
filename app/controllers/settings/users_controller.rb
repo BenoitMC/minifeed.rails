@@ -8,10 +8,16 @@ class Settings::UsersController < ApplicationController
     @users = scope.all
   end
 
+  def show
+    redirect_to action: :edit
+  end
+
   def new
     @user = scope.new(user_params)
     @user.password ||= SecureRandom.alphanumeric(8)
   end
+
+  def edit; end
 
   def create
     new
@@ -22,13 +28,6 @@ class Settings::UsersController < ApplicationController
     else
       render_error :new
     end
-  end
-
-  def show
-    redirect_to action: :edit
-  end
-
-  def edit
   end
 
   def update
@@ -63,11 +62,11 @@ class Settings::UsersController < ApplicationController
   end
 
   def permitted_params
-    [
-      :name,
-      :email,
-      :password,
-      :is_admin,
+    %i[
+      name
+      email
+      password
+      is_admin
     ]
   end
 

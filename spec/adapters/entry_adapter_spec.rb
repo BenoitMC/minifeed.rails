@@ -1,18 +1,18 @@
 require "rails_helper"
 
 describe EntryAdapter do
-  let(:remote_entry) {
+  let(:remote_entry) do
     OpenStruct.new(
-      :title     => "entry title",
-      :url       => "entry url",
-      :id        => "entry id",
-      :summary   => "entry summary",
-      :content   => "entry content",
-      :author    => "entry author",
-      :published => Time.utc(2012, 12, 21, 12, 0, 0),
-      :updated   => Time.utc(2012, 12, 21, 15, 0, 0),
+      title: "entry title",
+      url: "entry url",
+      id: "entry id",
+      summary: "entry summary",
+      content: "entry content",
+      author: "entry author",
+      published: Time.utc(2012, 12, 21, 12, 0, 0),
+      updated: Time.utc(2012, 12, 21, 15, 0, 0),
     )
-  }
+  end
 
   let(:adapter) { described_class.new(remote_entry) }
 

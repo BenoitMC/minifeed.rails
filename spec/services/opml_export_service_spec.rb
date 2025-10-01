@@ -5,14 +5,14 @@ describe OpmlExportService do
 
   let!(:category) { create(:category, user:, name: "Category Name") }
 
-  let!(:feed) {
+  let!(:feed) do
     create(:feed,
-      :user     => user,
-      :category => category,
-      :name     => "Feed Name",
-      :url      => "https://example.org/feed.xml",
+      user: user,
+      category: category,
+      name: "Feed Name",
+      url: "https://example.org/feed.xml",
     )
-  }
+  end
 
   it "should generate OPML" do
     generated_opml = described_class.call(user)

@@ -9,9 +9,9 @@ describe Feed::SearchService do
       it "should reraise #{exception} exception" do
         instance = described_class.new(site_url)
         expect(instance).to receive(:results).and_raise(exception)
-        expect {
+        expect do
           instance.call
-        }.to raise_error(Feed::SearchService::Error, "unable to fetch or parse #{site_url}")
+        end.to raise_error(Feed::SearchService::Error, "unable to fetch or parse #{site_url}")
       end
     end
 

@@ -20,11 +20,11 @@ class Settings::AccountsController < ApplicationController
   private
 
   def permitted_params
-    [
-      :name,
-      :email,
-      :password,
-      :theme,
+    %i[
+      name
+      email
+      password
+      theme
     ]
   end
 

@@ -4,8 +4,7 @@ describe AuthControllerConcern, type: :controller do
   controller(ActionController::Base) do
     include AuthControllerConcern
 
-    def index
-    end
+    def index; end
   end
 
   def action(&)
@@ -17,7 +16,10 @@ describe AuthControllerConcern, type: :controller do
 
   describe "#sign_in" do
     it "should set the user_auth cookie" do
-      action { sign_in(User.sole); head :ok }
+      action do
+        sign_in(User.sole)
+        head :ok
+      end
       expect(response).to be_ok
       expect(user_session_storage[:user_auth]).to eq user.auth_token
     end
@@ -26,20 +28,29 @@ describe AuthControllerConcern, type: :controller do
   describe "#current_user" do
     it "should set user from cookie" do
       user_session_storage[:user_auth] = user.auth_token
-      action { current_user; head :ok }
+      action do
+        current_user
+        head :ok
+      end
       expect(response).to be_ok
       expect(assigns(:current_user)).to eq user
     end
 
     it "should return nil if no cookie" do
-      action { current_user; head :ok }
+      action do
+        current_user
+        head :ok
+      end
       expect(response).to be_ok
       expect(assigns(:current_user)).to eq nil
     end
 
     it "should return nil and sign out if invalid user id" do
       user_session_storage[:user_auth] = "invalid"
-      action { current_user; head :ok }
+      action do
+        current_user
+        head :ok
+      end
       expect(response).to be_ok
       expect(assigns(:current_user)).to eq nil
       expect(user_session_storage[:user_auth]).to eq nil
@@ -49,7 +60,11 @@ describe AuthControllerConcern, type: :controller do
   describe "#sign_out" do
     it "should clear the user_auth cookie" do
       user_session_storage[:user_auth] = user.auth_token
-      action { current_user; sign_out; head :ok }
+      action do
+        current_user
+        sign_out
+        head :ok
+      end
       expect(assigns(:current_user)).to eq nil
       expect(user_session_storage[:user_auth]).to eq nil
     end

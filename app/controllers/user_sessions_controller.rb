@@ -3,8 +3,7 @@ class UserSessionsController < ApplicationController
   skip_after_action :verify_policy_scoped
   before_action :redirect_if_signed_in, only: %i[new create]
 
-  def new
-  end
+  def new; end
 
   def create
     user = User.find_by(email: params[:email])&.authenticate(params[:password])

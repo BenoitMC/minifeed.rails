@@ -7,12 +7,12 @@ class User < ApplicationRecord
   has_secure_password
   has_secure_token :auth_token
 
-  normalizes :email, with: -> { _1&.strip&.downcase }
+  normalizes :email, with: -> { it&.strip&.downcase }
 
   validates :name, presence: true
-  validates :email, presence: true, uniqueness: true, format: {with: URI::MailTo::EMAIL_REGEXP}
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, presence: true, unless: :password_digest
-  validates :password, length: {minimum: 8}, if: :password
+  validates :password, length: { minimum: 8 }, if: :password
 
   before_save :reset_auth_token, if: :password_digest_changed?
 

@@ -10,12 +10,12 @@ class Entry::GenerateCountersService < ApplicationService
 
     counters.merge! categories_scope
       .left_joins(feeds: :entries)
-      .where(entries: {is_read: false})
+      .where(entries: { is_read: false })
       .group(:id).count
 
     counters.merge! feeds_scope
       .left_joins(:entries)
-      .where(entries: {is_read: false})
+      .where(entries: { is_read: false })
       .group(:id).count
 
     counters

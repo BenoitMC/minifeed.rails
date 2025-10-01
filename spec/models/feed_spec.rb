@@ -25,7 +25,7 @@ describe Feed, type: :model do
   end
 
   it "should have a valid factory" do
-    expect(create :feed).to be_valid
+    expect(create(:feed)).to be_valid
   end
 
   describe "#normalize_list" do

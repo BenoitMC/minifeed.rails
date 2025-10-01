@@ -7,9 +7,7 @@ class EntryAdapter < ApplicationAdapter
         .join(" ")
     end
 
-    if node.attributes["id"].present?
-      node.attributes["id"].value = "x-" + node.attributes["id"].value.to_s
-    end
+    node.attributes["id"].value = "x-#{node.attributes['id'].value}" if node.attributes["id"].present?
   end
 
   private_constant :CLASSES_AND_IDS_SCRUBBER

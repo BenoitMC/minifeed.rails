@@ -2,12 +2,12 @@ module ButtonsHelper
   DEFAULT_SIZE = :sm
   DEFAULT_STYLE = :outline_primary
 
-  def bs_button( # rubocop:disable Metrics/ParameterLists
+  def bs_button(
     url,
+    icon:,
     method: :get,
     confirm: nil,
     text: nil,
-    icon:,
     action: nil,
     title: text,
     btn_size: DEFAULT_SIZE,
@@ -46,9 +46,9 @@ module ButtonsHelper
 
   def new_button(url = url_for(action: :new), **options)
     options = {
-      :icon      => :plus,
-      :action    => :new,
-      :btn_style => :success,
+      icon: :plus,
+      action: :new,
+      btn_style: :success,
     }.merge(options)
 
     bs_button(url, **options)
@@ -56,8 +56,8 @@ module ButtonsHelper
 
   def edit_button(url, **options)
     options = {
-      :icon   => :pencil_alt,
-      :action => :edit,
+      icon: :pencil_alt,
+      action: :edit,
     }.merge(options)
 
     bs_button(url, **options)
@@ -65,10 +65,10 @@ module ButtonsHelper
 
   def delete_button(url, **options)
     options = {
-      :icon      => :trash,
-      :action    => :delete,
-      :btn_style => :danger,
-      :method    => :delete,
+      icon: :trash,
+      action: :delete,
+      btn_style: :danger,
+      method: :delete,
     }.merge(options)
 
     bs_button(url, **options)

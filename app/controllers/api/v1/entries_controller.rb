@@ -45,9 +45,9 @@ class Api::V1::EntriesController < Api::V1::ApplicationController
   end
 
   def permitted_params
-    [
-      :is_read,
-      :is_starred,
+    %i[
+      is_read
+      is_starred
     ]
   end
 

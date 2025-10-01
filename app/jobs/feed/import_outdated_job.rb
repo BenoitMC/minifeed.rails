@@ -8,8 +8,8 @@ class Feed::ImportOutdatedJob < ApplicationJob
     Feed
       .where("last_import_at IS NULL OR last_import_at <= ?", Minifeed.config.refresh_feeds_after.ago)
       .joins("LEFT JOIN solid_queue_jobs j ON j.concurrency_key = feeds.id::text AND j.class_name = 'Feed::ImportJob'")
-      .where(j: {id: nil})
-      .reorder(Arel.sql "last_import_at IS NOT NULL ASC, last_import_at ASC")
-      .find_each { Feed::ImportJob.perform_later(_1) }
+      .where(j: { id: nil })
+      .reorder(Arel.sql("last_import_at IS NOT NULL ASC, last_import_at ASC"))
+      .find_each { Feed::ImportJob.perform_later(it) }
   end
 end

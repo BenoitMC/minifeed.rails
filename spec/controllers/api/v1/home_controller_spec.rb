@@ -20,24 +20,24 @@ describe Api::V1::HomeController do
       request.headers["Authorization"] = "Bearer #{user.auth_token}"
       get :home
       expect(response).to be_ok
-      expect(controller.send :current_user).to eq user
+      expect(controller.send(:current_user)).to eq user
       expect(json_response["current_user"]["email"]).to eq user.email
     end
 
     it "should not auth by nil token" do
       user = create(:user)
-      user.update_columns(auth_token: nil)
+      user.update_columns(auth_token: nil) # rubocop:disable Rails/SkipsModelValidations
       request.headers["Authorization"] = "Bearer #{user.auth_token}"
       get :home
-      expect(controller.send :current_user).to eq nil
+      expect(controller.send(:current_user)).to eq nil
     end
 
     it "should not auth by blank token" do
       user = create(:user)
-      user.update_columns(auth_token: "")
+      user.update_columns(auth_token: "") # rubocop:disable Rails/SkipsModelValidations
       request.headers["Authorization"] = "Bearer #{user.auth_token}"
       get :home
-      expect(controller.send :current_user).to eq nil
+      expect(controller.send(:current_user)).to eq nil
     end
 
     it "should return nav" do

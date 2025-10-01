@@ -23,7 +23,7 @@ class Feed::ImportService < ApplicationService
 
   def request_headers
     if feed.user_agent.present?
-      {user_agent: feed.user_agent}
+      { user_agent: feed.user_agent }
     else
       {}
     end
@@ -39,17 +39,17 @@ class Feed::ImportService < ApplicationService
     return if excluded_by_whitelist?(remote_entry)
 
     local_entry = Entry.find_or_initialize_by(
-      :user        => feed.user,
-      :feed        => feed,
-      :external_id => remote_entry.external_id,
+      user: feed.user,
+      feed: feed,
+      external_id: remote_entry.external_id,
     )
 
     local_entry.attributes = {
-      :name         => remote_entry.name,
-      :body         => remote_entry.body,
-      :author       => remote_entry.author,
-      :url          => remote_entry.url,
-      :published_at => remote_entry.published_at || local_entry.published_at || Time.zone.now,
+      name: remote_entry.name,
+      body: remote_entry.body,
+      author: remote_entry.author,
+      url: remote_entry.url,
+      published_at: remote_entry.published_at || local_entry.published_at || Time.zone.now,
     }
 
     local_entry.save!
@@ -57,12 +57,14 @@ class Feed::ImportService < ApplicationService
 
   def excluded_by_blacklist?(remote_entry)
     return false if feed.normalized_blacklist.empty?
+
     normalized_entry = normalize_entry_for_exclusions(remote_entry)
     feed.normalized_blacklist.any? { |e| normalized_entry.include?(e) }
   end
 
   def excluded_by_whitelist?(remote_entry)
     return false if feed.normalized_whitelist.empty?
+
     normalized_entry = normalize_entry_for_exclusions(remote_entry)
     feed.normalized_whitelist.none? { |e| normalized_entry.include?(e) }
   end

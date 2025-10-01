@@ -21,9 +21,15 @@ class Settings::FeedsController < ApplicationController
     redirect_to url_for
   end
 
+  def show
+    redirect_to action: :edit
+  end
+
   def new
     @feed = scope.new(feed_params)
   end
+
+  def edit; end
 
   def create
     new
@@ -34,13 +40,6 @@ class Settings::FeedsController < ApplicationController
     else
       render_error :new
     end
-  end
-
-  def show
-    redirect_to action: :edit
-  end
-
-  def edit
   end
 
   def update
@@ -77,13 +76,13 @@ class Settings::FeedsController < ApplicationController
   end
 
   def permitted_params
-    [
-      :name,
-      :url,
-      :category_id,
-      :blacklist,
-      :whitelist,
-      :user_agent,
+    %i[
+      name
+      url
+      category_id
+      blacklist
+      whitelist
+      user_agent
     ]
   end
 

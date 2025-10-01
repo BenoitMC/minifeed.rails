@@ -1,7 +1,96 @@
-inherit_from: http://rubocop.benoitmc.com/1.72.2.yml
+plugins:
+  - rubocop-performance
+  - rubocop-rails
 
-Naming/InclusiveLanguage:
+
+
+AllCops:
+  Exclude:
+    - /**/bin/**/*
+    - /**/config/**/*
+    - /**/db/**/schema.rb
+    - /**/db/migrate/**/*
+    - /**/Gemfile
+    - /**/node_modules/**/*
+    - /**/Rakefile
+    - /**/spec/rails_helper.rb
+    - /**/spec/spec_helper.rb
+    - /**/tmp/**/*
+    - /**/vendor/**/*
+
+  NewCops: enable
+  DisplayCopNames: true
+  SuggestExtensions: false
+
+
+
+Bundler/OrderedGems:
   Enabled: false
 
+
+
+Layout/ArgumentAlignment:
+  Enabled: false
+
+Layout/MultilineMethodCallBraceLayout:
+  EnforcedStyle: new_line
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+
+
+Lint/UselessAssignment:
+  Exclude:
+    - /**/spec/**/*
+
+
+
+Metrics:
+  Enabled: false
+
+
+
+Naming/PredicatePrefix:
+  Enabled: false
+
+
+
+Rails/RedundantPresenceValidationOnBelongsTo:
+  Enabled: false
+
+
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/CommentedKeyword:
+  Enabled: false
+
+Style/ConditionalAssignment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/HashAsLastArrayItem:
+  Enabled: false
+
+# Fixme
 Style/OpenStructUse:
   Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma

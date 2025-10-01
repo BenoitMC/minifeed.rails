@@ -15,11 +15,11 @@ module ApiControllerConcern
   def render_json_error(any_object, options = {})
     if any_object.is_a?(ActiveModel::Validations)
       json = {
-        :error        => json_error_string_for_model(any_object),
-        :model_errors => json_errors_hash_for_model(any_object),
+        error: json_error_string_for_model(any_object),
+        model_errors: json_errors_hash_for_model(any_object),
       }
     elsif any_object.is_a?(String)
-      json = {error: any_object}
+      json = { error: any_object }
     else
       json = any_object
     end

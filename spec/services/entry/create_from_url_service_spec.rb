@@ -14,9 +14,9 @@ describe Entry::CreateFromUrlService do
     end
 
     it "should create entry from site html" do
-      expect {
+      expect do
         expect(instance.call).to eq true
-      }.to change(Entry, :count).by(1)
+      end.to change(Entry, :count).by(1)
 
       entry = Entry.last_created
       expect(entry.user).to eq user
@@ -37,17 +37,17 @@ describe Entry::CreateFromUrlService do
     end
 
     it "should not create entry on invalid url" do
-      expect {
+      expect do
         result = described_class.call(invalid_url, user:)
         expect(result).to eq false
-      }.to_not change(Entry, :count)
+      end.to_not change(Entry, :count)
     end
 
     it "should not create entry on nil url" do
-      expect {
+      expect do
         result = described_class.call(nil, user:)
         expect(result).to eq false
-      }.to_not change(Entry, :count)
+      end.to_not change(Entry, :count)
     end
 
     it "should not crash if url is not html" do

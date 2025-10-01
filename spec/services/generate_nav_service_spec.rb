@@ -18,48 +18,48 @@ describe GenerateNavService do
 
   it "should generate nav" do
     expect(nav).to eq(
-      :unread => {
-        :name    => "All",
-        :counter => 3,
+      unread: {
+        name: "All",
+        counter: 3,
       },
 
-      :starred => {
-        :name    => "Starred",
-        :counter => 1,
+      starred: {
+        name: "Starred",
+        counter: 1,
       },
 
-      :categories => [
+      categories: [
         {
-          :id      => category1.id,
-          :name    => "Category 1",
-          :counter => 2,
-          :feeds   => [
+          id: category1.id,
+          name: "Category 1",
+          counter: 2,
+          feeds: [
             {
-              :id      => feed1.id,
-              :name    => "Feed 1",
-              :counter => 2,
+              id: feed1.id,
+              name: "Feed 1",
+              counter: 2,
             },
           ],
         },
 
         {
-          :id      => category2.id,
-          :name    => "Category 2",
-          :counter => 1,
-          :feeds   => [
+          id: category2.id,
+          name: "Category 2",
+          counter: 1,
+          feeds: [
             {
-              :id      => feed2.id,
-              :name    => "Feed 2",
-              :counter => 1,
+              id: feed2.id,
+              name: "Feed 2",
+              counter: 1,
             },
           ],
         },
 
         {
-          :id      => category3.id,
-          :name    => "Category 3",
-          :counter => 0,
-          :feeds   => [],
+          id: category3.id,
+          name: "Category 3",
+          counter: 0,
+          feeds: [],
         },
       ],
     )

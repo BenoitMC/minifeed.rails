@@ -14,13 +14,13 @@ class Entry::CreateFromUrlService < ApplicationService
     entry = Entry.find_or_initialize_by(user:, feed: nil, external_id: url)
 
     entry.attributes = {
-      :name         => sanitize(page.best_title) || sanitized_url,
-      :body         => sanitize(page.best_description),
-      :author       => sanitize(page.best_author),
-      :url          => url,
-      :published_at => Time.current,
-      :is_read      => true,
-      :is_starred   => true,
+      name: sanitize(page.best_title) || sanitized_url,
+      body: sanitize(page.best_description),
+      author: sanitize(page.best_author),
+      url: url,
+      published_at: Time.current,
+      is_read: true,
+      is_starred: true,
     }
 
     entry.save!

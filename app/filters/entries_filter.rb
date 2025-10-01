@@ -28,6 +28,6 @@ class EntriesFilter < ApplicationService
   end
 
   def to_h
-    [:category_id, :feed_id, :q, :q_src, :type].index_with { |option| public_send(option) }
+    %i[category_id feed_id q q_src type].index_with { |option| public_send(option) }
   end
 end

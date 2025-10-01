@@ -33,7 +33,7 @@ describe Entry, type: :model do
   end # describe "default values"
 
   it "should have a valid factory" do
-    expect(create :entry).to be_valid
+    expect(create(:entry)).to be_valid
   end
 
   describe "factories" do

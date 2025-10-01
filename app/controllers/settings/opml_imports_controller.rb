@@ -1,8 +1,7 @@
 class Settings::OpmlImportsController < ApplicationController
   skip_after_action :verify_policy_scoped
 
-  def new
-  end
+  def new; end
 
   def create
     new

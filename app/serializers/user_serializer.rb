@@ -5,9 +5,9 @@ class UserSerializer < ApplicationSerializer
     ]
 
     if object == current_user
-      list += [
-        :email,
-        :auth_token,
+      list += %i[
+        email
+        auth_token
       ]
     end
 

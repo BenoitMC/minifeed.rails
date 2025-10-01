@@ -18,7 +18,7 @@ describe Feed::ImportService do
     it "should use custom user agent" do
       feed.user_agent = "curl"
 
-      expect(HttpClient).to receive(:request).with(:get, url, headers: {user_agent: "curl"})
+      expect(HttpClient).to receive(:request).with(:get, url, headers: { user_agent: "curl" })
         .and_return("remote content")
 
       expect(raw_feed).to eq "remote content"
@@ -26,16 +26,16 @@ describe Feed::ImportService do
   end # describe "#raw_fee"
 
   describe "#create_or_update_entry!" do
-    let(:remote_entry) {
+    let(:remote_entry) do
       OpenStruct.new(
-        :name         => "entry name",
-        :url          => "entry url",
-        :external_id  => "entry id",
-        :body         => "entry content",
-        :author       => "entry author",
-        :published_at => Time.utc(2012, 12, 21, 12, 0, 0),
+        name: "entry name",
+        url: "entry url",
+        external_id: "entry id",
+        body: "entry content",
+        author: "entry author",
+        published_at: Time.utc(2012, 12, 21, 12, 0, 0),
       )
-    }
+    end
 
     def create_or_update_entry!
       described_class.new(feed).send(:create_or_update_entry!, remote_entry)

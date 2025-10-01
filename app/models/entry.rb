@@ -10,17 +10,17 @@ class Entry < ApplicationRecord
   validates :external_id,  presence: true
   validates :name,         presence: true
   validates :published_at, presence: true
-  validates :is_read,      inclusion: {in: [true, false]}
-  validates :is_starred,   inclusion: {in: [true, false]}
+  validates :is_read,      inclusion: { in: [true, false] }
+  validates :is_starred,   inclusion: { in: [true, false] }
 
-  default_scope -> {
+  default_scope lambda {
     order(published_at: :desc)
   }
 
   scope :unread,  -> { where(is_read: false)   }
   scope :starred, -> { where(is_starred: true) }
 
-  scope :with_category_id, -> (category_id) {
+  scope :with_category_id, lambda { |category_id|
     feed_ids = Feed.where(category_id:).select(:id).reorder(nil)
     where(feed_id: feed_ids)
   }
@@ -31,10 +31,10 @@ class Entry < ApplicationRecord
     !is_read?
   end
 
-  def self.search(q, column)
+  def self.search(query, column)
     column = "keywords" unless column.to_s.in?(%w[name keywords])
 
-    super(q, ["#{table_name}.#{column}_for_search"], unaccent: false)
+    super(query, ["#{table_name}.#{column}_for_search"], unaccent: false)
   end
 
   private
@@ -46,12 +46,12 @@ class Entry < ApplicationRecord
 
   def normalize_for_search(str)
     str.to_s
-      .then { Loofah::Helpers.strip_tags(_1) }
+      .then { Loofah::Helpers.strip_tags(it) }
       .parameterize(separator: " ")
       .split
       .uniq
       .sort
       .join(" ")
-      .then { " #{_1} " }
+      .then { " #{it} " }
   end
 end

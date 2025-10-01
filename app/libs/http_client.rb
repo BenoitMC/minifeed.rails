@@ -11,7 +11,7 @@ module HttpClient
     Zlib::Error,
   ].each { |exception| exception.send(:include, Error) }
 
-  DEFAULT_USER_AGENT = "Minifeed RSS Reader"
+  DEFAULT_USER_AGENT = "Minifeed RSS Reader".freeze
 
   ResponseNotOkError = Class.new(HTTP::ResponseError)
 
@@ -21,9 +21,9 @@ module HttpClient
 
       response = payload[:response]
 
-      unless response.code.to_s.start_with?("2", "3")
-        raise ResponseNotOkError, "Invalid response: #{response.code} #{response.reason}"
-      end
+      return if response.code.to_s.start_with?("2", "3")
+
+      raise ResponseNotOkError, "Invalid response: #{response.code} #{response.reason}"
     end
   end
 
@@ -33,7 +33,7 @@ module HttpClient
       .timeout(10)
       .headers(user_agent: DEFAULT_USER_AGENT)
       .headers(accept: "*/*")
-      .use(instrumentation: {instrumenter: ResponseNotOkInstrumenter.new})
+      .use(instrumentation: { instrumenter: ResponseNotOkInstrumenter.new })
   end
 
   def self.request(...)

@@ -10,7 +10,7 @@ class Feed < ApplicationRecord
 
   validate :validate_associations_consistency
 
-  scope :order_by_name, -> { order(Arel.sql "LOWER(#{table_name}.name) ASC") }
+  scope :order_by_name, -> { order(Arel.sql("LOWER(#{table_name}.name) ASC")) }
 
   default_scope -> { order_by_name }
 
@@ -29,9 +29,10 @@ class Feed < ApplicationRecord
   private
 
   def validate_associations_consistency
-    if user && category && category.user != user
-      errors.add(:category, :invalid)
-    end
+    return if user.nil? || category.nil?
+    return if category.user == user
+
+    errors.add(:category, :invalid)
   end
 
   def normalize_list(list)

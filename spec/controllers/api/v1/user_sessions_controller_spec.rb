@@ -7,25 +7,25 @@ describe Api::V1::UserSessionsController do
 
   describe "#create" do
     it "should return user" do
-      post :create, params: {email: "user@example.org", password: "password"}
+      post :create, params: { email: "user@example.org", password: "password" }
       expect(response).to be_ok
       expect(json_response["current_user"]["auth_token"]).to eq user.auth_token
     end
 
     it "should strip email and password" do
-      post :create, params: {email: " user@example.org ", password: " password "}
+      post :create, params: { email: " user@example.org ", password: " password " }
       expect(response).to be_ok
     end
 
     it "should fail on invalid email" do
-      post :create, params: {email: "invalid@example.org", password: "invalid"}
+      post :create, params: { email: "invalid@example.org", password: "invalid" }
       expect(response.code).to eq "422"
       expect(json_response["current_user"]).to eq nil
       expect(json_response["error"]).to eq "Invalid email and/or password."
     end
 
     it "should fail on invalid password" do
-      post :create, params: {email: "user@example.org", password: "invalid"}
+      post :create, params: { email: "user@example.org", password: "invalid" }
       expect(response.code).to eq "422"
       expect(json_response["current_user"]).to eq nil
       expect(json_response["error"]).to eq "Invalid email and/or password."

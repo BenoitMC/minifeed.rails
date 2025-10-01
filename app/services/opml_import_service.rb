@@ -26,12 +26,7 @@ class OpmlImportService < ApplicationService
 
     return if url.blank? || name.blank? || feed.present?
 
-    Feed.create!(
-      :user     => user,
-      :name     => name,
-      :url      => url,
-      :category => category,
-    )
+    Feed.create!(user:, name:, url:, category:)
   end
 
   def import_category_outline!(category_outline)

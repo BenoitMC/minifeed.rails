@@ -1,12 +1,17 @@
 class Settings::CategoriesController < ApplicationController
   before_action :set_objects
 
-  def index
+  def index; end
+
+  def show
+    redirect_to action: :edit
   end
 
   def new
     @category = scope.new(category_params)
   end
+
+  def edit; end
 
   def create
     new
@@ -17,13 +22,6 @@ class Settings::CategoriesController < ApplicationController
     else
       render_error :new
     end
-  end
-
-  def show
-    redirect_to action: :edit
-  end
-
-  def edit
   end
 
   def update
@@ -52,7 +50,7 @@ class Settings::CategoriesController < ApplicationController
     return if request.get?
 
     ApplicationRecord.transaction do
-      params.permit(category: [:id, :position])[:category].each_value do |category|
+      params.permit(category: %i[id position])[:category].each_value do |category|
         scope.find(category[:id]).update!(category)
       end
     end

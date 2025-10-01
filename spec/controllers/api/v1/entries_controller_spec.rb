@@ -17,7 +17,7 @@ describe Api::V1::EntriesController do
 
     it "should filter entries" do
       expect_any_instance_of(EntriesFilter).to receive(:call).and_call_original
-      get :index, params: {category_id: entry1.feed.category.id}
+      get :index, params: { category_id: entry1.feed.category.id }
       expect(response).to be_ok
       expect(json_response["entries"].length).to eq 1
       expect(json_response["entries"][0]["id"]).to eq entry1.id
@@ -42,7 +42,7 @@ describe Api::V1::EntriesController do
     it "should create entry" do
       url = "https://example.org/"
       expect(Entry::CreateFromUrlService).to receive(:call).with(url, user:).and_return(true)
-      post :create, params: {url:}
+      post :create, params: { url: }
       expect(response).to be_ok
     end
 
@@ -55,7 +55,7 @@ describe Api::V1::EntriesController do
   describe "#update" do
     it "should should return entry" do
       entry = create(:entry, user:)
-      patch :update, params: {id: entry}
+      patch :update, params: { id: entry }
       expect(response).to be_ok
       expect(json_response).to have_key "entry"
       expect(json_response).to_not have_key "error"
@@ -63,7 +63,7 @@ describe Api::V1::EntriesController do
 
     it "should return error" do
       entry = create(:entry, user:)
-      patch :update, params: {id: entry, entry: {is_starred: nil}}
+      patch :update, params: { id: entry, entry: { is_starred: nil } }
       expect(response.code).to eq "422"
       expect(json_response).to have_key "error"
       expect(json_response).to_not have_key "entry"
@@ -80,7 +80,7 @@ describe Api::V1::EntriesController do
     it "should update only filtered entries" do
       entry1 = create(:entry, user:, is_read: false)
       entry2 = create(:entry, user:, is_read: false)
-      post :mark_all_as_read, params: {category_id: entry1.feed.category.id}
+      post :mark_all_as_read, params: { category_id: entry1.feed.category.id }
       expect(entry1.reload.is_read?).to be true
       expect(entry2.reload.is_read?).to be false
     end
@@ -88,7 +88,7 @@ describe Api::V1::EntriesController do
     it "should return filtered entries" do
       entry1 = create(:entry, user:, is_read: false)
       entry2 = create(:entry, user:, is_read: false)
-      post :mark_all_as_read, params: {category_id: entry1.feed.category.id, type: "all"}
+      post :mark_all_as_read, params: { category_id: entry1.feed.category.id, type: "all" }
       expect(json_response["entries"].length).to eq 1
       expect(json_response["entries"][0]["id"]).to eq entry1.id
     end

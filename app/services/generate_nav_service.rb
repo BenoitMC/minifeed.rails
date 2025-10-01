@@ -5,30 +5,30 @@ class GenerateNavService < ApplicationService
     nav = {}
 
     nav[:unread] = {
-      :name    => I18n.t("nav.unread"),
-      :counter => counters[:unread],
+      name: I18n.t("nav.unread"),
+      counter: counters[:unread],
     }
 
     nav[:starred] = {
-      :name    => I18n.t("nav.starred"),
-      :counter => counters[:starred],
+      name: I18n.t("nav.starred"),
+      counter: counters[:starred],
     }
 
     nav[:categories] = []
 
     categories_scope.each do |category|
       nav[:categories] << {
-        :id      => category.id,
-        :name    => category.name,
-        :counter => counters[category.id],
-        :feeds   => [],
+        id: category.id,
+        name: category.name,
+        counter: counters[category.id],
+        feeds: [],
       }
 
       category.feeds.each do |feed|
         nav[:categories].last[:feeds] << {
-          :id      => feed.id,
-          :name    => feed.name,
-          :counter => counters[feed.id],
+          id: feed.id,
+          name: feed.name,
+          counter: counters[feed.id],
         }
       end
     end

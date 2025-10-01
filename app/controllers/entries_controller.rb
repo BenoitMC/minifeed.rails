@@ -8,6 +8,10 @@ class EntriesController < ApplicationController
       .page(params[:page]).per(Minifeed.config.entries_per_page)
   end
 
+  def show
+    @entry.update!(is_read: true) if @entry.is_unread?
+  end
+
   def new
     skip_policy_scope
   end
@@ -22,10 +26,6 @@ class EntriesController < ApplicationController
     end
 
     redirect_to action: :index, type: :starred
-  end
-
-  def show
-    @entry.update!(is_read: true) if @entry.is_unread?
   end
 
   def reader
@@ -47,9 +47,7 @@ class EntriesController < ApplicationController
   end
 
   def update
-    unless @entry.update(entry_params)
-      render :update_error
-    end
+    render :update_error unless @entry.update(entry_params)
   end
 
   def mark_all_as_read
@@ -71,9 +69,9 @@ class EntriesController < ApplicationController
   end
 
   def permitted_params
-    [
-      :is_read,
-      :is_starred,
+    %i[
+      is_read
+      is_starred
     ]
   end
 

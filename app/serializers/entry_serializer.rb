@@ -2,17 +2,17 @@ class EntrySerializer < ApplicationSerializer
   include ActionView::Helpers::DateHelper
 
   def attributes
-    [
-      :author,
-      :body,
-      :category_name,
-      :feed_name,
-      :id,
-      :is_read,
-      :is_starred,
-      :name,
-      :published_at_human,
-      :url,
+    %i[
+      author
+      body
+      category_name
+      feed_name
+      id
+      is_read
+      is_starred
+      name
+      published_at_human
+      url
     ]
   end
 

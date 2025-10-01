@@ -78,17 +78,17 @@ describe OpmlImportService do
 
   describe "on invalid input" do
     it "should not raise if input is not xml " do
-      expect {
+      expect do
         described_class.call(user, "i'm not a valid xml")
-      }.to_not raise_error
+      end.to_not raise_error
     end
 
     it "should on invalid opml " do
       raw_xml = fixture_content("opml.invalid.xml")
 
-      expect {
+      expect do
         described_class.call(user, raw_xml)
-      }.to_not raise_error
+      end.to_not raise_error
     end
   end # describe "on invalid input"
 end

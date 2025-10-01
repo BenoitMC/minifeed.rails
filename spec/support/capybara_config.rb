@@ -2,16 +2,16 @@ require "capybara/cuprite"
 
 Capybara.register_driver :custom_cuprite do |app|
   Capybara::Cuprite::Driver.new(app,
-    :browser_options => {
-      :"disable-gpu" => true,
-      :"no-sandbox" => nil,
+    browser_options: {
+      "disable-gpu": true,
+      "no-sandbox": nil,
     },
-    :headless => (ENV["CHROME_HEADLESS"].to_s != "false"),
-    :inspector => true,
-    :js_errors => true,
-    :process_timeout => 15,
-    :timeout => 15,
-    :window_size => [1680, 1050],
+    headless: (ENV["CHROME_HEADLESS"].to_s != "false"),
+    inspector: true,
+    js_errors: true,
+    process_timeout: 15,
+    timeout: 15,
+    window_size: [1680, 1050],
   )
 end
 

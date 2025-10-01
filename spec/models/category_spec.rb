@@ -8,6 +8,6 @@ describe Category, type: :model do
   it { is_expected.to validate_presence_of :name }
 
   it "should have a valid factory" do
-    expect(create :category).to be_valid
+    expect(create(:category)).to be_valid
   end
 end

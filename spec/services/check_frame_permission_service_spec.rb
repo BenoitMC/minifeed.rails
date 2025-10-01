@@ -21,15 +21,15 @@ describe CheckFramePermissionService do
 
   it "should catch and reraise http exception" do
     instance = described_class.new("invalid")
-    expect {
+    expect do
       instance.call
-    }.to raise_error(described_class::Error)
+    end.to raise_error(described_class::Error)
   end
 
   describe "in real life" do
     it "should fetch header" do
       instance = described_class.new("https://github.com/")
-      expect(instance.send :fetch_header).to eq "deny"
+      expect(instance.send(:fetch_header)).to eq "deny"
     end
   end # describe "in real life"
 end

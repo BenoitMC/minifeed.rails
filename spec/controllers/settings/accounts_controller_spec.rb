@@ -14,7 +14,7 @@ describe Settings::AccountsController do
 
   describe "#update" do
     it "should update user" do
-      patch :update, params: {user: {email: "new@example.org", password: "new_password"}}
+      patch :update, params: { user: { email: "new@example.org", password: "new_password" } }
       expect(response).to redirect_to settings_root_path
       user.reload
       expect(user.email).to eq "new@example.org"
@@ -22,13 +22,13 @@ describe Settings::AccountsController do
     end
 
     it "should ignore password if blank" do
-      patch :update, params: {user: {email: "new@example.org", password: ""}}
+      patch :update, params: { user: { email: "new@example.org", password: "" } }
       expect(response).to redirect_to settings_root_path
       expect(user.reload.authenticate("password")).to eq user
     end
 
     it "should render edit on invalid attribtues" do
-      patch :update, params: {user: {email: ""}}
+      patch :update, params: { user: { email: "" } }
       expect(response).to render_template(:edit)
       expect(user.reload.email).to be_present
     end
