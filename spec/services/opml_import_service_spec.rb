@@ -6,7 +6,7 @@ describe OpmlImportService do
   let(:no_category_label) { "[no category]" }
 
   def import!
-    raw_xml = fixture_content("opml.inoreader.xml")
+    raw_xml = file_fixture("opml.inoreader.xml").read
     described_class.call(user, raw_xml)
   end
 
@@ -84,7 +84,7 @@ describe OpmlImportService do
     end
 
     it "should on invalid opml " do
-      raw_xml = fixture_content("opml.invalid.xml")
+      raw_xml = file_fixture("opml.invalid.xml").read
 
       expect do
         described_class.call(user, raw_xml)

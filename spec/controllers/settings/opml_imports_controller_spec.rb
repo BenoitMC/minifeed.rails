@@ -15,15 +15,10 @@ describe Settings::OpmlImportsController do
   end # describe "#new"
 
   describe "#create" do
-    let(:uploaded_file) do
-      path = fixture_file_path("opml.inoreader.xml")
-      Rack::Test::UploadedFile.new(path, "text/xml")
-    end
-
     it "should be ok" do
       expect(OpmlImportService).to receive(:call).with(user, /Example OPML/)
 
-      post :create, params: { file: uploaded_file }
+      post :create, params: { file: file_fixture_upload("opml.inoreader.xml") }
 
       expect(response).to redirect_to settings_root_path
       expect(flash.notice).to be_present
