@@ -15,28 +15,19 @@ module HttpClient
 
   ResponseNotOkError = Class.new(HTTP::ResponseError)
 
-  class ResponseNotOkInstrumenter < HTTP::Features::Instrumentation::NullInstrumenter
-    def finish(name, payload)
-      return unless name == "request.http"
-
-      response = payload[:response]
-
-      return if response.code.to_s.start_with?("2", "3")
-
-      raise ResponseNotOkError, "Invalid response: #{response.code} #{response.reason}"
-    end
-  end
-
   def self.http
     HTTP
       .follow
       .timeout(10)
       .headers(user_agent: DEFAULT_USER_AGENT)
       .headers(accept: "*/*")
-      .use(instrumentation: { instrumenter: ResponseNotOkInstrumenter.new })
   end
 
   def self.request(...)
-    http.request(...)
+    response = http.request(...)
+
+    raise ResponseNotOkError, "Invalid response: #{response.code}" unless response.code.to_s.start_with?("2")
+
+    response
   end
 end

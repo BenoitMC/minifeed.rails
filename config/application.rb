@@ -10,7 +10,7 @@ Bundler.require(*Rails.groups)
 
 module Minifeed
   class Application < Rails::Application
-    config.load_defaults 8.0
+    config.load_defaults 8.1
 
     config.autoload_lib(ignore: %w[assets ext tasks])
 
@@ -21,8 +21,6 @@ module Minifeed
     config.x.mailer_default_from = ENV["RAILS_MAILER_DEFAULT_FROM"].presence || "noreply@#{config.x.hostname}"
 
     config.action_mailer.raise_delivery_errors = true
-    config.action_mailer.default_url_options = {host: config.x.hostname}
-    config.action_mailer.delivery_method = :sendmail
 
     config.active_record.primary_key = :uuid
     config.active_record.belongs_to_required_by_default = false

@@ -1,11 +1,11 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby File.read(File.join(__dir__, ".ruby-version"))
+ruby file: ".ruby-version"
 
 gem "dotenv", require: "dotenv/load" # Keep it first
 
-gem "rails", "~> 8.0.0"
+gem "rails", "~> 8.1.0"
 
 gem "bootsnap", require: false
 gem "solid_queue"
@@ -35,6 +35,7 @@ gem "awesome_print"
 gem "pry-rails"
 gem "ostruct"
 gem "bcrypt"
+gem "openssl" # Fix https://github.com/ruby/openssl/issues/949
 
 group :test do
   gem "rspec-wait"
