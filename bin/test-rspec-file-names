@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+files=$(find spec/**/*.rb | egrep -v "fixtures|support|shared_examples|spec_helper|rails_helper|factories|_spec" | cat)
+
+if [[ "$files" != "" ]]; then
+  echo "Invalid file names found :"
+  printf '%s\n' "${files[@]}"
+  exit 1
+fi

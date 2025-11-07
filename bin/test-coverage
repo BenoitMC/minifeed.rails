@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+if [[ $(cat coverage/index.html | grep "lines missed" | head -1) =~ "<b>0</b>" ]]; then
+  echo "App is 100% covered."
+else
+  echo "App is not 100% covered."
+  exit 1
+fi
