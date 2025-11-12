@@ -64,5 +64,12 @@ describe Entry::CreateFromUrlService do
       entry = Entry.last_created
       expect(entry.name).to eq "https://example.org/some/page"
     end
+
+    it "should not crash on invalid urls" do
+      instance = described_class.new("http://\x00\x01\x02", user:)
+      expect do
+        expect(instance.call).to eq false
+      end.to_not change(Entry, :count)
+    end
   end # describe "in fake life"
 end

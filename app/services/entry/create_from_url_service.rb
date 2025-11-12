@@ -24,6 +24,8 @@ class Entry::CreateFromUrlService < ApplicationService
     }
 
     entry.save!
+  rescue URI::InvalidURIError
+    false
   end
 
   private
