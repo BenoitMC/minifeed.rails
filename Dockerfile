@@ -38,4 +38,4 @@ RUN \
 FROM base
 COPY --from=build /app /app
 WORKDIR /app
-CMD ["/app/bin/start"]
+CMD ["/app/bin/docker-start"]
