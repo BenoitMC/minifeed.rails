@@ -16,7 +16,7 @@ class Settings::FeedsController < ApplicationController
       flash.alert = t(".messages.no_result")
       redirect_to url_for
     end
-  rescue Feed::SearchService::Error
+  rescue HttpClient::Error
     flash.alert = t(".messages.error")
     redirect_to url_for
   end

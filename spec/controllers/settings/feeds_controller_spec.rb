@@ -141,8 +141,8 @@ describe Settings::FeedsController do
       expect(response).to redirect_to(action: :search)
     end
 
-    it "should redirect and display error on service error" do
-      expect(Feed::SearchService).to receive(:call).with(url).and_raise(Feed::SearchService::Error)
+    it "should redirect and display error on http error" do
+      expect(Feed::SearchService).to receive(:call).with(url).and_raise(SocketError)
       get :search, params: { url: }
       expect(flash.alert).to be_present
       expect(response).to redirect_to(action: :search)

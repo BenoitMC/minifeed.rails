@@ -1,37 +1,20 @@
 class Feed::SearchService < ApplicationService
   Result = Struct.new(:url, :name)
 
-  Error = Class.new(StandardError)
-
   attr_reader_initialize :url
 
   def call
-    results
-  rescue HttpClient::Error, Feedjira::NoParserAvailable
-    raise Error, "unable to fetch or parse #{url}"
+    urls = [url] + Feedbag.find(url)
+    urls.uniq.map { url_to_result(it) }.compact
   end
 
   private
-
-  def results
-    (feedbag_results + [provided_url_result]).compact.uniq
-  end
-
-  def feedbag_results
-    Feedbag.find(url).map do |feed_url|
-      url_to_result(feed_url)
-    end
-  end
-
-  def provided_url_result
-    url_to_result(url)
-  rescue Feedjira::NoParserAvailable
-    nil
-  end
 
   def url_to_result(url)
     raw_feed = HttpClient.request(:get, url).to_s
     feed = Feedjira.parse(raw_feed)
     Result.new(url, feed.title)
+  rescue Feedjira::NoParserAvailable
+    nil
   end
 end
