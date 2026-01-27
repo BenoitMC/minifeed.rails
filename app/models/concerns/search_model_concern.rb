@@ -1,6 +1,10 @@
 module SearchModelConcern
   extend ActiveSupport::Concern
 
+  def self.normalize(text)
+    I18n.transliterate(text.to_s.downcase)
+  end
+
   class_methods do
     def default_search_columns
       columns
@@ -9,7 +13,7 @@ module SearchModelConcern
     end
 
     def search(query, columns = default_search_columns, unaccent: true)
-      words = query.to_s.parameterize.split("-")
+      words = SearchModelConcern.normalize(query).split
 
       return all if words.empty?
 

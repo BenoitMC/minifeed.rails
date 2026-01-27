@@ -61,9 +61,9 @@ describe Entry, type: :model do
 
   describe "search columns" do
     it "should normalize name" do
-      subject.name = "<strong>bonjour aéroport bonjour</strong>"
+      subject.name = "<strong>crème brûlée</strong>"
       subject.send :set_search_columns
-      expect(subject.name_for_search).to eq " aeroport bonjour "
+      expect(subject.name_for_search).to eq "creme brulee"
     end
 
     it "should generate keywords_for_search" do
@@ -71,7 +71,7 @@ describe Entry, type: :model do
       subject.body = "body"
       subject.author = "author"
       subject.send :set_search_columns
-      expect(subject.keywords_for_search).to eq " author body title "
+      expect(subject.keywords_for_search).to eq "title body author"
     end
   end # describe "search columns"
 end

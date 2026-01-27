@@ -47,11 +47,6 @@ class Entry < ApplicationRecord
   def normalize_for_search(str)
     str.to_s
       .then { Loofah::Helpers.strip_tags(it) }
-      .parameterize(separator: " ")
-      .split
-      .uniq
-      .sort
-      .join(" ")
-      .then { " #{it} " }
+      .then { SearchModelConcern.normalize(it) }
   end
 end
