@@ -52,6 +52,8 @@ class Feed::ImportService < ApplicationService
       published_at: remote_entry.published_at || local_entry.published_at || Time.zone.now,
     }
 
+    return unless local_entry.changed? # Avoid callbacks if no changes
+
     local_entry.save!
   end
 

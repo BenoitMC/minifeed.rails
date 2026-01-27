@@ -100,6 +100,13 @@ describe Feed::ImportService do
       expect(entry.published_at).to eq Time.utc(2012, 12, 21, 12, 0, 0)
     end
 
+    it "should not save entry if not changed" do
+      expect_any_instance_of(Entry).to receive(:save!).once.and_call_original
+
+      create_or_update_entry!
+      create_or_update_entry!
+    end
+
     describe "black/white lists" do
       describe "blacklist only" do
         before do
