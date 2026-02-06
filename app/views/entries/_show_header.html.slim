@@ -27,9 +27,9 @@
       label.entry-is_read
         = f.check_box :is_read, class: "d-none"
         - if @entry.is_read?
-         = fa_r(:check_square)
+          = fa_r(:check_square)
         - else
-         = fa_r(:square)
+          = fa_r(:square)
 
         = " "
         = ta(:toggle_read)
@@ -39,9 +39,9 @@
       label.entry-is_starred
         = f.check_box :is_starred, class: "d-none"
         - if @entry.is_starred?
-         = fa_s(:star)
+          = fa_s(:star)
         - else
-         = fa_r(:star)
+          = fa_r(:star)
 
         = " "
         = ta(:toggle_starred)
