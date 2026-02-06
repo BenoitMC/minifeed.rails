@@ -1,4 +1,54 @@
-window.Minifeed = {}
+class Minifeed {
+  static get entryModalEl() {
+    return find("#entry-modal")
+  }
+
+  static get entryModalBs() {
+    return bootstrap.Modal.getOrCreateInstance(this.entryModalEl)
+  }
+
+  static get entryCarouselBs() {
+    return bootstrap.Carousel.getOrCreateInstance(this.entryModalEl.find(".carousel"))
+  }
+
+  static openEntry(id) {
+    this.entryModalEl.find(".carousel-inner").innerHTML = "";
+    this.entryModalBs.show()
+    this.addEntry({id, method: "append", active: true})
+    this.adjustPreviousAndNextEntries()
+  }
+
+  static addEntry({id, method, active = false}) {
+    const url = find(`#entries-list a[data-entry-id='${id}']`).dataset.url
+    const item = document.createElement("turbo-frame")
+    item.dataset.entryId = id
+    item.id = `entry_${id}`
+    item.src = url
+    item.loading = "lazy"
+    item.classList.add("entry","carousel-item")
+    item.classList.toggle("active", active)
+    this.entryModalEl.find(".modal-body .carousel-inner")[method](item)
+  }
+
+  static adjustPreviousAndNextEntries() {
+    const currentItem = this.entryModalEl.querySelector(".carousel-item.active")
+    const currentEntryId = currentItem.dataset.entryId
+
+    if (currentItem.matches(":first-child")) {
+      const previousEntryId = find(`#entries-list a[data-entry-id='${currentEntryId}']`).closest("li").previousElementSibling?.find("a[data-entry-id]")?.dataset?.entryId
+      if (previousEntryId) {
+        this.addEntry({id: previousEntryId, method: "prepend"})
+      }
+    }
+
+    if (currentItem.matches(":last-child")) {
+      const nextEntryId = find(`#entries-list a[data-entry-id='${currentEntryId}']`).closest("li").nextElementSibling?.find("a[data-entry-id]")?.dataset?.entryId
+      if (nextEntryId) {
+        this.addEntry({id: nextEntryId, method: "append"})
+      }
+    }
+  }
+}
 
 Minifeed.actions = {
   help() {
@@ -6,53 +56,43 @@ Minifeed.actions = {
   },
 
   close_modal() {
-    modal.close()
+    findAll(".modal.show").forEach(el => bootstrap.Modal.getInstance(el).hide())
   },
 
   previous_entry() {
-    let current_entry_id = find("#entry form")?.action?.split("/")?.pop()
-
-    if (current_entry_id) {
-      let previous_entry = find(`a[data-entry-id='${current_entry_id}']`).closest("li").previousSibling
-      if (previous_entry) {
-        previous_entry.find("a[data-entry-id]").click()
-      }
+    if (Minifeed.entryModalEl.matches(".show")) {
+      Minifeed.entryCarouselBs.prev()
     } else {
       find("#entries-list li:last-child a.entry-name")?.click()
     }
   },
 
   next_entry() {
-    let current_entry_id = find("#entry form")?.action?.split("/")?.pop()
-
-    if (current_entry_id) {
-      let next_entry = find(`a[data-entry-id='${current_entry_id}']`).closest("li").nextSibling
-      if (next_entry) {
-        next_entry.find("a[data-entry-id]").click()
-      }
+    if (Minifeed.entryModalEl.matches(".show")) {
+      Minifeed.entryCarouselBs.next()
     } else {
       find("#entries-list li:first-child a.entry-name")?.click()
     }
   },
 
   mark_entry_as_un_read() {
-    find("#entry input[type=checkbox][name*=read]")?.click()
+    find(".entry.active input[type=checkbox][name*=read]")?.click()
   },
 
   mark_entry_as_un_starred() {
-    find("#entry input[type=checkbox][name*=starred]")?.click()
+    find(".entry.active input[type=checkbox][name*=starred]")?.click()
   },
 
   open_reader_mode() {
-    find("#entry .entry-reader_link")?.click()
+    find(".entry.active .entry-reader_link")?.click()
   },
 
   open_internal() {
-    find("#entry .entry-internal_link")?.click()
+    find(".entry.active .entry-internal_link")?.click()
   },
 
   open_external() {
-    find("#entry .entry-external_link")?.click()
+    find(".entry.active .entry-external_link")?.click()
   },
 
   reload_navigation() {
@@ -83,12 +123,22 @@ if (typeof(Mousetrap) === "function") {
   Minifeed.define_keyboard_shortcuts()
 }
 
+onEvent("click", ".open-entry", (ev, el) => {
+  if (ev.ctrlKey || ev.metaKey) { return } // new tab
+  ev.preventDefault()
+  Minifeed.openEntry(el.dataset.entryId)
+})
+
+onEvent("slid.bs.carousel", "#entry-modal", () => {
+  Minifeed.adjustPreviousAndNextEntries()
+})
+
 onEvent("click", ".entry-reader_link", (ev, el) => {
   ev.preventDefault()
   let iframe = parseFragment(`<iframe src='${el.href}' class='entry-iframe' />`)
   iframe.style.height = "0px"
   iframe.onload = () => iframe.style.height = iframe.contentDocument.querySelector("html").scrollHeight + "px"
-  let content = el.closest("#entry").find(".entry-content")
+  let content = el.closest(".entry.active").find(".entry-content")
   content.innerHTML = ""
   content.append(iframe)
 })
@@ -96,7 +146,7 @@ onEvent("click", ".entry-reader_link", (ev, el) => {
 onEvent("click", ".entry-internal_link", (ev, el) => {
   ev.preventDefault()
   let iframe = parseFragment(`<iframe src='${el.href}' class='entry-iframe' />`)
-  el.closest("#entry").find(".entry-content").innerHTML = iframe.outerHTML
+  el.closest(".entry.active").find(".entry-content").innerHTML = iframe.outerHTML
 })
 
 onEvent("click", "#entries-load-more a", (ev, el) => {
@@ -114,7 +164,7 @@ onEvent("click", ".entry-body a", (ev, el) => {
   el.target = "_blank"
 })
 
-onEvent("change", "#entry-header form", (ev, el) => {
+onEvent("change", ".entry-header form", (ev, el) => {
   el.requestSubmit()
 })
 
@@ -123,9 +173,9 @@ onEvent("click", ".subnav-toggle", (ev, el) => {
   el.closest(".subnav").classList.toggle("open")
 })
 
-onEvent("swiped-left", "#modal", Minifeed.actions.next_entry)
+onEvent("swiped-left", "#entry-modal", Minifeed.actions.next_entry)
 
-onEvent("swiped-right", "#modal", Minifeed.actions.previous_entry)
+onEvent("swiped-right", "#entry-modal", Minifeed.actions.previous_entry)
 
 onEvent("turbo:load turbo:render", () => {
   find("#url")?.focus()

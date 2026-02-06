@@ -9,10 +9,10 @@
 
 ul.list-group#entries-list
   - @entries.each do |entry|
-    li.list-group-item class=css_class_for_entry(entry) data-id=entry.id
+    li.list-group-item class=css_class_for_entry(entry) data-entry-id=entry.id
       span.entry-is_read-indicator
       = " "
-      a.entry-name.modal-link href=entry.url data-url=main_app.entry_path(entry) data-turbo-prefetch="false" data-entry-id=entry.id
+      a.entry-name.open-entry href=entry.url data-url=main_app.entry_path(entry) data-turbo-prefetch="false" data-entry-id=entry.id
         = entry.name
       - if entry.feed.present?
         = " "
@@ -27,3 +27,13 @@ ul.list-group#entries-list
   #entries-load-more
     a.btn.btn-sm.btn-outline-primary href=path_to_next_page(@entries)
       = t(".load_more_entries")
+
+
+
+#entry-modal.modal
+  .modal-dialog style="max-width:980px"
+    .modal-content.border-0.rounded-0
+      .modal-body.p-4
+        .carousel.slide#entry-carousel data-bs-keyboard="false" data-bs-wrap="false" data-bs-interval="false"
+          .carousel-inner
+      button.btn-close type="button" data-bs-dismiss="modal" style="position:absolute; top:10px; right:10px"

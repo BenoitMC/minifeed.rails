@@ -75,8 +75,8 @@ describe "Entries", type: :system do
 
     visit main_app.entries_path
     click_on "i am an entry"
-    expect(find("#modal")).to have_content("i am an entry")
-    expect(find("#modal")).to have_content("i am an entry body")
+    expect(find(".modal")).to have_content("i am an entry")
+    expect(find(".modal")).to have_content("i am an entry body")
   end
 
   it "opens entry url in new tab" do
@@ -105,7 +105,7 @@ describe "Entries", type: :system do
     click_on "Example entry"
     find(".entry-internal_link").click
     expect(page).to have_selector("iframe")
-    expect(page).to have_selector("#modal")
+    expect(page).to have_selector(".modal")
   end
 
   it "opens reader mode in modal" do
@@ -119,7 +119,7 @@ describe "Entries", type: :system do
     click_on "Example entry"
     find(".entry-reader_link").click
     expect(page).to have_selector("iframe")
-    expect(page).to have_selector("#modal")
+    expect(page).to have_selector(".modal")
   end
 
   it "opens entry body links in new page" do

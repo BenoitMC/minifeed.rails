@@ -1,4 +1,4 @@
-= turbo_frame_tag "entry-header"
+= turbo_frame_tag dom_id(@entry, :header), class: "entry-header"
   = form_with model: @entry, local: false do |f|
     h1.entry-name = @entry.name
 
@@ -48,6 +48,7 @@
 
       span.separator = " "
 
+
       a.entry-reader_link href=main_app.reader_entry_path(@entry)
         = fa_s(:align_left)
         = " "
@@ -69,4 +70,4 @@
 
   javascript:
     Minifeed.actions.reload_navigation()
-    find(".entry[data-id='#{@entry.id}']").classList.toggle("is_read", #{@entry.is_read?})
+    find("#entries-list li[data-entry-id='#{@entry.id}']").classList.toggle("is_read", #{@entry.is_read?})

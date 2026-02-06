@@ -11,9 +11,9 @@ describe "Keyboard Shortcuts", type: :system do
   it "shows keyboard shortcuts modal" do
     visit entries_path
     find("body").send_keys("h")
-    expect(find("#modal")).to have_content("Keyboard shortcuts")
+    expect(find(".modal")).to have_content("Keyboard shortcuts")
     find("body").send_keys("q")
-    expect(page).to have_no_selector("#modal")
+    expect(page).to have_no_selector(".modal")
   end
 
   it "navigates with left/right arrows" do
@@ -24,25 +24,32 @@ describe "Keyboard Shortcuts", type: :system do
     visit entries_path
 
     click_on "i am the first entry"
-    expect(find("#modal")).to have_content("i am the first entry")
+    expect(find(".modal")).to have_content("i am the first entry")
+    find("h1").click # fix focus
 
     find("body").send_keys(:right)
-    expect(find("#modal")).to have_content("i am the second entry")
+    expect(page).to have_no_selector ".carousel-item-start"
+    expect(find(".modal")).to have_content("i am the second entry")
 
     find("body").send_keys(:right)
-    expect(find("#modal")).to have_content("i am the third entry")
+    expect(page).to have_no_selector ".carousel-item-start, .carousel-item-end"
+    expect(find(".modal")).to have_content("i am the third entry")
 
     find("body").send_keys(:right)
-    expect(find("#modal")).to have_content("i am the third entry")
+    expect(page).to have_no_selector ".carousel-item-start, .carousel-item-end"
+    expect(find(".modal")).to have_content("i am the third entry")
 
     find("body").send_keys(:left)
-    expect(find("#modal")).to have_content("i am the second entry")
+    expect(page).to have_no_selector ".carousel-item-start, .carousel-item-end"
+    expect(find(".modal")).to have_content("i am the second entry")
 
     find("body").send_keys(:left)
-    expect(find("#modal")).to have_content("i am the first entry")
+    expect(page).to have_no_selector ".carousel-item-start, .carousel-item-end"
+    expect(find(".modal")).to have_content("i am the first entry")
 
     find("body").send_keys(:left)
-    expect(find("#modal")).to have_content("i am the first entry")
+    expect(page).to have_no_selector ".carousel-item-start, .carousel-item-end"
+    expect(find(".modal")).to have_content("i am the first entry")
   end
 
   it "opens first entry with right arrow" do
@@ -51,7 +58,7 @@ describe "Keyboard Shortcuts", type: :system do
 
     visit entries_path
     find("body").send_keys(:right)
-    expect(find("#modal")).to have_content("i am the first entry")
+    expect(find(".modal")).to have_content("i am the first entry")
   end
 
   it "opens last entry with left arrow" do
@@ -60,7 +67,7 @@ describe "Keyboard Shortcuts", type: :system do
 
     visit entries_path
     find("body").send_keys(:left)
-    expect(find("#modal")).to have_content("i am the second entry")
+    expect(find(".modal")).to have_content("i am the second entry")
   end
 
   it "sets entry as read/unread" do
@@ -107,7 +114,7 @@ describe "Keyboard Shortcuts", type: :system do
     click_on "Example entry"
     find("body").send_keys("m")
     expect(page).to have_selector("iframe")
-    expect(page).to have_selector("#modal")
+    expect(page).to have_selector(".modal")
   end
 
   it "opens reader mode in modal" do
@@ -117,6 +124,6 @@ describe "Keyboard Shortcuts", type: :system do
     click_on "Example entry"
     find("body").send_keys("p")
     expect(page).to have_selector("iframe")
-    expect(page).to have_selector("#modal")
+    expect(page).to have_selector(".modal")
   end
 end

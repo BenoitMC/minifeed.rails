@@ -28,6 +28,6 @@ onEvent("click", ".modal-link", (ev, el) => {
   modal.openUrl(el.dataset.url || el.href)
 })
 
-onEvent("hidden.bs.modal", ".modal", (ev, el) => {
-  el.find(".modal-body").innerHTML = ""
+onEvent("hidden.bs.modal", "#modal", (ev, el) => {
+  el.find("#modal .modal-body").innerHTML = ""
 })
