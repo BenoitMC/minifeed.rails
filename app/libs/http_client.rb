@@ -13,7 +13,7 @@ module HttpClient
 
   DEFAULT_USER_AGENT = "Minifeed RSS Reader".freeze
 
-  ResponseNotOkError = Class.new(HTTP::ResponseError)
+  class ResponseNotOkError < HTTP::ResponseError; end
 
   def self.http
     HTTP

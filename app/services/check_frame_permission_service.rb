@@ -1,5 +1,5 @@
 class CheckFramePermissionService < ApplicationService
-  Error = Class.new(StandardError)
+  class Error < StandardError; end
 
   attr_reader_initialize :url
 
