@@ -1,5 +1,6 @@
 class Feed::ImportJob < ApplicationJob
-  limits_concurrency key: proc(&:id), group: nil
+  limits_concurrency key: proc(&:id)
+  unique_job!
 
   discard_on Exception # This job is auto enqueued periodically, so we don't need retries
 

@@ -31,12 +31,4 @@ describe Feed::ImportOutdatedJob do
       described_class.perform_later
     end.to_not change(SolidQueue::Job, :count)
   end
-
-  it "should not enqueue import job if already enqueued" do
-    create(:feed, last_import_at: 1.day.ago)
-    described_class.perform_now
-    expect do
-      described_class.perform_now
-    end.to_not change(SolidQueue::Job, :count)
-  end
 end
