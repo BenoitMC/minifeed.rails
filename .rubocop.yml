@@ -58,6 +58,9 @@ Naming/PredicatePrefix:
 Rails/RedundantPresenceValidationOnBelongsTo:
   Enabled: false
 
+Rails/StrongParametersExpect:
+  Enabled: false
+
 
 
 Style/ClassAndModuleChildren:

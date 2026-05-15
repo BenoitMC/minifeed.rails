@@ -1,4 +1,4 @@
-FROM ruby:4.0.2-trixie AS base
+FROM ruby:4.0.4-trixie AS base
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends libjemalloc2 postgresql-client \
