@@ -129,8 +129,8 @@ onEvent("click", ".open-entry", (ev, el) => {
   Minifeed.openEntry(el.dataset.entryId)
 })
 
-// Stop YouTube videos when sliding to another entry
-onEvent("slide.bs.carousel", "#entry-modal", () => {
+// Stop YouTube videos when sliding to another entry or closing the modal
+onEvent("slide.bs.carousel hidden.bs.modal", "#entry-modal", () => {
   Minifeed.entryModalEl.querySelectorAll(".carousel-item.active iframe").forEach(iframe => {
     if (iframe.src && new URL(iframe.src).origin !== window.location.origin) {
       iframe.src = iframe.src
